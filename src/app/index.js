@@ -5,7 +5,7 @@ import { App as Self } from './App'
 import { initApp } from 'redux/actions/app'
 
 const mapStateToProps = ({ app }) => ({
-
+  appReady: app.ready
 })
 
 const mapDispatchToProps = {

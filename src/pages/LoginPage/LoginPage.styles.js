@@ -6,6 +6,8 @@ import { CenteredFlex } from 'ui/styles'
 export const LoginPageContainer = styled(CenteredFlex)`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 `
 
 export const PageTitle = styled.div`

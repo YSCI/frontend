@@ -8,15 +8,20 @@ import './App.css';
 import { Routes } from 'app/components/Routes'
 import { theme } from 'theme'
 
-export const App = ({ initApp }) => {
+export const App = ({ initApp, appReady }) => {
   useEffect(() => {
     initApp()
   }, [initApp])
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
-      <ToastContainer />
+      {
+        appReady &&
+          <>
+            <Routes />
+            <ToastContainer />
+          </>
+      }
     </ThemeProvider>
   )
 }

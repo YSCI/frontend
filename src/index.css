@@ -21,8 +21,16 @@ body {
 
 #root > div {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-color: #fff;
+}
+
+.Toastify {
+  height: unset !important;
+}
+
+a {
+  text-decoration: none;
 }
 
 code {

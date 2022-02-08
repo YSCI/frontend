@@ -13,6 +13,10 @@
   }
 }
 
+img {
+  user-select: none;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -40,4 +44,8 @@
 
 .Toastify__progress-bar {
   background: #00514f;
+}
+
+.React-Select {
+  height: min-content;
 }
