@@ -1,19 +1,14 @@
 export const sidebarItems = [
-  {
-    id: 1,
-    text: 'Օգտատերեր',
-    path: '/users'
-  },
-  {
-    id: 2,
-    text: 'Ուսանողներ',
-    path: '/students'
-  },
-  {
-    id: 3,
-    text: 'Հրամաններ',
-    path: '/commands'
-  },
+  // {
+  //   id: 1,
+  //   text: 'Օգտատերեր',
+  //   path: '/users'
+  // },
+  // {
+  //   id: 2,
+  //   text: 'Ուսանողներ',
+  //   path: '/students'
+  // },
   {
     id: 4,
     text: 'Մասնագիտություններ',
@@ -21,7 +16,42 @@ export const sidebarItems = [
   },
   {
     id: 5,
-    text: 'Առարկաներ',
-    path: '/subjects'
+    text: 'Քաղաքացիություններ',
+    path: '/citizenships'
   },
+  {
+    id: 6,
+    text: 'Առողջական վիճակներ',
+    path: '/health-statuses'
+  },
+  {
+    id: 7,
+    text: 'Կարգավիճակներ',
+    path: '/statuses'
+  },
+  {
+    id: 8,
+    text: 'Մարզեր',
+    path: '/regions'
+  },
+  {
+    id: 12,
+    text: 'Համայնքներ',
+    path: '/communities'
+  },
+  {
+    id: 9,
+    text: 'Ազգություններ',
+    path: '/nationalities'
+  },
+  {
+    id: 10,
+    text: 'Արտոնութոյւններ',
+    path: '/privileges'
+  },
+  {
+    id: 11,
+    text: 'Կոմիսարիատներ',
+    path: '/commissariats'
+  }
 ]

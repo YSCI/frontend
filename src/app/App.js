@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import './App.css';
 import { Routes } from 'app/components/Routes'
 import { theme } from 'theme'
+import { Modal } from 'components/Modal'
 
 export const App = ({ initApp, appReady }) => {
   useEffect(() => {
@@ -20,6 +21,7 @@ export const App = ({ initApp, appReady }) => {
           <>
             <Routes />
             <ToastContainer />
+            <Modal />
           </>
       }
     </ThemeProvider>

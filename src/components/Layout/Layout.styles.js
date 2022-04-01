@@ -10,6 +10,12 @@ export const LayoutContent = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
+
+  > div {
+    .Button {
+      width: 300px;
+    }
+  }
 `
 
 export const LayoutHeader = styled.div`

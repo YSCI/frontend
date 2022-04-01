@@ -20,7 +20,7 @@ const StyledInput = styled.input`
   padding: 12px;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #d9d9d9;
+  border: 2px solid #d9d9d9;
   width: calc(100% - 24px);
   transition: all 0.3s;
   color: rgba(0,0,0,.85);

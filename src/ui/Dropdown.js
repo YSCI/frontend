@@ -39,6 +39,7 @@ const ContentContainer = styled.div`
   position: absolute;
   transition: all 0.3s ease;
   box-shadow: 0 5px 25px rgb(34 41 47 / 10%);
+  z-index: 10;
 
   &.isOpen {
     opacity: 1;

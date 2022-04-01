@@ -21,7 +21,7 @@ export const ToggleFilterButton = styled.div`
   width: 40px;
   height: 40px;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 20%;
 
   &.isFiltersOpened {
     img {
