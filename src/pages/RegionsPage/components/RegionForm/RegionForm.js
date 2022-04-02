@@ -23,6 +23,7 @@ export const RegionForm = ({
     } else {
       createRegion(values)
     }
+    hideModal()
   }
 
   return (

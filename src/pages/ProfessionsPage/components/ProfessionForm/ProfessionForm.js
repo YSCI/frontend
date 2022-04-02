@@ -26,6 +26,7 @@ export const ProfessionForm = ({
     } else {
       createProfession(values)
     }
+    hideModal()
   }
 
   return (

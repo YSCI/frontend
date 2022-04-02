@@ -24,12 +24,12 @@ export const CommissariatForm = ({
   , [editableCommissariat])
 
   const onSubmit = (values) => {
-    console.log({ values })
     if (editableCommissariat) {
       editCommissariat(values)
     } else {
       createCommissariat(values)
     }
+    hideModal()
   }
 
   return (

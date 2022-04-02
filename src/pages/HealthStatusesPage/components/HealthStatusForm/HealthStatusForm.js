@@ -23,6 +23,7 @@ export const HealthStatusForm = ({
     } else {
       createHealthStatus(values)
     }
+    hideModal()
   }
 
   return (

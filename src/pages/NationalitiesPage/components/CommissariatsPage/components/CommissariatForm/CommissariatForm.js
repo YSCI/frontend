@@ -30,6 +30,7 @@ export const CommissariatForm = ({
     } else {
       createCommissariat(values)
     }
+    hideModal()
   }
 console.log({ regions })
   return (

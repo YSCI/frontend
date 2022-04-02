@@ -23,6 +23,8 @@ export const CitizenshipForm = ({
     } else {
       createCitizenship(values)
     }
+
+    hideModal()
   }
 
   return (

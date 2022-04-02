@@ -23,6 +23,7 @@ export const NationalityForm = ({
     } else {
       createNationality(values)
     }
+    hideModal()
   }
 
   return (

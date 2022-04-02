@@ -29,6 +29,7 @@ export const CommunityForm = ({
     } else {
       createCommunity(values)
     }
+    hideModal()
   }
   console.log({ regions })
   return (

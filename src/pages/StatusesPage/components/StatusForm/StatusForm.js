@@ -23,6 +23,7 @@ export const StatusForm = ({
     } else {
       createStatus(values)
     }
+    hideModal()
   }
 
   return (

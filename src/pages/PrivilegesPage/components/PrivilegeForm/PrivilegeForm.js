@@ -23,6 +23,7 @@ export const PrivilegeForm = ({
     } else {
       createPrivilege(values)
     }
+    hideModal()
   }
 
   return (
