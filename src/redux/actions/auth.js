@@ -15,7 +15,9 @@ export const login = ({ email, password }) => async dispatch => {
     // const user = fetchRequest()
     const user = {
       email,
+      name: 'Հայկ',
       password,
+      role: 'Ադմին',
       token: 'sfim49f93jf2fniu849feskfm'
     }
 
@@ -26,4 +28,12 @@ export const login = ({ email, password }) => async dispatch => {
   } catch (ex) {
     toast('Գործողությունը խնդիր առաջացրեց!')   
   }
+}
+
+export const logout = () => dispatch => {
+  dispatch({
+    type: AUTH_TYPES.LOGOUT
+  })
+  StorageService.remove('authData')
+  history.push('/login')
 }

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { StorageService } from "services"
 
 export class HttpService {
-  static async request (method, path, data = {}, options = {}) {
+  static async request (method, path, data, options = {}) {
     const requestUrl = `${process.env.REACT_APP_API_URL}/${path}`
 
     const headers = new Headers({
@@ -20,7 +20,7 @@ export class HttpService {
 
     const fetchOptions = {
       method,
-      headers,
+      headers
     }
 
     if (data) {
@@ -45,8 +45,9 @@ export class HttpService {
         .catch((e) => {
           return Promise.reject(e)
         });
-    } catch {
+    } catch (e) {
       toast('Something went wrong while loading some data')
+      return Promise.reject(e)
     }
   }
 
