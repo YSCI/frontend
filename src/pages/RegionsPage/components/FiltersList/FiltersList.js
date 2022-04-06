@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Input, Select } from 'ui'
+import { Button, Input } from 'ui'
 import { Formik } from 'formik'
 
 import * as S from './FiltersList.styles'

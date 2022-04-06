@@ -23,7 +23,7 @@ export const tableColumns = {
       accessor: 'registrationAddress'
     },
     {
-      Header: 'Բնակման հասցե',
+      Header: 'Բնակության հասցե',
       accessor: 'residentAddress'
     },
     {

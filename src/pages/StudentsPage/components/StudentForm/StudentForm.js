@@ -117,7 +117,7 @@ export const StudentForm = ({
                     <S.FormItem>
                       <Input
                         value={values.residentAddress}
-                        placeholder='Բնակման հասցե'
+                        placeholder='Բնակության հասցե'
                         onChange={(val) => setFieldValue('residentAddress', val)}
                       />
                       {

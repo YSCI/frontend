@@ -51,12 +51,12 @@ export const sidebarItems = [
   },
   {
     id: 10,
-    text: 'Արտոնութոյւններ',
+    text: 'Արտոնություններ',
     path: '/privileges'
   },
   {
     id: 11,
-    text: 'Կոմիսարիատներ',
+    text: 'Զինկոմիսարիատներ',
     path: '/commissariats'
   }
 ]

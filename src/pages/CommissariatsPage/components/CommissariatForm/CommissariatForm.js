@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 
 import * as S from './CommissariatForm.styles'
 import closeIcon from 'images/close.png'
-import { Input, Button, Select } from 'ui'
+import { Input, Button } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommissariatForm.config'
 
