@@ -6,7 +6,7 @@ import { HttpService } from 'services'
 
 export const loadCommissariats = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('commissariat')
+    const data = await HttpService.get('commissariat', search)
 
     dispatch({
       type: COMMISSARIATS_TYPES.LOAD_COMMISSARIAT,

@@ -12,6 +12,7 @@ import {
   LoginPage,
   UsersPage,
   RegionsPage,
+  StudentsPage,
   StatusesPage,
   PrivilegesPage,
   CommunitiesPage,
@@ -32,7 +33,7 @@ export const Routes = ({
     <BrowserRouter history={history}>
       <Switch>
         <ProtectedRoute path='/home' component={HomePage}/>
-        <ProtectedRoute path='/students' component={TestPage} />
+        <ProtectedRoute path='/students' component={StudentsPage} />
         <ProtectedRoute path='/subjects' component={TestPage} />
         <ProtectedRoute path='/professions' component={ProfessionsPage} />
         <ProtectedRoute path='/users' component={UsersPage} />

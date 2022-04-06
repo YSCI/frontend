@@ -7,6 +7,7 @@ import { Select, Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './StatusesPage.styles'
 import { StatusForm } from './components/StatusForm'
+import { FiltersList } from './components/FiltersList'
 
 export const StatusesPage = ({
   showModal,
@@ -22,9 +23,7 @@ export const StatusesPage = ({
     <Layout>
       <S.StatusesPageContainer>
         <Filter>
-          <Select
-            placeholder='Անվանում'
-          />
+          <FiltersList />
         </Filter>
         <Button onClick={() => showModal(StatusForm)}>
           Ավելացնել

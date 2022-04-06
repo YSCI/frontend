@@ -1,7 +1,12 @@
 import { toast } from 'react-toastify'
+import qs from 'qs'
 
 
 import { StorageService } from "services"
+
+function filterNonNull(obj) {
+  return Object.fromEntries(Object.entries(obj).filter(([k, v]) => v));
+}
 
 export class HttpService {
   static async request (method, path, data, options = {}) {
@@ -51,8 +56,10 @@ export class HttpService {
     }
   }
 
-  static async get(path) {
-    return await HttpService.request('get', path)
+  static async get(path, search = {}) {
+    const queryString = qs.stringify(filterNonNull(search))
+
+    return await HttpService.request('get', path + `?${queryString}`)
   }
 
   static async post(path, data) {

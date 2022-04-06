@@ -6,7 +6,7 @@ import { HttpService } from 'services'
 
 export const loadRegions = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('region')
+    const data = await HttpService.get('region', search)
 
     dispatch({
       type: REGIONS_TYPES.LOAD_REGIONS,

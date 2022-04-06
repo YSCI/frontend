@@ -7,6 +7,7 @@ import { Select, Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './RegionsPage.styles'
 import { RegionForm } from './components/RegionForm'
+import { FiltersList } from './components/FiltersList'
 
 export const RegionsPage = ({
   showModal,
@@ -22,9 +23,7 @@ export const RegionsPage = ({
     <Layout>
       <S.RegionsPageContainer>
         <Filter>
-          <Select
-            placeholder='Անվանում'
-          />
+          <FiltersList />
         </Filter>
         <Button onClick={() => showModal(RegionForm)}>
           Ավելացնել

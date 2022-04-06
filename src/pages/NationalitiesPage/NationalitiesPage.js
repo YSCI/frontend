@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 
 import { Table, Filter } from 'components'
@@ -7,6 +7,7 @@ import { Select, Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './NationalitiesPage.styles'
 import { NationalityForm } from './components/NationalityForm'
+import { FiltersList } from './components/FiltersList'
 
 export const NationalitiesPage = ({
   showModal,
@@ -22,9 +23,7 @@ export const NationalitiesPage = ({
     <Layout>
       <S.NationalitiesPageContainer>
         <Filter>
-          <Select
-            placeholder='Անվանում'
-          />
+          <FiltersList />
         </Filter>
         <Button onClick={() => showModal(NationalityForm)}>
           Ավելացնել

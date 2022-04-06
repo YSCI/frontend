@@ -9,8 +9,6 @@ export const Filter = ({
 }) => {
   const [isFiltersOpened, setIsFiltersOpened] = useState(false)
 
-  return null
-
   return (
     <S.FilterContainer className='Filter'>
       <S.FilterHeader onClick={() => setIsFiltersOpened(!isFiltersOpened)}>

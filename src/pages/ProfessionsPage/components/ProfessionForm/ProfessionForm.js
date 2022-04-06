@@ -119,6 +119,19 @@ export const ProfessionForm = ({
                       </S.ErrorMessage>
                   }
                 </S.FormItem>
+                <S.FormItem>
+                  <Input
+                    value={values.fee}
+                    placeholder='Վճար'
+                    onChange={(val) => setFieldValue('fee', val)}
+                  />
+                  {
+                    errors.number && touched.number &&
+                      <S.ErrorMessage>
+                        { errors.number }
+                      </S.ErrorMessage>
+                  }
+                </S.FormItem>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

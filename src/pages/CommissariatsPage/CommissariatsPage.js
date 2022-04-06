@@ -7,6 +7,7 @@ import { Select, Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommissariatsPage.styles'
 import { CommissariatForm } from './components/CommissariatForm'
+import { FiltersList } from './components/FiltersList'
 
 export const CommissariatsPage = ({
   showModal,
@@ -22,9 +23,7 @@ export const CommissariatsPage = ({
     <Layout>
       <S.CommissariatsPageContainer>
         <Filter>
-          <Select
-            placeholder='Անվանում'
-          />
+          <FiltersList />
         </Filter>
         <Button onClick={() => showModal(CommissariatForm)}>
           Ավելացնել

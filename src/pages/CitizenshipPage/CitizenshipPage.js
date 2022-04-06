@@ -7,6 +7,7 @@ import { Select, Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './CitizenshipPage.styles'
 import { CitizenshipForm } from './components/CitizenshipForm'
+import { FiltersList } from './components/FiltersList'
 
 export const CitizenshipPage = ({
   showModal,
@@ -22,9 +23,7 @@ export const CitizenshipPage = ({
     <Layout>
       <S.CitizenshipPageContainer>
         <Filter>
-          <Select
-            placeholder='Անուն'
-          />
+          <FiltersList />
         </Filter>
         <Button onClick={() => showModal(CitizenshipForm)}>
           Ավելացնել

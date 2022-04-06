@@ -6,7 +6,7 @@ import { HttpService } from 'services'
 
 export const loadPrivileges = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('privilege')
+    const data = await HttpService.get('privilege', search)
 
     dispatch({
       type: PRIVILEGES_TYPES.LOAD_PRIVILEGES,

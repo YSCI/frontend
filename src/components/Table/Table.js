@@ -6,7 +6,7 @@ import * as S from './Table.styles'
 
 const defaultColumn = {
   minWidth: 100,
-  width: 150,
+  width: 200,
   maxWidth: 400
 }
 

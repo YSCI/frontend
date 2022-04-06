@@ -86,19 +86,16 @@ export const CommissariatForm = ({
                   }
                 </S.FormItem>
                 <S.FormItem>
-                  <Select
-                    value={values.communityId}
-                    options={communities.list.map(community => ({
-                      value: community.id,
-                      label: community.name
-                    }))}
-                    placeholder='Համայնք'
-                    onChange={(val) => setFieldValue('communityId', val.value)}
+                <Input
+                    value={values.description}
+                    placeholder='Նկարագրություն'
+                    type='description'
+                    onChange={(val) => setFieldValue('description', val)}
                   />
                   {
-                    errors.communityId && touched.communityId &&
+                    errors.number && touched.number &&
                       <S.ErrorMessage>
-                        { errors.communityId }
+                        { errors.number }
                       </S.ErrorMessage>
                   }
                 </S.FormItem>

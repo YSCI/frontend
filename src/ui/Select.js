@@ -8,6 +8,8 @@ const colourStyles = {
     outline: 'none',
     boxShadow: 'none',
     borderColor: menuIsOpen ? '#087370': '#d4d4d4',
+    borderWidth: '2px',
+    minHeight: '44.8px',
     ':hover': {
       ...styles['hover'],
       borderColor: '#087370',

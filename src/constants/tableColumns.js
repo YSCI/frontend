@@ -1,4 +1,89 @@
+import { withConfirmation } from "helpers"
+
 export const tableColumns = {
+  students: ({ onEdit, onDelete }) => ([
+    {
+      Header: 'Անուն',
+      accessor: 'firstname'
+    },
+    {
+      Header: 'Ազգանուն',
+      accessor: 'lastname'
+    },
+    {
+      Header: 'Հայրանուն',
+      accessor: 'fathername'
+    },
+    {
+      Header: 'Ծննդյան ամսաթիվ',
+      accessor: 'dateOfBirth'
+    },
+    {
+      Header: 'Գրանցման հասցե',
+      accessor: 'registrationAddress'
+    },
+    {
+      Header: 'Բնակման հասցե',
+      accessor: 'residentAddress'
+    },
+    {
+      Header: 'Հեռախոսահամարներ',
+      accessor: 'contactNumbers[0]'
+    },
+    {
+      Header: 'Ընդունման ամսաթիվ',
+      accessor: 'dateOfAcceptance'
+    },
+    {
+      Header: 'Ընդունման հրամանի համար',
+      accessor: 'acceptanceCommandNumber'
+    },
+    {
+      Header: 'Ընթացիկ կուրս',
+      accessor: 'currentCourse'
+    },
+    {
+      Header: 'Ընթացիկ խումբ',
+      accessor: 'currentGroup'
+    },
+    {
+      Header: 'Քաղաքացիություն',
+      accessor: 'citizenship.country'
+    },
+    {
+      Header: 'Ազգություն',
+      accessor: 'nationality.name'
+    },
+    {
+      Header: 'Մասնագիտություն',
+      accessor: 'profession.name'
+    },
+    {
+      Header: 'Առողջական վիճակ',
+      accessor: 'healthStatus.status'
+    },
+    {
+      Header: 'Կարգավիճակ',
+      accessor: 'status.name'
+    },
+    {
+      Header: 'Կոմիսարիատ',
+      accessor: 'commissariat.name'
+    },
+    {
+      id: 'actions', 
+      Cell: ({ row: { original } }) => (
+        <div>
+          <div onClick={() => onEdit(original)}>
+            Փոփոխել
+          </div>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
+            Ջնջել
+          </div>
+        </div>
+      )
+    },
+  ]),
   profession: ({ onEdit, onDelete }) => ([
     {
       Header: 'Անվանում',
@@ -21,13 +106,17 @@ export const tableColumns = {
       accessor: 'number'
     },
     {
+      Header: 'Վճար',
+      accessor: 'fee'
+    },
+    {
       id: 'actions', 
       Cell: ({ row: { original } }) => (
         <div>
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -46,7 +135,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -65,7 +154,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -84,7 +173,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -103,7 +192,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -122,7 +211,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -141,7 +230,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -158,8 +247,8 @@ export const tableColumns = {
       accessor: 'number'
     },
     {
-      Header: 'Համայնք',
-      accessor: 'community.name'
+      Header: 'Նկարագրություն',
+      accessor: 'description'
     },
     {
       id: 'actions', 
@@ -168,7 +257,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>
@@ -191,7 +280,7 @@ export const tableColumns = {
           <div onClick={() => onEdit(original)}>
             Փոփոխել
           </div>
-          <div onClick={() => onDelete(original.id)}>
+          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
             Ջնջել
           </div>
         </div>

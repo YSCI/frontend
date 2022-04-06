@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 export const TableContainer = styled.div`
   width: min-content;
+  max-width: ${() => ((document.getElementsByClassName('Table-Container'))[0]?.parentElement.clientWidth || 840) - 40 }px;
+  overflow-x: auto;
 
   div {
     border-spacing: 0;

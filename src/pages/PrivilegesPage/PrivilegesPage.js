@@ -7,6 +7,7 @@ import { Select, Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './PrivilegesPage.styles'
 import { PrivilegeForm } from './components/PrivilegeForm'
+import { FiltersList } from './components/FiltersList'
 
 export const PrivilegesPage = ({
   showModal,
@@ -22,9 +23,7 @@ export const PrivilegesPage = ({
     <Layout>
       <S.PrivilegesPageContainer>
         <Filter>
-          <Select
-            placeholder='Անվանում'
-          />
+          <FiltersList />
         </Filter>
         <Button onClick={() => showModal(PrivilegeForm)}>
           Ավելացնել

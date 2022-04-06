@@ -7,6 +7,7 @@ import { Select, Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommunitiesPage.styles'
 import { CommunityForm } from './components/CommunityForm'
+import { FiltersList } from './components/FiltersList'
 
 export const CommunitiesPage = ({
   showModal,
@@ -22,9 +23,7 @@ export const CommunitiesPage = ({
     <Layout>
       <S.CommunitiesPageContainer>
         <Filter>
-          <Select
-            placeholder='Անվանում'
-          />
+          <FiltersList />
         </Filter>
         <Button onClick={() => showModal(CommunityForm)}>
           Ավելացնել

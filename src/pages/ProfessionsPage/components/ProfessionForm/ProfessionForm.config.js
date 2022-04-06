@@ -5,7 +5,8 @@ export const initialValues = {
   code: '',
   abbreviation: '',
   yearsCount: '',
-  number: ''
+  number: '',
+  fee: ''
 }
 
 export const validationSchema = Yup.object().shape({
@@ -18,5 +19,7 @@ export const validationSchema = Yup.object().shape({
   yearsCount: Yup.string()
     .required('Դաշտը չի կարող դատարկ լինել'),
   number: Yup.string()
+    .required('Դաշտը չի կարող դատարկ լինել'),
+  fee: Yup.string()
     .required('Դաշտը չի կարող դատարկ լինել')
 });

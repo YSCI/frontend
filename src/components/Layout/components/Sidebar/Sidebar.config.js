@@ -10,6 +10,11 @@ export const sidebarItems = [
   //   path: '/students'
   // },
   {
+    id: 1,
+    text: 'Ուսանողներ',
+    path: '/students'
+  },
+  {
     id: 4,
     text: 'Մասնագիտություններ',
     path: '/professions'

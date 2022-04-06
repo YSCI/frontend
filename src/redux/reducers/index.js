@@ -6,6 +6,7 @@ import { auth } from './auth'
 import { modal } from './modal'
 import { regions } from './regions'
 import { statuses } from './statuses'
+import { students } from './students'
 import { privileges } from './privileges'
 import { professions } from './professions'
 import { communities } from './communities'
@@ -20,6 +21,7 @@ export const rootReducer = combineReducers({
   modal,
   regions,
   statuses,
+  students,
   privileges,
   professions,
   communities,
