@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const TableContainer = styled.div`
-  width: min-content;
-  overflow-x: auto;
   display: flex;
   position: relative;
   min-height: 260px;
@@ -96,10 +94,10 @@ export const TableContainer = styled.div`
 
 export const FixedActionsBar = styled.div`
   padding: 15px;
-  position: fixed;
+  position: absolute;
   border-radius: 10px;
   background: #fff;
-  right: 30px;
+  right: 0px;
   height: 230px;
   width: 170px;
   display: flex;
