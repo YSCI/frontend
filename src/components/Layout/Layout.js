@@ -10,9 +10,9 @@ export const Layout = ({
 }) => {
   return (
     <S.LayoutContainer>
-      <S.SidebarContainer>
+      {/* <S.SidebarContainer>
         <Sidebar />
-      </S.SidebarContainer>
+      </S.SidebarContainer> */}
       <S.ContentContainer>
         <S.LayoutHeader>
           <Header />

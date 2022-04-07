@@ -91,6 +91,7 @@ export const Table = ({
     <S.TableContainer className='Table-Container'>
       <div {...getTableProps()} className='Table'>
         <thead>
+          <div className='header-style'/>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
@@ -146,12 +147,12 @@ export const Table = ({
             >
               Փոփոխել
             </Button>
-            <Button
+            {/* <Button
               className='danger'
               onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
             >
               Ջնջել
-            </Button>
+            </Button> */}
           </S.FixedActionsBar>
       }
     </S.TableContainer>

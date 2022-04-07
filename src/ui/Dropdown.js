@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import OutsideClickHandler from 'react-outside-click-handler'
 import cx from 'classnames'
 
-export const Dropdown = ({ children }) => {
+export const Dropdown = ({ children, className }) => {
   const [Header, Content ] = children
   const [isOpen, setIsOpen] = useState(false)
 
@@ -16,7 +16,7 @@ export const Dropdown = ({ children }) => {
           { Header }
         </HeaderContainer>
         {
-            <ContentContainer className={cx({ isOpen }, 'Dropdown-Content')}>
+            <ContentContainer className={cx({ isOpen, [className]: true }, 'Dropdown-Content')}>
               { isOpen && Content }
             </ContentContainer>
         }

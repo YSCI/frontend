@@ -21,7 +21,7 @@ const StyledInput = styled.input`
   border-radius: 4px;
   outline: none;
   border: 2px solid #d9d9d9;
-  width: calc(100% - 24px);
+  width: calc(100% - 28px);
   transition: all 0.3s;
   color: rgba(0,0,0,.85);
   font-size: 14px;

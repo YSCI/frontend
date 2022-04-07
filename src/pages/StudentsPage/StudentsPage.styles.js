@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CommunitiesPageContainer = styled.div`
+export const StudentsPageContainer = styled.div`
   width: calc(100% - 40px);
   // height: 100%;
   padding: 20px;

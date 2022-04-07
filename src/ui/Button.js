@@ -37,6 +37,7 @@ export const ButtonContainer = styled(CenteredFlex)`
   }
 
   &.bordered {
+    width: calc(100% - 28px);
     border: 2px solid #d9d9d9;
 
     &:hover {

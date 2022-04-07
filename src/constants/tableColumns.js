@@ -69,20 +69,7 @@ export const tableColumns = {
     {
       Header: 'Կոմիսարիատ',
       accessor: 'commissariat.name'
-    },
-    // {
-    //   id: 'actions', 
-    //   Cell: ({ row: { original } }) => (
-    //     <div className="fixed-actions-bar">
-    //       <div onClick={() => onEdit(original)}>
-    //         Փոփոխել
-    //       </div>
-    //       <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-    //         Ջնջել
-    //       </div>
-    //     </div>
-    //   )
-    // },
+    }
   ]),
   profession: ({ onEdit, onDelete }) => ([
     {
@@ -108,134 +95,43 @@ export const tableColumns = {
     {
       Header: 'Վճար',
       accessor: 'fee'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   citizenship: ({ onEdit, onDelete }) => ([
     {
       Header: 'Երկիր',
       accessor: 'country'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   healthStatus: ({ onEdit, onDelete }) => ([
     {
       Header: 'Անվանում',
       accessor: 'status'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   status: ({ onEdit, onDelete }) => ([
     {
       Header: 'Անվանում',
       accessor: 'name'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   region: ({ onEdit, onDelete }) => ([
     {
       Header: 'Անվանում',
       accessor: 'name'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   nationality: ({ onEdit, onDelete }) => ([
     {
       Header: 'Անվանում',
       accessor: 'name'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   privilege: ({ onEdit, onDelete }) => ([
     {
       Header: 'Անվանում',
       accessor: 'name'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   commissariat: ({ onEdit, onDelete }) => ([
     {
@@ -249,20 +145,7 @@ export const tableColumns = {
     {
       Header: 'Նկարագրություն',
       accessor: 'description'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ]),
   community: ({ onEdit, onDelete }) => ([
     {
@@ -272,19 +155,6 @@ export const tableColumns = {
     {
       Header: 'Մարզ',
       accessor: 'region.name'
-    },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    }
   ])
 }
