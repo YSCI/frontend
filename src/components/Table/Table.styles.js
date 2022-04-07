@@ -2,8 +2,10 @@ import styled from 'styled-components'
 
 export const TableContainer = styled.div`
   width: min-content;
-  max-width: ${() => ((document.getElementsByClassName('Table-Container'))[0]?.parentElement.clientWidth || 840) - 40 }px;
+  max-width: ${() => ((document.getElementsByClassName('Table-Container'))[0]?.parentElement.clientWidth || 840) - 40 - 170 - 60 }px;
   overflow-x: auto;
+  display: flex;
+  position: relative;
 
   div {
     border-spacing: 0;
@@ -71,20 +73,28 @@ export const TableContainer = styled.div`
     }
 
     .resizer {
-        display: inline-block;
-        width: 10px;
-        height: 100%;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transform: translateX(50%);
-        z-index: 1;
-        touch-action:none;
+      display: inline-block;
+      width: 10px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translateX(50%);
+      z-index: 1;
+      touch-action:none;
 
-        &.isResizing {
-          // background: red;
-        }
+      &.isResizing {
+        // background: red;
       }
     }
   }
+`
+
+export const FixedActionsBar = styled.div`
+  padding: 15px;
+  position: fixed;
+  background: #fff;
+  right: 30px;
+  height: 227px;
+  width: 170px;
 `

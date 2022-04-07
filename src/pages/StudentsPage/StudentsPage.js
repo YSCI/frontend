@@ -29,10 +29,9 @@ export const StudentsPage = ({
         </Button>
         <Table
           data={students.list}
-          columns={tableColumns.students({
-            onEdit: (editableStudent) => showModal(StudentForm, { editableStudent }),
-            onDelete: (studentId) => deleteStudent(studentId)
-          })}
+          onDelete={deleteStudent}
+          FormComponent={StudentForm}
+          columns={tableColumns.students()}
         />
       </S.CommunitiesPageContainer>
     </Layout>

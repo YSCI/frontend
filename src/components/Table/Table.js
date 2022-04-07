@@ -1,7 +1,9 @@
-import React from 'react'
-import { useBlockLayout, useResizeColumns, useSortBy, useTable } from 'react-table'
+import React, { useEffect } from 'react'
+import { useBlockLayout, useResizeColumns, useSortBy, useTable, useRowSelect } from 'react-table'
 
 
+import { Button } from 'ui'
+import { withConfirmation } from 'helpers'
 import * as S from './Table.styles'
 
 const defaultColumn = {
@@ -10,9 +12,32 @@ const defaultColumn = {
   maxWidth: 400
 }
 
+
+const IndeterminateCheckbox = React.forwardRef(
+  ({ indeterminate, ...rest }, ref) => {
+    const defaultRef = React.useRef()
+    const resolvedRef = ref || defaultRef
+
+    useEffect(() => {
+      resolvedRef.current.indeterminate = indeterminate
+    }, [resolvedRef, indeterminate])
+
+    return (
+      <>
+        <input type="checkbox" ref={resolvedRef} {...rest} />
+      </>
+    )
+  }
+)
+
+
 export const Table = ({
   data,
-  columns
+  columns,
+  onDelete,
+  showModal,
+  hasActionsBar,
+  FormComponent
 }) => {
   const {
     getTableProps,
@@ -20,6 +45,8 @@ export const Table = ({
     headerGroups,
     rows,
     prepareRow,
+    selectedFlatRows,
+    state: { selectedRowIds },
   } = useTable(
     {
       columns,
@@ -28,12 +55,37 @@ export const Table = ({
     },
     useSortBy,
     useBlockLayout,
-    useResizeColumns
+    useResizeColumns,
+    useRowSelect,
+    hooks => {
+      hooks.visibleColumns.push(columns => [
+        // Let's make a column for selection
+        {
+          id: 'selection',
+          // The header can use the table's getToggleAllRowsSelectedProps method
+          // to render a checkbox
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div> 
+              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps?.()} />
+            </div>
+          ),
+          // The cell can use the individual row's getToggleRowSelectedProps method
+          // to the render a checkbox
+          Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
+        },
+        ...columns,
+      ])
+    }
   )
 
   // We don't want to render all 2000 rows for this example, so cap
   // it at 20 for this use case
   const firstPageRows = rows.slice(0, 20)
+  const selectedFirstRow = selectedFlatRows[0]?.original
 
   return (
     <S.TableContainer className='Table-Container'>
@@ -82,6 +134,24 @@ export const Table = ({
           )}
         </tbody>
       </div>
+      {
+        hasActionsBar &&
+          <S.FixedActionsBar>
+            <Button onClick={() => showModal(FormComponent)}>
+              Ավելացնել
+            </Button>
+            <Button onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}>
+              Փոփոխել
+            </Button>
+            <Button onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}>
+              Ջնջել
+            </Button>
+          </S.FixedActionsBar>
+      }
     </S.TableContainer>
   )
+}
+
+Table.defaultProps = {
+  hasActionsBar: true
 }

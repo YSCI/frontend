@@ -1,7 +1,7 @@
 import { withConfirmation } from "helpers"
 
 export const tableColumns = {
-  students: ({ onEdit, onDelete }) => ([
+  students: () => ([
     {
       Header: 'Անուն',
       accessor: 'firstname'
@@ -70,19 +70,19 @@ export const tableColumns = {
       Header: 'Կոմիսարիատ',
       accessor: 'commissariat.name'
     },
-    {
-      id: 'actions', 
-      Cell: ({ row: { original } }) => (
-        <div>
-          <div onClick={() => onEdit(original)}>
-            Փոփոխել
-          </div>
-          <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
-            Ջնջել
-          </div>
-        </div>
-      )
-    },
+    // {
+    //   id: 'actions', 
+    //   Cell: ({ row: { original } }) => (
+    //     <div className="fixed-actions-bar">
+    //       <div onClick={() => onEdit(original)}>
+    //         Փոփոխել
+    //       </div>
+    //       <div onClick={() => withConfirmation({ onYes: () => onDelete(original.id) })}>
+    //         Ջնջել
+    //       </div>
+    //     </div>
+    //   )
+    // },
   ]),
   profession: ({ onEdit, onDelete }) => ([
     {
