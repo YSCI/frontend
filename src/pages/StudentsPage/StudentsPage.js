@@ -24,9 +24,6 @@ export const StudentsPage = ({
         {/* <Filter>
           <FiltersList />
         </Filter> */}
-        <Button onClick={() => showModal(StudentForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={students.list}
           onDelete={deleteStudent}

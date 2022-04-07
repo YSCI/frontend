@@ -25,9 +25,6 @@ export const StatusesPage = ({
         <Filter>
           <FiltersList />
         </Filter>
-        <Button onClick={() => showModal(StatusForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={statuses.list}
           columns={tableColumns.status({

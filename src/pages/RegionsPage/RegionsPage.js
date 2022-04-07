@@ -25,9 +25,6 @@ export const RegionsPage = ({
         <Filter>
           <FiltersList />
         </Filter>
-        <Button onClick={() => showModal(RegionForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={regions.list}
           columns={tableColumns.region({

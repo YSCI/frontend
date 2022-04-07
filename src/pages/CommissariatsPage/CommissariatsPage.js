@@ -25,9 +25,6 @@ export const CommissariatsPage = ({
         <Filter>
           <FiltersList />
         </Filter>
-        <Button onClick={() => showModal(CommissariatForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={commissariats.list}
           columns={tableColumns.commissariat({

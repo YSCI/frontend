@@ -25,9 +25,6 @@ export const NationalitiesPage = ({
         <Filter>
           <FiltersList />
         </Filter>
-        <Button onClick={() => showModal(NationalityForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={nationalities.list}
           columns={tableColumns.nationality({

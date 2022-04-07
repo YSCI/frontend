@@ -2,15 +2,19 @@ import styled from 'styled-components'
 
 export const TableContainer = styled.div`
   width: min-content;
-  max-width: ${() => ((document.getElementsByClassName('Table-Container'))[0]?.parentElement.clientWidth || 840) - 40 - 170 - 60 }px;
   overflow-x: auto;
   display: flex;
   position: relative;
+  min-height: 260px;
 
-  div {
+  .Table {
+    max-width: ${() => ((document.getElementsByClassName('Table-Container'))[0]?.parentElement.clientWidth || 840) - 40 - 170 - 60 }px;
     border-spacing: 0;
     box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
     border-radius: 10px;
+    max-width: 964px;
+    overflow: auto;
+    background: #fff;
 
     tr {
       :last-child {
@@ -93,8 +97,12 @@ export const TableContainer = styled.div`
 export const FixedActionsBar = styled.div`
   padding: 15px;
   position: fixed;
+  border-radius: 10px;
   background: #fff;
   right: 30px;
-  height: 227px;
+  height: 230px;
   width: 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `

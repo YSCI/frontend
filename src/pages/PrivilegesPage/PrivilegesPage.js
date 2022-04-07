@@ -25,9 +25,6 @@ export const PrivilegesPage = ({
         <Filter>
           <FiltersList />
         </Filter>
-        <Button onClick={() => showModal(PrivilegeForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={privileges.list}
           columns={tableColumns.privilege({

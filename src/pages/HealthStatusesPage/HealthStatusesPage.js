@@ -25,9 +25,6 @@ export const HealthStatusesPage = ({
         <Filter>
           <FiltersList />
         </Filter>
-        <Button onClick={() => showModal(HealthStatusForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={healthStatuses.list}
           columns={tableColumns.healthStatus({

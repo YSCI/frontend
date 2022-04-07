@@ -89,7 +89,7 @@ export const Table = ({
 
   return (
     <S.TableContainer className='Table-Container'>
-      <div {...getTableProps()}>
+      <div {...getTableProps()} className='Table'>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -140,10 +140,16 @@ export const Table = ({
             <Button onClick={() => showModal(FormComponent)}>
               Ավելացնել
             </Button>
-            <Button onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}>
+            <Button
+              className='bordered'
+              onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
+            >
               Փոփոխել
             </Button>
-            <Button onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}>
+            <Button
+              className='danger'
+              onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
+            >
               Ջնջել
             </Button>
           </S.FixedActionsBar>

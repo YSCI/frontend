@@ -25,9 +25,6 @@ export const CommunitiesPage = ({
         <Filter>
           <FiltersList />
         </Filter>
-        <Button onClick={() => showModal(CommunityForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={communities.list}
           columns={tableColumns.community({

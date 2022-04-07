@@ -25,10 +25,10 @@ export const ButtonContainer = styled(CenteredFlex)`
   border-radius: 6px;
   width: calc(100% - 24px);
   transition: all 0.3s ease;
-  
+  padding: 12px;
+
   &.main {
     color: #fff;
-    padding: 12px;
     background: ${({ theme }) => theme.colors.green};
 
     &:hover {
@@ -41,6 +41,15 @@ export const ButtonContainer = styled(CenteredFlex)`
 
     &:hover {
       border-color: ${({ theme }) => theme.colors.lightGreen};
+    }
+  }
+
+  &.danger {
+    color: #fff;
+    background: #b01c25;
+
+    &:hover {
+      background: #e01b28;
     }
   }
 `

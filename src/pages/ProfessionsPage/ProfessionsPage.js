@@ -26,9 +26,6 @@ export const ProfessionsPage = ({
             placeholder='Անուն'
           />
         </Filter>
-        <Button onClick={() => showModal(ProfessionForm)}>
-          Ավելացնել
-        </Button>
         <Table
           data={professions.list}
           columns={tableColumns.profession({
