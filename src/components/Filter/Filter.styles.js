@@ -12,6 +12,7 @@ export const FilterContainer = styled.div`
 
 export const FilterContent = styled.div`
   padding: 20px;
+  display: ${({ isFiltersOpened }) => isFiltersOpened ? 'block' : 'none'};
 `
 
 export const ToggleFilterButton = styled.div`

@@ -22,12 +22,9 @@ export const Filter = ({
       {
         isFiltersOpened && <S.Divider />
       }
-      {
-        isFiltersOpened &&
-          <S.FilterContent>
-            { children }
-          </S.FilterContent>
-      }
+      <S.FilterContent isFiltersOpened={isFiltersOpened}>
+        { children }
+      </S.FilterContent>
     </S.FilterContainer>
   )
 }
