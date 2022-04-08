@@ -46,11 +46,10 @@ export const ButtonContainer = styled(CenteredFlex)`
   }
 
   &.danger {
-    color: #fff;
-    background: #b01c25;
+    border: 2px solid #f18c92;
 
     &:hover {
-      background: #e01b28;
+      border-color: #e01b28;
     }
   }
 `

@@ -4,12 +4,14 @@ export const TableContainer = styled.div`
   display: flex;
   position: relative;
   min-height: 260px;
+  width: calc(100% - 430px);
 
   .Table {
-    width: calc(100% - 220px);
+    width: calc(100% - 200px);
     border-spacing: 0;
     box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
     border-radius: 10px;
+    border-top-right-radius: 0px;
     overflow: auto;
     background: #fff;
     position: relative;
@@ -33,6 +35,10 @@ export const TableContainer = styled.div`
     }
 
     thead {
+      th {
+        min-height: 66px;
+      }
+
       tr {
         width: calc(100% + 4px) !important;
         background: ${({ theme }) => theme.colors.green};
@@ -44,13 +50,23 @@ export const TableContainer = styled.div`
       top: 0px;
       width: 100%;
       left: 0px;
-      height: 42.4px;
+      height: 66px;
       background: ${({ theme }) => theme.colors.green};
     }
 
     tbody {
       tr {
         margin-top: 2px;
+        cursor: pointer;
+        border-bottom: 1px solid #f6f6f8;
+
+        &.selected {
+          background: #e1eeee;
+        }
+        
+        &:hover {
+          background: #e1eeee;
+        }
       }
     }
 
@@ -65,7 +81,6 @@ export const TableContainer = styled.div`
     th,
     td {
       text-align: center;
-      background: #fff;
       user-select: none;
       border-right: 2px solid #f6f6f8;
       padding: 0.65rem;
@@ -98,7 +113,7 @@ export const TableContainer = styled.div`
           }
 
           &:last-child {
-            border-bottom-right-radius: 10px;
+            // border-bottom-right-radius: 10px;
           }
         }
       }
@@ -122,15 +137,36 @@ export const TableContainer = styled.div`
   }
 `
 
+export const FixedActionsBarHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  font-weight: bold;
+  color: #fff;
+  background: ${({ theme }) => theme.colors.green};
+  border-top-right-radius: 10px;
+  border-bottom: 2px solid #f6f6f8;
+`
+
 export const FixedActionsBar = styled.div`
-  padding: 15px;
   position: absolute;
+  border-left: 2px solid #f6f6f8;
   border-radius: 10px;
   background: #fff;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   right: 0px;
-  height: calc(100% - 30px);
-  width: 170px;
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+`
+
+export const ActionsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  // margin-top: 20px;
+  padding: 20px 10px;
 `

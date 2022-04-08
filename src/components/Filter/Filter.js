@@ -1,28 +1,19 @@
-import React, { useState } from 'react'
-import cx from 'classnames'
+import React from 'react'
 
 import * as S from './Filter.styles'
-import arrowPic from 'images/arrow.png'
 
 export const Filter = ({
   children
 }) => {
-  const [isFiltersOpened, setIsFiltersOpened] = useState(false)
-
   return (
     <S.FilterContainer className='Filter'>
-      <S.FilterHeader onClick={() => setIsFiltersOpened(!isFiltersOpened)}>
+      <S.FilterHeader>
         <S.HeaderTitle>
           Ֆիլտրներ
         </S.HeaderTitle>
-        <S.ToggleFilterButton className={cx({ isFiltersOpened })}>
-          <S.ToggleFilterIcon src={arrowPic} />
-        </S.ToggleFilterButton>
       </S.FilterHeader>
-      {
-        isFiltersOpened && <S.Divider />
-      }
-      <S.FilterContent isFiltersOpened={isFiltersOpened}>
+      <S.Divider />
+      <S.FilterContent>
         { children }
       </S.FilterContent>
     </S.FilterContainer>

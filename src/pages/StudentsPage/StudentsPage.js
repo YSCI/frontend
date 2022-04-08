@@ -20,15 +20,15 @@ export const StudentsPage = ({
   return (
     <Layout>
       <S.StudentsPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
           data={students.list}
           onDelete={deleteStudent}
           FormComponent={StudentForm}
           columns={tableColumns.students()}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.StudentsPageContainer>
     </Layout>
   )

@@ -15,11 +15,16 @@ const colourStyles = {
       borderColor: '#087370',
     }
   }),
+  menuList: (styles) => ({
+    ...styles,
+    zIndex: '100'
+  }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     return {
       ...styles,
       cursor: isDisabled ? 'not-allowed' : 'default',
       backgroundColor: isSelected ? 'rgba(8,115,112,0.50)' : '#fff',
+      zIndex: '20',
       ':hover': {
         ...styles[':hover'],
         backgroundColor: isSelected ? 'rgba(8,115,112,0.50)' : 'rgba(8,115,112,0.12)',

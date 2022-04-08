@@ -22,16 +22,15 @@ export const StatusesPage = ({
   return (
     <Layout>
       <S.StatusesPageContainer>
+        <Table
+          data={statuses.list}
+          columns={tableColumns.status({})}
+          FormComponent={StatusForm}
+          onDelete={deleteStatus}
+        />
         <Filter>
           <FiltersList />
         </Filter>
-        <Table
-          data={statuses.list}
-          columns={tableColumns.status({
-            onEdit: (editableStatus) => showModal(StatusForm, { editableStatus }),
-            onDelete: (statusId) => deleteStatus(statusId)
-          })}
-        />
       </S.StatusesPageContainer>
     </Layout>
   )

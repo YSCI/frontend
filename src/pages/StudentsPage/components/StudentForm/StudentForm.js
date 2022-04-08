@@ -5,6 +5,7 @@ import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './StudentForm.config'
+import { FormLabelItem } from 'components/FormLabelItem'
 
 export const StudentForm = ({
   hideModal,
@@ -24,7 +25,7 @@ export const StudentForm = ({
     } else {
       createStudent(values)
     }
-    hideModal()
+    // hideModal()
   }
 
   return (
@@ -50,14 +51,19 @@ export const StudentForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            console.log({ values })
+            console.log({ values, state })
             const selectedCommissariat = state.commissariats.list.find(el => el.id === values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)
             const selectedNationality = state.nationalities.list.find(el => el.id === values.nationalityId)
             const selectedProfession = state.professions.list.find(el => el.id === values.professionId)
             const selectedStatus = state.statuses.list.find(el => el.id === values.statusId)
-            console.log(selectedCitizenship, 'sss')
+            const selectedRegistrationRegion = state.regions.list.find(el => el.id === values.registrationAddressRegionId)
+            const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === values.registrationAddressCommunityId)
+
+            const selectedResidentRegion = state.regions.list.find(el => el.id === values.residentAddressRegionId)
+            const selectedResidentCommunity = selectedResidentRegion?.communities.find(el => el.id === values.residentAddressCommunityId)
+
             return (
               <S.FormContentContainer>
                 <S.FormItemsList>
@@ -103,45 +109,6 @@ export const StudentForm = ({
                     </S.FormItem>
                     <S.FormItem>
                       <Input
-                        value={values.registrationAddress}
-                        placeholder='Գրանցման հասցե'
-                        onChange={(val) => setFieldValue('registrationAddress', val)}
-                      />
-                      {
-                        errors.registrationAddress && touched.registrationAddress &&
-                          <S.ErrorMessage>
-                            { errors.registrationAddress }
-                          </S.ErrorMessage>
-                      }
-                    </S.FormItem>
-                    <S.FormItem>
-                      <Input
-                        value={values.residentAddress}
-                        placeholder='Բնակության հասցե'
-                        onChange={(val) => setFieldValue('residentAddress', val)}
-                      />
-                      {
-                        errors.residentAddress && touched.residentAddress &&
-                          <S.ErrorMessage>
-                            { errors.residentAddress }
-                          </S.ErrorMessage>
-                      }
-                    </S.FormItem>
-                    <S.FormItem>
-                      <Input
-                        value={values.acceptanceCommandNumber}
-                        placeholder='Ընդունման հրամանի համար'
-                        onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
-                      />
-                      {
-                        errors.acceptanceCommandNumber && touched.acceptanceCommandNumber &&
-                          <S.ErrorMessage>
-                            { errors.acceptanceCommandNumber }
-                          </S.ErrorMessage>
-                      }
-                    </S.FormItem>
-                    <S.FormItem>
-                      <Input
                         value={values.currentCourse}
                         placeholder='Ընթացիկ կուրս'
                         onChange={(val) => setFieldValue('currentCourse', val)}
@@ -167,6 +134,47 @@ export const StudentForm = ({
                       }
                     </S.FormItem>
                     <S.FormItem>
+                    <Input
+                      value={values.acceptanceCommandNumber}
+                      placeholder='Ընդունման հրամանի համար'
+                      onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
+                    />
+                    {
+                      errors.acceptanceCommandNumber && touched.acceptanceCommandNumber &&
+                        <S.ErrorMessage>
+                          { errors.acceptanceCommandNumber }
+                        </S.ErrorMessage>
+                    }
+                    </S.FormItem>
+                    <S.FormItem>
+                      <Input
+                        value={values.socialCardNumber}
+                        placeholder='Սոցիալական քարտ'
+                        onChange={(val) => setFieldValue('socialCardNumber', val)}
+                      />
+                      {
+                        errors.socialCardNumber && touched.socialCardNumber &&
+                          <S.ErrorMessage>
+                            { errors.socialCardNumber }
+                          </S.ErrorMessage>
+                      }
+                    </S.FormItem>
+                    <S.FormItem>
+                      <Input
+                        value={values.passportSeries}
+                        placeholder='Անձը հաստատող փաստաթուղթ'
+                        onChange={(val) => setFieldValue('passportSeries', val)}
+                      />
+                      {
+                        errors.passportSeries && touched.passportSeries &&
+                          <S.ErrorMessage>
+                            { errors.passportSeries }
+                          </S.ErrorMessage>
+                      }
+                    </S.FormItem>
+                  </S.FormRow>
+                  <S.FormRow>
+                    <S.FormItem>
                       <Select
                         value={selectedCommissariat ? {
                           value: selectedCommissariat?.id,
@@ -186,8 +194,6 @@ export const StudentForm = ({
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
-                  </S.FormRow>
-                  <S.FormRow>
                     <S.FormItem>
                       <Select
                         value={selectedStatus ? {
@@ -288,9 +294,125 @@ export const StudentForm = ({
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
+                    <S.FormItem>
+                        <Input
+                          value={values.contactNumbers}
+                          placeholder='Հեռախոսահամարներ, (անջատել ստորակետերով)'
+                          onChange={(val) => setFieldValue('contactNumbers', val)}
+                        />
+                        {
+                          errors.contactNumbers && touched.contactNumbers &&
+                            <S.ErrorMessage>
+                              { errors.contactNumbers }
+                            </S.ErrorMessage>
+                        }
+                      </S.FormItem>
+                  </S.FormRow>
+                  <S.FormRow>
+                  <FormLabelItem label='Գրանցման հասցե'>
+                      <Select
+                        value={selectedRegistrationRegion ? {
+                          value: selectedRegistrationRegion?.id,
+                          label: selectedRegistrationRegion?.name
+                        } : null}
+                        options={state.regions.list.map(region => ({
+                          value: region.id,
+                          label: region.name
+                        }))}
+                        placeholder='Մարզ'
+                        onChange={(val) => setFieldValue('registrationAddressRegionId', val.value)}
+                      />
+                      {
+                        errors.registrationAddressRegionId && touched.registrationAddressRegionId &&
+                          <S.ErrorMessage>
+                            { errors.regionId }
+                          </S.ErrorMessage>
+                      }
+                      <Select
+                        value={selectedRegistrationCommunity ? {
+                          value: selectedRegistrationCommunity?.id,
+                          label: selectedRegistrationCommunity?.name
+                        } : null}
+                        options={selectedRegistrationRegion?.communities.map(community => ({
+                          value: community.id,
+                          label: community.name
+                        }))}
+                        placeholder='Համայնք'
+                        onChange={(val) => setFieldValue('registrationAddressCommunityId', val.value)}
+                      />
+                      {
+                        errors.registrationAddressCommunityId && touched.registrationAddressCommunityId &&
+                          <S.ErrorMessage>
+                            { errors.registrationAddressCommunityId }
+                          </S.ErrorMessage>
+                      }
+                      <S.FormItem>
+                        <Input
+                          value={values.registrationAddress}
+                          placeholder='Հասցե'
+                          onChange={(val) => setFieldValue('registrationAddress', val)}
+                        />
+                        {
+                          errors.registrationAddress && touched.registrationAddress &&
+                            <S.ErrorMessage>
+                              { errors.registrationAddress }
+                            </S.ErrorMessage>
+                        }
+                      </S.FormItem>
+                    </FormLabelItem>
+                    <FormLabelItem label='Բնակության հասցե'>
+                      <Select
+                        value={selectedResidentRegion ? {
+                          value: selectedResidentRegion?.id,
+                          label: selectedResidentRegion?.name
+                        } : null}
+                        options={state.regions.list.map(region => ({
+                          value: region.id,
+                          label: region.name
+                        }))}
+                        placeholder='Մարզ'
+                        onChange={(val) => setFieldValue('residentAddressRegionId', val.value)}
+                      />
+                      {
+                        errors.residentAddressRegionId && touched.residentAddressRegionId &&
+                          <S.ErrorMessage>
+                            { errors.residentAddressRegionId }
+                          </S.ErrorMessage>
+                      }
+                      <Select
+                        value={selectedResidentCommunity ? {
+                          value: selectedResidentCommunity?.id,
+                          label: selectedResidentCommunity?.name
+                        } : null}
+                        options={selectedResidentRegion?.communities.map(community => ({
+                          value: community.id,
+                          label: community.name
+                        }))}
+                        placeholder='Համայնք'
+                        onChange={(val) => setFieldValue('residentAddressCommunityId', val.value)}
+                      />
+                      {
+                        errors.residentAddressCommunityId && touched.residentAddressCommunityId &&
+                          <S.ErrorMessage>
+                            { errors.residentAddressCommunityId }
+                          </S.ErrorMessage>
+                      }
+                      <S.FormItem>
+                        <Input
+                          value={values.residentAddress}
+                          placeholder='Հասցե'
+                          onChange={(val) => setFieldValue('residentAddress', val)}
+                        />
+                        {
+                          errors.residentAddress && touched.residentAddress &&
+                            <S.ErrorMessage>
+                              { errors.residentAddress }
+                            </S.ErrorMessage>
+                        }
+                      </S.FormItem>
+                    </FormLabelItem>
                   </S.FormRow>
                 </S.FormItemsList>
-                
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

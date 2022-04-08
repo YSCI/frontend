@@ -10,15 +10,15 @@ export const StatusForm = ({
   hideModal,
   editStatus,
   createStatus,
-  editableStatus
+  editableData
 }) => {
-  const formActionType = useMemo(() => editableStatus
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableStatus])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableStatus) {
+    if (editableData) {
       editStatus(values)
     } else {
       createStatus(values)
@@ -39,7 +39,7 @@ export const StatusForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableStatus || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({
