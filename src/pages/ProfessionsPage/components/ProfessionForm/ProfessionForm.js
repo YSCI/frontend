@@ -10,15 +10,15 @@ export const ProfessionForm = ({
   hideModal,
   editProfession,
   createProfession,
-  editableProfession
+  editableData
 }) => {
-  const formActionType = useMemo(() => editableProfession
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableProfession])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableProfession) {
+    if (editableData) {
       editProfession({
         ...values,
         number: +values.number
@@ -42,7 +42,7 @@ export const ProfessionForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableProfession || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

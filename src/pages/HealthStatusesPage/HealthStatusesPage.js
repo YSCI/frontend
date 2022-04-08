@@ -26,11 +26,10 @@ export const HealthStatusesPage = ({
           <FiltersList />
         </Filter>
         <Table
-          data={healthStatuses.list}
-          columns={tableColumns.healthStatus({
-            onEdit: (editableHealthStatus) => showModal(HealthStatusForm, { editableHealthStatus }),
-            onDelete: (healthStatusId) => deleteHealthStatus(healthStatusId)
-          })}
+           data={healthStatuses.list}
+          onDelete={deleteHealthStatus}
+          FormComponent={HealthStatusForm}
+          columns={tableColumns.healthStatus}
         />
       </S.HealthStatusesPageContainer>
     </Layout>

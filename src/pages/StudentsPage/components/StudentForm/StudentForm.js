@@ -10,16 +10,16 @@ export const StudentForm = ({
   hideModal,
   editStudent,
   createStudent,
-  editableStudent,
+  editableData,
   state
 }) => {
-  const formActionType = useMemo(() => editableStudent
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableStudent])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableStudent) {
+    if (editableData) {
       editStudent(values)
     } else {
       createStudent(values)
@@ -40,7 +40,7 @@ export const StudentForm = ({
       <Formik
         onSubmit={onSubmit}
         // validationSchema={validationSchema}
-        initialValues={editableStudent || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

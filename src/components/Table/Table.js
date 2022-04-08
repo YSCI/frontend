@@ -147,12 +147,12 @@ export const Table = ({
             >
               Փոփոխել
             </Button>
-            {/* <Button
+            <Button
               className='danger'
               onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
             >
               Ջնջել
-            </Button> */}
+            </Button>
           </S.FixedActionsBar>
       }
     </S.TableContainer>

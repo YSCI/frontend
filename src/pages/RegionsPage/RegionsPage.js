@@ -26,11 +26,10 @@ export const RegionsPage = ({
           <FiltersList />
         </Filter>
         <Table
-          data={regions.list}
-          columns={tableColumns.region({
-            onEdit: (editableRegion) => showModal(RegionForm, { editableRegion }),
-            onDelete: (regionId) => deleteRegion(regionId)
-          })}
+           data={regions.list}
+          onDelete={deleteRegion}
+          FormComponent={RegionForm}
+          columns={tableColumns.region}
         />
       </S.RegionsPageContainer>
     </Layout>

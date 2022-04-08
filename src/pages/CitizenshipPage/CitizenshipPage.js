@@ -27,10 +27,9 @@ export const CitizenshipPage = ({
         </Filter>
         <Table
           data={citizenships.list}
-          columns={tableColumns.citizenship({
-            onEdit: (editableCitizenship) => showModal(CitizenshipForm, { editableCitizenship }),
-            onDelete: (citizenshipId) => deleteCitizenship(citizenshipId)
-          })}
+          onDelete={deleteCitizenship}
+          FormComponent={CitizenshipForm}
+          columns={tableColumns.citizenship}
         />
       </S.CitizenshipPageContainer>
     </Layout>

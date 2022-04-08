@@ -28,10 +28,9 @@ export const ProfessionsPage = ({
         </Filter>
         <Table
           data={professions.list}
-          columns={tableColumns.profession({
-            onEdit: (editableProfession) => showModal(ProfessionForm, { editableProfession }),
-            onDelete: (professionId) => deleteProfession(professionId)
-          })}
+          onDelete={deleteProfession}
+          FormComponent={ProfessionForm}
+          columns={tableColumns.profession}
         />
       </S.ProfessionsPageContainer>
     </Layout>

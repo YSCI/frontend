@@ -27,7 +27,7 @@ export const StudentsPage = ({
           data={students.list}
           onDelete={deleteStudent}
           FormComponent={StudentForm}
-          columns={tableColumns.students()}
+          columns={tableColumns.students}
         />
       </S.StudentsPageContainer>
     </Layout>
