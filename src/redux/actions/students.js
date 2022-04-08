@@ -53,7 +53,7 @@ export const createStudent = (values) => async dispatch => {
     const createdStudent = await HttpService.post('student', {
       ...values,
       dateOfBirth: (new Date()).toISOString(),
-      contactNumbers: ['093-81-32-96'],
+      contactNumbers: values.contactNumbers.split(',').map(el => el.trim()),
       dateOfAcceptance: (new Date()).toISOString()
     })
     

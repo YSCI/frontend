@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useBlockLayout, useResizeColumns, useSortBy, useTable, useRowSelect } from 'react-table'
-
+import cx from 'classnames'
 
 import { Button } from 'ui'
 import { withConfirmation } from 'helpers'
@@ -121,10 +121,14 @@ export const Table = ({
         </thead>
         <tbody {...getTableBodyProps()}>
           {firstPageRows.map(
-            (row, i) => {
+            (row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr
+                  {...row.getRowProps()}
+                  className={cx({ selected: row.isSelected })}
+                  onClick={() => row.toggleRowSelected(!row.isSelected)}
+                >
                   {row.cells.map(cell => {
                     return (
                       <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
@@ -138,21 +142,26 @@ export const Table = ({
       {
         hasActionsBar &&
           <S.FixedActionsBar>
-            <Button onClick={() => showModal(FormComponent)}>
-              Ավելացնել
-            </Button>
-            <Button
-              className='bordered'
-              onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
-            >
-              Փոփոխել
-            </Button>
-            <Button
-              className='danger'
-              onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
-            >
-              Ջնջել
-            </Button>
+            <S.FixedActionsBarHeader>
+              Գործողություններ
+            </S.FixedActionsBarHeader>
+            <S.ActionsList>
+              <Button onClick={() => showModal(FormComponent)}>
+                Ավելացնել
+              </Button>
+              <Button
+                className='bordered'
+                onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
+              >
+                Փոփոխել
+              </Button>
+              <Button
+                className='danger'
+                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
+              >
+                Ջնջել
+              </Button>
+            </S.ActionsList>
           </S.FixedActionsBar>
       }
     </S.TableContainer>

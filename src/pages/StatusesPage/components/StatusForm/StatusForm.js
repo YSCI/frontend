@@ -16,6 +16,7 @@ export const StatusForm = ({
     ? 'Փոփոխել'
     : 'Ավելացնել'
   , [editableData])
+
   const onSubmit = (values) => {
     if (editableData) {
       editStatus(values)

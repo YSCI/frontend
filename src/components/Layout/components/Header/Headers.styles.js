@@ -98,7 +98,7 @@ export const HeaderItemsList = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: ${({ theme }) => theme.colors.lightGreen};
   }
-  overflow-x: hidden;
+  overflow-x: none;
 `
 
 export const HeaderItem = styled(Link)`

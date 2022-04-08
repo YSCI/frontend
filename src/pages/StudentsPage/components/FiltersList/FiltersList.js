@@ -25,7 +25,7 @@ export const FiltersList = ({ loadCommunities, regionsList }) => {
             const selectedRegion = regionsList.find(el => el.id === values.regionId)
 
             return (
-              <S.FiltersListContainer>
+              <S.FiltersListContainer className='FiltersListContainer'>
                 <S.List>
                   <Input
                     value={values.name}

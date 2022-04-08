@@ -8,7 +8,7 @@ export const StudentFormContainer = styled.div`
   border-radius: 15px;
   margin-top: -20px;
   padding-bottom: 20px;
-  min-width: 700px;
+  min-width: 1150px;
   flex-direction: column;
   gap: 10px;
 `

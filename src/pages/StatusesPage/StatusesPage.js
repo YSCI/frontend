@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react'
 
-
+import { Button } from 'ui'
 import { Table, Filter } from 'components'
 import { Layout } from 'components/Layout'
-import { Button } from 'ui'
-import { tableColumns } from 'constants/tableColumns'
 import * as S from './StatusesPage.styles'
 import { StatusForm } from './components/StatusForm'
+import { tableColumns } from 'constants/tableColumns'
 import { FiltersList } from './components/FiltersList'
 
 export const StatusesPage = ({
-  showModal,
   statuses,
-  deleteStatus,
-  loadStatuses
+  showModal,
+  loadStatuses,
+  deleteStatus
 }) => {
   useEffect(() => {
     loadStatuses()
@@ -22,15 +21,15 @@ export const StatusesPage = ({
   return (
     <Layout>
       <S.StatusesPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
           data={statuses.list}
           onDelete={deleteStatus}
           FormComponent={StatusForm}
           columns={tableColumns.status}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.StatusesPageContainer>
     </Layout>
   )
