@@ -27,10 +27,9 @@ export const CommunitiesPage = ({
         </Filter>
         <Table
           data={communities.list}
-          columns={tableColumns.community({
-            onEdit: (editableCommunity) => showModal(CommunityForm, { editableCommunity }),
-            onDelete: (communityId) => deleteCommunity(communityId)
-          })}
+          onDelete={deleteCommunity}
+          FormComponent={CommunityForm}
+          columns={tableColumns.community}
         />
       </S.CommunitiesPageContainer>
     </Layout>

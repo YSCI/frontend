@@ -10,15 +10,15 @@ export const NationalityForm = ({
   hideModal,
   editNationality,
   createNationality,
-  editableNationality
+  editableData
 }) => {
-  const formActionType = useMemo(() => editableNationality
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableNationality])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableNationality) {
+    if (editableData) {
       editNationality(values)
     } else {
       createNationality(values)
@@ -39,7 +39,7 @@ export const NationalityForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableNationality || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

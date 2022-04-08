@@ -1,7 +1,7 @@
 import { withConfirmation } from "helpers"
 
 export const tableColumns = {
-  students: () => ([
+  students: [
     {
       Header: 'Անուն',
       accessor: 'firstname'
@@ -70,8 +70,8 @@ export const tableColumns = {
       Header: 'Կոմիսարիատ',
       accessor: 'commissariat.name'
     }
-  ]),
-  profession: ({ onEdit, onDelete }) => ([
+  ],
+  profession: [
     {
       Header: 'Անվանում',
       accessor: 'name'
@@ -96,44 +96,44 @@ export const tableColumns = {
       Header: 'Վճար',
       accessor: 'fee'
     }
-  ]),
-  citizenship: ({ onEdit, onDelete }) => ([
+  ],
+  citizenship: [
     {
       Header: 'Երկիր',
       accessor: 'country'
     }
-  ]),
-  healthStatus: ({ onEdit, onDelete }) => ([
+  ],
+  healthStatus: [
     {
       Header: 'Անվանում',
       accessor: 'status'
     }
-  ]),
-  status: ({ onEdit, onDelete }) => ([
+  ],
+  status: [
     {
       Header: 'Անվանում',
       accessor: 'name'
     }
-  ]),
-  region: ({ onEdit, onDelete }) => ([
+  ],
+  region: [
     {
       Header: 'Անվանում',
       accessor: 'name'
     }
-  ]),
-  nationality: ({ onEdit, onDelete }) => ([
+  ],
+  nationality: [
     {
       Header: 'Անվանում',
       accessor: 'name'
     }
-  ]),
-  privilege: ({ onEdit, onDelete }) => ([
+  ],
+  privilege: [
     {
       Header: 'Անվանում',
       accessor: 'name'
     }
-  ]),
-  commissariat: ({ onEdit, onDelete }) => ([
+  ],
+  commissariat: [
     {
       Header: 'Անվանում',
       accessor: 'name'
@@ -146,8 +146,8 @@ export const tableColumns = {
       Header: 'Նկարագրություն',
       accessor: 'description'
     }
-  ]),
-  community: ({ onEdit, onDelete }) => ([
+  ],
+  community: [
     {
       Header: 'Անվանում',
       accessor: 'name'
@@ -156,5 +156,5 @@ export const tableColumns = {
       Header: 'Մարզ',
       accessor: 'region.name'
     }
-  ])
+  ]
 }

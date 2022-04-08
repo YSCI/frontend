@@ -27,10 +27,9 @@ export const CommissariatsPage = ({
         </Filter>
         <Table
           data={commissariats.list}
-          columns={tableColumns.commissariat({
-            onEdit: (editableCommissariat) => showModal(CommissariatForm, { editableCommissariat }),
-            onDelete: (commissariatId) => deleteCommissariat(commissariatId)
-          })}
+          onDelete={deleteCommissariat}
+          FormComponent={CommissariatForm}
+          columns={tableColumns.commissariat}
         />
       </S.CommissariatsPageContainer>
     </Layout>

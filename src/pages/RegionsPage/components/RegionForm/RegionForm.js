@@ -10,15 +10,15 @@ export const RegionForm = ({
   hideModal,
   editRegion,
   createRegion,
-  editableRegion
+  editableData
 }) => {
-  const formActionType = useMemo(() => editableRegion
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableRegion])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableRegion) {
+    if (editableData) {
       editRegion(values)
     } else {
       createRegion(values)
@@ -39,7 +39,7 @@ export const RegionForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableRegion || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

@@ -10,15 +10,15 @@ export const HealthStatusForm = ({
   hideModal,
   editHealthStatus,
   createHealthStatus,
-  editableHealthStatus
+  editableData
 }) => {
-  const formActionType = useMemo(() => editableHealthStatus
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableHealthStatus])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableHealthStatus) {
+    if (editableData) {
       editHealthStatus(values)
     } else {
       createHealthStatus(values)
@@ -39,7 +39,7 @@ export const HealthStatusForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableHealthStatus || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

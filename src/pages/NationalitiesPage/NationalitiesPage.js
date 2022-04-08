@@ -26,11 +26,10 @@ export const NationalitiesPage = ({
           <FiltersList />
         </Filter>
         <Table
-          data={nationalities.list}
-          columns={tableColumns.nationality({
-            onEdit: (editableNationality) => showModal(NationalityForm, { editableNationality }),
-            onDelete: (nationalityId) => deleteNationality(nationalityId)
-          })}
+           data={nationalities.list}
+          onDelete={deleteNationality}
+          FormComponent={NationalityForm}
+          columns={tableColumns.nationality}
         />
       </S.NationalitiesPageContainer>
     </Layout>

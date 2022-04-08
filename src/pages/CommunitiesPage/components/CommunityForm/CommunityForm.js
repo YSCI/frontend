@@ -10,7 +10,7 @@ export const CommunityForm = ({
   hideModal,
   editCommunity,
   createCommunity,
-  editableCommunity,
+  editableData,
   loadRegions,
   regions
 }) => {
@@ -18,13 +18,13 @@ export const CommunityForm = ({
     loadRegions()
   }, [loadRegions])
 
-  const formActionType = useMemo(() => editableCommunity
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableCommunity])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableCommunity) {
+    if (editableData) {
       editCommunity(values)
     } else {
       createCommunity(values)
@@ -45,7 +45,7 @@ export const CommunityForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableCommunity || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

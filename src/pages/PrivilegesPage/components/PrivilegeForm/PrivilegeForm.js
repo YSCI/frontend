@@ -10,15 +10,15 @@ export const PrivilegeForm = ({
   hideModal,
   editPrivilege,
   createPrivilege,
-  editablePrivilege
+  editableData
 }) => {
-  const formActionType = useMemo(() => editablePrivilege
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editablePrivilege])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editablePrivilege) {
+    if (editableData) {
       editPrivilege(values)
     } else {
       createPrivilege(values)
@@ -39,7 +39,7 @@ export const PrivilegeForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editablePrivilege || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

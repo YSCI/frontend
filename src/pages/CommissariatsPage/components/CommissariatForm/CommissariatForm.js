@@ -10,7 +10,7 @@ export const CommissariatForm = ({
   hideModal,
   editCommissariat,
   createCommissariat,
-  editableCommissariat,
+  editableData,
   loadCommunities,
   communities
 }) => {
@@ -18,13 +18,13 @@ export const CommissariatForm = ({
     loadCommunities()
   }, [loadCommunities])
 
-  const formActionType = useMemo(() => editableCommissariat
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableCommissariat])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableCommissariat) {
+    if (editableData) {
       editCommissariat(values)
     } else {
       createCommissariat(values)
@@ -45,7 +45,7 @@ export const CommissariatForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableCommissariat || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

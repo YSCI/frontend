@@ -10,15 +10,15 @@ export const CitizenshipForm = ({
   hideModal,
   editCitizenship,
   createCitizenship,
-  editableCitizenship
+  editableData
 }) => {
-  const formActionType = useMemo(() => editableCitizenship
+  const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
-  , [editableCitizenship])
+  , [editableData])
 
   const onSubmit = (values) => {
-    if (editableCitizenship) {
+    if (editableData) {
       editCitizenship(values)
     } else {
       createCitizenship(values)
@@ -40,7 +40,7 @@ export const CitizenshipForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableCitizenship || initialValues}
+        initialValues={editableData || initialValues}
       >
         {
           ({

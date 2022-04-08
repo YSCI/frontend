@@ -27,10 +27,9 @@ export const PrivilegesPage = ({
         </Filter>
         <Table
           data={privileges.list}
-          columns={tableColumns.privilege({
-            onEdit: (editablePrivilege) => showModal(PrivilegeForm, { editablePrivilege }),
-            onDelete: (privilegeId) => deletePrivilege(privilegeId)
-          })}
+          onDelete={deletePrivilege}
+          FormComponent={PrivilegeForm}
+          columns={tableColumns.privilege}
         />
       </S.PrivilegesPageContainer>
     </Layout>
