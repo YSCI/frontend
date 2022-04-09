@@ -13,7 +13,7 @@ export const loadCitizenships = (search) => async dispatch => {
       list: data
     })
   } catch (ex) {
-    toast('Առաջացավ խնդիր')
+    toast.error('Առաջացավ խնդիր')
   }
 }
 
@@ -26,9 +26,9 @@ export const editCitizenship = (values) => async dispatch => {
       data: values
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -41,9 +41,9 @@ export const createCitizenship = (values) => async dispatch => {
       data: createdCitizenship
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -56,8 +56,8 @@ export const deleteCitizenship = (id) => async dispatch => {
       data: id
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }

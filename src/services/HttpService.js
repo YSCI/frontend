@@ -1,10 +1,8 @@
-import { toast } from 'react-toastify'
 import qs from 'qs'
 
-
-import { StorageService } from "services"
 import store from 'redux/store';
-import { setLoading } from 'redux/actions/app';
+import { StorageService } from 'services'
+import { setLoading } from 'redux/actions/app'
 
 function filterNonNull(obj) {
   return Object.fromEntries(Object.entries(obj).filter(([k, v]) => v));
@@ -20,7 +18,7 @@ export class HttpService {
     });
 
     if (!options.noToken) {
-      const token = StorageService.get('authData').token
+      const token = StorageService.get('token')
 
       if (token) headers.append("Authorization", `Bearer ${token}`);
     }
@@ -37,53 +35,52 @@ export class HttpService {
     try {
         store.dispatch(setLoading(true))
         return await fetch(requestUrl, fetchOptions)
-        .then(res => {
-          return res.json()
-            .then(json => {
-              if (res.status >= 200 && res.status < 300) {
-                return Promise.resolve(json)
-              } else {
-                return Promise.reject(json)
-              }
-            })
-            .catch((e) => {
-              return Promise.reject(e)
-            })
-            .finally(() => {
-              store.dispatch(setLoading(false))
-            })
-        })
-        .catch((e) => {
-          return Promise.reject(e)
-        })
-        .finally(() => {
-          store.dispatch(setLoading(false))
-        })
+          .then(res => {
+            return res.json()
+              .then(json => {
+                if (res.status >= 200 && res.status < 300) {
+                  return Promise.resolve(json)
+                } else {
+                  return Promise.reject(json)
+                }
+              })
+              .catch((e) => {
+                return Promise.reject(e)
+              })
+              .finally(() => {
+                store.dispatch(setLoading(false))
+              })
+          })
+          .catch((e) => {
+            return Promise.reject(e)
+          })
+          .finally(() => {
+            store.dispatch(setLoading(false))
+          })
     } catch (e) {
-      toast('Something went wrong while loading some data')
       return Promise.reject(e)
     }
   }
 
-  static async get(path, search = {}) {
+  static async get(path, search = {}, options) {
     const queryString = qs.stringify(filterNonNull(search))
 
-    return await HttpService.request('get', path + `?${queryString}`)
+    return await HttpService.request('get', path + `?${queryString}`, options)
   }
 
-  static async post(path, data) {
-    return await HttpService.request('post', path, data)
+  static async post(path, data, options) {
+    return await HttpService.request('post', path, data, options)
   }
 
-  static async delete (path, data) {
-    return await HttpService.request('delete', path, data)
+  static async delete (path, data, options) {
+    return await HttpService.request('delete', path, data, options)
   }
 
-  static async put(path, data) {
-    return await HttpService.request('put', path, data)
+  static async put(path, data, options) {
+    return await HttpService.request('put', path, data, options)
   }
 
-  static async patch(path, data) {
-    return await HttpService.request('patch', path, data)
+  static async patch(path, data, options) {
+    return await HttpService.request('patch', path, data, options)
   }
 }

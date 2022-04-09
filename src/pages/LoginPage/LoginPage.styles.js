@@ -32,3 +32,17 @@ export const Logo = styled.img`
   width: 100px;
   height: 100px;
 `
+
+export const FormItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+`
+
+export const ErrorMessage = styled.div`
+  font-size: 12px;
+  color: red;
+  margin-left: 10px;
+  font-weight: 500;
+`

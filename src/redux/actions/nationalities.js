@@ -13,7 +13,7 @@ export const loadNationalities = (search) => async dispatch => {
       list: data
     })
   } catch (ex) {
-    toast('Առաջացավ խնդիր')
+    toast.error('Առաջացավ խնդիր')
   }
 }
 
@@ -26,9 +26,9 @@ export const editNationality = (values) => async dispatch => {
       data: values
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -41,9 +41,9 @@ export const createNationality = (values) => async dispatch => {
       data: createdNationality
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -56,8 +56,8 @@ export const deleteNationality = (id) => async dispatch => {
       data: id
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }

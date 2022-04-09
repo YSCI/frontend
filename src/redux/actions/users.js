@@ -13,7 +13,7 @@ export const loadUsers = (search) => async dispatch => {
       list: data
     })
   } catch (ex) {
-    toast('Առաջացավ խնդիր')
+    toast.error('Առաջացավ խնդիր')
   }
 }
 
@@ -26,9 +26,9 @@ export const editUser = (values) => async dispatch => {
       data: values
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -41,9 +41,9 @@ export const createUser = (values) => async dispatch => {
       data: createdUSER
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -56,8 +56,8 @@ export const deleteUser = (id) => async dispatch => {
       data: id
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }

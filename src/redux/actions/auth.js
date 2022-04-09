@@ -2,7 +2,7 @@ import { toast } from 'react-toastify'
 
 
 import { history } from 'system/history'
-import { StorageService } from 'services'
+import { HttpService, StorageService } from 'services'
 import { AUTH_TYPES } from "redux/types/auth"
 
 export const setAuthData = (authData) => ({
@@ -10,23 +10,28 @@ export const setAuthData = (authData) => ({
   user: authData
 })
 
-export const login = ({ email, password }) => async dispatch => {
+export const getMe = () => async dispatch => {
   try {
-    // const user = fetchRequest()
-    const user = {
-      email,
-      name: 'Հայկ',
-      password,
-      role: 'Ադմին',
-      token: 'sfim49f93jf2fniu849feskfm'
-    }
+    const me = await HttpService.get('auth/whoami')
 
+    dispatch(setAuthData(me))
+    StorageService.set('authData', me)
+
+  } catch {
+    toast.error('Առաջացավ խնդիր')
+  }
+}
+
+export const login = (values) => async dispatch => {
+  try {
+    const { access_token } = await HttpService.post('auth/login', values, { noToken: true })
+
+    StorageService.set('token', access_token)
+    dispatch(getMe())
     history.push('/home')
-    dispatch(setAuthData(user))
-    StorageService.set('authData', user)
 
-  } catch (ex) {
-    toast('Գործողությունը խնդիր առաջացրեց!')   
+  } catch {
+    toast.error('Սխալ մուտքանուն կամ գաղտնաբառ')    
   }
 }
 
@@ -34,6 +39,9 @@ export const logout = () => dispatch => {
   dispatch({
     type: AUTH_TYPES.LOGOUT
   })
+
   StorageService.remove('authData')
+  StorageService.remove('token')
+
   history.push('/login')
 }
