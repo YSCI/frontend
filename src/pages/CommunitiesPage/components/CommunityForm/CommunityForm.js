@@ -31,7 +31,7 @@ export const CommunityForm = ({
     }
     hideModal()
   }
-  console.log({ regions })
+
   return (
     <S.CommunityFormContainer>
       <S.FormHeaderContainer>
@@ -55,7 +55,6 @@ export const CommunityForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            console.log({ values })
             return (
               <S.FormContentContainer>
                 <S.FormItem>

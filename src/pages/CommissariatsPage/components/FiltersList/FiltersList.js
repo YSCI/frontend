@@ -23,8 +23,8 @@ export const FiltersList = ({ communitiesList, loadCommissariats }) => {
             setValues,
             setFieldValue,
           }) => {
-            console.log({ values })
             const selectedCommunity = communitiesList.find(el => el.id === values.communityId)
+
             return (
               <S.FiltersListContainer>
                 <S.List>

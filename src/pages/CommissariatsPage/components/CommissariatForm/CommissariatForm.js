@@ -55,7 +55,6 @@ export const CommissariatForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            console.log({ errors, values, communities })
             return (
               <S.FormContentContainer>
                 <S.FormItem>

@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 
 import { PROFESSIONS_TYPES } from 'redux/types/professions'
 import { HttpService } from 'services'
+import { setLoading } from './app'
 
 export const loadProfessions = (search) => async dispatch => {
   try {

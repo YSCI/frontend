@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react'
 
 
 import { Table, Filter } from 'components'
-import { Layout } from 'components/Layout/Layout'
+import { Layout } from 'components/Layout'
 import { FiltersList } from './components/FiltersList'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './ProfessionsPage.styles'
 import { ProfessionForm } from './components/ProfessionForm'
 
 export const ProfessionsPage = ({
-  showModal,
   professions,
   deleteProfession,
   loadProfessions

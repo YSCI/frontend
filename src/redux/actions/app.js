@@ -42,3 +42,8 @@ export const initApp = () => dispatch => {
     toast('Something went wrong while loading app')
   }
 }
+
+export const setLoading = (loading) => ({
+  type: APP_TYPES.SET_LOADING,
+  loading
+})

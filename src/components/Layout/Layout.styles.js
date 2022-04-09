@@ -42,4 +42,8 @@ export const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
+
+  &.appLoading {
+    filter: blur(2.5px);
+  }
 `
