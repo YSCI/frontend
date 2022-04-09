@@ -1,5 +1,3 @@
-import { withConfirmation } from "helpers"
-
 export const tableColumns = {
   students: [
     {

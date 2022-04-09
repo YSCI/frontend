@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 
 import * as S from './StudentForm.styles'
 import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
-import { initialValues, validationSchema } from './StudentForm.config'
+import { initialValues } from './StudentForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
 
 export const StudentForm = ({
@@ -25,7 +25,7 @@ export const StudentForm = ({
     } else {
       createStudent(values)
     }
-    // hideModal()
+    hideModal()
   }
 
   return (
@@ -40,7 +40,6 @@ export const StudentForm = ({
       </S.FormHeaderContainer>
       <Formik
         onSubmit={onSubmit}
-        // validationSchema={validationSchema}
         initialValues={editableData || initialValues}
       >
         {
