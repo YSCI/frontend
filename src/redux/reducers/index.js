@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 
 import { app } from './app'
 import { auth } from './auth'
+import { users } from './users'
 import { modal } from './modal'
 import { regions } from './regions'
 import { statuses } from './statuses'
@@ -18,6 +19,7 @@ import { healthStatuses } from './healthStatuses'
 export const rootReducer = combineReducers({
   app,
   auth,
+  users,
   modal,
   regions,
   statuses,

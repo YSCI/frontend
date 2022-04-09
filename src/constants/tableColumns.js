@@ -1,4 +1,18 @@
 export const tableColumns = {
+  users: [
+    {
+      Header: 'Անուն',
+      accessor: 'name'
+    },
+    {
+      Header: 'Ազգանուն',
+      accessor: 'surname'
+    },
+    {
+      Header: 'Մուտքանուն',
+      accessor: 'username'
+    }
+  ],
   students: [
     {
       Header: 'Անուն',
