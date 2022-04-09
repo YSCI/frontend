@@ -3,6 +3,8 @@ import qs from 'qs'
 
 
 import { StorageService } from "services"
+import store from 'redux/store';
+import { setLoading } from 'redux/actions/app';
 
 function filterNonNull(obj) {
   return Object.fromEntries(Object.entries(obj).filter(([k, v]) => v));
@@ -33,6 +35,7 @@ export class HttpService {
     }
 
     try {
+        store.dispatch(setLoading(true))
         return await fetch(requestUrl, fetchOptions)
         .then(res => {
           return res.json()
@@ -46,10 +49,16 @@ export class HttpService {
             .catch((e) => {
               return Promise.reject(e)
             })
+            .finally(() => {
+              store.dispatch(setLoading(false))
+            })
         })
         .catch((e) => {
           return Promise.reject(e)
-        });
+        })
+        .finally(() => {
+          store.dispatch(setLoading(false))
+        })
     } catch (e) {
       toast('Something went wrong while loading some data')
       return Promise.reject(e)

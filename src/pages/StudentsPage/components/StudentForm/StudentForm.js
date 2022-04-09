@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 
 import * as S from './StudentForm.styles'
 import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
-import { initialValues, validationSchema } from './StudentForm.config'
+import { initialValues } from './StudentForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
 
 export const StudentForm = ({
@@ -25,7 +25,7 @@ export const StudentForm = ({
     } else {
       createStudent(values)
     }
-    // hideModal()
+    hideModal()
   }
 
   return (
@@ -40,7 +40,6 @@ export const StudentForm = ({
       </S.FormHeaderContainer>
       <Formik
         onSubmit={onSubmit}
-        // validationSchema={validationSchema}
         initialValues={editableData || initialValues}
       >
         {
@@ -51,13 +50,13 @@ export const StudentForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            console.log({ values, state })
             const selectedCommissariat = state.commissariats.list.find(el => el.id === values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)
             const selectedNationality = state.nationalities.list.find(el => el.id === values.nationalityId)
             const selectedProfession = state.professions.list.find(el => el.id === values.professionId)
             const selectedStatus = state.statuses.list.find(el => el.id === values.statusId)
+
             const selectedRegistrationRegion = state.regions.list.find(el => el.id === values.registrationAddressRegionId)
             const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === values.registrationAddressCommunityId)
 

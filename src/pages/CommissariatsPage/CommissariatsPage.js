@@ -3,14 +3,12 @@ import React, { useEffect} from 'react'
 
 import { Table, Filter } from 'components'
 import { Layout } from 'components/Layout'
-import { Button } from 'ui'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommissariatsPage.styles'
 import { CommissariatForm } from './components/CommissariatForm'
 import { FiltersList } from './components/FiltersList'
 
 export const CommissariatsPage = ({
-  showModal,
   commissariats,
   deleteCommissariat,
   loadCommissariats

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import { Button } from 'ui'
 import { Table, Filter } from 'components'
 import { Layout } from 'components/Layout'
 import * as S from './StatusesPage.styles'
@@ -10,7 +9,6 @@ import { FiltersList } from './components/FiltersList'
 
 export const StatusesPage = ({
   statuses,
-  showModal,
   loadStatuses,
   deleteStatus
 }) => {

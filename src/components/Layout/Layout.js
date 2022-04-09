@@ -1,23 +1,25 @@
 import React from 'react'
-import { Header } from './components/Header'
-import { Sidebar } from './components/Sidebar'
+import cx from 'classnames'
 
 import * as S from './Layout.styles'
+import { AppLoader } from 'ui/AppLoader'
+import { Header } from './components/Header'
 
 export const Layout = ({
-  loggedIn,
+  appLoading,
   children
 }) => {
   return (
     <S.LayoutContainer>
-      {/* <S.SidebarContainer>
-        <Sidebar />
-      </S.SidebarContainer> */}
-      <S.ContentContainer>
-        <S.LayoutHeader>
+      {
+        appLoading &&
+          <AppLoader />
+      }
+      <S.ContentContainer className={cx('Content-Container', { appLoading })}>
+        <S.LayoutHeader className='Layout-Header'>
           <Header />
         </S.LayoutHeader>
-        <S.LayoutContent>
+        <S.LayoutContent className='Layout-Content'>
           { children }
         </S.LayoutContent>
       </S.ContentContainer>

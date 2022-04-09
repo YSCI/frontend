@@ -5,9 +5,9 @@ import { Formik } from 'formik'
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
 
-export const FiltersList = ({ loadPrivileges }) => {
+export const FiltersList = ({ loadProfessions }) => {
   const search = (values) => {
-    loadPrivileges(values)
+    loadProfessions(values)
   }
 
   return (
@@ -27,8 +27,33 @@ export const FiltersList = ({ loadPrivileges }) => {
                 <S.List>
                   <Input
                     value={values.name}
-                    placeholder='Արտոնություն'
+                    placeholder='Մասնագիտություն'
                     onChange={(val) => setFieldValue('name', val)}
+                  />
+                  <Input
+                    value={values.abbreviation}
+                    placeholder='Հապավում'
+                    onChange={(val) => setFieldValue('abbreviation', val)}
+                  />
+                  <Input
+                    value={values.fee}
+                    placeholder='Վճար'
+                    onChange={(val) => setFieldValue('fee', val)}
+                  />
+                  <Input
+                    value={values.code}
+                    placeholder='Կոդ'
+                    onChange={(val) => setFieldValue('code', val)}
+                  />
+                  <Input
+                    value={values.number}
+                    placeholder='Համար'
+                    onChange={(val) => setFieldValue('number', val)}
+                  />
+                  <Input
+                    value={values.yearsCount}
+                    placeholder='Տարիների քանակ'
+                    onChange={(val) => setFieldValue('yearsCount', val)}
                   />
                 </S.List>
                 <S.ActionsContainer>

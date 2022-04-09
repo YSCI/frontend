@@ -45,8 +45,7 @@ export const Table = ({
     headerGroups,
     rows,
     prepareRow,
-    selectedFlatRows,
-    state: { selectedRowIds },
+    selectedFlatRows
   } = useTable(
     {
       columns,

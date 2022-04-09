@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify'
 
 
-import { PROFESSIONS_TYPES } from 'redux/types/professions'
 import { HttpService } from 'services'
+import { PROFESSIONS_TYPES } from 'redux/types/professions'
 
 export const loadProfessions = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('profession')
+    const data = await HttpService.get('profession', search)
 
     dispatch({
       type: PROFESSIONS_TYPES.LOAD_PROFESSIONS,
