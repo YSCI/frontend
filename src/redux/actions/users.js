@@ -1,15 +1,15 @@
 import { toast } from 'react-toastify'
 
 
-import { REGIONS_TYPES } from 'redux/types/regions'
 import { HttpService } from 'services'
+import { USERS_TYPES } from 'redux/types/users'
 
-export const loadRegions = (search) => async dispatch => {
+export const loadUsers = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('region', search)
+    const data = await HttpService.get('user', search)
 
     dispatch({
-      type: REGIONS_TYPES.LOAD_REGIONS,
+      type: USERS_TYPES.LOAD_USERS,
       list: data
     })
   } catch (ex) {
@@ -17,12 +17,12 @@ export const loadRegions = (search) => async dispatch => {
   }
 }
 
-export const editRegion = (values) => async dispatch => {
+export const editUser = (values) => async dispatch => {
   try {
-    await HttpService.put(`region/${values.id}`, values)
+    await HttpService.put(`user/${values.id}`, values)
  
     dispatch({
-      type: REGIONS_TYPES.EDIT_REGION,
+      type: USERS_TYPES.EDIT_USER,
       data: values
     })
 
@@ -32,13 +32,13 @@ export const editRegion = (values) => async dispatch => {
   }
 }
 
-export const createRegion = (values) => async dispatch => {
+export const createUser = (values) => async dispatch => {
   try {
-    const createdRegion = await HttpService.post('region', values)
+    const createdUSER = await HttpService.post('user', values)
     
     dispatch({
-      type: REGIONS_TYPES.CREATE_REGION,
-      data: createdRegion
+      type: USERS_TYPES.CREATE_USER,
+      data: createdUSER
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')
@@ -47,12 +47,12 @@ export const createRegion = (values) => async dispatch => {
   }
 }
 
-export const deleteRegion = (id) => async dispatch => {
+export const deleteUser = (id) => async dispatch => {
   try {
-    await HttpService.delete(`region/${id}`)
+    await HttpService.delete(`user/${id}`)
     
     dispatch({
-      type: REGIONS_TYPES.DELETE_REGION,
+      type: USERS_TYPES.DELETE_USER,
       data: id
     })
 

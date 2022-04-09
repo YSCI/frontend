@@ -28,10 +28,10 @@ const loadAllData = () => dispatch => {
 
 export const initApp = () => dispatch => {
   try {
-    const authData = StorageService.get('authData')
+    const token = StorageService.get('token')
 
-    if (!!authData?.token)
-      dispatch(setAuthData(authData))
+    if (token)
+      dispatch(setAuthData(StorageService.get('authData')))
 
     dispatch({
       type: APP_TYPES.INIT_APP
@@ -39,7 +39,7 @@ export const initApp = () => dispatch => {
 
     dispatch(loadAllData())
   } catch (ex) {
-    toast('Something went wrong while loading app')
+    toast.error('Առաջացավ խնդիր')
   }
 }
 

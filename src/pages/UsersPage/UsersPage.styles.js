@@ -1,11 +1,23 @@
 import styled from 'styled-components'
 
 export const UsersPageContainer = styled.div`
+  width: calc(100% - 40px);
+  padding: 20px;
   display: flex;
-  padding: 30px;
-  width: 100%;
+  gap: 30px;
+`
 
-  .React-Select {
-    width: 200px;
-  }
+export const Type = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+`
+
+export const Score = styled.div`
+  font-size: 20px;
+`
+
+export const UserViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 `

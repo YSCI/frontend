@@ -1,18 +1,13 @@
 export const headerItems = [
-  // {
-  //   id: 1,
-  //   text: 'Օգտատերեր',
-  //   path: '/users'
-  // },
-  // {
-  //   id: 2,
-  //   text: 'Ուսանողներ',
-  //   path: '/students'
-  // },
   {
     id: 1,
     text: 'Ուսանողներ',
     path: '/students'
+  },
+  {
+    id: 12,
+    text: 'Օգտատերեր',
+    path: '/users'
   },
   {
     id: 4,
@@ -25,11 +20,6 @@ export const headerItems = [
     path: '/citizenships'
   },
   {
-    id: 6,
-    text: 'Առողջական վիճակներ',
-    path: '/health-statuses'
-  },
-  {
     id: 7,
     text: 'Կարգավիճակներ',
     path: '/statuses'
@@ -38,6 +28,11 @@ export const headerItems = [
     id: 2,
     text: 'Այլ',
     list: [
+      {
+        id: 6,
+        text: 'Առողջական վիճակներ',
+        path: '/health-statuses'
+      },
       {
         id: 8,
         text: 'Մարզեր',
