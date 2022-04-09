@@ -6,7 +6,7 @@ import { HttpService } from 'services'
 
 export const loadProfessions = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('profession')
+    const data = await HttpService.get('profession', search)
 
     dispatch({
       type: PROFESSIONS_TYPES.LOAD_PROFESSIONS,

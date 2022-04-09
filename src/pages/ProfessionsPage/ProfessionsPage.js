@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import { Table, Filter } from 'components'
 import { Layout } from 'components/Layout/Layout'
-import { Select, Button } from 'ui'
+import { FiltersList } from './components/FiltersList'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './ProfessionsPage.styles'
 import { ProfessionForm } from './components/ProfessionForm'
@@ -28,9 +28,7 @@ export const ProfessionsPage = ({
           columns={tableColumns.profession}
         />
         <Filter>
-          <Select
-            placeholder='Անուն'
-          />
+          <FiltersList />
         </Filter>
       </S.ProfessionsPageContainer>
     </Layout>
