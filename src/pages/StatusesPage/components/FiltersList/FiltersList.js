@@ -34,7 +34,7 @@ export const FiltersList = ({ loadStatuses }) => {
                 <S.ActionsContainer>
                   <Button className='bordered' onClick={() => {
                     resetForm()
-                    loadStatuses()
+                    search()
                   }}>
                     Մաքրել
                   </Button>

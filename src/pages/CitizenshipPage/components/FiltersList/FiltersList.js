@@ -32,7 +32,10 @@ export const FiltersList = ({ loadCitizenships }) => {
                   />
                 </S.List>
                 <S.ActionsContainer>
-                  <Button className='bordered' onClick={resetForm}>
+                  <Button className='bordered' onClick={() => {
+                    resetForm()
+                    search()
+                  }}>
                     Մաքրել
                   </Button>
                   <Button onClick={handleSubmit}>

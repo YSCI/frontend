@@ -52,7 +52,10 @@ export const FiltersList = ({ communitiesList, loadCommissariats }) => {
                   />
                 </S.List>
                 <S.ActionsContainer>
-                  <Button className='bordered' onClick={resetForm}>
+                  <Button className='bordered' onClick={() => {
+                    resetForm()
+                    search()
+                  }}>
                     Մաքրել
                   </Button>
                   <Button onClick={handleSubmit}>
