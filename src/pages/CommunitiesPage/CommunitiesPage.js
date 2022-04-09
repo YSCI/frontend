@@ -22,15 +22,15 @@ export const CommunitiesPage = ({
   return (
     <Layout>
       <S.CommunitiesPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
           data={communities.list}
           onDelete={deleteCommunity}
           FormComponent={CommunityForm}
           columns={tableColumns.community}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.CommunitiesPageContainer>
     </Layout>
   )

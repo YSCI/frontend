@@ -22,15 +22,15 @@ export const NationalitiesPage = ({
   return (
     <Layout>
       <S.NationalitiesPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
-           data={nationalities.list}
+          data={nationalities.list}
           onDelete={deleteNationality}
           FormComponent={NationalityForm}
           columns={tableColumns.nationality}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.NationalitiesPageContainer>
     </Layout>
   )

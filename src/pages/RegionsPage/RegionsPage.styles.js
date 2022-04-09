@@ -4,13 +4,7 @@ export const RegionsPageContainer = styled.div`
   width: calc(100% - 40px);
   padding: 20px;
   display: flex;
-  flex-direction: column;
   gap: 30px;
-`
-
-export const GameContainer = styled.div`
-  display: flex;
-  gap: 40px;
 `
 
 export const Type = styled.div`

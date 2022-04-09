@@ -22,15 +22,15 @@ export const PrivilegesPage = ({
   return (
     <Layout>
       <S.PrivilegesPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
           data={privileges.list}
           onDelete={deletePrivilege}
           FormComponent={PrivilegeForm}
           columns={tableColumns.privilege}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.PrivilegesPageContainer>
     </Layout>
   )

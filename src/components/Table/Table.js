@@ -123,6 +123,7 @@ export const Table = ({
           {firstPageRows.map(
             (row) => {
               prepareRow(row);
+
               return (
                 <tr
                   {...row.getRowProps()}

@@ -32,7 +32,10 @@ export const FiltersList = ({ loadStatuses }) => {
                   />
                 </S.List>
                 <S.ActionsContainer>
-                  <Button className='bordered' onClick={resetForm}>
+                  <Button className='bordered' onClick={() => {
+                    resetForm()
+                    loadStatuses()
+                  }}>
                     Մաքրել
                   </Button>
                   <Button onClick={handleSubmit}>

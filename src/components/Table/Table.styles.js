@@ -141,7 +141,7 @@ export const FixedActionsBarHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 64px;
+  height: 66px;
   font-weight: bold;
   color: #fff;
   background: ${({ theme }) => theme.colors.green};

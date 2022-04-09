@@ -22,15 +22,15 @@ export const CitizenshipPage = ({
   return (
     <Layout>
       <S.CitizenshipPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
           data={citizenships.list}
           onDelete={deleteCitizenship}
           FormComponent={CitizenshipForm}
           columns={tableColumns.citizenship}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.CitizenshipPageContainer>
     </Layout>
   )

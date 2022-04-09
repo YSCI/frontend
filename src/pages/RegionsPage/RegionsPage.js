@@ -22,15 +22,15 @@ export const RegionsPage = ({
   return (
     <Layout>
       <S.RegionsPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
-           data={regions.list}
+          data={regions.list}
           onDelete={deleteRegion}
           FormComponent={RegionForm}
           columns={tableColumns.region}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.RegionsPageContainer>
     </Layout>
   )

@@ -1,17 +1,10 @@
 import styled from 'styled-components'
 
-export const CommissariatsPageContainer = styled.div`
+export const CommisariatsPageContainer = styled.div`
   width: calc(100% - 40px);
-  // height: 100%;
   padding: 20px;
   display: flex;
-  flex-direction: column;
   gap: 30px;
-`
-
-export const GameContainer = styled.div`
-  display: flex;
-  gap: 40px;
 `
 
 export const Type = styled.div`

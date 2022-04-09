@@ -22,15 +22,15 @@ export const HealthStatusesPage = ({
   return (
     <Layout>
       <S.HealthStatusesPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
-           data={healthStatuses.list}
+          data={healthStatuses.list}
           onDelete={deleteHealthStatus}
           FormComponent={HealthStatusForm}
           columns={tableColumns.healthStatus}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.HealthStatusesPageContainer>
     </Layout>
   )

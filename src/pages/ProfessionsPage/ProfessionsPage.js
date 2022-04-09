@@ -21,17 +21,17 @@ export const ProfessionsPage = ({
   return (
     <Layout>
       <S.ProfessionsPageContainer>
-        <Filter>
-          <Select
-            placeholder='Անուն'
-          />
-        </Filter>
         <Table
           data={professions.list}
           onDelete={deleteProfession}
           FormComponent={ProfessionForm}
           columns={tableColumns.profession}
         />
+        <Filter>
+          <Select
+            placeholder='Անուն'
+          />
+        </Filter>
       </S.ProfessionsPageContainer>
     </Layout>
   )

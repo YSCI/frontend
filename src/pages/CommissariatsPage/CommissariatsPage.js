@@ -22,15 +22,15 @@ export const CommissariatsPage = ({
   return (
     <Layout>
       <S.CommissariatsPageContainer>
-        <Filter>
-          <FiltersList />
-        </Filter>
         <Table
           data={commissariats.list}
           onDelete={deleteCommissariat}
           FormComponent={CommissariatForm}
           columns={tableColumns.commissariat}
         />
+        <Filter>
+          <FiltersList />
+        </Filter>
       </S.CommissariatsPageContainer>
     </Layout>
   )
