@@ -45,8 +45,8 @@ export const Routes = ({
     <BrowserRouter history={history}>
       <Switch>
         <Suspense fallback={<AppLoader />}>
-          <Route path='/login' component={LoginPage} />
           <ProtectedRoute path='/home' component={HomePage}/>
+          <Route path='/login' component={LoginPage} />
           <ProtectedRoute path='/commands' component={CommandsPage}/>
           <ProtectedRoute path='/students' component={StudentsPage} />
           <ProtectedRoute path='/professions' component={ProfessionsPage}/>
@@ -59,9 +59,7 @@ export const Routes = ({
           <ProtectedRoute path='/privileges' component={PrivilegesPage} />
           <ProtectedRoute path='/commissariats' component={CommissariatsPage} />
           <ProtectedRoute path='/communities' component={CommunitiesPage} />
-          
-        </Suspense>
-        {
+          {
             loggedIn &&
               <Redirect from='/login' to='/home' />
           }
@@ -77,6 +75,7 @@ export const Routes = ({
             !loggedIn &&
               <Redirect from='*' to='/login' />
           }
+        </Suspense>
       </Switch>
     </BrowserRouter>
   )
