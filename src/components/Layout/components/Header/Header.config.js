@@ -5,6 +5,11 @@ export const headerItems = [
     path: '/students'
   },
   {
+    id: 15,
+    text: 'Հրամաններ',
+    path: '/commands'
+  },
+  {
     id: 12,
     text: 'Օգտատերեր',
     path: '/users'

@@ -80,6 +80,7 @@ export const HeaderItemsList = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+  height: 100%;
 
   ::-webkit-scrollbar {
     height: 10px;
@@ -104,7 +105,20 @@ export const HeaderItemsList = styled.div`
 export const HeaderItem = styled(Link)`
   color: #000;
   white-space: pre;
+  height: calc(100% - 10px);
   padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: rgba(8,115,112,0.12);
+  }
+
+  &.active {
+    background: rgba(8,115,112,0.12);
+  }
 `
 
 export const HomeContainer = styled.div`

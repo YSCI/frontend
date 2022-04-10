@@ -1,22 +1,22 @@
 import React, { useEffect, useMemo } from 'react'
 
-import * as S from './CommunityForm.styles'
+import * as S from './CommandForm.styles'
 import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
-import { initialValues, validationSchema } from './CommunityForm.config'
+import { initialValues, validationSchema } from './CommandForm.config'
 
-export const CommunityForm = ({
+export const CommandForm = ({
   hideModal,
-  editCommunity,
-  createCommunity,
+  editCommand,
+  createCommand,
   editableData,
-  loadRegions,
-  regions
+  loadStatuses,
+  statuses
 }) => {
   useEffect(() => {
-    loadRegions()
-  }, [loadRegions])
+    loadStatuses()
+  }, [loadStatuses])
 
   const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
@@ -25,15 +25,15 @@ export const CommunityForm = ({
 
   const onSubmit = (values) => {
     if (editableData) {
-      editCommunity(values)
+      editCommand(values)
     } else {
-      createCommunity(values)
+      createCommand(values)
     }
     hideModal()
   }
 
   return (
-    <S.CommunityFormContainer>
+    <S.CommandFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
           {formActionType} համայնք
@@ -55,7 +55,7 @@ export const CommunityForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            const selectedRegion = regions.list.find(region => region.id === values.regionId)
+            const selectedStatus = statuses.list.find(status => status.id === values.changeableStatusId)
 
             return (
               <S.FormContentContainer>
@@ -74,24 +74,24 @@ export const CommunityForm = ({
                 </S.FormItem>
                 <S.FormItem>
                   <Select
-                    value={selectedRegion ? {
-                      value: selectedRegion?.id,
-                      label: selectedRegion?.name
+                    value={selectedStatus ? {
+                      value: selectedStatus.id,
+                      label: selectedStatus.name
                     } : null}
-                    options={regions.list.map(region => ({
-                      value: region.id,
-                      label: region.name
+                    options={statuses.list.map(status => ({
+                      value: status.id,
+                      label: status.name
                     }))}
-                    placeholder='Մարզ'
+                    placeholder='Փոփոխելի կարգավիճակ'
                     onChange={(val) => {
-                      setFieldValue('region', regions.list.find(region => region.id === val.value))
-                      setFieldValue('regionId', val.value)
+                      setFieldValue('status', statuses.list.find(status => status.id === val.value))
+                      setFieldValue('changeableStatusId', val.value)
                     }}
                   />
                   {
-                    errors.regionId && touched.regionId &&
+                    errors.changeableStatusId && touched.changeableStatusId &&
                       <S.ErrorMessage>
-                        { errors.regionId }
+                        { errors.changeableStatusId }
                       </S.ErrorMessage>
                   }
                 </S.FormItem>
@@ -108,6 +108,6 @@ export const CommunityForm = ({
           }
         }
       </Formik>
-    </S.CommunityFormContainer>
+    </S.CommandFormContainer>
   )
 }

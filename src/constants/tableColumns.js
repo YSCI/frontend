@@ -170,5 +170,15 @@ export const tableColumns = {
       Header: 'Մարզ',
       accessor: 'region.name'
     }
+  ],
+  commands: [
+    {
+      Header: 'Անվանում',
+      accessor: 'name'
+    },
+    {
+      Header: 'Փոփոխելի կարգավիճակ',
+      accessor: 'status.name'
+    }
   ]
 }
