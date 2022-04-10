@@ -1,3 +1,8 @@
+:root {
+  --toastify-color-success: #0b918d;
+  --toastify-color-error: #e01b28;
+}
+
 .App {
   text-align: center;
 }
@@ -39,11 +44,6 @@ img {
   to {
     transform: rotate(360deg);
   }
-}
-
-
-.Toastify__progress-bar {
-  background: #00514f;
 }
 
 .React-Select {

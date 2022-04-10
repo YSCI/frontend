@@ -13,7 +13,7 @@ export const loadCommissariats = (search) => async dispatch => {
       list: data
     })
   } catch (ex) {
-    toast('Առաջացավ խնդիր')
+    toast.error('Առաջացավ խնդիր')
   }
 }
 
@@ -26,9 +26,9 @@ export const editCommissariat = (values) => async dispatch => {
       data: values
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -41,9 +41,9 @@ export const createCommissariat = (values) => async dispatch => {
       data: createdCommissariat
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -56,8 +56,8 @@ export const deleteCommissariat = (id) => async dispatch => {
       data: id
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }

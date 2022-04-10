@@ -13,7 +13,7 @@ export const loadStudents = (search) => async dispatch => {
       list: data
     })
   } catch (ex) {
-    toast('Առաջացավ խնդիր')
+    toast.error('Առաջացավ խնդիր')
   }
 }
 
@@ -42,9 +42,9 @@ export const editStudent = (values) => async dispatch => {
       data: values
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -54,7 +54,12 @@ export const createStudent = (values) => async dispatch => {
       ...values,
       dateOfBirth: (new Date()).toISOString(),
       contactNumbers: values.contactNumbers.split(',').map(el => el.trim()),
-      dateOfAcceptance: (new Date()).toISOString()
+      dateOfAcceptance: (new Date()).toISOString(),
+      currentGroup: +values.currentGroup,
+      currentCourse: +values.currentCourse,
+      socialCardNumber: +values.socialCardNumber,
+      passportSeries: +values.passportSeries,
+      acceptanceCommandNumber: +values.acceptanceCommandNumber
     })
     
     dispatch({
@@ -64,9 +69,9 @@ export const createStudent = (values) => async dispatch => {
 
     dispatch(loadStudents())
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
@@ -79,8 +84,8 @@ export const deleteStudent = (id) => async dispatch => {
       data: id
     })
 
-    toast('Գործողությունը հաջողությամբ կատարվեց')
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
-    toast(`Առաջացավ խնդիր: ${ex.message}`)
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }

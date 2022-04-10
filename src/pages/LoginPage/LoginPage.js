@@ -5,7 +5,7 @@ import { Formik } from 'formik'
 import { Input, Button } from 'ui'
 import logoPic from 'images/logo.png'
 import * as S from './LoginPage.styles'
-import { initialValues } from './LoginPage.config'
+import { initialValues, validationSchema } from './LoginPage.config'
 
 export const LoginPage = ({
   login
@@ -16,27 +16,46 @@ export const LoginPage = ({
       <S.PageTitle>Մուտք գործել համակարգ</S.PageTitle>
       <S.LoginForm>
         <Formik
-          initialValues={initialValues}
           onSubmit={login}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
         >
           {
             ({
               values,
+              errors,
+              touched,
               handleSubmit,
               setFieldValue
             }) => (
               <>
-                <Input
-                  value={values.email}
-                  placeholder='Մուտքանուն'
-                  onChange={(val) => setFieldValue('email', val)}
-                />
-                <Input
-                  type='password'
-                  placeholder='Գաղտնաբառ'
-                  value={values.password}
-                  onChange={(val) => setFieldValue('password', val)}
-                />
+                <S.FormItem>
+                  <Input
+                    value={values.username}
+                    placeholder='Մուտքանուն'
+                    onChange={(val) => setFieldValue('username', val)}
+                  />
+                  {
+                    errors.username && touched.username &&
+                      <S.ErrorMessage>
+                        { errors.username }
+                      </S.ErrorMessage>
+                  }
+                </S.FormItem>
+                <S.FormItem>
+                  <Input
+                    type='password'
+                    placeholder='Գաղտնաբառ'
+                    value={values.password}
+                    onChange={(val) => setFieldValue('password', val)}
+                  />
+                  {
+                    errors.password && touched.password &&
+                      <S.ErrorMessage>
+                        { errors.password }
+                      </S.ErrorMessage>
+                  }
+                </S.FormItem>
                 <Button onClick={handleSubmit}>
                   Մուտք
                 </Button>

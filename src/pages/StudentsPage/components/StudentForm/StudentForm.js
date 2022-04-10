@@ -57,11 +57,11 @@ export const StudentForm = ({
             const selectedProfession = state.professions.list.find(el => el.id === values.professionId)
             const selectedStatus = state.statuses.list.find(el => el.id === values.statusId)
 
-            const selectedRegistrationRegion = state.regions.list.find(el => el.id === values.registrationAddressRegionId)
-            const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === values.registrationAddressCommunityId)
+            const selectedRegistrationRegion = state.regions.list.find(el => el.id === values.registrationRegionId)
+            const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === values.registrationCommunityId)
 
-            const selectedResidentRegion = state.regions.list.find(el => el.id === values.residentAddressRegionId)
-            const selectedResidentCommunity = selectedResidentRegion?.communities.find(el => el.id === values.residentAddressCommunityId)
+            const selectedResidentRegion = state.regions.list.find(el => el.id === values.residentRegionId)
+            const selectedResidentCommunity = selectedResidentRegion?.communities.find(el => el.id === values.residentCommunityId)
 
             return (
               <S.FormContentContainer>
@@ -319,12 +319,12 @@ export const StudentForm = ({
                           label: region.name
                         }))}
                         placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('registrationAddressRegionId', val.value)}
+                        onChange={(val) => setFieldValue('registrationRegionId', val.value)}
                       />
                       {
-                        errors.registrationAddressRegionId && touched.registrationAddressRegionId &&
+                        errors.registrationRegionId && touched.registrationRegionId &&
                           <S.ErrorMessage>
-                            { errors.regionId }
+                            { errors.registrationRegionId }
                           </S.ErrorMessage>
                       }
                       <Select
@@ -337,12 +337,12 @@ export const StudentForm = ({
                           label: community.name
                         }))}
                         placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('registrationAddressCommunityId', val.value)}
+                        onChange={(val) => setFieldValue('registrationCommunityId', val.value)}
                       />
                       {
-                        errors.registrationAddressCommunityId && touched.registrationAddressCommunityId &&
+                        errors.registrationCommunityId && touched.registrationCommunityId &&
                           <S.ErrorMessage>
-                            { errors.registrationAddressCommunityId }
+                            { errors.registrationCommunityId }
                           </S.ErrorMessage>
                       }
                       <S.FormItem>
@@ -370,12 +370,12 @@ export const StudentForm = ({
                           label: region.name
                         }))}
                         placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('residentAddressRegionId', val.value)}
+                        onChange={(val) => setFieldValue('residentRegionId', val.value)}
                       />
                       {
-                        errors.residentAddressRegionId && touched.residentAddressRegionId &&
+                        errors.residentRegionId && touched.residentRegionId &&
                           <S.ErrorMessage>
-                            { errors.residentAddressRegionId }
+                            { errors.residentRegionId }
                           </S.ErrorMessage>
                       }
                       <Select
@@ -388,12 +388,12 @@ export const StudentForm = ({
                           label: community.name
                         }))}
                         placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('residentAddressCommunityId', val.value)}
+                        onChange={(val) => setFieldValue('residentCommunityId', val.value)}
                       />
                       {
-                        errors.residentAddressCommunityId && touched.residentAddressCommunityId &&
+                        errors.residentCommunityId && touched.residentCommunityId &&
                           <S.ErrorMessage>
-                            { errors.residentAddressCommunityId }
+                            { errors.residentCommunityId }
                           </S.ErrorMessage>
                       }
                       <S.FormItem>
