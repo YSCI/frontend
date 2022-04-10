@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const tableColumns = {
   users: [
     {
@@ -28,7 +30,7 @@ export const tableColumns = {
     },
     {
       Header: 'Ծննդյան ամսաթիվ',
-      accessor: 'dateOfBirth'
+      accessor: ({ dateOfBirth }) => moment(dateOfBirth).format('DD/MM/YYYY HH:MM')
     },
     {
       Header: 'Գրանցման հասցե',
@@ -44,7 +46,7 @@ export const tableColumns = {
     },
     {
       Header: 'Ընդունման ամսաթիվ',
-      accessor: 'dateOfAcceptance'
+      accessor: ({ dateOfAcceptance }) => moment(dateOfAcceptance).format('DD/MM/YYYY HH:MM')
     },
     {
       Header: 'Ընդունման հրամանի համար',

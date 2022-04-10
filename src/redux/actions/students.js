@@ -54,7 +54,12 @@ export const createStudent = (values) => async dispatch => {
       ...values,
       dateOfBirth: (new Date()).toISOString(),
       contactNumbers: values.contactNumbers.split(',').map(el => el.trim()),
-      dateOfAcceptance: (new Date()).toISOString()
+      dateOfAcceptance: (new Date()).toISOString(),
+      currentGroup: +values.currentGroup,
+      currentCourse: +values.currentCourse,
+      socialCardNumber: +values.socialCardNumber,
+      passportSeries: +values.passportSeries,
+      acceptanceCommandNumber: +values.acceptanceCommandNumber
     })
     
     dispatch({
