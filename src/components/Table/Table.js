@@ -165,7 +165,7 @@ export const Table = ({
                 Ջնջել
               </Button>
               {
-                customActions(selectedFlatRows)
+                customActions?.(selectedFlatRows)
               }
             </S.ActionsList>
           </S.FixedActionsBar>
