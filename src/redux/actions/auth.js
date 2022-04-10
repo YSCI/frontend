@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import { history } from 'system/history'
 import { HttpService, StorageService } from 'services'
 import { AUTH_TYPES } from "redux/types/auth"
+import { loadAllData } from 'redux/actions/app'
 
 export const setAuthData = (authData) => ({
   type: AUTH_TYPES.SET_AUTH_DATA,
@@ -27,6 +28,7 @@ export const login = (values) => async dispatch => {
     const { access_token } = await HttpService.post('auth/login', values, { noToken: true })
 
     StorageService.set('token', access_token)
+    dispatch(loadAllData())
     dispatch(getMe())
     history.push('/home')
 

@@ -14,7 +14,7 @@ import { loadProfessions } from './professions'
 import { loadRegions } from './regions'
 import { loadStatuses } from './statuses'
 
-const loadAllData = () => dispatch => {
+export const loadAllData = () => dispatch => {
   dispatch(loadCommissariats())
   dispatch(loadCitizenships())
   dispatch(loadCommunities())
@@ -30,14 +30,14 @@ export const initApp = () => dispatch => {
   try {
     const token = StorageService.get('token')
 
-    if (token)
+    if (token) {
+      dispatch(loadAllData())
       dispatch(setAuthData(StorageService.get('authData')))
+    }
 
     dispatch({
       type: APP_TYPES.INIT_APP
     })
-
-    dispatch(loadAllData())
   } catch (ex) {
     toast.error('Առաջացավ խնդիր')
   }
