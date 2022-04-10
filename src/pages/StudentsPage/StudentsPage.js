@@ -7,11 +7,14 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './StudentsPage.styles'
 import { StudentForm } from './components/StudentForm'
 import { FiltersList } from './components/FiltersList'
+import { Button } from 'ui'
+import { AssignCommandForm } from './components/AssignCommandForm'
 
 export const StudentsPage = ({
   students,
-  deleteStudent,
-  loadStudents
+  showModal,
+  loadStudents,
+  deleteStudent
 }) => {
   useEffect(() => {
     loadStudents()
@@ -25,6 +28,16 @@ export const StudentsPage = ({
           onDelete={deleteStudent}
           FormComponent={StudentForm}
           columns={tableColumns.students}
+          customActions={(selectedRows) => {
+            return (
+              <Button
+                disable={selectedRows.length !== 1}
+                onClick={() => showModal(AssignCommandForm, { studentId: selectedRows[0].original.id })}
+              >
+                Կցագրել հրաման
+              </Button>
+            )
+          }}
         />
         <Filter>
           <FiltersList />

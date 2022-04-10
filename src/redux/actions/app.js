@@ -13,6 +13,7 @@ import { loadPrivileges } from './privileges'
 import { loadProfessions } from './professions'
 import { loadRegions } from './regions'
 import { loadStatuses } from './statuses'
+import { loadCommands } from './commands'
 
 export const loadAllData = () => dispatch => {
   dispatch(loadCommissariats())
@@ -24,6 +25,7 @@ export const loadAllData = () => dispatch => {
   dispatch(loadProfessions())
   dispatch(loadRegions())
   dispatch(loadStatuses())
+  dispatch(loadCommands())
 }
 
 export const initApp = () => dispatch => {
