@@ -151,12 +151,14 @@ export const Table = ({
               </Button>
               <Button
                 className='bordered'
+                disable={selectedFlatRows.length !== 1}
                 onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
               >
                 Փոփոխել
               </Button>
               <Button
                 className='danger'
+                disable={selectedFlatRows.length === 0}
                 onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
               >
                 Ջնջել

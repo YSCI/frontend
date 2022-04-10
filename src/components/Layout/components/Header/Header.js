@@ -1,16 +1,19 @@
 import React from 'react'
-
+import cx from 'classnames'
 
 import { Dropdown } from 'ui'
 import * as S from './Headers.styles'
 import logoPic from 'images/logo.png'
 import profilePic from 'images/profile.png'
 import { headerItems } from './Header.config'
+import { useLocation } from 'react-router-dom'
 
 export const Header = ({
   user,
   logout
 }) => {
+  const location = useLocation()
+
   return (
     <S.HeaderContainer>
       <S.HomeContainer>
@@ -33,14 +36,22 @@ export const Header = ({
                     <S.DropdownItems className='Dropdown-Items'>
                       {
                         item.list.map(subItem => (
-                          <S.HeaderItem className='Header-Item' key={subItem.id} to={subItem.path}>
+                          <S.HeaderItem
+                            key={subItem.id}
+                            to={subItem.path}
+                            className={cx('Header-Item', { active: location.pathname === subItem.path })}
+                          >
                             { subItem.text }
                           </S.HeaderItem>
                         ))
                       }
                     </S.DropdownItems>
                   </Dropdown>
-                : <S.HeaderItem key={item.id} to={item.path}>
+                : <S.HeaderItem
+                    key={item.id}
+                    to={item.path}
+                    className={cx({ active: location.pathname === item.path })}
+                  >
                     { item.text }
                   </S.HeaderItem>
             )

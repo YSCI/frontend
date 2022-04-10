@@ -8,6 +8,7 @@ import { modal } from './modal'
 import { regions } from './regions'
 import { statuses } from './statuses'
 import { students } from './students'
+import { commands } from './commands'
 import { privileges } from './privileges'
 import { professions } from './professions'
 import { communities } from './communities'
@@ -24,6 +25,7 @@ export const rootReducer = combineReducers({
   regions,
   statuses,
   students,
+  commands,
   privileges,
   professions,
   communities,

@@ -11,14 +11,6 @@ export const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  // input {
-  //   width: 300px;
-  // }
-
-  // .React-Select {
-  //   width: 300px;
-  // }
 `
 
 export const ActionsContainer = styled.div`
