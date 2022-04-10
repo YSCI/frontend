@@ -1,15 +1,15 @@
 import { toast } from 'react-toastify'
 
 
-import { COMMUNITIES_TYPES } from 'redux/types/communities'
+import { COMMANDS_TYPES } from 'redux/types/commands'
 import { HttpService } from 'services'
 
-export const loadCommunities = (search) => async dispatch => {
+export const loadCommands = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('community', search)
+    const data = await HttpService.get('command', search)
 
     dispatch({
-      type: COMMUNITIES_TYPES.LOAD_COMMUNITIES,
+      type: COMMANDS_TYPES.LOAD_COMMANDS,
       list: data
     })
   } catch (ex) {
@@ -17,12 +17,12 @@ export const loadCommunities = (search) => async dispatch => {
   }
 }
 
-export const editCommunity = (values) => async dispatch => {
+export const editCommand = (values) => async dispatch => {
   try {
-    await HttpService.put(`community/${values.id}`, values)
+    await HttpService.put(`command/${values.id}`, values)
  
     dispatch({
-      type: COMMUNITIES_TYPES.EDIT_COMMUNITY,
+      type: COMMANDS_TYPES.EDIT_COMMAND,
       data: values
     })
 
@@ -32,15 +32,15 @@ export const editCommunity = (values) => async dispatch => {
   }
 }
 
-export const createCommunity = (values) => async dispatch => {
+export const createCommand = (values) => async dispatch => {
   try {
-    const createdCommunity = await HttpService.post('community', values)
+    const createdCommand = await HttpService.post('command', values)
     
     dispatch({
-      type: COMMUNITIES_TYPES.CREATE_COMMUNITY,
+      type: COMMANDS_TYPES.CREATE_COMMAND,
       data: {
-        ...createdCommunity,
-        region: values.region
+        ...createdCommand,
+        status: values.status
       }
     })
 
@@ -50,12 +50,12 @@ export const createCommunity = (values) => async dispatch => {
   }
 }
 
-export const deleteCommunity = (id) => async dispatch => {
+export const deleteCommand = (id) => async dispatch => {
   try {
-    await HttpService.delete(`community/${id}`)
+    await HttpService.delete(`command/${id}`)
     
     dispatch({
-      type: COMMUNITIES_TYPES.DELETE_COMMUNITY,
+      type: COMMANDS_TYPES.DELETE_COMMAND,
       data: id
     })
 
