@@ -5,18 +5,23 @@ import cx from 'classnames'
 import { CenteredFlex } from './styles'
 
 export const Button = ({
+  disable,
   children,
   className,
   ...rest
 }) => {
   return (
-    <ButtonContainer className={cx({ [className]: true }, 'Button')} {...rest}>
+    <ButtonContainer
+      {...rest}
+      className={cx({ [className]: true, disable }, 'Button')}
+    >
       { children }
     </ButtonContainer>
   )
 }
 
 Button.defaultProps = {
+  disable: false,
   className: 'main'
 }
 
@@ -26,6 +31,7 @@ export const ButtonContainer = styled(CenteredFlex)`
   width: calc(100% - 24px);
   transition: all 0.3s ease;
   padding: 12px;
+  user-select: none;
 
   &.main {
     color: #fff;
@@ -51,5 +57,10 @@ export const ButtonContainer = styled(CenteredFlex)`
     &:hover {
       border-color: #e01b28;
     }
+  }
+
+  &.disable {
+    opacity: 0.45;
+    pointer-events: none;
   }
 `
