@@ -6,16 +6,14 @@ export const Input = ({
   onEnter,
   ...rest
 }) => {
-  const onInputChange = (e) =>{
+  const onInputChange = e => {
     onChange(e.target.value)
   }
 
   const handleKeypress = e => {
-    if (e.key == "Enter") {
-      // alert('hi')
-      onEnter()
-    }
+    if (e.key == "Enter") onEnter()
   }
+
   return (
     <StyledInput
       {...rest}
