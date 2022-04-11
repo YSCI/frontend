@@ -58,6 +58,7 @@ export const UserForm = ({
                     value={values.name}
                     placeholder='Անուն'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.name && touched.name &&
@@ -71,6 +72,7 @@ export const UserForm = ({
                     value={values.surname}
                     placeholder='Ազգանուն'
                     onChange={(val) => setFieldValue('surname', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.abbreviation && touched.abbreviation &&
@@ -84,6 +86,7 @@ export const UserForm = ({
                     value={values.username}
                     placeholder='Մուտքանուն'
                     onChange={(val) => setFieldValue('username', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.code && touched.code &&
@@ -100,6 +103,7 @@ export const UserForm = ({
                         value={values.password}
                         placeholder='Գաղտնաբառ'
                         onChange={(val) => setFieldValue('password', val)}
+                        onEnter={handleSubmit}
                       />
                       {
                         errors.yearsCount && touched.yearsCount &&

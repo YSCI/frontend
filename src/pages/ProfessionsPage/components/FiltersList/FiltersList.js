@@ -29,31 +29,37 @@ export const FiltersList = ({ loadProfessions }) => {
                     value={values.name}
                     placeholder='Մասնագիտություն'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.abbreviation}
                     placeholder='Հապավում'
                     onChange={(val) => setFieldValue('abbreviation', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.fee}
                     placeholder='Վճար'
                     onChange={(val) => setFieldValue('fee', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.code}
                     placeholder='Կոդ'
                     onChange={(val) => setFieldValue('code', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.number}
                     placeholder='Համար'
                     onChange={(val) => setFieldValue('number', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.yearsCount}
                     placeholder='Տարիների քանակ'
                     onChange={(val) => setFieldValue('yearsCount', val)}
+                    onEnter={handleSubmit}
                   />
                 </S.List>
                 <S.ActionsContainer>

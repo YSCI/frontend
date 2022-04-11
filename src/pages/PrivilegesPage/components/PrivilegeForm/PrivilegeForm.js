@@ -56,6 +56,7 @@ export const PrivilegeForm = ({
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.name && touched.name &&

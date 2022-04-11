@@ -29,16 +29,19 @@ export const FiltersList = ({ loadUsers }) => {
                     value={values.name}
                     placeholder='Անուն'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.surname}
                     placeholder='Ազգանուն'
                     onChange={(val) => setFieldValue('surname', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.username}
                     placeholder='Մուտքանուն'
                     onChange={(val) => setFieldValue('username', val)}
+                    onEnter={handleSubmit}
                   />
                 </S.List>
                 <S.ActionsContainer>

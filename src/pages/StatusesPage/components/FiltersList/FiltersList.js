@@ -29,6 +29,7 @@ export const FiltersList = ({ loadStatuses }) => {
                     value={values.name}
                     placeholder='Կարգավիճակ'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                 </S.List>
                 <S.ActionsContainer>

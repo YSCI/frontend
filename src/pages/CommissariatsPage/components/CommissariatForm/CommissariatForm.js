@@ -62,6 +62,7 @@ export const CommissariatForm = ({
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.name && touched.name &&
@@ -76,6 +77,7 @@ export const CommissariatForm = ({
                     placeholder='Համար'
                     type='number'
                     onChange={(val) => setFieldValue('number', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.number && touched.number &&
@@ -90,6 +92,7 @@ export const CommissariatForm = ({
                     placeholder='Նկարագրություն'
                     type='description'
                     onChange={(val) => setFieldValue('description', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.number && touched.number &&

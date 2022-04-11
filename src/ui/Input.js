@@ -1,17 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 export const Input = ({
+  onChange,
+  onEnter,
   ...rest
 }) => {
-  const onInputChange = (e) =>
-    rest.onChange(e.target.value)
+  const onInputChange = (e) =>{
+    onChange(e.target.value)
+  }
 
+  const handleKeypress = e => {
+    if (e.key == "Enter") {
+      // alert('hi')
+      onEnter()
+    }
+  }
   return (
     <StyledInput
       {...rest}
       onChange={onInputChange}
+      onKeyPress={handleKeypress}
     />
   )
 }

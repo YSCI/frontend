@@ -34,6 +34,7 @@ export const LoginPage = ({
                     value={values.username}
                     placeholder='Մուտքանուն'
                     onChange={(val) => setFieldValue('username', val)}
+                    onEnter = {handleSubmit}
                   />
                   {
                     errors.username && touched.username &&
@@ -48,6 +49,7 @@ export const LoginPage = ({
                     placeholder='Գաղտնաբառ'
                     value={values.password}
                     onChange={(val) => setFieldValue('password', val)}
+                    onEnter = {handleSubmit}
                   />
                   {
                     errors.password && touched.password &&

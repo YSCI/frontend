@@ -29,6 +29,7 @@ export const FiltersList = ({ loadNationalities }) => {
                     value={values.name}
                     placeholder='Քաղաքացիություն'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                 </S.List>
                 <S.ActionsContainer>

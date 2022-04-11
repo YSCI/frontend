@@ -31,6 +31,7 @@ export const FiltersList = ({ loadCommunities, regionsList }) => {
                     value={values.name}
                     placeholder='Կարգավիճակ'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   <Select
                     value={selectedRegion ? {

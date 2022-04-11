@@ -29,6 +29,7 @@ export const FiltersList = ({ loadHealthStatuses }) => {
                     value={values.status}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('status', val)}
+                    onEnter={handleSubmit}
                   />
                 </S.List>
                 <S.ActionsContainer>

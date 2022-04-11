@@ -32,11 +32,13 @@ export const FiltersList = ({ communitiesList, loadCommissariats }) => {
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   <Input
                     value={values.number}
                     placeholder='Համար'
                     onChange={(val) => setFieldValue('number', val)}
+                    onEnter={handleSubmit}
                   />
                   <Select
                     value={selectedCommunity ? {
@@ -49,6 +51,7 @@ export const FiltersList = ({ communitiesList, loadCommissariats }) => {
                     }))}
                     placeholder='Համայնք'
                     onChange={(val) => setFieldValue('communityId', val.value)}
+                    onEnter={handleSubmit}
                   />
                 </S.List>
                 <S.ActionsContainer>

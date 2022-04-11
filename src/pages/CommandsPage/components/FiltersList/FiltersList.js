@@ -31,6 +31,7 @@ export const FiltersList = ({ loadCommands, statusesList }) => {
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   <Select
                     value={selectedStatus ? {

@@ -72,6 +72,7 @@ export const StudentForm = ({
                         value={values.firstname}
                         placeholder='Անուն'
                         onChange={(val) => setFieldValue('firstname', val)}
+                        onEnter={handleSubmit}
                       />
                       {
                         errors.firstname && touched.firstname &&
@@ -85,6 +86,7 @@ export const StudentForm = ({
                         value={values.lastname}
                         placeholder='Ազգանուն'
                         onChange={(val) => setFieldValue('lastname', val)}
+                        onEnter={handleSubmit}
                       />
                       {
                         errors.lastname && touched.lastname &&
@@ -98,6 +100,7 @@ export const StudentForm = ({
                         value={values.fathername}
                         placeholder='Հայրանուն'
                         onChange={(val) => setFieldValue('fathername', val)}
+                        onEnter={handleSubmit}
                       />
                       {
                         errors.fathername && touched.fathername &&
@@ -124,6 +127,7 @@ export const StudentForm = ({
                         value={values.currentGroup}
                         placeholder='Ընթացիկ խումբ'
                         onChange={(val) => setFieldValue('currentGroup', val)}
+                        onEnter={handleSubmit}
                       />
                       {
                         errors.currentGroup && touched.currentGroup &&
@@ -137,6 +141,7 @@ export const StudentForm = ({
                       value={values.acceptanceCommandNumber}
                       placeholder='Ընդունման հրամանի համար'
                       onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
+                      onEnter={handleSubmit}
                     />
                     {
                       errors.acceptanceCommandNumber && touched.acceptanceCommandNumber &&
@@ -150,6 +155,7 @@ export const StudentForm = ({
                         value={values.socialCardNumber}
                         placeholder='Սոցիալական քարտ'
                         onChange={(val) => setFieldValue('socialCardNumber', val)}
+                        onEnter={handleSubmit}
                       />
                       {
                         errors.socialCardNumber && touched.socialCardNumber &&
@@ -163,6 +169,7 @@ export const StudentForm = ({
                         value={values.passportSeries}
                         placeholder='Անձը հաստատող փաստաթուղթ'
                         onChange={(val) => setFieldValue('passportSeries', val)}
+                        onEnter={handleSubmit}
                       />
                       {
                         errors.passportSeries && touched.passportSeries &&
