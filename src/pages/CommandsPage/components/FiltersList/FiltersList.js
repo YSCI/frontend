@@ -4,16 +4,23 @@ import { Formik } from 'formik'
 
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
+import { Filter } from 'components'
+import { useSearchParams } from 'hooks/useSearchParams'
 
-export const FiltersList = ({ loadCommands, statusesList }) => {
+export const FiltersList = ({ loadCommands, statusesList, hideModal }) => {
+  const [searchParams, updateSearchParams] = useSearchParams()
+
   const search = (values) => {
+    hideModal()
     loadCommands(values)
+    updateSearchParams(values)
   }
 
   return (
+    <Filter>
       <Formik
-        initialValues={initialValues}
         onSubmit={search}
+        initialValues={searchParams || initialValues}
       >
         {
           ({
@@ -22,7 +29,7 @@ export const FiltersList = ({ loadCommands, statusesList }) => {
             handleSubmit,
             setFieldValue,
           }) => {
-            const selectedStatus = statusesList.find(el => el.id === values.changeableStatusId)
+            const selectedStatus = statusesList.find(el => el.id === +values.changeableStatusId)
 
             return (
               <S.FiltersListContainer>
@@ -62,5 +69,6 @@ export const FiltersList = ({ loadCommands, statusesList }) => {
           }
         }
       </Formik>
+    </Filter>
   )
 }

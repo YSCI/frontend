@@ -36,7 +36,7 @@ const colourStyles = {
   },
   input: (styles) => ({ ...styles }),
   placeholder: (styles) => ({ ...styles, fontSize: '14px' }),
-  singleValue: (styles, { data }) => ({ ...styles }),
+  singleValue: (styles) => ({ ...styles, fontFamily: 'Arial', fontSize: '14px' }),
 };
 
 

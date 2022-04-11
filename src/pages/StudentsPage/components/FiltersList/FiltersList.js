@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
+import { Filter } from 'components'
 
 export const FiltersList = ({ loadCommunities, regionsList }) => {
   const search = (values) => {
@@ -11,6 +12,7 @@ export const FiltersList = ({ loadCommunities, regionsList }) => {
   }
 
   return (
+    <Filter>
       <Formik
         initialValues={initialValues}
         onSubmit={search}
@@ -62,5 +64,6 @@ export const FiltersList = ({ loadCommunities, regionsList }) => {
           }
         }
       </Formik>
+    </Filter>
   )
 }

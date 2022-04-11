@@ -9,20 +9,22 @@ export const HeaderContainer = styled.div`
   height: 80px;
   padding: 0px 30px;
   justify-content: space-between;
+  box-shadow: rgb(0 0 0 / 4%) 0px 7px 14px;
   
   .Dropdown-Content {
-    left: -60px;
+    left: -50px;
   }
 
   .Header-Items-Dropdown {
-    top: 65px;
+    top: 90px;
   }
 
   .Dropdown-Items {
     text-align: center;
+    gap: 3px;
 
     .Header-Item {
-      padding: 5px 20px;
+      padding: 15px 20px;
     }
   }
 `
@@ -38,6 +40,17 @@ export const UserContainer = styled.div`
 
 export const DropdownName = styled.div`
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0px 40px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.green};
+    color: ${({ theme }) => theme.colors.white};
+  }
 `
 
 export const Name = styled.div`
@@ -78,9 +91,11 @@ export const Item = styled.div`
 
 export const HeaderItemsList = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
   height: 100%;
+  width: 100%;
+  justify-content: space-around;
 
   ::-webkit-scrollbar {
     height: 10px;
@@ -99,25 +114,40 @@ export const HeaderItemsList = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: ${({ theme }) => theme.colors.lightGreen};
   }
-  overflow-x: none;
+
+  > div {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    height: 100%;
+    // padding: 0px 40px;
+    // cursor: pointer;
+
+    // &:hover {
+    //   background: ${({ theme }) => theme.colors.green};
+    //   color: ${({ theme }) => theme.colors.white};
+    // }
+  }
 `
 
 export const HeaderItem = styled(Link)`
   color: #000;
   white-space: pre;
-  height: calc(100% - 10px);
-  padding: 5px 10px;
+  height: 100%;
+  padding: 0px 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(8,115,112,0.12);
+    background: ${({ theme }) => theme.colors.green};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   &.active {
-    background: rgba(8,115,112,0.12);
+    background: ${({ theme }) => theme.colors.green};
+    color: ${({ theme }) => theme.colors.white};
   }
 `
 

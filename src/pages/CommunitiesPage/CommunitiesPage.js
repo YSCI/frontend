@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import { Table, Filter } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommunitiesPage.styles'
@@ -24,11 +24,9 @@ export const CommunitiesPage = ({
           data={communities.list}
           onDelete={deleteCommunity}
           FormComponent={CommunityForm}
+          FilterComponent={FiltersList}
           columns={tableColumns.community}
         />
-        <Filter>
-          <FiltersList />
-        </Filter>
       </S.CommunitiesPageContainer>
     </Layout>
   )

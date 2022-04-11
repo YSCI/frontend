@@ -30,7 +30,7 @@ export const login = (values) => async dispatch => {
     StorageService.set('token', access_token)
     dispatch(loadAllData())
     dispatch(getMe())
-    history.push('/home')
+    history.push('/students')
 
   } catch {
     toast.error('Սխալ մուտքանուն կամ գաղտնաբառ')    

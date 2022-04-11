@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import { Filter, Table } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './StudentsPage.styles'
@@ -28,6 +28,7 @@ export const StudentsPage = ({
           onDelete={deleteStudent}
           FormComponent={StudentForm}
           columns={tableColumns.students}
+          FilterComponent={FiltersList}
           customActions={(selectedRows) => {
             return (
               <Button
@@ -39,9 +40,9 @@ export const StudentsPage = ({
             )
           }}
         />
-        <Filter>
+        {/* <Filter>
           <FiltersList />
-        </Filter>
+        </Filter> */}
       </S.StudentsPageContainer>
     </Layout>
   )

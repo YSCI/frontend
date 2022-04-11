@@ -4,16 +4,23 @@ import { Formik } from 'formik'
 
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
+import { useSearchParams } from 'hooks/useSearchParams'
+import { Filter } from 'components'
 
-export const FiltersList = ({ loadRegions }) => {
+export const FiltersList = ({ hideModal, loadRegions }) => {
+  const [searchParams, updateSearchParams] = useSearchParams()
+
   const search = (values) => {
+    hideModal()
     loadRegions(values)
+    updateSearchParams(values)
   }
 
   return (
+    <Filter>
       <Formik
-        initialValues={initialValues}
         onSubmit={search}
+        initialValues={searchParams || initialValues}
       >
         {
           ({
@@ -27,7 +34,7 @@ export const FiltersList = ({ loadRegions }) => {
                 <S.List>
                   <Input
                     value={values.name}
-                    placeholder='Կարգավիճակ'
+                    placeholder='Մարզ'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
                   />
@@ -48,5 +55,6 @@ export const FiltersList = ({ loadRegions }) => {
           }
         }
       </Formik>
+    </Filter>
   )
 }

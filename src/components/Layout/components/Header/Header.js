@@ -2,7 +2,7 @@ import React from 'react'
 import cx from 'classnames'
 
 import { Dropdown } from 'ui'
-import * as S from './Headers.styles'
+import * as S from './Header.styles'
 import logoPic from 'images/logo.png'
 import profilePic from 'images/profile.png'
 import { headerItems } from './Header.config'
@@ -17,7 +17,7 @@ export const Header = ({
   return (
     <S.HeaderContainer>
       <S.HomeContainer>
-        <S.AppLink to='/home'>
+        <S.AppLink to='/students'>
           <S.Logo src={logoPic} />
           <S.SidebarTitle>
             ԵԻՊՔ Ադմին

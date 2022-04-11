@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import { Table, Filter } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './RegionsPage.styles'
@@ -24,11 +24,9 @@ export const RegionsPage = ({
           data={regions.list}
           onDelete={deleteRegion}
           FormComponent={RegionForm}
+          FilterComponent={FiltersList}
           columns={tableColumns.region}
         />
-        <Filter>
-          <FiltersList />
-        </Filter>
       </S.RegionsPageContainer>
     </Layout>
   )

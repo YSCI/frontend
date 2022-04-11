@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 
 export const LayoutContainer = styled.div`
   display: flex;
-  background: #f6f6f8 !important;
+  background: ${({ theme }) => theme.colors.mainBackground} !important;
   height: 100%;
 
   ::-webkit-scrollbar {

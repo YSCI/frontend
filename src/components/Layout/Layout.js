@@ -10,7 +10,7 @@ export const Layout = ({
   children
 }) => {
   return (
-    <S.LayoutContainer>
+    <S.LayoutContainer className='Layout'>
       {
         appLoading &&
           <AppLoader />

@@ -2,18 +2,25 @@ import React from 'react'
 import { Button, Input, Select } from 'ui'
 import { Formik } from 'formik'
 
+import { Filter } from 'components'
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
+import { useSearchParams } from 'hooks/useSearchParams'
 
-export const FiltersList = ({ loadCommunities, regionsList }) => {
+export const FiltersList = ({ hideModal, loadCommunities, regionsList }) => {
+  const [searchParams, updateSearchParams] = useSearchParams()
+
   const search = (values) => {
+    hideModal()
     loadCommunities(values)
+    updateSearchParams(values)
   }
 
   return (
+    <Filter>
       <Formik
-        initialValues={initialValues}
         onSubmit={search}
+        initialValues={searchParams || initialValues}
       >
         {
           ({
@@ -22,14 +29,14 @@ export const FiltersList = ({ loadCommunities, regionsList }) => {
             handleSubmit,
             setFieldValue,
           }) => {
-            const selectedRegion = regionsList.find(el => el.id === values.regionId)
+            const selectedRegion = regionsList.find(el => el.id === +values.regionId)
 
             return (
               <S.FiltersListContainer>
                 <S.List>
                   <Input
                     value={values.name}
-                    placeholder='Կարգավիճակ'
+                    placeholder='Համայնք'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
                   />
@@ -62,5 +69,6 @@ export const FiltersList = ({ loadCommunities, regionsList }) => {
           }
         }
       </Formik>
+    </Filter>
   )
 }

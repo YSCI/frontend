@@ -9,7 +9,8 @@ import {
 import { history } from "system/history"
 import { ProtectedRoute } from "./components/ProtectedRoute"
 import { AppLoader } from "ui/AppLoader"
-import { HomePage } from "pages/HomePage"
+import { Modal } from "components/Modal"
+// import { HomePage } from "pages/HomePage"
 
 const ProfessionsPage = lazy(() => import('pages/ProfessionsPage')
   .then(module => ({ default: module.ProfessionsPage })))
@@ -45,9 +46,10 @@ export const Routes = ({
 }) => {
   return (
     <BrowserRouter history={history}>
+      <Modal />
       <Switch>
         <Suspense fallback={<AppLoader />}>
-          <ProtectedRoute path='/home' component={HomePage}/>
+          {/* <ProtectedRoute path='/home' component={HomePage}/> */}
           <Route path='/login' component={LoginPage} />
           <ProtectedRoute path='/commands' component={CommandsPage}/>
           <ProtectedRoute path='/students' component={StudentsPage} />
@@ -64,7 +66,7 @@ export const Routes = ({
           <ProtectedRoute path='/communities' component={CommunitiesPage} />
           {
             loggedIn &&
-              <Redirect from='/login' to='/home' />
+              <Redirect from='/login' to='/students' />
           }
           {
             !loggedIn &&
@@ -72,7 +74,7 @@ export const Routes = ({
           }
           {
             loggedIn &&
-              <Redirect from='*' to='/home' />
+              <Redirect from='*' to='/students' />
           }
           {
             !loggedIn &&

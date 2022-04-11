@@ -15,7 +15,7 @@ export const StudentProfilePage = ({
   useEffect(() => {
     loadProfile(+studentId)
   }, [studentId, loadProfile])
-  console.log(profile)
+
   return (
     <Layout>
       <S.StudentProfilePageContainer>

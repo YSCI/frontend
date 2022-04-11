@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const CommandsPageContainer = styled.div`
-  width: calc(100% - 40px);
-  padding: 20px;
+  width: calc(100% - 60px);
+  padding: 30px;
   display: flex;
   gap: 30px;
 `
