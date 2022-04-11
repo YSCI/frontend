@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import { Table, Filter } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommandsPage.styles'
@@ -24,11 +24,9 @@ export const CommandsPage = ({
           data={commands.list}
           onDelete={deleteCommand}
           FormComponent={CommandForm}
+          FilterComponent={FiltersList}
           columns={tableColumns.commands}
         />
-        <Filter>
-          <FiltersList />
-        </Filter>
       </S.CommandsPageContainer>
     </Layout>
   )

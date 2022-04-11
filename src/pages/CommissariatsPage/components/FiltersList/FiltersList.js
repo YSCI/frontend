@@ -1,19 +1,26 @@
 import React from 'react'
-import { Button, Input, Select } from 'ui'
+import { Button, Input } from 'ui'
 import { Formik } from 'formik'
 
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
+import { useSearchParams } from 'hooks/useSearchParams'
+import { Filter } from 'components'
 
-export const FiltersList = ({ communitiesList, loadCommissariats }) => {
+export const FiltersList = ({ hideModal, loadCommissariats }) => {
+  const [searchParams, updateSearchParams] = useSearchParams()
+
   const search = (values) => {
+    hideModal()
     loadCommissariats(values)
+    updateSearchParams(values)
   }
 
   return (
+    <Filter>
       <Formik
-        initialValues={initialValues}
         onSubmit={search}
+        initialValues={searchParams || initialValues}
       >
         {
           ({
@@ -22,9 +29,7 @@ export const FiltersList = ({ communitiesList, loadCommissariats }) => {
             handleSubmit,
             setValues,
             setFieldValue,
-          }) => {
-            const selectedCommunity = communitiesList.find(el => el.id === values.communityId)
-
+          }) => {            
             return (
               <S.FiltersListContainer>
                 <S.List>
@@ -38,19 +43,6 @@ export const FiltersList = ({ communitiesList, loadCommissariats }) => {
                     value={values.number}
                     placeholder='Համար'
                     onChange={(val) => setFieldValue('number', val)}
-                    onEnter={handleSubmit}
-                  />
-                  <Select
-                    value={selectedCommunity ? {
-                      value: selectedCommunity?.id,
-                      label: selectedCommunity?.name
-                    } : null}
-                    options={communitiesList.map(community => ({
-                      value: community.id,
-                      label: community.name
-                    }))}
-                    placeholder='Համայնք'
-                    onChange={(val) => setFieldValue('communityId', val.value)}
                     onEnter={handleSubmit}
                   />
                 </S.List>
@@ -70,5 +62,6 @@ export const FiltersList = ({ communitiesList, loadCommissariats }) => {
           }
         }
       </Formik>
+    </Filter>
   )
 }

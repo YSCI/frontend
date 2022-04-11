@@ -3,10 +3,7 @@ import qs from 'qs'
 import store from 'redux/store';
 import { StorageService } from 'services'
 import { setLoading } from 'redux/actions/app'
-
-function filterNonNull(obj) {
-  return Object.fromEntries(Object.entries(obj).filter(([k, v]) => v));
-}
+import { filterNonNull } from 'helpers';
 
 export class HttpService {
   static async request (method, path, data, options = {}) {

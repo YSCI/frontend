@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react'
 
 
-import { Table, Filter } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommissariatsPage.styles'
@@ -24,11 +24,9 @@ export const CommissariatsPage = ({
           data={commissariats.list}
           onDelete={deleteCommissariat}
           FormComponent={CommissariatForm}
+          FilterComponent={FiltersList}
           columns={tableColumns.commissariat}
         />
-        <Filter>
-          <FiltersList />
-        </Filter>
       </S.CommissariatsPageContainer>
     </Layout>
   )

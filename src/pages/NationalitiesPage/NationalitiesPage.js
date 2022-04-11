@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import { Table, Filter } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './NationalitiesPage.styles'
@@ -24,11 +24,9 @@ export const NationalitiesPage = ({
           data={nationalities.list}
           onDelete={deleteNationality}
           FormComponent={NationalityForm}
+          FilterComponent={FiltersList}
           columns={tableColumns.nationality}
         />
-        <Filter>
-          <FiltersList />
-        </Filter>
       </S.NationalitiesPageContainer>
     </Layout>
   )

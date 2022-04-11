@@ -2,18 +2,25 @@ import React from 'react'
 import { Button, Input } from 'ui'
 import { Formik } from 'formik'
 
+import { Filter } from 'components'
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
+import { useSearchParams } from 'hooks/useSearchParams'
 
-export const FiltersList = ({ loadProfessions }) => {
+export const FiltersList = ({ loadProfessions, hideModal }) => {
+  const [searchParams, updateSearchParams] = useSearchParams()
+
   const search = (values) => {
     loadProfessions(values)
+    hideModal()
+    updateSearchParams(values)
   }
 
   return (
+    <Filter>
       <Formik
-        initialValues={initialValues}
         onSubmit={search}
+        initialValues={searchParams || initialValues}
       >
         {
           ({
@@ -78,5 +85,6 @@ export const FiltersList = ({ loadProfessions }) => {
           }
         }
       </Formik>
+    </Filter>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import { Table, Filter } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './PrivilegesPage.styles'
@@ -24,11 +24,9 @@ export const PrivilegesPage = ({
           data={privileges.list}
           onDelete={deletePrivilege}
           FormComponent={PrivilegeForm}
+          FilterComponent={FiltersList}
           columns={tableColumns.privilege}
         />
-        <Filter>
-          <FiltersList />
-        </Filter>
       </S.PrivilegesPageContainer>
     </Layout>
   )

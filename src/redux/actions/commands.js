@@ -1,8 +1,7 @@
 import { toast } from 'react-toastify'
 
-
-import { COMMANDS_TYPES } from 'redux/types/commands'
 import { HttpService } from 'services'
+import { COMMANDS_TYPES } from 'redux/types/commands'
 
 export const assignCommand = (values) => async dispatch => {
   try {

@@ -9,8 +9,6 @@ export const loadProfile = (studentId) => async dispatch => {
       studentId
     })
 
-    console.log(commandHistory, 'history')
-
     dispatch({
       type: PROFILE_TYPES.LOAD_PROFILE,
       data: {

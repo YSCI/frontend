@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { Table, Filter } from 'components'
+import { Table } from 'components'
 import { Layout } from 'components/Layout'
 import * as S from './StatusesPage.styles'
 import { StatusForm } from './components/StatusForm'
@@ -23,11 +23,9 @@ export const StatusesPage = ({
           data={statuses.list}
           onDelete={deleteStatus}
           FormComponent={StatusForm}
+          FilterComponent={FiltersList}
           columns={tableColumns.status}
         />
-        <Filter>
-          <FiltersList />
-        </Filter>
       </S.StatusesPageContainer>
     </Layout>
   )

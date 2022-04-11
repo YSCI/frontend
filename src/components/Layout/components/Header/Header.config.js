@@ -10,21 +10,6 @@ export const headerItems = [
     path: '/commands'
   },
   {
-    id: 12,
-    text: 'Օգտատերեր',
-    path: '/users'
-  },
-  {
-    id: 4,
-    text: 'Մասնագիտություններ',
-    path: '/professions'
-  },
-  {
-    id: 5,
-    text: 'Քաղաքացիություններ',
-    path: '/citizenships'
-  },
-  {
     id: 7,
     text: 'Կարգավիճակներ',
     path: '/statuses'
@@ -33,6 +18,21 @@ export const headerItems = [
     id: 2,
     text: 'Այլ',
     list: [
+      {
+        id: 4,
+        text: 'Մասնագիտություններ',
+        path: '/professions'
+      },
+      {
+        id: 5,
+        text: 'Քաղաքացիություններ',
+        path: '/citizenships'
+      },
+      {
+        id: 12,
+        text: 'Օգտատերեր',
+        path: '/users'
+      },
       {
         id: 6,
         text: 'Առողջական վիճակներ',

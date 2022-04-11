@@ -8,10 +8,9 @@ import * as S from './Table.styles'
 
 const defaultColumn = {
   minWidth: 100,
-  width: 200,
+  width: 250,
   maxWidth: 400
 }
-
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -38,7 +37,8 @@ export const Table = ({
   showModal,
   customActions,
   hasActionsBar,
-  FormComponent
+  FormComponent,
+  FilterComponent
 }) => {
   const {
     getTableProps,
@@ -150,6 +150,15 @@ export const Table = ({
               <Button onClick={() => showModal(FormComponent)}>
                 Ավելացնել
               </Button>
+              {
+                customActions?.(selectedFlatRows)
+              }
+              {
+                FilterComponent &&
+                  <Button onClick={() => showModal(FilterComponent)}>
+                    Ֆիլտրներ
+                  </Button>
+              }
               <Button
                 className='bordered'
                 disable={selectedFlatRows.length !== 1}
@@ -159,14 +168,11 @@ export const Table = ({
               </Button>
               <Button
                 className='danger'
-                disable={selectedFlatRows.length === 0}
+                disable={selectedFlatRows.length !== 1}
                 onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
               >
                 Ջնջել
               </Button>
-              {
-                customActions?.(selectedFlatRows)
-              }
             </S.ActionsList>
           </S.FixedActionsBar>
       }

@@ -4,16 +4,23 @@ import { Formik } from 'formik'
 
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
+import { Filter } from 'components'
+import { useSearchParams } from 'hooks/useSearchParams'
 
-export const FiltersList = ({ loadCitizenships }) => {
+export const FiltersList = ({ hideModal, loadCitizenships }) => {
+  const [searchParams, updateSearchParams] = useSearchParams()
+
   const search = (values) => {
+    hideModal()
     loadCitizenships(values)
+    updateSearchParams(values)
   }
 
   return (
+    <Filter>
       <Formik
-        initialValues={initialValues}
         onSubmit={search}
+        initialValues={searchParams || initialValues}
       >
         {
           ({
@@ -28,6 +35,7 @@ export const FiltersList = ({ loadCitizenships }) => {
                   <Input
                     value={values.country}
                     placeholder='Երկիր'
+                    onEnter={handleSubmit}
                     onChange={(val) => setFieldValue('country', val)}
                   />
                 </S.List>
@@ -47,5 +55,6 @@ export const FiltersList = ({ loadCitizenships }) => {
           }
         }
       </Formik>
+    </Filter>
   )
 }

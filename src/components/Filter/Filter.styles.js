@@ -4,10 +4,15 @@ export const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
-  border-radius: 7px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   height: min-content;
   width: 400px;
   height: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  transition: all 0.3s ease;
 `
 
 export const FilterContent = styled.div`
