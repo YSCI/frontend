@@ -59,6 +59,7 @@ export const ProfessionForm = ({
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.name && touched.name &&
@@ -72,6 +73,7 @@ export const ProfessionForm = ({
                     value={values.abbreviation}
                     placeholder='Հապավում'
                     onChange={(val) => setFieldValue('abbreviation', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.abbreviation && touched.abbreviation &&
@@ -85,6 +87,7 @@ export const ProfessionForm = ({
                     value={values.code}
                     placeholder='Կոդ'
                     onChange={(val) => setFieldValue('code', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.code && touched.code &&
@@ -98,6 +101,7 @@ export const ProfessionForm = ({
                     value={values.yearsCount}
                     placeholder='Տարիների քանակ'
                     onChange={(val) => setFieldValue('yearsCount', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.yearsCount && touched.yearsCount &&
@@ -111,6 +115,7 @@ export const ProfessionForm = ({
                     value={values.number}
                     placeholder='Համար'
                     onChange={(val) => setFieldValue('number', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.number && touched.number &&
@@ -124,6 +129,7 @@ export const ProfessionForm = ({
                     value={values.fee}
                     placeholder='Վճար'
                     onChange={(val) => setFieldValue('fee', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.number && touched.number &&

@@ -53,6 +53,7 @@ export const AssignCommandForm = ({
                         value={values.commandNumber}
                         placeholder='Հրամանի համար'
                         onChange={(val) => setFieldValue('commandNumber', val)}
+                        onEnter={handleSubmit}
                       />
                     <Select
                       value={selectedCommand ? {

@@ -57,6 +57,7 @@ export const CitizenshipForm = ({
                     value={values.country}
                     placeholder='Երկիր'
                     onChange={(val) => setFieldValue('country', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.country && touched.country &&

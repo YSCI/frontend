@@ -29,6 +29,7 @@ export const FiltersList = ({ loadPrivileges }) => {
                     value={values.name}
                     placeholder='Արտոնություն'
                     onChange={(val) => setFieldValue('name', val)}
+                    onEnter={handleSubmit}
                   />
                 </S.List>
                 <S.ActionsContainer>

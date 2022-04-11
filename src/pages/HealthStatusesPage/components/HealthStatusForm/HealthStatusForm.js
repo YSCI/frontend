@@ -56,6 +56,7 @@ export const HealthStatusForm = ({
                     value={values.status}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('status', val)}
+                    onEnter={handleSubmit}
                   />
                   {
                     errors.status && touched.status &&
