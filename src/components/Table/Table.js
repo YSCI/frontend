@@ -89,9 +89,9 @@ export const Table = ({
 
   return (
     <S.TableContainer className='Table-Container'>
-      <div {...getTableProps()} className='Table'>
+      <table {...getTableProps()} className='Table'>
         <thead>
-          <div className='header-style'/>
+          <tr className='header-style'/>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
@@ -139,7 +139,7 @@ export const Table = ({
               )}
           )}
         </tbody>
-      </div>
+      </table>
       {
         hasActionsBar &&
           <S.FixedActionsBar>

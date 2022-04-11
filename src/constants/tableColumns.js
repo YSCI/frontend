@@ -1,5 +1,7 @@
 import moment from 'moment'
 
+import { StudentProfileLink } from 'components'
+
 export const tableColumns = {
   users: [
     {
@@ -16,6 +18,10 @@ export const tableColumns = {
     }
   ],
   students: [
+    {
+      Header: 'Անձնական էջ',
+      accessor: (student) => <StudentProfileLink student={student}/>
+    },
     {
       Header: 'Անուն',
       accessor: 'firstname'

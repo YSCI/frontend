@@ -29,7 +29,7 @@ export const Header = ({
           headerItems.map(item => {
             return (
               item.list
-                ? <Dropdown className='Header-Items-Dropdown'>
+                ? <Dropdown key={item.id} className='Header-Items-Dropdown'>
                     <S.DropdownName>
                       { item.text }
                     </S.DropdownName>

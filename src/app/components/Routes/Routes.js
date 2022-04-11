@@ -3,7 +3,7 @@ import {
   Route,
   Switch,
   Redirect,
-  BrowserRouter
+  Router as BrowserRouter
 } from 'react-router-dom'
 
 import { history } from "system/history"
@@ -37,6 +37,8 @@ const HealthStatusesPage = lazy(() => import('pages/HealthStatusesPage')
   .then(module => ({ default: module.HealthStatusesPage })))
 const CommandsPage = lazy(() => import('pages/CommandsPage')
   .then(module => ({ default: module.CommandsPage })))
+const StudentProfilePage = lazy(() => import('pages/StudentProfilePage')
+.then(module => ({ default: module.StudentProfilePage })))
 
 export const Routes = ({
   loggedIn
@@ -49,6 +51,7 @@ export const Routes = ({
           <Route path='/login' component={LoginPage} />
           <ProtectedRoute path='/commands' component={CommandsPage}/>
           <ProtectedRoute path='/students' component={StudentsPage} />
+          <ProtectedRoute path='/student/:studentId' component={StudentProfilePage} />
           <ProtectedRoute path='/professions' component={ProfessionsPage}/>
           <ProtectedRoute path='/users' component={UsersPage} />
           <ProtectedRoute path='/citizenships' component={CitizenshipPage} />

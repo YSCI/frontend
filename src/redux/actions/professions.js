@@ -13,7 +13,7 @@ export const loadProfessions = (search) => async dispatch => {
       list: data
     })
   } catch (ex) {
-    toast.error('Առաջացավ խնդիր')
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 

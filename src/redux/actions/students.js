@@ -25,16 +25,28 @@ export const editStudent = (values) => async dispatch => {
   delete parsedValues.healthStatus
   delete parsedValues.status
   delete parsedValues.nationality
-  delete parsedValues.contactNumbers
   delete parsedValues.profession
   delete parsedValues.createdAt
+  delete parsedValues.updatedAt
+  delete parsedValues.residentRegion
+  delete parsedValues.residentCommunity
+  delete parsedValues.registrationRegion
+  delete parsedValues.registrationCommunity
 
   try {
-    await HttpService.patch(`student/${values.id}`, {
+    await HttpService.put(`student/${parsedValues.id}`, {
       ...parsedValues,
-      subprivileges: [4],
+      dateOfBirth: (new Date()).toISOString(),
+      contactNumbers: Array.isArray(parsedValues.contactNumbers)
+        ? parsedValues.contactNumbers
+        : parsedValues.contactNumbers.split(',').map(el => el.trim()),
+      dateOfAcceptance: (new Date()).toISOString(),
+      currentGroup: +parsedValues.currentGroup,
+      currentCourse: +parsedValues.currentCourse,
+      socialCardNumber: +parsedValues.socialCardNumber,
+      passportSeries: +parsedValues.passportSeries,
       acceptanceCommandNumber: +parsedValues.acceptanceCommandNumber,
-      currentGroup: +parsedValues.currentGroup
+      subprivileges: [1]
     })
  
     dispatch({
@@ -59,7 +71,8 @@ export const createStudent = (values) => async dispatch => {
       currentCourse: +values.currentCourse,
       socialCardNumber: +values.socialCardNumber,
       passportSeries: +values.passportSeries,
-      acceptanceCommandNumber: +values.acceptanceCommandNumber
+      acceptanceCommandNumber: +values.acceptanceCommandNumber,
+      subprivileges: [2]
     })
     
     dispatch({

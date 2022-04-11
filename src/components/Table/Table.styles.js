@@ -7,6 +7,7 @@ export const TableContainer = styled.div`
   width: calc(100% - 430px);
 
   .Table {
+    display: block;
     width: calc(100% - 200px);
     border-spacing: 0;
     box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
@@ -80,12 +81,13 @@ export const TableContainer = styled.div`
 
     th,
     td {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       user-select: none;
       border-right: 2px solid #f6f6f8;
       padding: 0.65rem;
-      // border-bottom: 2px solid black;
-      // border-right: 2px solid black;
     }
 
     th {
