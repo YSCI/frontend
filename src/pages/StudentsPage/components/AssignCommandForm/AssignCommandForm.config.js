@@ -2,7 +2,8 @@ import * as Yup from 'yup';
 
 export const initialValues = {
   commandId: null,
-  commandNumber: ''
+  commandNumber: '',
+  selectedCommand: null
 }
 
 export const validationSchema = Yup.object().shape({

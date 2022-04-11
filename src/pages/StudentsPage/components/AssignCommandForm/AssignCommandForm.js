@@ -43,8 +43,6 @@ export const AssignCommandForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            const selectedCommand = commandsList.find(command => command.id === values.commandId)
-
             return (
               <S.FormContentContainer>
                 <S.FormItemsList>
@@ -56,16 +54,19 @@ export const AssignCommandForm = ({
                         onEnter={handleSubmit}
                       />
                     <Select
-                      value={selectedCommand ? {
-                        value: selectedCommand?.id,
-                        label: selectedCommand?.name
+                      value={values.selectedCommand ? {
+                        value: values.selectedCommand?.id,
+                        label: values.selectedCommand?.name
                       } : null}
                       options={commandsList.map(citizenship => ({
                         value: citizenship.id,
                         label: citizenship.name
                       }))}
                       placeholder='Հրաման'
-                      onChange={(val) => setFieldValue('commandId', val.value)}
+                      onChange={(val) => {
+                        setFieldValue('commandId', val.value)
+                        setFieldValue('selectedCommand', commandsList.find(command => command.id === val.value))
+                      }}
                     />
                     {
                       errors.commandId && touched.commandId &&

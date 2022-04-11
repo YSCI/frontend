@@ -8,6 +8,11 @@ export const assignCommand = (values) => async dispatch => {
   try {
     await HttpService.post('command/attach', values)
 
+    dispatch({
+      type: COMMANDS_TYPES.ASSIGN_COMMAND_TO_STUDENT,
+      command: values
+    })
+
     toast.success('Հրամանը կցագրվեց ուսանողներին')
   } catch (ex) {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)

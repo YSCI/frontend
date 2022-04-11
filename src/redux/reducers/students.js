@@ -1,4 +1,5 @@
 import { AUTH_TYPES } from "redux/types/auth"
+import { COMMANDS_TYPES } from "redux/types/commands"
 import { STUDENTS_TYPES } from "redux/types/students"
 
 const initialState = {
@@ -7,6 +8,8 @@ const initialState = {
 }
 
 export const students = (state = initialState, action) => {
+  let editedStudentIndex
+
   switch(action.type) {
     case STUDENTS_TYPES.LOAD_STUDENTS:
       return {
@@ -20,20 +23,35 @@ export const students = (state = initialState, action) => {
         list: state.list.concat(action.data)
       }
     case STUDENTS_TYPES.EDIT_STUDENT:
-      const editedCommunityIndex = state.list.findIndex(community => community.id === action.data.id)
+      editedStudentIndex = state.list.findIndex(student => student.id === action.data.id)
 
       return {
         ...state,
         list: [
-          ...state.list.slice(0, editedCommunityIndex),
+          ...state.list.slice(0, editedStudentIndex),
           action.data,
-          ...state.list.slice(editedCommunityIndex + 1)
+          ...state.list.slice(editedStudentIndex + 1)
         ]
       }
     case STUDENTS_TYPES.DELETE_STUDENTS:
       return {
         ...state,
-        list: state.list.filter(community => community.id !== action.data)
+        list: state.list.filter(student => student.id !== action.data)
+      }
+    case COMMANDS_TYPES.ASSIGN_COMMAND_TO_STUDENT:
+      editedStudentIndex = state.list.findIndex(student => student.id === action.command.studentId)
+
+      return {
+        ...state,
+        list: [
+          ...state.list.slice(0, editedStudentIndex),
+          {
+            ...state.list[editedStudentIndex],
+            status: action.command.selectedCommand.status,
+            statusId: action.command.selectedCommand.status.id
+          },
+          ...state.list.slice(editedStudentIndex + 1)
+        ]
       }
     case AUTH_TYPES.LOGOUT:
         return initialState
