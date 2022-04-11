@@ -36,6 +36,7 @@ export const Table = ({
   columns,
   onDelete,
   showModal,
+  customActions,
   hasActionsBar,
   FormComponent
 }) => {
@@ -163,6 +164,9 @@ export const Table = ({
               >
                 Ջնջել
               </Button>
+              {
+                customActions?.(selectedFlatRows)
+              }
             </S.ActionsList>
           </S.FixedActionsBar>
       }

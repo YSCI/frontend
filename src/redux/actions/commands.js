@@ -4,6 +4,16 @@ import { toast } from 'react-toastify'
 import { COMMANDS_TYPES } from 'redux/types/commands'
 import { HttpService } from 'services'
 
+export const assignCommand = (values) => async dispatch => {
+  try {
+    await HttpService.post('command/attach', values)
+
+    toast.success('Հրամանը կցագրվեց ուսանողներին')
+  } catch (ex) {
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
+  }
+}
+
 export const loadCommands = (search) => async dispatch => {
   try {
     const data = await HttpService.get('command', search)
@@ -13,7 +23,7 @@ export const loadCommands = (search) => async dispatch => {
       list: data
     })
   } catch (ex) {
-    toast.error('Առաջացավ խնդիր')
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
 
