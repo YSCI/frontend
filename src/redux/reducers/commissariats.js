@@ -33,7 +33,7 @@ export const commissariats = (state = initialState, action) => {
     case COMMISSARIATS_TYPES.DELETE_COMMISSARIAT:
       return {
         ...state,
-        list: state.list.filter(commissariat => commissariat.id !== action.data)
+        list: state.list.filter(commissariat => !action.data.includes(commissariat.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

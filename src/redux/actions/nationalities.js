@@ -47,13 +47,13 @@ export const createNationality = (values) => async dispatch => {
   }
 }
 
-export const deleteNationality = (id) => async dispatch => {
+export const deleteNationality = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`nationality/${id}`)
+    await HttpService.delete('nationality', ids)
     
     dispatch({
       type: NATIONALITIES_TYPES.DELETE_NATIONALITIES,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

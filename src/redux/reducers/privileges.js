@@ -33,7 +33,7 @@ export const privileges = (state = initialState, action) => {
     case PRIVILEGES_TYPES.DELETE_PRIVILEGE:
       return {
         ...state,
-        list: state.list.filter(privilege => privilege.id !== action.data)
+        list: state.list.filter(privilege => !action.data.includes(privilege.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

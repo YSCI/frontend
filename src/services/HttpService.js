@@ -6,7 +6,7 @@ import { setLoading } from 'redux/actions/app'
 import { filterNonNull } from 'helpers';
 
 export class HttpService {
-  static async request (method, path, data, options = {}) {
+  static request (method, path, data, options = {}) {
     const requestUrl = `${process.env.REACT_APP_API_URL}/${path}`
 
     const headers = new Headers({
@@ -31,10 +31,13 @@ export class HttpService {
 
     try {
         store.dispatch(setLoading(true))
-        return await fetch(requestUrl, fetchOptions)
+        return fetch(requestUrl, fetchOptions)
           .then(res => {
             return res.json()
               .then(json => {
+                if (res.status === 401) {
+                  return Promise.reject({ status: 401 })
+                }
                 if (res.status >= 200 && res.status < 300) {
                   return Promise.resolve(json)
                 } else {
@@ -69,8 +72,10 @@ export class HttpService {
     return await HttpService.request('post', path, data, options)
   }
 
-  static async delete (path, data, options) {
-    return await HttpService.request('delete', path, data, options)
+  static async delete (path, search, options) {
+    const queryString = qs.stringify(filterNonNull(search))
+
+    return await HttpService.request('delete', path + `?${queryString}`, search, options)
   }
 
   static async put(path, data, options) {

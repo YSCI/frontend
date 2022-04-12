@@ -33,7 +33,7 @@ export const citizenships = (state = initialState, action) => {
     case CITIZENSHIPS_TYPES.DELETE_CITIZENSHIP:
       return {
         ...state,
-        list: state.list.filter(citizenship => citizenship.id !== action.data)
+        list: state.list.filter(citizenship => !action.data.includes(citizenship.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState
