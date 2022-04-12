@@ -49,7 +49,7 @@ export const createCommissariat = (values) => async dispatch => {
 
 export const deleteCommissariat = (ids) => async dispatch => {
   try {
-    await HttpService.delete('commissariat', ids)
+    await HttpService.delete('commissariat', { ids })
     
     dispatch({
       type: COMMISSARIATS_TYPES.DELETE_COMMISSARIAT,

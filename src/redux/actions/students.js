@@ -94,7 +94,7 @@ export const createStudent = (values) => async dispatch => {
 
 export const deleteStudent = (ids) => async dispatch => {
   try {
-    await HttpService.delete('student', ids)
+    await HttpService.delete('student', { ids })
     
     dispatch({
       type: STUDENTS_TYPES.DELETE_STUDENT,

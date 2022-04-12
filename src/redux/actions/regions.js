@@ -49,7 +49,7 @@ export const createRegion = (values) => async dispatch => {
 
 export const deleteRegion = (ids) => async dispatch => {
   try {
-    await HttpService.delete('region', ids)
+    await HttpService.delete('region', { ids })
     
     dispatch({
       type: REGIONS_TYPES.DELETE_REGION,

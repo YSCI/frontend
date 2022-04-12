@@ -66,7 +66,7 @@ export const createCommand = (values) => async dispatch => {
 
 export const deleteCommand = (ids) => async dispatch => {
   try {
-    await HttpService.delete('command', ids)
+    await HttpService.delete('command', { ids })
     
     dispatch({
       type: COMMANDS_TYPES.DELETE_COMMAND,
