@@ -33,7 +33,7 @@ export const nationalities = (state = initialState, action) => {
     case NATIONALITIES_TYPES.DELETE_NATIONALITIES:
       return {
         ...state,
-        list: state.list.filter(nationality => nationality.id !== action.data)
+        list: state.list.filter(nationality => !action.data.includes(nationality.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

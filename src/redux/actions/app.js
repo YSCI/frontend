@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify'
 
 
-import { setAuthData } from './auth'
-import { StorageService } from 'services'
+import { logout, setAuthData } from './auth'
+import { HttpService, StorageService } from 'services'
 import { APP_TYPES } from 'redux/types/app'
 import { loadCommissariats } from './commissariats'
 import { loadCitizenships } from './citizenships'
@@ -28,21 +28,27 @@ export const loadAllData = () => dispatch => {
   dispatch(loadCommands())
 }
 
-export const initApp = () => dispatch => {
+export const initApp = () => async dispatch => {
   try {
     const token = StorageService.get('token')
 
     if (token) {
+      await HttpService.get('auth/whoami')
       dispatch(loadAllData())
       dispatch(setAuthData(StorageService.get('authData')))
     }
-
-    dispatch({
-      type: APP_TYPES.INIT_APP
-    })
   } catch (ex) {
-    toast.error('Առաջացավ խնդիր')
+    if (ex.status === 401) {
+      toast.info('Ձեր սեսիան ավարտվել է, խնդրում ենք մուտք գործել կրկին')
+      dispatch(logout())
+    } else {
+      toast.error('Առաջացավ խնդիր')
+    }
   }
+
+  dispatch({
+    type: APP_TYPES.INIT_APP
+  })
 }
 
 export const setLoading = (loading) => ({

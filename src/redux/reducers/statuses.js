@@ -33,7 +33,7 @@ export const statuses = (state = initialState, action) => {
     case STATUSES_TYPES.DELETE_STATUS:
       return {
         ...state,
-        list: state.list.filter(status => status.id !== action.data)
+        list: state.list.filter(status => !action.data.includes(status.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

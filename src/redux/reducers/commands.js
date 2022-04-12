@@ -33,7 +33,7 @@ export const commands = (state = initialState, action) => {
     case COMMANDS_TYPES.DELETE_COMMAND:
       return {
         ...state,
-        list: state.list.filter(command => command.id !== action.data)
+        list: state.list.filter(command => !action.data.includes(command.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

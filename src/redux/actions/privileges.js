@@ -47,13 +47,13 @@ export const createPrivilege = (values) => async dispatch => {
   }
 }
 
-export const deletePrivilege = (id) => async dispatch => {
+export const deletePrivilege = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`privilege/${id}`)
+    await HttpService.delete('privilege', { ids })
     
     dispatch({
       type: PRIVILEGES_TYPES.DELETE_PRIVILEGE,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

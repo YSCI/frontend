@@ -33,7 +33,7 @@ export const communities = (state = initialState, action) => {
     case COMMUNITIES_TYPES.DELETE_COMMUNITY:
       return {
         ...state,
-        list: state.list.filter(community => community.id !== action.data)
+        list: state.list.filter(community => !action.data.includes(community.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

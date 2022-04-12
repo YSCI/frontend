@@ -47,13 +47,13 @@ export const createRegion = (values) => async dispatch => {
   }
 }
 
-export const deleteRegion = (id) => async dispatch => {
+export const deleteRegion = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`region/${id}`)
+    await HttpService.delete('region', ids)
     
     dispatch({
       type: REGIONS_TYPES.DELETE_REGION,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

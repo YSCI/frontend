@@ -50,13 +50,13 @@ export const createCommunity = (values) => async dispatch => {
   }
 }
 
-export const deleteCommunity = (id) => async dispatch => {
+export const deleteCommunity = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`community/${id}`)
+    await HttpService.delete('community', ids)
     
     dispatch({
       type: COMMUNITIES_TYPES.DELETE_COMMUNITY,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

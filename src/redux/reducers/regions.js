@@ -33,7 +33,7 @@ export const regions = (state = initialState, action) => {
     case REGIONS_TYPES.DELETE_REGION:
       return {
         ...state,
-        list: state.list.filter(region => region.id !== action.data)
+        list: state.list.filter(region => !action.data.includes(region.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

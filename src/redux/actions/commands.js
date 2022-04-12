@@ -64,13 +64,13 @@ export const createCommand = (values) => async dispatch => {
   }
 }
 
-export const deleteCommand = (id) => async dispatch => {
+export const deleteCommand = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`command/${id}`)
+    await HttpService.delete('command', ids)
     
     dispatch({
       type: COMMANDS_TYPES.DELETE_COMMAND,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')
