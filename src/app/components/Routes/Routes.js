@@ -70,11 +70,11 @@ export const Routes = ({
             !loggedIn &&
               <Redirect from='*' to='/login' />
           }
-          {/* { 
+          { 
             loggedIn &&
               <Redirect to='/students' />
-          } */}
-          <Route render={() => <Redirect to='/students' />} />
+          }
+          {/* <Route render={() => <Redirect to='/students' />} /> */}
         </Suspense>
       </Switch>
     </BrowserRouter>
