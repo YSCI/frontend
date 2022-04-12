@@ -49,7 +49,7 @@ export const createStatus = (values) => async dispatch => {
 
 export const deleteStatus = (ids) => async dispatch => {
   try {
-    await HttpService.delete('status', ids)
+    await HttpService.delete('status', { ids })
     
     dispatch({
       type: STATUSES_TYPES.DELETE_STATUS,

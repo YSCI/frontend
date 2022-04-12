@@ -49,7 +49,7 @@ export const createProfession = (values) => async dispatch => {
 
 export const deleteProfession = (ids) => async dispatch => {
   try {
-    await HttpService.delete('profession', ids)
+    await HttpService.delete('profession', { ids })
     
     dispatch({
       type: PROFESSIONS_TYPES.DELETE_PROFESSION,

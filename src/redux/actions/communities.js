@@ -52,7 +52,7 @@ export const createCommunity = (values) => async dispatch => {
 
 export const deleteCommunity = (ids) => async dispatch => {
   try {
-    await HttpService.delete('community', ids)
+    await HttpService.delete('community', { ids })
     
     dispatch({
       type: COMMUNITIES_TYPES.DELETE_COMMUNITY,
