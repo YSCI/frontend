@@ -33,7 +33,7 @@ export const professions = (state = initialState, action) => {
     case PROFESSIONS_TYPES.DELETE_PROFESSION:
       return {
         ...state,
-        list: state.list.filter(prof => prof.id !== action.data)
+        list: state.list.filter(prof => !action.data.includes(prof.id))
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

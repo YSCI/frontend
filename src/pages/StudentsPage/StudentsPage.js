@@ -16,6 +16,7 @@ export const StudentsPage = ({
   loadStudents,
   deleteStudent
 }) => {
+
   useEffect(() => {
     loadStudents()
   }, [loadStudents])
@@ -32,8 +33,8 @@ export const StudentsPage = ({
           customActions={(selectedRows) => {
             return (
               <Button
-                disable={selectedRows.length !== 1}
-                onClick={() => showModal(AssignCommandForm, { studentId: selectedRows[0].original.id })}
+                disable={selectedRows.length === 0}
+                onClick={() => showModal(AssignCommandForm, { studentIds: selectedRows.map(row => row.original.id) })}
               >
                 Կցագրել հրաման
               </Button>

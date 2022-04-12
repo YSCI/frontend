@@ -168,8 +168,8 @@ export const Table = ({
               </Button>
               <Button
                 className='danger'
-                disable={selectedFlatRows.length !== 1}
-                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFirstRow.id) })}
+                disable={selectedFlatRows.length === 0}
+                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })}
               >
                 Ջնջել
               </Button>

@@ -47,13 +47,13 @@ export const createProfession = (values) => async dispatch => {
   }
 }
 
-export const deleteProfession = (id) => async dispatch => {
+export const deleteProfession = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`profession/${id}`)
+    await HttpService.delete('profession', ids)
     
     dispatch({
       type: PROFESSIONS_TYPES.DELETE_PROFESSION,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

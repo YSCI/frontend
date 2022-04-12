@@ -10,13 +10,14 @@ export const AssignCommandForm = ({
   hideModal,
   commandsList,
   assignCommand,
-  studentId
+  studentIds
 }) => {
   const onSubmit = (values) => {
     assignCommand({
       ...values,
-      studentId
+      studentIds
     })
+
     hideModal()
   }
 

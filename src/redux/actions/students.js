@@ -32,9 +32,14 @@ export const editStudent = (values) => async dispatch => {
   delete parsedValues.residentCommunity
   delete parsedValues.registrationRegion
   delete parsedValues.registrationCommunity
+  delete parsedValues.subprivileges
+
+  const studentId = parsedValues.id
+
+  delete parsedValues.id
 
   try {
-    await HttpService.put(`student/${parsedValues.id}`, {
+    await HttpService.put(`student/${studentId}`, {
       ...parsedValues,
       dateOfBirth: (new Date()).toISOString(),
       contactNumbers: Array.isArray(parsedValues.contactNumbers)
@@ -45,8 +50,7 @@ export const editStudent = (values) => async dispatch => {
       currentCourse: +parsedValues.currentCourse,
       socialCardNumber: +parsedValues.socialCardNumber,
       passportSeries: +parsedValues.passportSeries,
-      acceptanceCommandNumber: +parsedValues.acceptanceCommandNumber,
-      subprivileges: [1]
+      acceptanceCommandNumber: +parsedValues.acceptanceCommandNumber
     })
  
     dispatch({
@@ -88,13 +92,13 @@ export const createStudent = (values) => async dispatch => {
   }
 }
 
-export const deleteStudent = (id) => async dispatch => {
+export const deleteStudent = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`student/${id}`)
+    await HttpService.delete('student', ids)
     
     dispatch({
       type: STUDENTS_TYPES.DELETE_STUDENT,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

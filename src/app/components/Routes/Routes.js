@@ -49,8 +49,6 @@ export const Routes = ({
       <Modal />
       <Switch>
         <Suspense fallback={<AppLoader />}>
-          {/* <ProtectedRoute path='/home' component={HomePage}/> */}
-          <Route path='/login' component={LoginPage} />
           <ProtectedRoute path='/commands' component={CommandsPage}/>
           <ProtectedRoute path='/students' component={StudentsPage} />
           <ProtectedRoute path='/student/:studentId' component={StudentProfilePage} />
@@ -65,21 +63,18 @@ export const Routes = ({
           <ProtectedRoute path='/commissariats' component={CommissariatsPage} />
           <ProtectedRoute path='/communities' component={CommunitiesPage} />
           {
-            loggedIn &&
-              <Redirect from='/login' to='/students' />
-          }
-          {
             !loggedIn &&
               <Route path='/login' component={LoginPage} />
-          }
-          {
-            loggedIn &&
-              <Redirect from='*' to='/students' />
           }
           {
             !loggedIn &&
               <Redirect from='*' to='/login' />
           }
+          {/* { 
+            loggedIn &&
+              <Redirect to='/students' />
+          } */}
+          <Route render={() => <Redirect to='/students' />} />
         </Suspense>
       </Switch>
     </BrowserRouter>

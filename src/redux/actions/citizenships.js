@@ -47,13 +47,13 @@ export const createCitizenship = (values) => async dispatch => {
   }
 }
 
-export const deleteCitizenship = (id) => async dispatch => {
+export const deleteCitizenship = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`citizenship/${id}`)
+    await HttpService.delete('citizenship', { ids })
     
     dispatch({
       type: CITIZENSHIPS_TYPES.DELETE_CITIZENSHIP,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

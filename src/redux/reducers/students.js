@@ -36,22 +36,20 @@ export const students = (state = initialState, action) => {
     case STUDENTS_TYPES.DELETE_STUDENTS:
       return {
         ...state,
-        list: state.list.filter(student => student.id !== action.data)
+        list: state.list.filter(student => !action.data.includes(student.id))
       }
     case COMMANDS_TYPES.ASSIGN_COMMAND_TO_STUDENT:
-      editedStudentIndex = state.list.findIndex(student => student.id === action.command.studentId)
-
       return {
         ...state,
-        list: [
-          ...state.list.slice(0, editedStudentIndex),
-          {
-            ...state.list[editedStudentIndex],
+        list: state.list.map(student => {
+          if (!action.command.studentIds.includes(student.id)) return student
+
+          return {
+            ...student,
             status: action.command.selectedCommand.status,
             statusId: action.command.selectedCommand.status.id
-          },
-          ...state.list.slice(editedStudentIndex + 1)
-        ]
+          }
+        })
       }
     case AUTH_TYPES.LOGOUT:
         return initialState

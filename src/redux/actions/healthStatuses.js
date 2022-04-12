@@ -47,13 +47,13 @@ export const createHealthStatus = (values) => async dispatch => {
   }
 }
 
-export const deleteHealthStatus = (id) => async dispatch => {
+export const deleteHealthStatus = (ids) => async dispatch => {
   try {
-    await HttpService.delete(`health-status/${id}`)
+    await HttpService.delete('health-status', ids)
     
     dispatch({
       type: HEALTH_STATUSES_TYPES.DELETE_HEALTH_STATUS,
-      data: id
+      data: ids
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')
