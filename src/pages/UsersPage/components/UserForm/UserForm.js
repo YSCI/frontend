@@ -32,7 +32,7 @@ export const UserForm = ({
     <S.UserFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          {formActionType} մասնագիտություն   
+          {formActionType} օգտատեր   
         </S.HeaderTitle>
         <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>
@@ -75,9 +75,9 @@ export const UserForm = ({
                     onEnter={handleSubmit}
                   />
                   {
-                    errors.abbreviation && touched.abbreviation &&
+                    errors.surname && touched.surname &&
                       <S.ErrorMessage>
-                        { errors.abbreviation }
+                        { errors.surname }
                       </S.ErrorMessage>
                   }
                 </S.FormItem>
@@ -89,9 +89,9 @@ export const UserForm = ({
                     onEnter={handleSubmit}
                   />
                   {
-                    errors.code && touched.code &&
+                    errors.username && touched.username &&
                       <S.ErrorMessage>
-                        { errors.code }
+                        { errors.username }
                       </S.ErrorMessage>
                   }
                 </S.FormItem>
@@ -106,9 +106,9 @@ export const UserForm = ({
                         onEnter={handleSubmit}
                       />
                       {
-                        errors.yearsCount && touched.yearsCount &&
+                        errors.password && touched.password &&
                           <S.ErrorMessage>
-                            { errors.yearsCount }
+                            { errors.password }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
