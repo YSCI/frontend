@@ -7,6 +7,7 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommissariatsPage.styles'
 import { CommissariatForm } from './components/CommissariatForm'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const CommissariatsPage = ({
   commissariats,
@@ -14,7 +15,7 @@ export const CommissariatsPage = ({
   loadCommissariats
 }) => {
   useEffect(() => {
-    loadCommissariats()
+    loadCommissariats(history.location.search)
   }, [loadCommissariats])
 
   return (

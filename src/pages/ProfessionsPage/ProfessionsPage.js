@@ -7,6 +7,7 @@ import { FiltersList } from './components/FiltersList'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './ProfessionsPage.styles'
 import { ProfessionForm } from './components/ProfessionForm'
+import { history } from 'system/history'
 
 export const ProfessionsPage = ({
   professions,
@@ -14,7 +15,7 @@ export const ProfessionsPage = ({
   loadProfessions
 }) => {
   useEffect(() => {
-    loadProfessions()
+    loadProfessions(history.location.search)
   }, [loadProfessions])
 
   return (

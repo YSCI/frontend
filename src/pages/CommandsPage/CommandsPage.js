@@ -7,6 +7,7 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommandsPage.styles'
 import { CommandForm } from './components/CommandForm'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const CommandsPage = ({
   commands,
@@ -14,7 +15,7 @@ export const CommandsPage = ({
   loadCommands
 }) => {
   useEffect(() => {
-    loadCommands()
+    loadCommands(history.location.search)
   }, [loadCommands])
 
   return (

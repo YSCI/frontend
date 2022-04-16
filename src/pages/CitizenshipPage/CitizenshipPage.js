@@ -7,6 +7,7 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './CitizenshipPage.styles'
 import { CitizenshipForm } from './components/CitizenshipForm'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const CitizenshipPage = ({
   citizenships,
@@ -14,7 +15,7 @@ export const CitizenshipPage = ({
   loadCitizenships
 }) => {
   useEffect(() => {
-    loadCitizenships()
+    loadCitizenships(history.location.search)
   }, [loadCitizenships])
 
   return (

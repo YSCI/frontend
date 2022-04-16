@@ -6,6 +6,7 @@ import * as S from './StatusesPage.styles'
 import { StatusForm } from './components/StatusForm'
 import { tableColumns } from 'constants/tableColumns'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const StatusesPage = ({
   statuses,
@@ -13,7 +14,7 @@ export const StatusesPage = ({
   deleteStatus
 }) => {
   useEffect(() => {
-    loadStatuses()
+    loadStatuses(history.location.search)
   }, [loadStatuses])
 
   return (

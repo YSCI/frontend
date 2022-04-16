@@ -34,7 +34,6 @@ export const initApp = () => async dispatch => {
 
     if (token) {
       await HttpService.get('auth/whoami')
-      dispatch(loadAllData())
       dispatch(setAuthData(StorageService.get('authData')))
     }
   } catch (ex) {

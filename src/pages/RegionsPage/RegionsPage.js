@@ -7,6 +7,7 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './RegionsPage.styles'
 import { RegionForm } from './components/RegionForm'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const RegionsPage = ({
   regions,
@@ -14,7 +15,7 @@ export const RegionsPage = ({
   loadRegions
 }) => {
   useEffect(() => {
-    loadRegions()
+    loadRegions(history.location.search)
   }, [loadRegions])
 
   return (

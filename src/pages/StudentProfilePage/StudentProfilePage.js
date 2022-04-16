@@ -1,19 +1,17 @@
 import { Layout } from 'components'
 import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { history } from 'system/history'
 
 import * as S from './StudentProfilePage.styles'
 
 export const StudentProfilePage = ({
   profile,
   loadProfile,
-  match: {
-    params: {
-      studentId
-    }
-  }
 }) => {
+  const { studentId } = useParams()
   useEffect(() => {
-    loadProfile(+studentId)
+    loadProfile(history.location.search+studentId)
   }, [studentId, loadProfile])
 
   return (

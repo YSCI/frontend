@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
 import * as S from './StudentForm.styles'
 import closeIcon from 'images/close.png'
@@ -8,12 +8,17 @@ import { initialValues } from './StudentForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
 
 export const StudentForm = ({
+  state,
   hideModal,
   editStudent,
-  createStudent,
+  loadAllData,
   editableData,
-  state
+  createStudent,
 }) => {
+  useEffect(() => {
+    loadAllData()
+  }, [loadAllData])
+
   const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'

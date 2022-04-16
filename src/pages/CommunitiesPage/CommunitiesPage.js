@@ -7,6 +7,7 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommunitiesPage.styles'
 import { CommunityForm } from './components/CommunityForm'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const CommunitiesPage = ({
   communities,
@@ -14,7 +15,7 @@ export const CommunitiesPage = ({
   loadCommunities
 }) => {
   useEffect(() => {
-    loadCommunities()
+    loadCommunities(history.location.search)
   }, [loadCommunities])
 
   return (

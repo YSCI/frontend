@@ -7,6 +7,7 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './NationalitiesPage.styles'
 import { NationalityForm } from './components/NationalityForm'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const NationalitiesPage = ({
   nationalities,
@@ -14,7 +15,7 @@ export const NationalitiesPage = ({
   loadNationalities
 }) => {
   useEffect(() => {
-    loadNationalities()
+    loadNationalities(history.location.search)
   }, [loadNationalities])
 
   return (
