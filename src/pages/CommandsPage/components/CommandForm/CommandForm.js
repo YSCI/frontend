@@ -5,7 +5,6 @@ import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommandForm.config'
-import { history } from 'system/history'
 
 export const CommandForm = ({
   hideModal,
@@ -16,7 +15,7 @@ export const CommandForm = ({
   statuses
 }) => {
   useEffect(() => {
-    loadStatuses(history.location.search)
+    loadStatuses()
   }, [loadStatuses])
 
   const formActionType = useMemo(() => editableData
@@ -37,7 +36,7 @@ export const CommandForm = ({
     <S.CommandFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          {formActionType} հրաման
+          {formActionType} համայնք
         </S.HeaderTitle>
         <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>
@@ -65,7 +64,6 @@ export const CommandForm = ({
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
-                    onEnter={handleSubmit}
                   />
                   {
                     errors.name && touched.name &&
@@ -89,7 +87,7 @@ export const CommandForm = ({
                       setFieldValue('status', statuses.list.find(status => status.id === val.value))
                       setFieldValue('changeableStatusId', val.value)
                     }}
-                    onEnter={handleSubmit}
+
                   />
                   {
                     errors.changeableStatusId && touched.changeableStatusId &&

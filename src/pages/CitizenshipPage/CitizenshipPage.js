@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -7,22 +7,18 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './CitizenshipPage.styles'
 import { CitizenshipForm } from './components/CitizenshipForm'
 import { FiltersList } from './components/FiltersList'
-import { history } from 'system/history'
 
 export const CitizenshipPage = ({
   citizenships,
   deleteCitizenship,
   loadCitizenships
 }) => {
-  useEffect(() => {
-    loadCitizenships(history.location.search)
-  }, [loadCitizenships])
-
   return (
     <Layout>
       <S.CitizenshipPageContainer>
         <Table
           data={citizenships.list}
+          loadData={loadCitizenships}
           onDelete={deleteCitizenship}
           FormComponent={CitizenshipForm}
           FilterComponent={FiltersList}

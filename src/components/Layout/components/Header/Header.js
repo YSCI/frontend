@@ -3,7 +3,6 @@ import cx from 'classnames'
 
 import { Dropdown } from 'ui'
 import * as S from './Header.styles'
-import logoPic from 'images/logo.png'
 import profilePic from 'images/profile.png'
 import { headerItems } from './Header.config'
 import { useLocation } from 'react-router-dom'
@@ -18,7 +17,6 @@ export const Header = ({
     <S.HeaderContainer>
       <S.HomeContainer>
         <S.AppLink to='/students'>
-          <S.Logo src={logoPic} />
           <S.SidebarTitle>
             ԵԻՊՔ Ադմին
           </S.SidebarTitle>

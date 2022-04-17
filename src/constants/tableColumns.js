@@ -186,5 +186,15 @@ export const tableColumns = {
       Header: 'Փոփոխելի կարգավիճակ',
       accessor: 'status.name'
     }
+  ],
+  commandHistory: [
+    {
+      Header: 'Հրամանի համար',
+      accessor: 'commandNumber'
+    },
+    {
+      Header: 'Հրամանի անվանում',
+      accessor: 'command.name'
+    },
   ]
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -9,7 +9,6 @@ import { StudentForm } from './components/StudentForm'
 import { FiltersList } from './components/FiltersList'
 import { Button } from 'ui'
 import { AssignCommandForm } from './components/AssignCommandForm'
-import { history } from 'system/history'
 
 export const StudentsPage = ({
   students,
@@ -17,10 +16,6 @@ export const StudentsPage = ({
   loadStudents,
   deleteStudent
 }) => {
-
-  useEffect(() => {
-    loadStudents(history.location.search)
-  }, [loadStudents])
 
   return (
     <Layout>
@@ -30,6 +25,7 @@ export const StudentsPage = ({
           onDelete={deleteStudent}
           FormComponent={StudentForm}
           columns={tableColumns.students}
+          loadData={loadStudents}
           FilterComponent={FiltersList}
           customActions={(selectedRows) => {
             return (

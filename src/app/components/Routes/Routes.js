@@ -20,7 +20,7 @@ const RedirectRoute = () => {
   const routesPaths = routes.map(route => route.basePath || route.path)
 
   useEffect(() => {
-    if (!routesPaths.find(route => route.includes(path)))
+    if (path === '' || !routesPaths.find(route => route.includes(path)))
       history.push('/students')
   }, [path, routesPaths])
 
