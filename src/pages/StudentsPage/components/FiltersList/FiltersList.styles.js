@@ -12,6 +12,12 @@ export const List = styled.div`
   flex-direction: column;
   gap: 20px;
 `
+export const FormItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+`
 
 export const ActionsContainer = styled.div`
   display: flex;

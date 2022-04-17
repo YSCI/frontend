@@ -36,7 +36,7 @@ export const CommandForm = ({
     <S.CommandFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          {formActionType} համայնք
+          {formActionType} հրաման
         </S.HeaderTitle>
         <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>
