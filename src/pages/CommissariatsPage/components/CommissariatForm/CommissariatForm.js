@@ -36,7 +36,7 @@ export const CommissariatForm = ({
     <S.CommissariatsFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          {formActionType} կոմիսարիատ   
+          {formActionType} զինկոմիսարիատ   
         </S.HeaderTitle>
         <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>
@@ -95,9 +95,9 @@ export const CommissariatForm = ({
                     onEnter={handleSubmit}
                   />
                   {
-                    errors.number && touched.number &&
+                    errors.description && touched.description &&
                       <S.ErrorMessage>
-                        { errors.number }
+                        { errors.description }
                       </S.ErrorMessage>
                   }
                 </S.FormItem>

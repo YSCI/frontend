@@ -59,9 +59,9 @@ export const AssignCommandForm = ({
                         value: values.selectedCommand?.id,
                         label: values.selectedCommand?.name
                       } : null}
-                      options={commandsList.map(citizenship => ({
-                        value: citizenship.id,
-                        label: citizenship.name
+                      options={commandsList.map(status => ({
+                        value: status.id,
+                        label: status.name
                       }))}
                       placeholder='Հրաման'
                       onChange={(val) => {

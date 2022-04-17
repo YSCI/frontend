@@ -190,13 +190,13 @@ export const StudentForm = ({
                           value: commissariat.id,
                           label: commissariat.name
                         }))}
-                        placeholder='Կոմիսարիատ'
+                        placeholder='Զինկոմիսարիատ'
                         onChange={(val) => setFieldValue('commissariatId', val.value)}
                       />
                       {
-                        errors.communityId && touched.communityId &&
+                        errors.commissariatId && touched.commissariatId &&
                           <S.ErrorMessage>
-                            { errors.communityId }
+                            { errors.commissariatId }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
@@ -214,9 +214,9 @@ export const StudentForm = ({
                         onChange={(val) => setFieldValue('statusId', val.value)}
                       />
                       {
-                        errors.communityId && touched.communityId &&
+                        errors.statusId && touched.statusId &&
                           <S.ErrorMessage>
-                            { errors.communityId }
+                            { errors.statusId }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>

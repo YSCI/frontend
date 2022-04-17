@@ -5,17 +5,22 @@ import { Formik } from 'formik'
 import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
 import { Filter } from 'components'
+import { useSearchParams } from 'hooks/useSearchParams'
 
-export const FiltersList = ({ loadCommunities, regionsList }) => {
+export const FiltersList = ({ loadStudents, hideModal }) => {
+  const [searchParams, updateSearchParams] = useSearchParams()
+
   const search = (values) => {
-    loadCommunities(values)
+    loadStudents(values)
+    hideModal()
+    updateSearchParams(values)
   }
 
   return (
     <Filter>
       <Formik
-        initialValues={initialValues}
         onSubmit={search}
+        initialValues={searchParams || initialValues}
       >
         {
           ({
@@ -24,29 +29,57 @@ export const FiltersList = ({ loadCommunities, regionsList }) => {
             handleSubmit,
             setFieldValue,
           }) => {
-            const selectedRegion = regionsList.find(el => el.id === values.regionId)
-
             return (
               <S.FiltersListContainer className='FiltersListContainer'>
                 <S.List>
                   <Input
-                    value={values.name}
-                    placeholder='Կարգավիճակ'
-                    onChange={(val) => setFieldValue('name', val)}
+                    value={values.firstname}
+                    placeholder='Անուն'
+                    onChange={(val) => setFieldValue('firstname', val)}
                     onEnter={handleSubmit}
                   />
-                  <Select
-                    value={selectedRegion ? {
-                      value: selectedRegion.id,
-                      label: selectedRegion.name
-                    } : null}
-                    options={regionsList.map(region => ({
-                      value: region.id,
-                      label: region.name
-                    }))}
-                    placeholder='Մարզ'
-                    onChange={(val) => setFieldValue('regionId', val.value)}
+                  <Input
+                    value={values.lastname}
+                    placeholder='Ազգանուն'
+                    onChange={(val) => setFieldValue('lastname', val)}
+                    onEnter={handleSubmit}
                   />
+                  <Input
+                    value={values.fathername}
+                    placeholder='Հայրանուն'
+                    onChange={(val) => setFieldValue('fathername', val)}
+                    onEnter={handleSubmit}
+                  />
+                 <Input
+                    value={values.registrationAddress}
+                    placeholder='Գրանցման հասցե'
+                    onChange={(val) => setFieldValue('registrationAddress', val)}
+                    onEnter={handleSubmit}
+                  />
+                  <Input
+                    value={values.residentAddress}
+                    placeholder='Բնակության հասցե'
+                    onChange={(val) => setFieldValue('residentAddress', val)}
+                    onEnter={handleSubmit}
+                  />
+                  <Input
+                    value={values.acceptanceCommandNumber}
+                    placeholder='Ընդունման հրամանի համար'
+                    onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
+                    onEnter={handleSubmit}
+                  /> 
+                  <Input
+                    value={values.currentCourse}
+                    placeholder='Ընթացիկ կուրս'
+                    onChange={(val) => setFieldValue('currentCourse', val)}
+                    onEnter={handleSubmit}
+                  /> 
+                  <Input
+                    value={values.currentGroup}
+                    placeholder='Ընթացիկ խումբ'
+                    onChange={(val) => setFieldValue('currentGroup', val)}
+                    onEnter={handleSubmit}
+                  /> 
                 </S.List>
                 <S.ActionsContainer>
                   <Button className='bordered' onClick={() => {

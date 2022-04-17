@@ -87,7 +87,7 @@ export const tableColumns = {
       accessor: 'status.name'
     },
     {
-      Header: 'Կոմիսարիատ',
+      Header: 'Զինկոմիսարիատ',
       accessor: 'commissariat.name'
     }
   ],
