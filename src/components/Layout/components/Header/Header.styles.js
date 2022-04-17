@@ -28,6 +28,10 @@ export const HeaderContainer = styled.div`
       color: #000;
       padding: 15px 20px;
 
+      &.active {
+        color: #fff;
+      }
+
       &:hover {
         color: #fff;
       }
@@ -126,15 +130,7 @@ export const HeaderItemsList = styled.div`
   > div {
     display: flex;
     justify-content: center;
-    // align-items: center;
     height: 100%;
-    // padding: 0px 40px;
-    // cursor: pointer;
-
-    // &:hover {
-    //   background: ${({ theme }) => theme.colors.green};
-    //   color: ${({ theme }) => theme.colors.white};
-    // }
   }
 `
 
