@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -17,10 +17,6 @@ export const StudentsPage = ({
   deleteStudent
 }) => {
 
-  useEffect(() => {
-    loadStudents()
-  }, [loadStudents])
-
   return (
     <Layout>
       <S.StudentsPageContainer>
@@ -29,6 +25,7 @@ export const StudentsPage = ({
           onDelete={deleteStudent}
           FormComponent={StudentForm}
           columns={tableColumns.students}
+          loadData={loadStudents}
           FilterComponent={FiltersList}
           customActions={(selectedRows) => {
             return (

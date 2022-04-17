@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useBlockLayout, useResizeColumns, useSortBy, useTable, useRowSelect } from 'react-table'
 import cx from 'classnames'
+import qs from 'qs'
 
 import { Button } from 'ui'
 import { withConfirmation } from 'helpers'
 import * as S from './Table.styles'
+import { history } from 'system/history'
 
 const defaultColumn = {
   minWidth: 100,
   width: 250,
-  maxWidth: 400
+  maxWidth: 500
 }
 
 const IndeterminateCheckbox = React.forwardRef(
@@ -29,48 +31,51 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 )
 
-
 export const Table = ({
   data,
   columns,
   onDelete,
+  loadData,
   showModal,
+  columnConfig,
   customActions,
   hasActionsBar,
+  hasSelections,
   FormComponent,
   FilterComponent
 }) => {
   const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
     rows,
     prepareRow,
-    selectedFlatRows
+    headerGroups,
+    getTableProps,
+    selectedFlatRows,
+    getTableBodyProps,
   } = useTable(
     {
-      columns,
       data,
-      defaultColumn
+      columns,
+      manualPagination: true,
+      defaultColumn: {
+        ...defaultColumn,
+        ...columnConfig
+      }
     },
     useSortBy,
+    useRowSelect,
     useBlockLayout,
     useResizeColumns,
-    useRowSelect,
     hooks => {
-      hooks.visibleColumns.push(columns => [
-        // Let's make a column for selection
+      if (!hasSelections) return
+
+      hooks.visibleColumns.push(columns => [        
         {
-          id: 'selection',
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
+          id: 'selection',          
           Header: ({ getToggleAllRowsSelectedProps }) => (
             <div> 
               <IndeterminateCheckbox {...getToggleAllRowsSelectedProps?.()} />
             </div>
           ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
           Cell: ({ row }) => (
             <div>
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
@@ -82,13 +87,61 @@ export const Table = ({
     }
   )
 
-  // We don't want to render all 2000 rows for this example, so cap
-  // it at 20 for this use case
-  const firstPageRows = rows.slice(0, 20)
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const totalCount = 20 || data.length 
+  const pageCount = Math.ceil(totalCount / 6)
   const selectedFirstRow = selectedFlatRows[0]?.original
 
+  const changePage = useCallback((page) => {
+    const currentQuery = qs.parse(history.location.search.replace('?', ''))
+    setCurrentPage(page)
+    loadData({
+      ...currentQuery,
+      limit: 6,
+      offset: (page - 1) * 6,
+    })
+  }, [loadData, setCurrentPage])
+
+  const gotoPage = useCallback((page) => {
+    changePage(page)
+  }, [changePage])
+
+  const nextPage = () => {
+    changePage(currentPage + 1)
+  }
+
+  const prevPage = () => {
+    changePage(currentPage - 1)
+  }
+
+  useEffect(() => {
+    gotoPage(1)
+  }, [])
+
+  const paginationButtons = useMemo(() => {
+    const buttons = []
+    let num = Math.max(currentPage - 1, 1)
+    const buttonsCount = Math.min(pageCount, num + 2)
+
+    for (let pageNumber = num; pageNumber <= buttonsCount; pageNumber++) {
+      const isPageActive = pageNumber === currentPage
+
+      buttons.push(
+        <Button
+          onClick={() => gotoPage(pageNumber)}
+          className={cx({ bordered: !isPageActive, main: isPageActive })}
+        >
+          { pageNumber }
+        </Button>
+      )
+    }
+
+    return buttons
+  }, [pageCount, currentPage, gotoPage])
+
   return (
-    <S.TableContainer className='Table-Container'>
+    <S.TableContainer className='Table-Container' hasActionsBar={hasActionsBar}>
       <table {...getTableProps()} className='Table'>
         <thead>
           <tr className='header-style'/>
@@ -120,7 +173,7 @@ export const Table = ({
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {firstPageRows.map(
+          {rows.map(
             (row) => {
               prepareRow(row);
 
@@ -128,7 +181,7 @@ export const Table = ({
                 <tr
                   {...row.getRowProps()}
                   className={cx({ selected: row.isSelected })}
-                  onClick={() => row.toggleRowSelected(!row.isSelected)}
+                  onClick={() => hasSelections && row.toggleRowSelected(!row.isSelected)}
                 >
                   {row.cells.map(cell => {
                     return (
@@ -176,10 +229,29 @@ export const Table = ({
             </S.ActionsList>
           </S.FixedActionsBar>
       }
+      <S.PaginationContainer>
+        <S.PaginationInfoContainer hasActionsBar={hasActionsBar}>
+            <S.TotalCount>
+              Ընդհանուր 50 գրառում
+            </S.TotalCount>
+          <S.PaginationActionsContainer>
+            <Button onClick={prevPage} className={cx('main', { disable: currentPage === 1})}>
+              {'<'}
+            </Button>
+            { paginationButtons }
+            <Button onClick={nextPage} className={cx('main', { disable: currentPage === pageCount})}>
+              {'>'}
+            </Button>
+          </S.PaginationActionsContainer>
+        </S.PaginationInfoContainer>
+      </S.PaginationContainer>
     </S.TableContainer>
   )
 }
 
 Table.defaultProps = {
-  hasActionsBar: true
+  data: [],
+  columnConfig: {},
+  hasActionsBar: true,
+  hasSelections: true
 }

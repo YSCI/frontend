@@ -2,21 +2,24 @@ import styled from 'styled-components'
 
 export const TableContainer = styled.div`
   display: flex;
+  flex-direction: column;
   position: relative;
   min-height: 260px;
   width: 100%;
   height: min-content;
+  box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
 
   .Table {
     display: block;
-    width: calc(100% - 248px);
+    background: #fff;
+    width: calc(100% - ${({ hasActionsBar }) => hasActionsBar ? 248 : 0}px);
     border-spacing: 0;
-    box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
+    // box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     background: #fff;
     min-height: 385px;
-    height: min-content;
+    height: mifn-content;
     position: relative;
 
     overflow: auto;
@@ -64,7 +67,7 @@ export const TableContainer = styled.div`
       display: block;
       width: 100%;
       height: 100%;
-      min-height: 316px;
+      min-height: 400px;
 
       tr {
         min-width: 100%;
@@ -184,9 +187,10 @@ export const FixedActionsBar = styled.div`
   background: #fff;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px; // only when pagination exists
   right: 0px;
   width: 250px;
-  height: 100%;
+  height: calc(100% - 70px);
   display: flex;
   flex-direction: column;
 `
@@ -197,4 +201,55 @@ export const ActionsList = styled.div`
   gap: 10px;
   // margin-top: 20px;
   padding: 20px 10px;
+`
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  height: 68px;
+  // width: calc(100% - 248px);
+  border-top: 2px solid #f6f6f8;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+`
+
+export const PaginationInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: calc(100% - ${({ hasActionsBar }) => hasActionsBar ? 254 : 0}px - 40px);
+  padding: 0px 20px;
+  border-right: 3px solid #f6f6f8;
+  justify-content: space-between;
+  gap: 20px;
+
+  .Button {
+    width: 41px !important;
+    padding: 0px;
+    height: 36px;
+    font-weight: 500;
+
+    &.bordered {
+      height: 36px;
+    }
+
+    &:first-child {
+      width: 60px !important;
+    }
+
+    &:last-child {
+      width: 60px !important;
+    }
+  }
+`
+
+export const TotalCount = styled.div`
+  font-weight: 500;
+`
+
+export const PaginationActionsContainer = styled.div`
+  display: flex;
+  gap: 10px;
 `

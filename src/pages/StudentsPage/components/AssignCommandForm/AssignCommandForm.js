@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import * as S from './AssignCommandForm.styles'
 import closeIcon from 'images/close.png'
@@ -8,10 +8,15 @@ import { initialValues, validationSchema } from './AssignCommandForm.config'
 
 export const AssignCommandForm = ({
   hideModal,
+  studentIds,
+  loadCommands,
   commandsList,
   assignCommand,
-  studentIds
 }) => {
+  useEffect(() => {
+    loadCommands()
+  }, [loadCommands])
+
   const onSubmit = (values) => {
     assignCommand({
       ...values,
@@ -59,9 +64,9 @@ export const AssignCommandForm = ({
                         value: values.selectedCommand?.id,
                         label: values.selectedCommand?.name
                       } : null}
-                      options={commandsList.map(citizenship => ({
-                        value: citizenship.id,
-                        label: citizenship.name
+                      options={commandsList.map(status => ({
+                        value: status.id,
+                        label: status.name
                       }))}
                       placeholder='Հրաման'
                       onChange={(val) => {

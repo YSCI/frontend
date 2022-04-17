@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { Table } from 'components'
 import { Layout } from 'components/Layout'
@@ -12,15 +12,12 @@ export const StatusesPage = ({
   loadStatuses,
   deleteStatus
 }) => {
-  useEffect(() => {
-    loadStatuses()
-  }, [loadStatuses])
-
   return (
     <Layout>
       <S.StatusesPageContainer>
         <Table
           data={statuses.list}
+          loadData={loadStatuses}
           onDelete={deleteStatus}
           FormComponent={StatusForm}
           FilterComponent={FiltersList}

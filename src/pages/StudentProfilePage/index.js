@@ -1,14 +1,19 @@
 import { connect } from 'react-redux'
 
+import { showModal } from 'redux/actions/modal'
+import { loadProfile, loadProfileCommandsHistory } from 'redux/actions/profile'
+import { deleteStudent } from 'redux/actions/students'
 import { StudentProfilePage as Self } from './StudentProfilePage'
-import { loadProfile } from 'redux/actions/profile'
 
 const mapStateToProps = ({ profile }) => ({
-  profile
+  profileData: profile.data
 })
 
 const mapDispatchToProps = {
-  loadProfile
+  showModal,
+  loadProfile,
+  deleteStudent,
+  loadProfileCommandsHistory
 }
 
 export const StudentProfilePage = connect(mapStateToProps, mapDispatchToProps)(Self)

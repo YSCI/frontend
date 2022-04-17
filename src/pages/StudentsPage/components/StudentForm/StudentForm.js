@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
 import * as S from './StudentForm.styles'
 import closeIcon from 'images/close.png'
@@ -8,12 +8,17 @@ import { initialValues } from './StudentForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
 
 export const StudentForm = ({
+  state,
   hideModal,
   editStudent,
-  createStudent,
+  loadAllData,
   editableData,
-  state
+  createStudent,
 }) => {
+  useEffect(() => {
+    loadAllData()
+  }, [loadAllData])
+
   const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
     : 'Ավելացնել'
@@ -190,13 +195,13 @@ export const StudentForm = ({
                           value: commissariat.id,
                           label: commissariat.name
                         }))}
-                        placeholder='Կոմիսարիատ'
+                        placeholder='Զինկոմիսարիատ'
                         onChange={(val) => setFieldValue('commissariatId', val.value)}
                       />
                       {
-                        errors.communityId && touched.communityId &&
+                        errors.commissariatId && touched.commissariatId &&
                           <S.ErrorMessage>
-                            { errors.communityId }
+                            { errors.commissariatId }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
@@ -214,9 +219,9 @@ export const StudentForm = ({
                         onChange={(val) => setFieldValue('statusId', val.value)}
                       />
                       {
-                        errors.communityId && touched.communityId &&
+                        errors.statusId && touched.statusId &&
                           <S.ErrorMessage>
-                            { errors.communityId }
+                            { errors.statusId }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>

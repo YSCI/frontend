@@ -1,14 +1,16 @@
 import { connect } from 'react-redux'
 
 import { FiltersList as Self } from './FiltersList'
-import { loadCommunities } from 'redux/actions/communities'
+import { loadStudents } from 'redux/actions/students'
+import { loadAllData } from 'redux/actions/app' 
 
-const mapStateToProps = ({ regions }) => ({
-  regionsList: regions.list
+const mapStateToProps = (state) => ({
+  state
 })
 
 const mapDispatchToProps = {
-  loadCommunities
+  loadStudents,
+  loadAllData
 }
 
 export const FiltersList = connect(mapStateToProps, mapDispatchToProps)(Self)

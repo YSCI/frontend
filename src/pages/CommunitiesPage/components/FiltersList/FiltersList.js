@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Input, Select } from 'ui'
 import { Formik } from 'formik'
 
@@ -7,8 +7,12 @@ import * as S from './FiltersList.styles'
 import { initialValues } from './FiltersList.config'
 import { useSearchParams } from 'hooks/useSearchParams'
 
-export const FiltersList = ({ hideModal, loadCommunities, regionsList }) => {
+export const FiltersList = ({ hideModal, loadCommunities, loadRegions, regionsList }) => {
   const [searchParams, updateSearchParams] = useSearchParams()
+
+  useEffect(() => {
+    loadRegions()
+  }, [])
 
   const search = (values) => {
     hideModal()

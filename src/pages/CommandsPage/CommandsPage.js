@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -13,19 +13,19 @@ export const CommandsPage = ({
   deleteCommand,
   loadCommands
 }) => {
-  useEffect(() => {
-    loadCommands()
-  }, [loadCommands])
-
   return (
     <Layout>
       <S.CommandsPageContainer>
         <Table
           data={commands.list}
+          loadData={loadCommands}
           onDelete={deleteCommand}
           FormComponent={CommandForm}
           FilterComponent={FiltersList}
           columns={tableColumns.commands}
+          columnConfig={{
+            width: 405
+          }}
         />
       </S.CommandsPageContainer>
     </Layout>

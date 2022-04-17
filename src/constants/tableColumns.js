@@ -36,7 +36,7 @@ export const tableColumns = {
     },
     {
       Header: 'Ծննդյան ամսաթիվ',
-      accessor: ({ dateOfBirth }) => moment(dateOfBirth).format('DD/MM/YYYY HH:MM')
+      accessor: ({ dateOfBirth }) => moment(dateOfBirth).format('DD/MM/YYYY')
     },
     {
       Header: 'Գրանցման հասցե',
@@ -87,7 +87,7 @@ export const tableColumns = {
       accessor: 'status.name'
     },
     {
-      Header: 'Կոմիսարիատ',
+      Header: 'Զինկոմիսարիատ',
       accessor: 'commissariat.name'
     }
   ],
@@ -186,5 +186,15 @@ export const tableColumns = {
       Header: 'Փոփոխելի կարգավիճակ',
       accessor: 'status.name'
     }
+  ],
+  commandHistory: [
+    {
+      Header: 'Հրամանի համար',
+      accessor: 'commandNumber'
+    },
+    {
+      Header: 'Հրամանի անվանում',
+      accessor: 'command.name'
+    },
   ]
 }

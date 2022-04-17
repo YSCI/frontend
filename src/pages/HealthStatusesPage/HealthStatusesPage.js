@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-
+import React from 'react'
 
 import { Table } from 'components'
 import { Layout } from 'components/Layout'
@@ -13,15 +12,12 @@ export const HealthStatusesPage = ({
   deleteHealthStatus,
   loadHealthStatuses
 }) => {
-  useEffect(() => {
-    loadHealthStatuses()
-  }, [loadHealthStatuses])
-
   return (
     <Layout>
       <S.HealthStatusesPageContainer>
         <Table
           data={healthStatuses.list}
+          loadData={loadHealthStatuses}
           onDelete={deleteHealthStatus}
           FormComponent={HealthStatusForm}
           FilterComponent={FiltersList}

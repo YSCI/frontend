@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -13,15 +13,12 @@ export const PrivilegesPage = ({
   deletePrivilege,
   loadPrivileges
 }) => {
-  useEffect(() => {
-    loadPrivileges()
-  }, [loadPrivileges])
-
   return (
     <Layout>
       <S.PrivilegesPageContainer>
         <Table
           data={privileges.list}
+          loadData={loadPrivileges}
           onDelete={deletePrivilege}
           FormComponent={PrivilegeForm}
           FilterComponent={FiltersList}

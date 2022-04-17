@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -13,15 +13,12 @@ export const CitizenshipPage = ({
   deleteCitizenship,
   loadCitizenships
 }) => {
-  useEffect(() => {
-    loadCitizenships()
-  }, [loadCitizenships])
-
   return (
     <Layout>
       <S.CitizenshipPageContainer>
         <Table
           data={citizenships.list}
+          loadData={loadCitizenships}
           onDelete={deleteCitizenship}
           FormComponent={CitizenshipForm}
           FilterComponent={FiltersList}

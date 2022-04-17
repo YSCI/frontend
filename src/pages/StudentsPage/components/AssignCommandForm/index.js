@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 
+import { loadCommands } from 'redux/actions/commands'
 import { AssignCommandForm as Self } from './AssignCommandForm'
 
 import {
@@ -11,6 +12,7 @@ const mapStateToProps = ({ commands }) => ({
 })
 
 const mapDispatchToProps = {
+  loadCommands,
   assignCommand
 }
 

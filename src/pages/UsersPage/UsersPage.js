@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -8,20 +8,18 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './UsersPage.styles'
 import { UserForm } from './components/UserForm'
 
+
 export const UsersPage = ({
   users,
   loadUsers,
   deleteUser
 }) => {
-  useEffect(() => {
-    loadUsers()
-  }, [loadUsers])
-
   return (
     <Layout>
       <S.UsersPageContainer>
         <Table
           data={users.list}
+          loadData={loadUsers}
           onDelete={deleteUser}
           FormComponent={UserForm}
           FilterComponent={FiltersList}

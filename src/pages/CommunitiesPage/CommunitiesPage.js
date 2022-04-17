@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -13,15 +13,12 @@ export const CommunitiesPage = ({
   deleteCommunity,
   loadCommunities
 }) => {
-  useEffect(() => {
-    loadCommunities()
-  }, [loadCommunities])
-
   return (
     <Layout>
       <S.CommunitiesPageContainer>
         <Table
           data={communities.list}
+          loadData={loadCommunities}
           onDelete={deleteCommunity}
           FormComponent={CommunityForm}
           FilterComponent={FiltersList}
