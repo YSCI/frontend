@@ -7,4 +7,5 @@ export const initialValues = {
   acceptanceCommandNumber: '',
   currentCourse: '',
   currentGroup: '',
+  status: null
 }
