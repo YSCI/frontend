@@ -78,9 +78,15 @@ export class HttpService {
   }
 
   static async delete (path, search, options) {
-    const queryString = qs.stringify(filterNonNull(search))
+    const ids = Array.isArray(search.ids)
+      ? search
+      : {
+          ids: [search.ids]
+        }
 
-    return await HttpService.request('delete', path + `?${queryString}`, search, options)
+    const queryString = qs.stringify(filterNonNull(ids))
+
+    return await HttpService.request('delete', path + `?${queryString}`, ids, options)
   }
 
   static async put(path, data, options) {

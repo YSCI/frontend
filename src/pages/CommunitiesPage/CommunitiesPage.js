@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -7,22 +7,18 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './CommunitiesPage.styles'
 import { CommunityForm } from './components/CommunityForm'
 import { FiltersList } from './components/FiltersList'
-import { history } from 'system/history'
 
 export const CommunitiesPage = ({
   communities,
   deleteCommunity,
   loadCommunities
 }) => {
-  useEffect(() => {
-    loadCommunities(history.location.search)
-  }, [loadCommunities])
-
   return (
     <Layout>
       <S.CommunitiesPageContainer>
         <Table
           data={communities.list}
+          loadData={loadCommunities}
           onDelete={deleteCommunity}
           FormComponent={CommunityForm}
           FilterComponent={FiltersList}

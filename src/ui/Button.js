@@ -28,13 +28,14 @@ Button.defaultProps = {
 export const ButtonContainer = styled(CenteredFlex)`
   cursor: pointer;
   border-radius: 6px;
-  width: calc(100% - 24px);
+  width: calc(100% - 28px);
   transition: all 0.3s ease;
   padding: 12px;
   user-select: none;
 
   &.main {
     color: #fff;
+    border: 2px solid transparent;
     background: ${({ theme }) => theme.colors.green};
 
     &:hover {
