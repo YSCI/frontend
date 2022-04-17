@@ -5,6 +5,7 @@ import closeIcon from 'images/close.png'
 import { Input, Button } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommissariatForm.config'
+import { history } from 'system/history'
 
 export const CommissariatForm = ({
   hideModal,
@@ -15,7 +16,7 @@ export const CommissariatForm = ({
   communities
 }) => {
   useEffect(() => {
-    loadCommunities()
+    loadCommunities(history.location.search)
   }, [loadCommunities])
 
   const formActionType = useMemo(() => editableData

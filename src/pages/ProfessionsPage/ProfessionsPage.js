@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 import { Table } from 'components'
@@ -13,15 +13,12 @@ export const ProfessionsPage = ({
   deleteProfession,
   loadProfessions
 }) => {
-  useEffect(() => {
-    loadProfessions()
-  }, [loadProfessions])
-
   return (
     <Layout>
       <S.ProfessionsPageContainer>
         <Table
           data={professions.list}
+          loadData={loadProfessions}
           onDelete={deleteProfession}
           FormComponent={ProfessionForm}
           FilterComponent={FiltersList}

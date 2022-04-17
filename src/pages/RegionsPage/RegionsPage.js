@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-
+import React from 'react'
 
 import { Table } from 'components'
 import { Layout } from 'components/Layout'
@@ -13,15 +12,12 @@ export const RegionsPage = ({
   deleteRegion,
   loadRegions
 }) => {
-  useEffect(() => {
-    loadRegions()
-  }, [loadRegions])
-
   return (
     <Layout>
       <S.RegionsPageContainer>
         <Table
           data={regions.list}
+          loadData={loadRegions}
           onDelete={deleteRegion}
           FormComponent={RegionForm}
           FilterComponent={FiltersList}

@@ -62,10 +62,15 @@ export class HttpService {
     }
   }
 
-  static async get(path, search = {}, options) {
-    const queryString = qs.stringify(filterNonNull(search))
+  static async get(path, search, options) {
+    let queryString
 
-    return await HttpService.request('get', path + `?${queryString}`, options)
+    if (typeof search === 'object')
+      queryString = '?' + qs.stringify(filterNonNull(search))
+    else
+      queryString = search || ''
+
+    return await HttpService.request('get', path + `${queryString}`, options)
   }
 
   static async post(path, data, options) {
@@ -73,9 +78,15 @@ export class HttpService {
   }
 
   static async delete (path, search, options) {
-    const queryString = qs.stringify(filterNonNull(search))
+    const ids = Array.isArray(search.ids)
+      ? search
+      : {
+          ids: [search.ids]
+        }
 
-    return await HttpService.request('delete', path + `?${queryString}`, search, options)
+    const queryString = qs.stringify(filterNonNull(ids))
+
+    return await HttpService.request('delete', path + `?${queryString}`, ids, options)
   }
 
   static async put(path, data, options) {

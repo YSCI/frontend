@@ -43,7 +43,7 @@ export const ContentContainer = styled.div`
   width: 100%;
   flex-direction: column;
 
-  &.appLoading {
+  &.blur {
     filter: blur(2.5px);
   }
 `

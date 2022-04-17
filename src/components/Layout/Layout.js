@@ -6,8 +6,8 @@ import { AppLoader } from 'ui/AppLoader'
 import { Header } from './components/Header'
 
 export const Layout = ({
-  appLoading,
-  children
+  children,
+  appLoading
 }) => {
   return (
     <S.LayoutContainer className='Layout'>
@@ -15,7 +15,7 @@ export const Layout = ({
         appLoading &&
           <AppLoader />
       }
-      <S.ContentContainer className={cx('Content-Container', { appLoading })}>
+      <S.ContentContainer className={cx('Content-Container', { blur: appLoading })}>
         <S.LayoutHeader className='Layout-Header'>
           <Header />
         </S.LayoutHeader>

@@ -9,6 +9,7 @@ export const HeaderContainer = styled.div`
   height: 80px;
   padding: 0px 30px;
   justify-content: space-between;
+  background: ${({ theme }) => theme.colors.lightGreen};
   box-shadow: rgb(0 0 0 / 4%) 0px 7px 14px;
   
   .Dropdown-Content {
@@ -24,7 +25,12 @@ export const HeaderContainer = styled.div`
     gap: 3px;
 
     .Header-Item {
+      color: #000;
       padding: 15px 20px;
+
+      &:hover {
+        color: #fff;
+      }
     }
   }
 `
@@ -43,9 +49,11 @@ export const DropdownName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 500;
   height: 100%;
   padding: 0px 40px;
   transition: all 0.3s ease;
+  color: #fff;
 
   &:hover {
     background: ${({ theme }) => theme.colors.green};
@@ -54,7 +62,7 @@ export const DropdownName = styled.div`
 `
 
 export const Name = styled.div`
-  
+  color: #fff;
 `
 
 export const Role = styled.div`
@@ -131,9 +139,10 @@ export const HeaderItemsList = styled.div`
 `
 
 export const HeaderItem = styled(Link)`
-  color: #000;
+  color: #fff;
   white-space: pre;
   height: 100%;
+  font-weight: 500;
   padding: 0px 40px;
   display: flex;
   align-items: center;
@@ -156,16 +165,11 @@ export const HomeContainer = styled.div`
   padding-right: 40px;
 `
 
-export const Logo = styled.img`
-  width: 65px;
-  height: 65px;
-`
-
 export const SidebarTitle = styled.div`
   margin-left: 20px;
   font-weight: 600;
   font-size: 20px;
-  color: #000;
+  color: #fff;
   white-space: pre;
 `
 export const AppLink = styled(Link)`

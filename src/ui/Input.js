@@ -11,7 +11,7 @@ export const Input = ({
   }
 
   const handleKeypress = e => {
-    if (e.key == "Enter") onEnter()
+    if (e.key === 'Enter') onEnter()
   }
 
   return (

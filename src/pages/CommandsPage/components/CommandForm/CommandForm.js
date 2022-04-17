@@ -36,7 +36,7 @@ export const CommandForm = ({
     <S.CommandFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          {formActionType} հրաման
+          {formActionType} համայնք
         </S.HeaderTitle>
         <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>
@@ -64,7 +64,6 @@ export const CommandForm = ({
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
-                    onEnter={handleSubmit}
                   />
                   {
                     errors.name && touched.name &&
@@ -88,7 +87,7 @@ export const CommandForm = ({
                       setFieldValue('status', statuses.list.find(status => status.id === val.value))
                       setFieldValue('changeableStatusId', val.value)
                     }}
-                    onEnter={handleSubmit}
+
                   />
                   {
                     errors.changeableStatusId && touched.changeableStatusId &&

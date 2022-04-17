@@ -6,6 +6,7 @@ import {
   editStudent,
   createStudent
 } from 'redux/actions/students'
+import { loadAllData } from 'redux/actions/app' 
 
 const mapStateToProps = (state) => ({
   state
@@ -13,6 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   editStudent,
+  loadAllData,
   createStudent
 }
 
