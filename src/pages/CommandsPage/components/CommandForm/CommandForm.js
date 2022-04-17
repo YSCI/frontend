@@ -5,6 +5,7 @@ import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommandForm.config'
+import { history } from 'system/history'
 
 export const CommandForm = ({
   hideModal,
@@ -15,7 +16,7 @@ export const CommandForm = ({
   statuses
 }) => {
   useEffect(() => {
-    loadStatuses()
+    loadStatuses(history.location.search)
   }, [loadStatuses])
 
   const formActionType = useMemo(() => editableData

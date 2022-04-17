@@ -23,10 +23,7 @@ export const Modal = ({
   if (!componentInfo.component) return null
 
   return (
-    <S.ModalContainer
-      className='Modal-Container'
-      onClick={() => hideModal()}
-    >
+    <S.ModalContainer className='Modal-Container'>
       <div onClick={e => e.stopPropagation()}>
         <componentInfo.component {...componentInfo.props} hideModal={hideModal} />
       </div>

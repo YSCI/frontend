@@ -9,6 +9,7 @@ import { StudentForm } from './components/StudentForm'
 import { FiltersList } from './components/FiltersList'
 import { Button } from 'ui'
 import { AssignCommandForm } from './components/AssignCommandForm'
+import { history } from 'system/history'
 
 export const StudentsPage = ({
   students,
@@ -18,7 +19,7 @@ export const StudentsPage = ({
 }) => {
 
   useEffect(() => {
-    loadStudents()
+    loadStudents(history.location.search)
   }, [loadStudents])
 
   return (

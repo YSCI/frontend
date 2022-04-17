@@ -5,6 +5,7 @@ import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommunityForm.config'
+import { history } from 'system/history'
 
 export const CommunityForm = ({
   hideModal,
@@ -15,7 +16,7 @@ export const CommunityForm = ({
   regions
 }) => {
   useEffect(() => {
-    loadRegions()
+    loadRegions(history.location.search)
   }, [loadRegions])
 
   const formActionType = useMemo(() => editableData

@@ -1,7 +1,7 @@
 import { MODAL_TYPES } from 'redux/types/modal'
 
 const initialState = {
-  visible: false,
+  isVisible: false,
   componentInfo: {
     component: null,
     props: {}
@@ -17,7 +17,7 @@ export const modal = (state = initialState, action) => {
           props: action.props,
           component: action.component
         },
-        visible: true
+        isVisible: true
       }
     case MODAL_TYPES.HIDE_MODAL:
         return initialState

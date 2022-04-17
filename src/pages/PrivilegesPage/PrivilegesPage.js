@@ -7,6 +7,7 @@ import { tableColumns } from 'constants/tableColumns'
 import * as S from './PrivilegesPage.styles'
 import { PrivilegeForm } from './components/PrivilegeForm'
 import { FiltersList } from './components/FiltersList'
+import { history } from 'system/history'
 
 export const PrivilegesPage = ({
   privileges,
@@ -14,7 +15,7 @@ export const PrivilegesPage = ({
   loadPrivileges
 }) => {
   useEffect(() => {
-    loadPrivileges()
+    loadPrivileges(history.location.search)
   }, [loadPrivileges])
 
   return (
