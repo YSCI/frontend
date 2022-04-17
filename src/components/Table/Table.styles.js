@@ -11,7 +11,6 @@ export const TableContainer = styled.div`
 
   .Table {
     display: block;
-    padding-bottom: 52px;
     background: #fff;
     width: calc(100% - ${({ hasActionsBar }) => hasActionsBar ? 248 : 0}px);
     border-spacing: 0;

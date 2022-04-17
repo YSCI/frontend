@@ -90,7 +90,7 @@ export const Table = ({
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalCount = 20 || data.length 
-  const pageCount = Math.ceil(totalCount / 6)  
+  const pageCount = Math.ceil(totalCount / 6)
   const selectedFirstRow = selectedFlatRows[0]?.original
 
   const changePage = useCallback((page) => {
@@ -118,13 +118,13 @@ export const Table = ({
   useEffect(() => {
     gotoPage(1)
   }, [])
-  
+
   const paginationButtons = useMemo(() => {
     const buttons = []
-    let pageNumber = Math.max(currentPage - 1, 1)
-    const count = Math.min(pageCount, pageNumber + 2)
+    let num = Math.max(currentPage - 1, 1)
+    const buttonsCount = Math.min(pageCount, num + 2)
 
-    for (pageNumber; pageNumber <= count; pageNumber++) {
+    for (let pageNumber = num; pageNumber <= buttonsCount; pageNumber++) {
       const isPageActive = pageNumber === currentPage
 
       buttons.push(

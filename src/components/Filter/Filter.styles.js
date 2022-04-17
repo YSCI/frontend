@@ -19,6 +19,7 @@ export const FilterContainer = styled.div`
 export const FilterContent = styled.div`
   padding: 20px;
   height: calc(100% - 40px);
+  overflow-y: auto;
 `
 
 export const FilterHeader = styled.div`
