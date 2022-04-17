@@ -3,15 +3,21 @@ import styled from 'styled-components'
 import { CenteredFlex } from 'ui/styles'
 
 export const StudentProfilePageContainer = styled.div`
-  width: 100%;
+  width: calc(100% - 60px);
   padding: 30px;
   display: flex;
-  gap: 20px;
+  justify-content: center;
   // display: grid;
   // grid-gap: 20px;
   // grid-auto-flow: column;
   // grid-template-rows: min-content;
   // grid-template-columns: min-content;
+`
+
+export const StudentProfilePageWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 1280px;
 `
 
 export const InfoItemsContainer = styled.div`
@@ -57,6 +63,11 @@ export const AllInfoContainer = styled(CenteredFlex)`
   flex: 1;
   background: #fff;
   border-radius: 7px;
+  height: min-content;
+
+  .TabMenu {
+    min-height: 538px;
+  }
 `
 
 export const StudentProfilePic = styled.img`

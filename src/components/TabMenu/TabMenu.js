@@ -12,7 +12,7 @@ export const TabMenu = ({
   const activeTabContent = children[activeTab]
 
   return (
-    <S.TabMenu>
+    <S.TabMenu className='TabMenu'>
       <S.TabHeader>
         {
           tabs.map((tabName, tabIndex) => (
