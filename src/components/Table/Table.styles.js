@@ -219,7 +219,7 @@ export const PaginationInfoContainer = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  width: calc(100% - 254px - 40px);
+  width: calc(100% - ${({ hasActionsBar }) => hasActionsBar ? 254 : 0}px - 40px);
   padding: 0px 20px;
   border-right: 3px solid #f6f6f8;
   justify-content: space-between;

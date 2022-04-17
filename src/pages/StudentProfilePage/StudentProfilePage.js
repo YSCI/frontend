@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { history } from 'system/history'
 import { useParams } from 'react-router-dom'
+import moment from 'moment'
 
 import { tabs } from './StudentProfilePage.config'
 import { Layout, Table, TabMenu } from 'components'
@@ -36,7 +37,7 @@ export const StudentProfilePage = ({
       history.push('/studenets')
     }})
   }
-
+  console.log(profileData)
   return (
     <Layout>
       <S.StudentProfilePageContainer>
@@ -48,6 +49,32 @@ export const StudentProfilePage = ({
           <S.StudentName>
             { profileData.firstname } { profileData.lastname }
           </S.StudentName>
+          <S.InfoItemsContainer>
+            <S.InfoItem>
+              <div>
+                Ծննդյան ամսաթիվ
+              </div>
+              <div>
+                { moment(profileData.dateOfBirth).format('DD/MM/YYYY') }
+              </div>
+            </S.InfoItem>
+            <S.InfoItem>
+              <div>
+                Կուրս
+              </div>
+              <div>
+                { profileData.currentCourse }
+              </div>
+            </S.InfoItem>
+            <S.InfoItem>
+              <div>
+                Խումբ
+              </div>
+              <div>
+                { profileData.currentGroup }
+              </div>
+            </S.InfoItem>
+          </S.InfoItemsContainer>
           <S.ActionsContainer>
             <Button onClick={onEditStudent}>
               Փոփոխել

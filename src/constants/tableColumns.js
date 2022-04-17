@@ -36,7 +36,7 @@ export const tableColumns = {
     },
     {
       Header: 'Ծննդյան ամսաթիվ',
-      accessor: ({ dateOfBirth }) => moment(dateOfBirth).format('DD/MM/YYYY HH:MM')
+      accessor: ({ dateOfBirth }) => moment(dateOfBirth).format('DD/MM/YYYY')
     },
     {
       Header: 'Գրանցման հասցե',
