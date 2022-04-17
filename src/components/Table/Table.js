@@ -230,7 +230,7 @@ export const Table = ({
           </S.FixedActionsBar>
       }
       <S.PaginationContainer>
-        <S.PaginationInfoContainer>
+        <S.PaginationInfoContainer hasActionsBar={hasActionsBar}>
             <S.TotalCount>
               Ընդհանուր 50 գրառում
             </S.TotalCount>

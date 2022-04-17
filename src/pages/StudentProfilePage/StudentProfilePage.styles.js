@@ -4,7 +4,7 @@ import { CenteredFlex } from 'ui/styles'
 
 export const StudentProfilePageContainer = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   gap: 20px;
   // display: grid;
@@ -12,6 +12,31 @@ export const StudentProfilePageContainer = styled.div`
   // grid-auto-flow: column;
   // grid-template-rows: min-content;
   // grid-template-columns: min-content;
+`
+
+export const InfoItemsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+`
+
+export const InfoItem = styled.div`
+  display: flex;
+  padding: 15px 0px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
+  justify-content: space-between;
+
+  &:first-child {
+    padding-top: 0px;
+  }
+
+  &:last-child {
+    padding-bottom: 0px;
+    border-bottom: none;
+  }
 `
 
 export const MainInfoContainer = styled.div`
@@ -22,9 +47,10 @@ export const MainInfoContainer = styled.div`
   width: 280px;
   padding: 20px;
   min-height: 500px;
+  height: min-content;
   background: #fff;
   border-radius: 7px;
-  gap: 10px;
+  // gap: 10px;
 `
 
 export const AllInfoContainer = styled(CenteredFlex)`
@@ -42,7 +68,7 @@ export const StudentProfilePic = styled.img`
 
 export const StudentName = styled.div`
   color: #000;
-  margin-bottom: 10px;
+  margin-top: 10px;
 `
 
 export const ActionsContainer = styled.div`
