@@ -25,7 +25,6 @@ export const loadAllData = () => dispatch => {
   dispatch(loadProfessions())
   dispatch(loadRegions())
   dispatch(loadStatuses())
-  dispatch(loadCommands())
 }
 
 export const initApp = () => async dispatch => {

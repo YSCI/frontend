@@ -181,10 +181,6 @@ export const tableColumns = {
     {
       Header: 'Անվանում',
       accessor: 'name'
-    },
-    {
-      Header: 'Փոփոխելի կարգավիճակ',
-      accessor: 'status.name'
     }
   ],
   commandHistory: [
@@ -196,5 +192,13 @@ export const tableColumns = {
       Header: 'Հրամանի անվանում',
       accessor: 'command.name'
     },
+    {
+      Header: 'Կցագրող',
+      accessor: ({ user }) => `${user.name} ${user.surname}`
+    },
+    {
+      Header: 'Կցագրման ամսաթիվ',
+      accessor: ({ affectDate }) => moment(affectDate).format('DD/MM/YYYY')
+    }
   ]
 }

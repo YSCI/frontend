@@ -7,6 +7,7 @@ import {
   createCommand
 } from 'redux/actions/commands'
 import { loadStatuses } from 'redux/actions/statuses'
+import { showModal } from 'redux/actions/modal'
 
 const mapStateToProps = ({ statuses }) => ({
   statuses
@@ -14,6 +15,7 @@ const mapStateToProps = ({ statuses }) => ({
 
 const mapDispatchToProps = {
   loadStatuses,
+  showModal,
   editCommand,
   createCommand
 }

@@ -5,15 +5,21 @@ import closeIcon from 'images/close.png'
 import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommandForm.config'
+import { FieldsForm } from '../FieldsForm'
 
-export const CommandForm = ({
-  hideModal,
-  editCommand,
-  createCommand,
-  editableData,
-  loadStatuses,
-  statuses
-}) => {
+export const CommandForm = (props) => {
+  const {
+    hideModal,
+    editCommand,
+    createCommand,
+    editableData,
+    loadStatuses,
+    showModal,
+    statuses,
+    formValues,
+    changeableFields
+  } = props
+
   useEffect(() => {
     loadStatuses()
   }, [loadStatuses])
@@ -24,19 +30,20 @@ export const CommandForm = ({
   , [editableData])
 
   const onSubmit = (values) => {
+    console.log('here')
     if (editableData) {
-      editCommand(values)
+      editCommand({ ...values, changeableColumns: changeableFields})
     } else {
-      createCommand(values)
+      createCommand({ ...values, changeableColumns: changeableFields})
     }
     hideModal()
   }
-
+  console.log({ formValues, changeableFields })
   return (
     <S.CommandFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          {formActionType} համայնք
+          {formActionType} հրաման
         </S.HeaderTitle>
         <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>
@@ -45,7 +52,7 @@ export const CommandForm = ({
       <Formik
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={editableData || initialValues}
+        initialValues={formValues || editableData || initialValues}
       >
         {
           ({
@@ -73,7 +80,7 @@ export const CommandForm = ({
                   }
                 </S.FormItem>
                 <S.FormItem>
-                  <Select
+                  {/* <Select
                     value={selectedStatus ? {
                       value: selectedStatus.id,
                       label: selectedStatus.name
@@ -94,7 +101,10 @@ export const CommandForm = ({
                       <S.ErrorMessage>
                         { errors.changeableStatusId }
                       </S.ErrorMessage>
-                  }
+                  } */}
+                  <Button onClick={() => showModal(FieldsForm, { commandFormProps: props, editableData: editableData?.changeableColumns })}>
+                    Փոփոխելի դաշտեր
+                  </Button>
                 </S.FormItem>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>

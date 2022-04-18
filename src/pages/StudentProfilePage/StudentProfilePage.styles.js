@@ -57,6 +57,10 @@ export const AllInfoContainer = styled(CenteredFlex)`
   flex: 1;
   background: #fff;
   border-radius: 7px;
+  height: min-content;
+  min-height: 540px;
+  display: flex;
+  align-items: flex-start;
 `
 
 export const StudentProfilePic = styled.img`
