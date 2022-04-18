@@ -32,6 +32,12 @@ export const List = styled.div`
     background: ${({ theme }) => theme.colors.lightGreen};
   }
 `
+export const FormItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+`
 
 export const ActionsContainer = styled.div`
   display: flex;

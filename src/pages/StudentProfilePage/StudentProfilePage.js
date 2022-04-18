@@ -41,68 +41,70 @@ export const StudentProfilePage = ({
   return (
     <Layout>
       <S.StudentProfilePageContainer>
-        <S.MainInfoContainer>
-          <S.ProfessionType>
-            { profileData.profession.abbreviation }
-          </S.ProfessionType>
-          <S.StudentProfilePic src={studentPic}/>
-          <S.StudentName>
-            { profileData.firstname } { profileData.lastname }
-          </S.StudentName>
-          <S.InfoItemsContainer>
-            <S.InfoItem>
+        <S.StudentProfilePageWrapper>
+          <S.MainInfoContainer>
+            <S.ProfessionType>
+              { profileData.profession.abbreviation }
+            </S.ProfessionType>
+            <S.StudentProfilePic src={studentPic}/>
+            <S.StudentName>
+              { profileData.firstname } { profileData.lastname }
+            </S.StudentName>
+            <S.InfoItemsContainer>
+              <S.InfoItem>
+                <div>
+                  Ծննդյան ամսաթիվ
+                </div>
+                <div>
+                  { moment(profileData.dateOfBirth).format('DD/MM/YYYY') }
+                </div>
+              </S.InfoItem>
+              <S.InfoItem>
+                <div>
+                  Կուրս
+                </div>
+                <div>
+                  { profileData.currentCourse }
+                </div>
+              </S.InfoItem>
+              <S.InfoItem>
+                <div>
+                  Խումբ
+                </div>
+                <div>
+                  { profileData.currentGroup }
+                </div>
+              </S.InfoItem>
+            </S.InfoItemsContainer>
+            <S.ActionsContainer>
+              <Button onClick={onEditStudent}>
+                Փոփոխել
+              </Button>
+              <Button className='danger' onClick={onDeleteStudent}>
+                Ջնջել
+              </Button>
+            </S.ActionsContainer>
+          </S.MainInfoContainer>
+          <S.AllInfoContainer>
+            <TabMenu tabs={tabs}>
+              <S.TabContainer>
+                <div>Hayk</div>              
+              </S.TabContainer>
+              <S.TabContainer>
+                <Table
+                  hasActionsBar={false}
+                  hasSelections={false}
+                  data={profileData.commandHistory}
+                  loadData={(paging) => loadProfileCommandsHistory({ ...paging, studentId: profileData.id })}
+                  columns={tableColumns.commandHistory}
+                />
+              </S.TabContainer>
               <div>
-                Ծննդյան ամսաթիվ
+                qwe
               </div>
-              <div>
-                { moment(profileData.dateOfBirth).format('DD/MM/YYYY') }
-              </div>
-            </S.InfoItem>
-            <S.InfoItem>
-              <div>
-                Կուրս
-              </div>
-              <div>
-                { profileData.currentCourse }
-              </div>
-            </S.InfoItem>
-            <S.InfoItem>
-              <div>
-                Խումբ
-              </div>
-              <div>
-                { profileData.currentGroup }
-              </div>
-            </S.InfoItem>
-          </S.InfoItemsContainer>
-          <S.ActionsContainer>
-            <Button onClick={onEditStudent}>
-              Փոփոխել
-            </Button>
-            <Button className='danger' onClick={onDeleteStudent}>
-              Ջնջել
-            </Button>
-          </S.ActionsContainer>
-        </S.MainInfoContainer>
-        <S.AllInfoContainer>
-          <TabMenu tabs={tabs}>
-            <S.TabContainer>
-              <div>Hayk</div>              
-            </S.TabContainer>
-            <S.TabContainer>
-              <Table
-                hasActionsBar={false}
-                hasSelections={false}
-                data={profileData.commandHistory}
-                loadData={(paging) => loadProfileCommandsHistory({ ...paging, studentId: profileData.id })}
-                columns={tableColumns.commandHistory}
-              />
-            </S.TabContainer>
-            <div>
-              qwe
-            </div>
-          </TabMenu>
-        </S.AllInfoContainer>
+            </TabMenu>
+          </S.AllInfoContainer>
+        </S.StudentProfilePageWrapper>
       </S.StudentProfilePageContainer>
     </Layout>
   )
