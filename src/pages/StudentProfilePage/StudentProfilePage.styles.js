@@ -64,10 +64,9 @@ export const AllInfoContainer = styled(CenteredFlex)`
   background: #fff;
   border-radius: 7px;
   height: min-content;
-
-  .TabMenu {
-    min-height: 538px;
-  }
+  min-height: 540px;
+  display: flex;
+  align-items: flex-start;
 `
 
 export const StudentProfilePic = styled.img`
