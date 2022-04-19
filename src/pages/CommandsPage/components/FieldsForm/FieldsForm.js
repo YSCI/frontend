@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 
 import * as S from './FieldsForm.styles'
 import closeIcon from 'images/close.png'
@@ -12,7 +12,6 @@ export const FieldsForm = ({
   state,
   showModal,
   hideModal,
-  formValues,
   loadAllData,
   editableData,
   commandFormProps
@@ -21,13 +20,7 @@ export const FieldsForm = ({
     loadAllData()
   }, [loadAllData])
 
-  // const formActionType = useMemo(() => editableData
-  //   ? 'Փոփոխել'
-  //   : 'Ավելացնել'
-  // , [editableData])
-
   const onSubmit = (values) => {
-    console.log({ values })
     showModal(CommandForm, { ...commandFormProps, changeableFields: values })
   }
 
@@ -196,7 +189,7 @@ export const FieldsForm = ({
                           label: commissariat.name
                         }))}
                         placeholder='Զինկոմիսարիատ'
-                        onChange={(val) => setFieldValue('commissariatId', val.value)}
+                        onChange={(val) => setFieldValue('commissariatId', val?.value)}
                       />
                       {
                         errors.commissariatId && touched.commissariatId &&
@@ -216,7 +209,7 @@ export const FieldsForm = ({
                           label: status.name
                         }))}
                         placeholder='Կարգավիճակ'
-                        onChange={(val) => setFieldValue('statusId', val.value)}
+                        onChange={(val) => setFieldValue('statusId', val?.value)}
                       />
                       {
                         errors.statusId && touched.statusId &&
@@ -236,7 +229,7 @@ export const FieldsForm = ({
                           label: healthStatus.status
                         }))}
                         placeholder='Առողջական վիճակ'
-                        onChange={(val) => setFieldValue('healthStatusId', val.value)}
+                        onChange={(val) => setFieldValue('healthStatusId', val?.value)}
                       />
                       {
                         errors.healthStatusId && touched.healthStatusId &&
@@ -256,7 +249,7 @@ export const FieldsForm = ({
                           label: profession.name
                         }))}
                         placeholder='Մասնագիտություն'
-                        onChange={(val) => setFieldValue('professionId', val.value)}
+                        onChange={(val) => setFieldValue('professionId', val?.value)}
                       />
                       {
                         errors.professionId && touched.professionId &&
@@ -276,7 +269,7 @@ export const FieldsForm = ({
                           label: nationality.name
                         }))}
                         placeholder='Ազգություն'
-                        onChange={(val) => setFieldValue('nationalityId', val.value)}
+                        onChange={(val) => setFieldValue('nationalityId', val?.value)}
                       />
                       {
                         errors.nationalityId && touched.nationalityId &&
@@ -296,7 +289,7 @@ export const FieldsForm = ({
                           label: citizenship.country
                         }))}
                         placeholder='Քաղաքացիություն'
-                        onChange={(val) => setFieldValue('citizenshipId', val.value)}
+                        onChange={(val) => setFieldValue('citizenshipId', val?.value)}
                       />
                       {
                         errors.citizenshipId && touched.citizenshipId &&
@@ -331,7 +324,7 @@ export const FieldsForm = ({
                           label: region.name
                         }))}
                         placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('registrationRegionId', val.value)}
+                        onChange={(val) => setFieldValue('registrationRegionId', val?.value)}
                       />
                       {
                         errors.registrationRegionId && touched.registrationRegionId &&
@@ -349,7 +342,7 @@ export const FieldsForm = ({
                           label: community.name
                         }))}
                         placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('registrationCommunityId', val.value)}
+                        onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
                       />
                       {
                         errors.registrationCommunityId && touched.registrationCommunityId &&
@@ -382,7 +375,7 @@ export const FieldsForm = ({
                           label: region.name
                         }))}
                         placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('residentRegionId', val.value)}
+                        onChange={(val) => setFieldValue('residentRegionId', val?.value)}
                       />
                       {
                         errors.residentRegionId && touched.residentRegionId &&
@@ -400,7 +393,7 @@ export const FieldsForm = ({
                           label: community.name
                         }))}
                         placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('residentCommunityId', val.value)}
+                        onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
                       />
                       {
                         errors.residentCommunityId && touched.residentCommunityId &&

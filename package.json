@@ -13,6 +13,7 @@
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-modern-datepicker": "^1.2.0",
     "react-outside-click-handler": "^1.3.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",

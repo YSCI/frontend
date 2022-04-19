@@ -37,7 +37,7 @@ export const StudentProfilePage = ({
       history.push('/studenets')
     }})
   }
-  console.log(profileData)
+
   return (
     <Layout>
       <S.StudentProfilePageContainer>

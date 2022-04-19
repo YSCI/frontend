@@ -86,8 +86,8 @@ export const CommunityForm = ({
                     }))}
                     placeholder='Մարզ'
                     onChange={(val) => {
-                      setFieldValue('region', regions.list.find(region => region.id === val.value))
-                      setFieldValue('regionId', val.value)
+                      setFieldValue('region', regions.list.find(region => region.id === val?.value))
+                      setFieldValue('regionId', val?.value)
                     }}
                   />
                   {

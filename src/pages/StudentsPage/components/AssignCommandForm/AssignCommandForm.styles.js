@@ -56,8 +56,9 @@ export const FormContentContainer = styled.div`
 
 export const FormItemsList = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  gap: 20px;
+  gap: 10px;
 `
 
 export const FormItem = styled.div`

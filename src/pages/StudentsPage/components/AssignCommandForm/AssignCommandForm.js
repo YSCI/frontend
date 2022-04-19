@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import * as S from './AssignCommandForm.styles'
 import closeIcon from 'images/close.png'
-import { Input, Button, Select } from 'ui'
+import { Input, Button, Select, DatePicker } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './AssignCommandForm.config'
 
@@ -59,6 +59,15 @@ export const AssignCommandForm = ({
                         onChange={(val) => setFieldValue('commandNumber', val)}
                         onEnter={handleSubmit}
                       />
+                  </S.FormItem>
+                  <S.FormItem>
+                    <DatePicker
+                      date={values.affectDate}
+                      placeholder='Հրամանի ամսաթիվ'
+                      onChange={(val) => setFieldValue('affectDate', val)}
+                    />
+                  </S.FormItem>
+                  <S.FormItem>
                     <Select
                       value={values.selectedCommand ? {
                         value: values.selectedCommand?.id,
@@ -70,8 +79,8 @@ export const AssignCommandForm = ({
                       }))}
                       placeholder='Հրաման'
                       onChange={(val) => {
-                        setFieldValue('commandId', val.value)
-                        setFieldValue('selectedCommand', commandsList.find(command => command.id === val.value))
+                        setFieldValue('commandId', val?.value)
+                        setFieldValue('selectedCommand', commandsList.find(command => command.id === val?.value))
                       }}
                     />
                     {

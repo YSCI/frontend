@@ -13,7 +13,7 @@ export const FormLabelItemContainer = styled.div`
 
 export const Label = styled.div`
   position: absolute;
-  z-index: 10;
+  // z-index: 1;
   background: #fff;
   font-size: 13px;
   top: -12px;

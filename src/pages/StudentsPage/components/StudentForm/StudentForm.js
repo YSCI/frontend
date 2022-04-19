@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo } from 'react'
-
-import * as S from './StudentForm.styles'
-import closeIcon from 'images/close.png'
-import { Input, Button, Select } from 'ui'
 import { Formik } from 'formik'
+
+import closeIcon from 'images/close.png'
+import * as S from './StudentForm.styles'
 import { initialValues } from './StudentForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
+import {
+  Input,
+  Button,
+  Select,
+  DatePicker
+} from 'ui'
 
 export const StudentForm = ({
   state,
@@ -54,7 +59,7 @@ export const StudentForm = ({
             touched,
             handleSubmit,
             setFieldValue
-          }) => {
+          }) => {            
             const selectedCommissariat = state.commissariats.list.find(el => el.id === values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)
@@ -186,6 +191,20 @@ export const StudentForm = ({
                   </S.FormRow>
                   <S.FormRow>
                     <S.FormItem>
+                        <DatePicker
+                          date={values.dateOfBirth}
+                          placeholder='Ծննդյան ամսաթիվ'
+                          onChange={(val) => setFieldValue('dateOfBirth', val)}
+                        />
+                      </S.FormItem>
+                      <S.FormItem>
+                        <DatePicker
+                          date={values.dateOfAcceptance}
+                          placeholder='Ընդունման ամսաթիվ'
+                          onChange={(val) => setFieldValue('dateOfAcceptance', val)}
+                        />
+                      </S.FormItem>
+                    <S.FormItem>
                       <Select
                         value={selectedCommissariat ? {
                           value: selectedCommissariat?.id,
@@ -196,7 +215,7 @@ export const StudentForm = ({
                           label: commissariat.name
                         }))}
                         placeholder='Զինկոմիսարիատ'
-                        onChange={(val) => setFieldValue('commissariatId', val.value)}
+                        onChange={(val) => setFieldValue('commissariatId', val?.value)}
                       />
                       {
                         errors.commissariatId && touched.commissariatId &&
@@ -216,7 +235,7 @@ export const StudentForm = ({
                           label: status.name
                         }))}
                         placeholder='Կարգավիճակ'
-                        onChange={(val) => setFieldValue('statusId', val.value)}
+                        onChange={(val) => setFieldValue('statusId', val?.value)}
                       />
                       {
                         errors.statusId && touched.statusId &&
@@ -236,7 +255,7 @@ export const StudentForm = ({
                           label: healthStatus.status
                         }))}
                         placeholder='Առողջական վիճակ'
-                        onChange={(val) => setFieldValue('healthStatusId', val.value)}
+                        onChange={(val) => setFieldValue('healthStatusId', val?.value)}
                       />
                       {
                         errors.healthStatusId && touched.healthStatusId &&
@@ -256,7 +275,7 @@ export const StudentForm = ({
                           label: profession.name
                         }))}
                         placeholder='Մասնագիտություն'
-                        onChange={(val) => setFieldValue('professionId', val.value)}
+                        onChange={(val) => setFieldValue('professionId', val?.value)}
                       />
                       {
                         errors.professionId && touched.professionId &&
@@ -276,7 +295,7 @@ export const StudentForm = ({
                           label: nationality.name
                         }))}
                         placeholder='Ազգություն'
-                        onChange={(val) => setFieldValue('nationalityId', val.value)}
+                        onChange={(val) => setFieldValue('nationalityId', val?.value)}
                       />
                       {
                         errors.nationalityId && touched.nationalityId &&
@@ -296,7 +315,7 @@ export const StudentForm = ({
                           label: citizenship.country
                         }))}
                         placeholder='Քաղաքացիություն'
-                        onChange={(val) => setFieldValue('citizenshipId', val.value)}
+                        onChange={(val) => setFieldValue('citizenshipId', val?.value)}
                       />
                       {
                         errors.citizenshipId && touched.citizenshipId &&
@@ -331,7 +350,7 @@ export const StudentForm = ({
                           label: region.name
                         }))}
                         placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('registrationRegionId', val.value)}
+                        onChange={(val) => setFieldValue('registrationRegionId', val?.value)}
                       />
                       {
                         errors.registrationRegionId && touched.registrationRegionId &&
@@ -349,7 +368,7 @@ export const StudentForm = ({
                           label: community.name
                         }))}
                         placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('registrationCommunityId', val.value)}
+                        onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
                       />
                       {
                         errors.registrationCommunityId && touched.registrationCommunityId &&
@@ -382,7 +401,7 @@ export const StudentForm = ({
                           label: region.name
                         }))}
                         placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('residentRegionId', val.value)}
+                        onChange={(val) => setFieldValue('residentRegionId', val?.value)}
                       />
                       {
                         errors.residentRegionId && touched.residentRegionId &&
@@ -400,7 +419,7 @@ export const StudentForm = ({
                           label: community.name
                         }))}
                         placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('residentCommunityId', val.value)}
+                        onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
                       />
                       {
                         errors.residentCommunityId && touched.residentCommunityId &&
