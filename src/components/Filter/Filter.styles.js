@@ -8,7 +8,7 @@ export const FilterContainer = styled.div`
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   height: min-content;
-  width: 400px;
+  // width: 400px;
   height: 100%;
   position: absolute;
   top: 0px;
@@ -19,6 +19,11 @@ export const FilterContainer = styled.div`
 export const FilterContent = styled.div`
   padding: 20px;
   height: calc(100% - 40px);
+
+  > div {
+    width: 400px;
+  }
+
   overflow-y: auto;
 `
 

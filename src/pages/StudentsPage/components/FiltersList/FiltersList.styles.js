@@ -4,6 +4,7 @@ export const FiltersListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 450px;
   height: 100%;
 `
 

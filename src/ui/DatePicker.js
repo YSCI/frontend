@@ -1,0 +1,119 @@
+import React from 'react'
+import moment from 'moment'
+import styled from 'styled-components'
+import { withTheme } from 'styled-components'
+import ModernDatepicker from 'react-modern-datepicker'
+
+
+import { CenteredFlex } from './styles'
+import closeIcon from 'images/close.png'
+
+export const DatePicker = withTheme(({
+  date,
+  theme,
+  onChange,
+  ...rest
+}) => {
+  const onSelectDate = (date) => {
+    const dateFormatted = moment(date, 'DD/MM/YYYY')
+    onChange(dateFormatted.toISOString())
+  }
+
+  return (
+    <DatePickerContainer className='Date-Picker'>
+      <DatePickerComponent 
+        { ...rest }
+        date={date
+          ? moment(date).format('DD/MM/YYYY')
+          : ''
+        }
+        onChange={onSelectDate}
+        format={'DD/MM/YYYY'}
+        className='DatePicker'
+        primaryColor={theme.colors.green}
+      />
+      {
+        date &&
+          <ClearDateContainer onClick={() => onSelectDate(null)}>
+            <img src={closeIcon} />
+          </ClearDateContainer>
+      }
+    </DatePickerContainer>
+  )
+})
+
+DatePicker.defaultProps = {
+  onChange: () => {}
+}
+
+const ClearDateContainer = styled(CenteredFlex)`
+  width: 35px;
+  height: 35px;
+  border-radius: 15%;
+  transition: background 0.3s ease;
+  position: absolute;
+  right: 5px;
+  top: 4.9px;
+  cursor: pointer;
+
+  img {
+    width: 13px;
+    height: 13px;
+  }
+
+  &:hover {
+    background: #f6f6f8;
+  }
+`
+
+const DatePickerComponent = styled(ModernDatepicker)`
+  border-radius: 4px;
+  outline: none;
+  border: 2px solid #d9d9d9;
+  border-radius: 5px;
+  position: relative;
+  outline: none;
+  padding: 0px 10px;
+  font-family: sans-serif;
+  transition: border 0.3s ease;
+
+  &.DatePicker {
+    height: 44.8px;
+  }
+
+  &.DatePicker + div {
+    span {
+      transition: background 0.3s ease;
+
+      &:not(:empty) {
+        &:hover {
+          color: #fff;
+          background: ${({ theme }) => theme.colors.lightGreen};
+        }
+      }
+    }
+  }
+
+  &.DatePicker  {
+    font-size: 14px;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.lightGray};
+    }
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.lightGreen};
+  }
+  &.DatePicker {
+    padding: 14px 10px;
+  }
+  &.DatePicker + div {
+    z-index: 100;
+  }
+`
+
+const DatePickerContainer = styled.div`
+  display: flex;
+  position: relative;
+`

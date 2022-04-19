@@ -40,6 +40,7 @@ export const FiltersList = ({
             handleSubmit,
             setFieldValue,
           }) => {
+            const selectedCommand = state.commands.list.find(el => el.id == +values.commandId)
             const selectedCommissariat = state.commissariats.list.find(el => el.id === +values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === +values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === +values.healthStatusId)
@@ -74,6 +75,20 @@ export const FiltersList = ({
                     onChange={(val) => setFieldValue('fathername', val)}
                     onEnter={handleSubmit}
                   />
+                  <S.FormItem>
+                  <Select
+                      value={selectedCommand ? {
+                        value: selectedCommand?.id,
+                        label: selectedCommand?.name
+                      } : null}
+                      options={state.commands.list.map(command => ({
+                        value: command.id,
+                        label: command.name
+                      }))}
+                      placeholder='Հրաման'
+                      onChange={(val) => setFieldValue('commandId', val?.value)}
+                    />
+                  </S.FormItem>
                   <FormLabelItem label='Գրանցման հասցե'>
                     <Select
                       value={selectedRegistrationRegion ? {
@@ -85,7 +100,7 @@ export const FiltersList = ({
                         label: region.name
                       }))}
                       placeholder='Մարզ'
-                      onChange={(val) => setFieldValue('registrationRegionId', val.value)}
+                      onChange={(val) => setFieldValue('registrationRegionId', val?.value)}
                     />
                     <Select
                       value={selectedRegistrationCommunity ? {
@@ -97,7 +112,7 @@ export const FiltersList = ({
                         label: community.name
                       }))}
                       placeholder='Համայնք'
-                      onChange={(val) => setFieldValue('registrationCommunityId', val.value)}
+                      onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
                     />
                     <S.FormItem>
                       <Input
@@ -118,7 +133,7 @@ export const FiltersList = ({
                         label: region.name
                       }))}
                       placeholder='Մարզ'
-                      onChange={(val) => setFieldValue('residentRegionId', val.value)}
+                      onChange={(val) => setFieldValue('residentRegionId', val?.value)}
                     />
                     <Select
                       value={selectedResidentCommunity ? {
@@ -130,7 +145,7 @@ export const FiltersList = ({
                         label: community.name
                       }))}
                       placeholder='Համայնք'
-                      onChange={(val) => setFieldValue('residentCommunityId', val.value)}
+                      onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
                     />
                     <S.FormItem>
                       <Input
@@ -168,7 +183,7 @@ export const FiltersList = ({
                       label: citizenship.country
                     }))}
                     placeholder='Քաղաքացիություն'
-                    onChange={(val) => setFieldValue('citizenshipId', val.value)}
+                    onChange={(val) => setFieldValue('citizenshipId', val?.value)}
                   />
                   <Select
                     value={selectedNationality ? {
@@ -180,7 +195,7 @@ export const FiltersList = ({
                       label: nationality.name
                     }))}
                     placeholder='Ազգություն'
-                    onChange={(val) => setFieldValue('nationalityId', val.value)}
+                    onChange={(val) => setFieldValue('nationalityId', val?.value)}
                   />
                   <Select
                     value={selectedProfession ? {
@@ -192,7 +207,7 @@ export const FiltersList = ({
                       label: profession.name
                     }))}
                     placeholder='Մասնագիտություն'
-                    onChange={(val) => setFieldValue('professionId', val.value)}
+                    onChange={(val) => setFieldValue('professionId', val?.value)}
                   />
                   <Select
                     value={selectedHealthStatus ? {
@@ -204,7 +219,7 @@ export const FiltersList = ({
                       label: healthStatus.status
                     }))}
                     placeholder='Առողջական վիճակ'
-                    onChange={(val) => setFieldValue('healthStatusId', val.value)}
+                    onChange={(val) => setFieldValue('healthStatusId', val?.value)}
                   />
                   <Select
                     value={selectedStatus ? {
@@ -216,7 +231,7 @@ export const FiltersList = ({
                       label: status.name
                     }))}
                     placeholder='Կարգավիճակ'
-                    onChange={(val) => setFieldValue('statusId', val.value)}
+                    onChange={(val) => setFieldValue('statusId', val?.value)}
                   />
                   <Select
                     value={selectedCommissariat ? {
@@ -228,7 +243,7 @@ export const FiltersList = ({
                       label: commissariat.name
                     }))}
                     placeholder='Զինկոմիսարիատ'
-                    onChange={(val) => setFieldValue('commissariatId', val.value)}
+                    onChange={(val) => setFieldValue('commissariatId', val?.value)}
                   />
                 </S.List>
                 <S.ActionsContainer>

@@ -40,8 +40,7 @@ export const editStudent = (values) => async dispatch => {
 
   try {
     await HttpService.put(`student/${studentId}`, {
-      ...parsedValues,
-      dateOfBirth: (new Date()).toISOString(),
+      ...parsedValues,      
       contactNumbers: Array.isArray(parsedValues.contactNumbers)
         ? parsedValues.contactNumbers
         : parsedValues.contactNumbers.split(',').map(el => el.trim()),
@@ -68,7 +67,6 @@ export const createStudent = (values) => async dispatch => {
   try {
     const createdStudent = await HttpService.post('student', {
       ...values,
-      dateOfBirth: (new Date()).toISOString(),
       contactNumbers: values.contactNumbers.split(',').map(el => el.trim()),
       dateOfAcceptance: (new Date()).toISOString(),
       currentGroup: +values.currentGroup,

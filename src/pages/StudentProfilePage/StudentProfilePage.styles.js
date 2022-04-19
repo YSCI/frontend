@@ -50,7 +50,7 @@ export const MainInfoContainer = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
-  width: 280px;
+  min-width: 265px;
   padding: 20px;
   min-height: 500px;
   height: min-content;

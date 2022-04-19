@@ -50,7 +50,7 @@ export const FiltersList = ({ loadCommands, statusesList, hideModal }) => {
                       label: status.name
                     }))}
                     placeholder='Փոփոխելի կարգավիճակ'
-                    onChange={(val) => setFieldValue('changeableStatusId', val.value)}
+                    onChange={(val) => setFieldValue('changeableStatusId', val?.value)}
                   />
                 </S.List>
                 <S.ActionsContainer>

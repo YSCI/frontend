@@ -52,7 +52,7 @@ export const tableColumns = {
     },
     {
       Header: 'Ընդունման ամսաթիվ',
-      accessor: ({ dateOfAcceptance }) => moment(dateOfAcceptance).format('DD/MM/YYYY HH:MM')
+      accessor: ({ dateOfAcceptance }) => moment(dateOfAcceptance).format('DD/MM/YYYY')
     },
     {
       Header: 'Ընդունման հրամանի համար',
@@ -181,6 +181,13 @@ export const tableColumns = {
     {
       Header: 'Անվանում',
       accessor: 'name'
+    },
+    {
+      Header: 'Փոփոխելի դաշտեր',
+      accessor: ({ changeableColumns = {} }) => Object.keys(changeableColumns || {})
+        .map(column => tableColumns.students.find(el => el.accessor.split?.('.')[0] === column.replaceAll('Id', ''))?.Header)
+        .filter(el => el)
+        .join(', ')
     }
   ],
   commandHistory: [

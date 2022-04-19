@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 
 import * as S from './CommandForm.styles'
 import closeIcon from 'images/close.png'
-import { Input, Button, Select } from 'ui'
+import { Input, Button } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommandForm.config'
 import { FieldsForm } from '../FieldsForm'
@@ -10,19 +10,13 @@ import { FieldsForm } from '../FieldsForm'
 export const CommandForm = (props) => {
   const {
     hideModal,
-    editCommand,
-    createCommand,
-    editableData,
-    loadStatuses,
     showModal,
-    statuses,
     formValues,
+    editCommand,
+    editableData,
+    createCommand,
     changeableFields
   } = props
-
-  useEffect(() => {
-    loadStatuses()
-  }, [loadStatuses])
 
   const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
@@ -30,7 +24,6 @@ export const CommandForm = (props) => {
   , [editableData])
 
   const onSubmit = (values) => {
-    console.log('here')
     if (editableData) {
       editCommand({ ...values, changeableColumns: changeableFields})
     } else {
@@ -38,7 +31,7 @@ export const CommandForm = (props) => {
     }
     hideModal()
   }
-  console.log({ formValues, changeableFields })
+ 
   return (
     <S.CommandFormContainer>
       <S.FormHeaderContainer>
@@ -62,8 +55,6 @@ export const CommandForm = (props) => {
             handleSubmit,
             setFieldValue
           }) => {
-            const selectedStatus = statuses.list.find(status => status.id === values.changeableStatusId)
-
             return (
               <S.FormContentContainer>
                 <S.FormItem>
@@ -78,33 +69,16 @@ export const CommandForm = (props) => {
                         { errors.name }
                       </S.ErrorMessage>
                   }
-                </S.FormItem>
                 <S.FormItem>
-                  {/* <Select
-                    value={selectedStatus ? {
-                      value: selectedStatus.id,
-                      label: selectedStatus.name
-                    } : null}
-                    options={statuses.list.map(status => ({
-                      value: status.id,
-                      label: status.name
-                    }))}
-                    placeholder='Փոփոխելի կարգավիճակ'
-                    onChange={(val) => {
-                      setFieldValue('status', statuses.list.find(status => status.id === val.value))
-                      setFieldValue('changeableStatusId', val.value)
-                    }}
-
-                  />
-                  {
-                    errors.changeableStatusId && touched.changeableStatusId &&
-                      <S.ErrorMessage>
-                        { errors.changeableStatusId }
-                      </S.ErrorMessage>
-                  } */}
-                  <Button onClick={() => showModal(FieldsForm, { commandFormProps: props, editableData: editableData?.changeableColumns })}>
+                  <Button onClick={() => showModal(FieldsForm,
+                    {
+                      commandFormProps: props,
+                      editableData: editableData?.changeableColumns
+                    }
+                  )}>
                     Փոփոխելի դաշտեր
                   </Button>
+                </S.FormItem>
                 </S.FormItem>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>

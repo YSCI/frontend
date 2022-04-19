@@ -232,7 +232,7 @@ export const Table = ({
       <S.PaginationContainer>
         <S.PaginationInfoContainer hasActionsBar={hasActionsBar}>
             <S.TotalCount>
-              Ընդհանուր 50 գրառում
+              Ընդհանուր { data.length } գրառում
             </S.TotalCount>
           <S.PaginationActionsContainer>
             <Button onClick={prevPage} className={cx('main', { disable: currentPage === 1})}>

@@ -54,7 +54,7 @@ export const FiltersList = ({ hideModal, loadCommunities, loadRegions, regionsLi
                       label: region.name
                     }))}
                     placeholder='Մարզ'
-                    onChange={(val) => setFieldValue('regionId', val.value)}
+                    onChange={(val) => setFieldValue('regionId', val?.value)}
                   />
                 </S.List>
                 <S.ActionsContainer>

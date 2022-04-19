@@ -43,7 +43,7 @@ export const students = (state = initialState, action) => {
         ...state,
         list: state.list.map(student => {
           if (!action.command.studentIds.includes(student.id)) return student
-          console.log(action.command.selectedCommand.changeableColumns)
+
           return {
             ...student,
             ...action.command.selectedCommand.changeableColumns

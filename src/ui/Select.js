@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactSelect from 'react-select'
+import { withTheme } from 'styled-components';
 
-const colourStyles = {
+const colourStyles = (theme) => ({
   control: (styles, { isFocused, menuIsOpen }) => ({
     ...styles,
     backgroundColor: 'white',
@@ -17,12 +18,26 @@ const colourStyles = {
   }),
   menuList: (styles) => ({
     ...styles,
-    zIndex: '100'
+    zIndex: '100',
+    '::-webkit-scrollbar': {
+      width: '7px'
+    },
+    '::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 5px #eeeeee',
+      borderRadius: "10px"
+    },
+    '::-webkit-scrollbar-thumb': {
+      background: theme.colors.green,
+      borderRadius: '10px'
+    },
+    '::-webkit-scrollbar-thumb:hover': {
+      background: theme.colors.lightGreen
+    }
   }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  option: (styles, { isDisabled, isSelected }) => {
     return {
       ...styles,
-      cursor: isDisabled ? 'not-allowed' : 'default',
+      cursor: isDisabled ? 'not-allowed' : 'pointer',
       backgroundColor: isSelected ? 'rgba(8,115,112,0.50)' : '#fff',
       zIndex: '20',
       ':hover': {
@@ -35,12 +50,17 @@ const colourStyles = {
     };
   },
   input: (styles) => ({ ...styles }),
-  placeholder: (styles) => ({ ...styles, fontSize: '14px' }),
+  placeholder: (styles) => ({
+    ...styles,
+    fontSize: '14px',
+    color: theme.colors.lightGray
+  }),
   singleValue: (styles) => ({ ...styles, fontFamily: 'Arial', fontSize: '14px' }),
-};
+})
 
 
-export const Select = ({
+export const Select = withTheme(({
+  theme,
   options,
   ...rest
 }) => {
@@ -48,8 +68,9 @@ export const Select = ({
     <ReactSelect
       {...rest}
       options={options}
-      styles={colourStyles}
+      isClearable={true}
       className='React-Select'
+      styles={colourStyles(theme)}
     />
   )
-}
+})
