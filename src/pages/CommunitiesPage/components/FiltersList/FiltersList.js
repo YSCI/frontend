@@ -12,7 +12,7 @@ export const FiltersList = ({ hideModal, loadCommunities, loadRegions, regionsLi
 
   useEffect(() => {
     loadRegions()
-  }, [])
+  }, [loadRegions])
 
   const search = (values) => {
     hideModal()

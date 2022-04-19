@@ -89,6 +89,10 @@ export const ButtonsContainer = styled.div`
 export const FormRow = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   flex: 1;
+
+  .FormLabelItem {
+    gap: 15px;
+  }
 `
