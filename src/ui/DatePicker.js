@@ -12,6 +12,7 @@ export const DatePicker = withTheme(({
   date,
   theme,
   onChange,
+  placeholder,
   ...rest
 }) => {
   const onSelectDate = (date) => {
@@ -30,13 +31,20 @@ export const DatePicker = withTheme(({
         onChange={onSelectDate}
         format={'DD/MM/YYYY'}
         className='DatePicker'
+        placeholder={placeholder}
         primaryColor={theme.colors.green}
       />
       {
         date &&
           <ClearDateContainer onClick={() => onSelectDate(null)}>
-            <img src={closeIcon} />
+            <img alt='clear' src={closeIcon} />
           </ClearDateContainer>
+      }
+      {
+        date &&
+          <Placeholder>
+            { placeholder }
+          </Placeholder>
       }
     </DatePickerContainer>
   )
@@ -45,6 +53,16 @@ export const DatePicker = withTheme(({
 DatePicker.defaultProps = {
   onChange: () => {}
 }
+
+const Placeholder = styled.div`
+  position: absolute;
+  background: #fff;
+  font-size: 13px;
+  top: -10px;
+  left: 10px;
+  color: #B8BCCA;
+  font-weight: 500;
+`
 
 const ClearDateContainer = styled(CenteredFlex)`
   width: 35px;

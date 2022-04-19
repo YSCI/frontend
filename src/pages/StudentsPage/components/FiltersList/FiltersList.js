@@ -13,13 +13,15 @@ export const FiltersList = ({
   state,
   hideModal,
   loadAllData,
+  loadCommands,
   loadStudents
 }) => {
   const [searchParams, updateSearchParams] = useSearchParams()
 
   useEffect(() => {
     loadAllData()
-  }, [loadAllData])
+    loadCommands()
+  }, [loadAllData, loadCommands])
 
   const search = (values) => {
     loadStudents(values)
@@ -40,7 +42,7 @@ export const FiltersList = ({
             handleSubmit,
             setFieldValue,
           }) => {
-            const selectedCommand = state.commands.list.find(el => el.id == +values.commandId)
+            const selectedCommand = state.commands.list.find(el => el.id === +values.commandId)
             const selectedCommissariat = state.commissariats.list.find(el => el.id === +values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === +values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === +values.healthStatusId)

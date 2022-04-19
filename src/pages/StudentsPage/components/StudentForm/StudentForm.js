@@ -324,22 +324,22 @@ export const StudentForm = ({
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
-                    <S.FormItem>
-                        <Input
-                          value={values.contactNumbers}
-                          placeholder='Հեռախոսահամարներ, (անջատել ստորակետերով)'
-                          onChange={(val) => setFieldValue('contactNumbers', val)}
-                        />
-                        {
-                          errors.contactNumbers && touched.contactNumbers &&
-                            <S.ErrorMessage>
-                              { errors.contactNumbers }
-                            </S.ErrorMessage>
-                        }
-                      </S.FormItem>
                   </S.FormRow>
                   <S.FormRow>
-                  <FormLabelItem label='Գրանցման հասցե'>
+                    <S.FormItem>
+                      <Input
+                        value={values.contactNumbers}
+                        placeholder='Հեռախոսահամարներ'
+                        onChange={(val) => setFieldValue('contactNumbers', val)}
+                      />
+                      {
+                        errors.contactNumbers && touched.contactNumbers &&
+                          <S.ErrorMessage>
+                            { errors.contactNumbers }
+                          </S.ErrorMessage>
+                      }
+                    </S.FormItem>
+                    <FormLabelItem label='Գրանցման հասցե'>
                       <Select
                         value={selectedRegistrationRegion ? {
                           value: selectedRegistrationRegion?.id,

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactSelect from 'react-select'
-import { withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 const colourStyles = (theme) => ({
   control: (styles, { isFocused, menuIsOpen }) => ({
@@ -49,7 +49,7 @@ const colourStyles = (theme) => ({
       },
     };
   },
-  input: (styles) => ({ ...styles }),
+  input: (styles) => ({ ...styles, zIndex: 10 }),
   placeholder: (styles) => ({
     ...styles,
     fontSize: '14px',
@@ -61,16 +61,49 @@ const colourStyles = (theme) => ({
 
 export const Select = withTheme(({
   theme,
+  value,
   options,
+  placeholder,
   ...rest
 }) => {
   return (
-    <ReactSelect
-      {...rest}
-      options={options}
-      isClearable={true}
-      className='React-Select'
-      styles={colourStyles(theme)}
-    />
+    <SelectContainer>
+      {
+        value &&
+          <Placeholder>
+            { placeholder }
+          </Placeholder>
+      }
+      <ReactSelect
+        {...rest}
+        value={value}
+        placeholder={placeholder}
+        options={options}
+        isClearable={true}
+        className='React-Select'
+        styles={colourStyles(theme)}
+      />
+    </SelectContainer>
   )
 })
+
+const SelectContainer = styled.div`
+  position: relative;
+
+  > div > div > div{
+    &:last-child {
+      z-index: 10;
+    }
+  }
+`
+
+const Placeholder = styled.div`
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  font-size: 13px;
+  top: -10px;
+  left: 10px;
+  color: #B8BCCA;
+  font-weight: 500;
+`

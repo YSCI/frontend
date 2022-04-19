@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const Input = ({
-  onChange,
+  value,
   onEnter,
+  onChange,
+  placeholder,
   ...rest
 }) => {
   const onInputChange = e => {
@@ -15,13 +17,37 @@ export const Input = ({
   }
 
   return (
-    <StyledInput
-      {...rest}
-      onChange={onInputChange}
-      onKeyPress={handleKeypress}
-    />
+    <InputContainer>
+      {
+        value &&
+          <Placeholder>
+            { placeholder }
+          </Placeholder>
+      }
+      <StyledInput
+        {...rest}
+        value={value}
+        onChange={onInputChange}
+        onKeyPress={handleKeypress}
+        placeholder={!value ? placeholder : ''}
+      />
+    </InputContainer>
   )
 }
+
+const Placeholder = styled.div`
+  position: absolute;
+  background: #fff;
+  font-size: 13px;
+  top: -10px;
+  left: 10px;
+  color: #B8BCCA;
+  font-weight: 500;
+`
+
+const InputContainer = styled.div`
+  position: relative;
+`
 
 const StyledInput = styled.input`
   padding: 12px;
