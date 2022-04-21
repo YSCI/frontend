@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+import { validationMessages } from 'constants/validationMessages'
+
 export const initialValues = {
   status: '',
   lastname: '',
@@ -28,59 +30,79 @@ export const initialValues = {
 }
 
 export const validationSchema = Yup.object().shape({
-  firstname: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+  firstname: Yup.string(validationMessages.empty)
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   lastname: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   fathername: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   currentCourse: Yup.number()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   currentGroup: Yup.number()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   residentAddress: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  residentRegionId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),  
-  residentCommunityId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'), 
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  residentRegionId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),  
+  residentCommunityId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty), 
   registrationAddress: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  registrationRegionId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  registrationCommunityId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  registrationRegionId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  registrationCommunityId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   acceptanceCommandNumber: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   dateOfBirth: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   dateOfAcceptance: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  commissariatId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  commissariatId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   statusId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  healthStatusId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  professionId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  nationalityId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  citizenshipId: Yup.string()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  healthStatusId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  professionId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  nationalityId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  citizenshipId: Yup.number()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
   contactNumbers: Yup.number()	
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  socialCardNumber: Yup.string()                                                                        
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  socialCardNumber: Yup.string()
     .when('passportSeries', {                                                    
-    is: (passportSeries) => !passportSeries || passportSeries.length === 0,                      
-    then: Yup.string()  
-    .required('Դաշտը չի կարող դատարկ լինել')                 
-    }),                                                                  
-  passportSeries: Yup.string()                                                                       
-    .when('socialCardNumber', {                                                     
-    is: (socialCardNumber) => !socialCardNumber || socialCardNumber.length === 0,                         
+    is: (passportSeries) => !passportSeries || passportSeries.length === 0,
     then: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել')
-    })             
-
+    .required(validationMessages.empty)
+    }),
+  passportSeries: Yup.string()
+    .when('socialCardNumber', {                                                     
+    is: (socialCardNumber) => !socialCardNumber || socialCardNumber.length === 0,
+    then: Yup.string()
+    .required(validationMessages.empty)
+    })
 },  ['passportSeries', 'socialCardNumber']);

@@ -354,42 +354,46 @@ export const StudentForm = ({
                       }
                     </S.FormItem>
                     <FormLabelItem label='Գրանցման հասցե'>
-                      <Select
-                        value={selectedRegistrationRegion ? {
-                          value: selectedRegistrationRegion?.id,
-                          label: selectedRegistrationRegion?.name
-                        } : null}
-                        options={state.regions.list.map(region => ({
-                          value: region.id,
-                          label: region.name
-                        }))}
-                        placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('registrationRegionId', val?.value)}
-                      />
-                      {
-                        errors.registrationRegionId && touched.registrationRegionId &&
-                          <S.ErrorMessage>
-                            { errors.registrationRegionId }
-                          </S.ErrorMessage>
-                      }
-                      <Select
-                        value={selectedRegistrationCommunity ? {
-                          value: selectedRegistrationCommunity?.id,
-                          label: selectedRegistrationCommunity?.name
-                        } : null}
-                        options={selectedRegistrationRegion?.communities.map(community => ({
-                          value: community.id,
-                          label: community.name
-                        }))}
-                        placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
-                      />
-                      {
-                        errors.registrationCommunityId && touched.registrationCommunityId &&
-                          <S.ErrorMessage>
-                            { errors.registrationCommunityId }
-                          </S.ErrorMessage>
-                      }
+                      <S.FormItem>
+                        <Select
+                          value={selectedRegistrationRegion ? {
+                            value: selectedRegistrationRegion?.id,
+                            label: selectedRegistrationRegion?.name
+                          } : null}
+                          options={state.regions.list.map(region => ({
+                            value: region.id,
+                            label: region.name
+                          }))}
+                          placeholder='Մարզ'
+                          onChange={(val) => setFieldValue('registrationRegionId', val?.value)}
+                        />
+                        {
+                          errors.registrationRegionId && touched.registrationRegionId &&
+                            <S.ErrorMessage>
+                              { errors.registrationRegionId }
+                            </S.ErrorMessage>
+                        }
+                      </S.FormItem>
+                      <S.FormItem>
+                        <Select
+                          value={selectedRegistrationCommunity ? {
+                            value: selectedRegistrationCommunity?.id,
+                            label: selectedRegistrationCommunity?.name
+                          } : null}
+                          options={selectedRegistrationRegion?.communities.map(community => ({
+                            value: community.id,
+                            label: community.name
+                          }))}
+                          placeholder='Համայնք'
+                          onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
+                        />
+                        {
+                          errors.registrationCommunityId && touched.registrationCommunityId &&
+                            <S.ErrorMessage>
+                              { errors.registrationCommunityId }
+                            </S.ErrorMessage>
+                        }
+                      </S.FormItem>
                       <S.FormItem>
                         <Input
                           value={values.registrationAddress}
@@ -405,42 +409,46 @@ export const StudentForm = ({
                       </S.FormItem>
                     </FormLabelItem>
                     <FormLabelItem label='Բնակության հասցե'>
-                      <Select
-                        value={selectedResidentRegion ? {
-                          value: selectedResidentRegion?.id,
-                          label: selectedResidentRegion?.name
-                        } : null}
-                        options={state.regions.list.map(region => ({
-                          value: region.id,
-                          label: region.name
-                        }))}
-                        placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('residentRegionId', val?.value)}
-                      />
-                      {
-                        errors.residentRegionId && touched.residentRegionId &&
-                          <S.ErrorMessage>
-                            { errors.residentRegionId }
-                          </S.ErrorMessage>
-                      }
-                      <Select
-                        value={selectedResidentCommunity ? {
-                          value: selectedResidentCommunity?.id,
-                          label: selectedResidentCommunity?.name
-                        } : null}
-                        options={selectedResidentRegion?.communities.map(community => ({
-                          value: community.id,
-                          label: community.name
-                        }))}
-                        placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
-                      />
-                      {
-                        errors.residentCommunityId && touched.residentCommunityId &&
-                          <S.ErrorMessage>
-                            { errors.residentCommunityId }
-                          </S.ErrorMessage>
-                      }
+                      <S.FormItem>
+                        <Select
+                          value={selectedResidentRegion ? {
+                            value: selectedResidentRegion?.id,
+                            label: selectedResidentRegion?.name
+                          } : null}
+                          options={state.regions.list.map(region => ({
+                            value: region.id,
+                            label: region.name
+                          }))}
+                          placeholder='Մարզ'
+                          onChange={(val) => setFieldValue('residentRegionId', val?.value)}
+                        />
+                        {
+                          errors.residentRegionId && touched.residentRegionId &&
+                            <S.ErrorMessage>
+                              { errors.residentRegionId }
+                            </S.ErrorMessage>
+                        }
+                      </S.FormItem>
+                      <S.FormItem>
+                        <Select
+                          value={selectedResidentCommunity ? {
+                            value: selectedResidentCommunity?.id,
+                            label: selectedResidentCommunity?.name
+                          } : null}
+                          options={selectedResidentRegion?.communities.map(community => ({
+                            value: community.id,
+                            label: community.name
+                          }))}
+                          placeholder='Համայնք'
+                          onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
+                        />
+                        {
+                          errors.residentCommunityId && touched.residentCommunityId &&
+                            <S.ErrorMessage>
+                              { errors.residentCommunityId }
+                            </S.ErrorMessage>
+                        }
+                      </S.FormItem>
                       <S.FormItem>
                         <Input
                           value={values.residentAddress}
