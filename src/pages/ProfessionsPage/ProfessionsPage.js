@@ -7,12 +7,16 @@ import { FiltersList } from './components/FiltersList'
 import { tableColumns } from 'constants/tableColumns'
 import * as S from './ProfessionsPage.styles'
 import { ProfessionForm } from './components/ProfessionForm'
+import { SubjectForm } from './components/SubjectForm'
 
 export const ProfessionsPage = ({
   professions,
+  deleteSubject,
   deleteProfession,
-  loadProfessions
+  loadProfessions,
+  loadProfessionSubjects
 }) => {
+
   return (
     <Layout>
       <S.ProfessionsPageContainer>
@@ -22,6 +26,13 @@ export const ProfessionsPage = ({
           onDelete={deleteProfession}
           FormComponent={ProfessionForm}
           FilterComponent={FiltersList}
+          SubComponent={({ row }) => <Table
+            data={row.original.subjects?.list}
+            loadData={() => loadProfessionSubjects(row.original.id)}
+            onDelete={deleteSubject}
+            FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
+            columns={tableColumns.subjects}
+          />}
           columns={tableColumns.profession}
         />
       </S.ProfessionsPageContainer>

@@ -9,11 +9,13 @@ export const FormLabelItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: calc(100% - 34px);
 `
 
 export const Label = styled.div`
   position: absolute;
   // z-index: 1;
+  white-space: pre;
   background: #fff;
   font-size: 13px;
   top: -12px;

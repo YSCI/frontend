@@ -17,6 +17,16 @@ export const tableColumns = {
       accessor: 'username'
     }
   ],
+  groups: [
+    {
+      Header: 'Համար',
+      accessor: 'number'
+    },
+    {
+      Header: 'Մասնագիտություն',
+      accessor: 'profession.name'
+    }
+  ],
   students: [
     {
       Header: 'Անձնական էջ',
@@ -89,6 +99,12 @@ export const tableColumns = {
     {
       Header: 'Զինկոմիսարիատ',
       accessor: 'commissariat.name'
+    }
+  ],
+  subjects: [
+    {
+      Header: 'Անվանում',
+      accessor: 'name'
     }
   ],
   profession: [
