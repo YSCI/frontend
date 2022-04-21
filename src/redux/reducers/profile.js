@@ -4,7 +4,12 @@ import { STUDENTS_TYPES } from 'redux/types/students'
 
 const initialState = {
   loaded: false,
-  data: null
+  data: {
+    commandHistory: {
+      list: [],
+      total: 0
+    }
+  }
 }
 
 export const profile = (state = initialState, action) => {
@@ -12,7 +17,14 @@ export const profile = (state = initialState, action) => {
     case PROFILE_TYPES.LOAD_PROFILE:
       return {
         ...state,
-        data: action.data
+        loaded: true,
+        data: {
+          ...action.data,
+          commandHistory: {
+            list: [],
+            total: 0
+          }
+        }
       }
     case PROFILE_TYPES.LOAD_COMMANDS_HISTORY:
       return {

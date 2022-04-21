@@ -14,6 +14,7 @@ import { tableColumns } from 'constants/tableColumns'
 
 
 export const StudentProfilePage = ({
+  loaded,
   showModal,
   profileData,
   loadProfile,
@@ -26,7 +27,7 @@ export const StudentProfilePage = ({
     loadProfile(history.location.search+studentId)
   }, [studentId, loadProfile])
 
-  if (!profileData) return null;
+  if (!loaded) return null;
 
   const onEditStudent = () => {
     showModal(StudentForm, { editableData: profileData })

@@ -6,7 +6,8 @@ import { deleteStudent } from 'redux/actions/students'
 import { StudentProfilePage as Self } from './StudentProfilePage'
 
 const mapStateToProps = ({ profile }) => ({
-  profileData: profile.data
+  profileData: profile.data,
+  loaded: profile.loaded
 })
 
 const mapDispatchToProps = {
