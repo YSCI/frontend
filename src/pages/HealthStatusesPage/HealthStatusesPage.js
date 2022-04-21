@@ -17,6 +17,7 @@ export const HealthStatusesPage = ({
       <S.HealthStatusesPageContainer>
         <Table
           data={healthStatuses.list}
+          total={healthStatuses.total}
           loadData={loadHealthStatuses}
           onDelete={deleteHealthStatus}
           FormComponent={HealthStatusForm}

@@ -18,6 +18,7 @@ export const PrivilegesPage = ({
       <S.PrivilegesPageContainer>
         <Table
           data={privileges.list}
+          total={privileges.total}
           loadData={loadPrivileges}
           onDelete={deletePrivilege}
           FormComponent={PrivilegeForm}

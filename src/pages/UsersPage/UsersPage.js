@@ -19,6 +19,7 @@ export const UsersPage = ({
       <S.UsersPageContainer>
         <Table
           data={users.list}
+          total={users.total}
           loadData={loadUsers}
           onDelete={deleteUser}
           FormComponent={UserForm}

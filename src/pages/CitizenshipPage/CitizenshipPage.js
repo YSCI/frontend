@@ -18,6 +18,7 @@ export const CitizenshipPage = ({
       <S.CitizenshipPageContainer>
         <Table
           data={citizenships.list}
+          total={citizenships.total}
           loadData={loadCitizenships}
           onDelete={deleteCitizenship}
           FormComponent={CitizenshipForm}

@@ -4,11 +4,12 @@ import { PROFILE_TYPES } from 'redux/types/profile'
 
 export const loadProfileCommandsHistory = (search) => async dispatch => {
   try {
-    const commandHistory = await HttpService.get(`command-history`, search)
+    const { data, total } = await HttpService.get(`command-history`, search)
 
     dispatch({
       type: PROFILE_TYPES.LOAD_COMMANDS_HISTORY,
-      data: commandHistory
+      data,
+      total
     })
   } catch (ex) {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)

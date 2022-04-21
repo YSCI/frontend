@@ -6,11 +6,12 @@ import { HttpService } from 'services'
 
 export const loadRegions = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('region', search)
+    const { data, total } = await HttpService.get('region', search)
 
     dispatch({
       type: REGIONS_TYPES.LOAD_REGIONS,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error('Առաջացավ խնդիր')

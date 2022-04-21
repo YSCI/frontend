@@ -6,11 +6,12 @@ import { HttpService } from 'services'
 
 export const loadStatuses = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('status', search)
+    const { data, total } = await HttpService.get('status', search)
 
     dispatch({
       type: STATUSES_TYPES.LOAD_STATUSES,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error('Առաջացավ խնդիր')

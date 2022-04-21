@@ -19,7 +19,10 @@ export const profile = (state = initialState, action) => {
         ...state,
         data: {
           ...state.data,
-          commandHistory: action.data
+          commandHistory: {
+            list: action.data,
+            total: action.total
+          }
         }
       }
     case STUDENTS_TYPES.EDIT_STUDENT:

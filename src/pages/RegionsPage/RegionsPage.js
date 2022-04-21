@@ -18,6 +18,7 @@ export const RegionsPage = ({
         <Table
           data={regions.list}
           loadData={loadRegions}
+          total={regions.total}
           onDelete={deleteRegion}
           FormComponent={RegionForm}
           FilterComponent={FiltersList}

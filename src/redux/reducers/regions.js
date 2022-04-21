@@ -3,6 +3,7 @@ import { REGIONS_TYPES } from "redux/types/regions"
 
 const initialState = {
   loaded: false,
+  total: 0,
   list: []
 }
 
@@ -12,7 +13,8 @@ export const regions = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case REGIONS_TYPES.CREATE_REGION:
       return {

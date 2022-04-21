@@ -6,11 +6,12 @@ import { HttpService } from 'services'
 
 export const loadPrivileges = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('privilege', search)
+    const { data, total } = await HttpService.get('privilege', search)
 
     dispatch({
       type: PRIVILEGES_TYPES.LOAD_PRIVILEGES,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error('Առաջացավ խնդիր')

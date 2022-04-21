@@ -18,6 +18,7 @@ export const GroupsPage = ({
       <S.GroupsPageContainer>
         <Table
           data={groups.list}
+          total={groups.total}
           loadData={loadGroups}
           onDelete={deleteGroup}
           FormComponent={GroupForm}

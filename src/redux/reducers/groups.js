@@ -3,7 +3,8 @@ import { GROUPS_TYPES } from "redux/types/groups"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const groups = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const groups = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case GROUPS_TYPES.CREATE_GROUPS:
       return {

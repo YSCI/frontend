@@ -3,6 +3,7 @@ import { STATUSES_TYPES } from "redux/types/statuses"
 
 const initialState = {
   loaded: false,
+  total: 0,
   list: []
 }
 
@@ -12,7 +13,8 @@ export const statuses = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case STATUSES_TYPES.CREATE_STATUS:
       return {

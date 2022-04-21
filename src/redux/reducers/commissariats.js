@@ -3,7 +3,8 @@ import { COMMISSARIATS_TYPES } from "redux/types/commissariats"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0,
 }
 
 export const commissariats = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const commissariats = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case COMMISSARIATS_TYPES.CREATE_COMMISSARIAT:
       return {

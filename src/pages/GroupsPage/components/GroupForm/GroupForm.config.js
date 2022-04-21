@@ -11,4 +11,5 @@ export const validationSchema = Yup.object().shape({
     .required('Դաշտը չի կարող դատարկ լինել'),
   professionId: Yup.number()
     .required('Դաշտը չի կարող դատարկ լինել')
+    .typeError('Դաշտը չի կարող դատարկ լինել')
 });

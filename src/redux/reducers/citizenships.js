@@ -3,7 +3,8 @@ import { CITIZENSHIPS_TYPES } from "redux/types/citizenships"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const citizenships = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const citizenships = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case CITIZENSHIPS_TYPES.CREATE_CITIZENSHIP:
       return {

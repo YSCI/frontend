@@ -20,11 +20,12 @@ export const assignCommand = (values) => async dispatch => {
 
 export const loadCommands = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('command', search)
+    const { data, total } = await HttpService.get('command', search)
 
     dispatch({
       type: COMMANDS_TYPES.LOAD_COMMANDS,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)

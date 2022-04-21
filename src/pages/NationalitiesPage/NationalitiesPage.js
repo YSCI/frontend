@@ -18,6 +18,7 @@ export const NationalitiesPage = ({
       <S.NationalitiesPageContainer>
         <Table
           data={nationalities.list}
+          total={nationalities.total}
           loadData={loadNationalities}
           onDelete={deleteNationality}
           FormComponent={NationalityForm}

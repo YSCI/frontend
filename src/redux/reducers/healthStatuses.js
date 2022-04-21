@@ -3,7 +3,8 @@ import { HEALTH_STATUSES_TYPES } from "redux/types/healthStatuses"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const healthStatuses = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const healthStatuses = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case HEALTH_STATUSES_TYPES.CREATE_HEALTH_STATUS:
       return {

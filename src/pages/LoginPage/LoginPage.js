@@ -31,7 +31,6 @@ export const LoginPage = ({
               <>
                 <S.FormItem>
                   <Input
-                    autoFocus
                     value={values.username}
                     placeholder='Մուտքանուն'
                     onChange={(val) => setFieldValue('username', val)}

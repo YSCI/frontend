@@ -6,11 +6,12 @@ import { HttpService } from 'services'
 
 export const loadCommunities = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('community', search)
+    const { data, total } = await HttpService.get('community', search)
 
     dispatch({
       type: COMMUNITIES_TYPES.LOAD_COMMUNITIES,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error('Առաջացավ խնդիր')

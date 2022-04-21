@@ -3,7 +3,8 @@ import { COMMANDS_TYPES } from "redux/types/commands"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const commands = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const commands = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case COMMANDS_TYPES.CREATE_COMMAND:
       return {

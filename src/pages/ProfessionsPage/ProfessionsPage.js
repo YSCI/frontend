@@ -9,6 +9,7 @@ import * as S from './ProfessionsPage.styles'
 import { ProfessionForm } from './components/ProfessionForm'
 import { SubjectForm } from './components/SubjectForm'
 
+
 export const ProfessionsPage = ({
   professions,
   deleteSubject,
@@ -23,11 +24,12 @@ export const ProfessionsPage = ({
         <Table
           data={professions.list}
           loadData={loadProfessions}
+          total={professions.total}
           onDelete={deleteProfession}
           FormComponent={ProfessionForm}
           FilterComponent={FiltersList}
           SubComponent={({ row }) => <Table
-            data={row.original.subjects?.list}
+            data={professions.list.find(el => el.id === row.original.id)?.subjects || []}
             loadData={() => loadProfessionSubjects(row.original.id)}
             onDelete={deleteSubject}
             FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}

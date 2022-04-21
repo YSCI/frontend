@@ -6,7 +6,7 @@ import { PROFESSIONS_TYPES } from 'redux/types/professions'
 
 export const loadProfessionSubjects = (professionId) => async dispatch => {
   try {
-    const data = await HttpService.get(`subject`, { professionId })
+    const { data } = await HttpService.get(`subject`, { professionId })
 
     dispatch ({
       type: PROFESSIONS_TYPES.LOAD_PROFESSION_SUBJECTS,
@@ -63,11 +63,12 @@ export const editSubject = (subject) => async dispatch => {
 
 export const loadProfessions = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('profession', search)
+    const { data, total } = await HttpService.get('profession', search)
 
     dispatch({
       type: PROFESSIONS_TYPES.LOAD_PROFESSIONS,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)

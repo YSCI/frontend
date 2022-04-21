@@ -3,7 +3,8 @@ import { PROFESSIONS_TYPES } from "redux/types/professions"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const professions = (state = initialState, action) => {
@@ -14,24 +15,29 @@ export const professions = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list.map(el => ({ ...el, subjects: [] }))
+        list: action.list.map(el => ({ ...el, subjects: [] })),
+        total: action.total
       }
     case PROFESSIONS_TYPES.LOAD_PROFESSION_SUBJECTS:
-      professionIndex = state.list.find(prof => prof.id === action.professionId)
-
-      return {
-        ...state,
-        list: [
-          ...state.list.slice(0, professionIndex),
-          {
-            ...state.list[professionIndex],
-            subjects: action.subjects
-          },
-          ...state.list.slice(professionIndex + 1)
-        ]
+      professionIndex = state.list.findIndex(prof => prof.id === action.professionId)
+      state.list[professionIndex] = {
+        ...state.list[professionIndex],
+        subjects: action.subjects
       }
+      return {...state}
+      // return {
+      //   ...state,
+      //   list: [
+      //     ...state.list.slice(0, professionIndex),
+      //     {
+      //       ...state.list[professionIndex],
+      //       subjects: action.subjects
+      //     },
+      //     ...state.list.slice(professionIndex + 1)
+      //   ]
+      // }
     case PROFESSIONS_TYPES.CREATE_SUBJECT:
-      professionIndex = state.list.find(prof => prof.id === action.data.professionId)
+      professionIndex = state.list.findIndex(prof => prof.id === action.data.professionId)
 
       return {
         ...state,
@@ -45,8 +51,8 @@ export const professions = (state = initialState, action) => {
         ]
       }
     case PROFESSIONS_TYPES.EDIT_SUBJECT:
-      professionIndex = state.list.find(prof => prof.id === action.data.professionId)
-      let subjectIndex = state.list[professionIndex].subjects.find(subject => subject.id === action.data.id)
+      professionIndex = state.list.findIndex(prof => prof.id === action.data.professionId)
+      let subjectIndex = state.list[professionIndex].subjects.findIndex(subject => subject.id === action.data.id)
 
       return {
         ...state,

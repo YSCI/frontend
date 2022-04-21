@@ -22,6 +22,7 @@ export const StudentsPage = ({
       <S.StudentsPageContainer>
         <Table
           data={students.list}
+          total={students.total}
           onDelete={deleteStudent}
           FormComponent={StudentForm}
           columns={tableColumns.students}

@@ -6,11 +6,12 @@ import { USERS_TYPES } from 'redux/types/users'
 
 export const loadUsers = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('user', search)
+    const { data, total } = await HttpService.get('user', search)
 
     dispatch({
       type: USERS_TYPES.LOAD_USERS,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error('Առաջացավ խնդիր')

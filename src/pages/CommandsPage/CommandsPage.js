@@ -18,6 +18,7 @@ export const CommandsPage = ({
       <S.CommandsPageContainer>
         <Table
           data={commands.list}
+          total={commands.total}
           loadData={loadCommands}
           onDelete={deleteCommand}
           FormComponent={CommandForm}

@@ -46,6 +46,7 @@ const IndeterminateCheckbox = React.forwardRef(
 
 export const Table = ({
   data,
+  total,
   columns,
   onDelete,
   loadData,
@@ -104,7 +105,7 @@ export const Table = ({
 
   const [currentPage, setCurrentPage] = useState(1)
 
-  const totalCount = 20 || data.length 
+  const totalCount = total || data.length 
   const pageCount = Math.ceil(totalCount / 6)
   const selectedFirstRow = selectedFlatRows[0]?.original
 
@@ -156,7 +157,7 @@ export const Table = ({
   }, [pageCount, currentPage, gotoPage])
 
   const tBodyRef = useRef(null)
-
+ 
   return (
     <S.TableContainer className='Table-Container' hasActionsBar={hasActionsBar}>
       <table {...getTableProps()} className='Table'>
@@ -196,6 +197,7 @@ export const Table = ({
                 <>
                   <tr
                     {...row.getRowProps()}
+                    key={row.original.id}
                     className={cx({ selected: row.isSelected })}
                     onClick={() => {
                       if (hasSelections) row.toggleRowSelected(!row.isSelected)

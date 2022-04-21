@@ -17,6 +17,7 @@ export const CommissariatsPage = ({
       <S.CommissariatsPageContainer>
         <Table
           data={commissariats.list}
+          total={commissariats.total}
           loadData={loadCommissariats}
           onDelete={deleteCommissariat}
           FormComponent={CommissariatForm}

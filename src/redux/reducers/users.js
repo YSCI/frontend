@@ -3,6 +3,7 @@ import { USERS_TYPES } from "redux/types/users"
 
 const initialState = {
   loaded: false,
+  total: 0,
   list: []
 }
 
@@ -12,7 +13,8 @@ export const users = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case USERS_TYPES.CREATE_USER:
       return {

@@ -95,7 +95,8 @@ export const StudentProfilePage = ({
                 <Table
                   hasActionsBar={false}
                   hasSelections={false}
-                  data={profileData.commandHistory}
+                  data={profileData.commandHistory.list}
+                  total={profileData.commandHistory.total}
                   loadData={(paging) => loadProfileCommandsHistory({ ...paging, studentId: profileData.id })}
                   columns={tableColumns.commandHistory}
                 />

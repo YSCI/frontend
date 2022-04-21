@@ -6,11 +6,12 @@ import { HttpService } from 'services'
 
 export const loadGroups = (search) => async dispatch => {
   try {
-    const data = await HttpService.get('group', search)
+    const { data, total } = await HttpService.get('group', search)
 
     dispatch({
       type: GROUPS_TYPES.LOAD_GROUPS,
-      list: data
+      list: data,
+      total
     })
   } catch (ex) {
     toast.error('Առաջացավ խնդիր')

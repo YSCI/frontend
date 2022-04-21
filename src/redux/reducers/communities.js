@@ -3,7 +3,8 @@ import { COMMUNITIES_TYPES } from "redux/types/communities"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const communities = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const communities = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case COMMUNITIES_TYPES.CREATE_COMMUNITY:
       return {

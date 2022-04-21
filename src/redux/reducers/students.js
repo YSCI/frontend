@@ -4,6 +4,7 @@ import { STUDENTS_TYPES } from "redux/types/students"
 
 const initialState = {
   loaded: false,
+  total: 0,
   list: []
 }
 
@@ -15,7 +16,8 @@ export const students = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case STUDENTS_TYPES.CREATE_STUDENT:
       return {

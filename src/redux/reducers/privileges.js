@@ -3,7 +3,8 @@ import { PRIVILEGES_TYPES } from "redux/types/privileges"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const privileges = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const privileges = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case PRIVILEGES_TYPES.CREATE_PRIVILEGE:
       return {

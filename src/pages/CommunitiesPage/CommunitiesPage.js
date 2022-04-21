@@ -19,6 +19,7 @@ export const CommunitiesPage = ({
         <Table
           data={communities.list}
           loadData={loadCommunities}
+          total={communities.total}
           onDelete={deleteCommunity}
           FormComponent={CommunityForm}
           FilterComponent={FiltersList}

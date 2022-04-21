@@ -3,7 +3,8 @@ import { NATIONALITIES_TYPES } from "redux/types/nationalities"
 
 const initialState = {
   loaded: false,
-  list: []
+  list: [],
+  total: 0
 }
 
 export const nationalities = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const nationalities = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list
+        list: action.list,
+        total: action.total
       }
     case NATIONALITIES_TYPES.CREATE_NATIONALITIES:
       return {
