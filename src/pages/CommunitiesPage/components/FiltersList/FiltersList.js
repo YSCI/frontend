@@ -43,6 +43,7 @@ export const FiltersList = ({ hideModal, loadCommunities, loadRegions, regionsLi
                     placeholder='Համայնք'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                   <Select
                     value={selectedRegion ? {

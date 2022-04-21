@@ -64,6 +64,7 @@ export const FiltersList = ({
                     placeholder='Անուն'
                     onChange={(val) => setFieldValue('firstname', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                   <Input
                     value={values.lastname}

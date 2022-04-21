@@ -71,6 +71,7 @@ export const FieldsForm = ({
                         placeholder='Անուն'
                         onChange={(val) => setFieldValue('firstname', val)}
                         onEnter={handleSubmit}
+                        autoFocus
                       />
                       {
                         errors.firstname && touched.firstname &&

@@ -37,6 +37,7 @@ export const FiltersList = ({ hideModal, loadHealthStatuses }) => {
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('status', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                 </S.List>
                 <S.ActionsContainer>

@@ -39,6 +39,7 @@ export const FiltersList = ({ loadCommands, statusesList, hideModal }) => {
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                   <Select
                     value={selectedStatus ? {

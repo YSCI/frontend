@@ -37,6 +37,7 @@ export const FiltersList = ({ hideModal, loadRegions }) => {
                     placeholder='Մարզ'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                 </S.List>
                 <S.ActionsContainer>

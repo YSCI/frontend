@@ -57,6 +57,7 @@ export const HealthStatusForm = ({
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('status', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                   {
                     errors.status && touched.status &&

@@ -1,11 +1,11 @@
 export const initialValues = {
-  firstname: '',
+  status: null,
   lastname: '',
+  firstname: '',
   fathername: '',
-  registrationAddress: '',
-  residentAddress: '',
-  acceptanceCommandNumber: '',
-  currentCourse: '',
   currentGroup: '',
-  status: null
+  currentCourse: '',
+  residentAddress: '',
+  registrationAddress: '',
+  acceptanceCommandNumber: ''
 }

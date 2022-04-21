@@ -62,6 +62,7 @@ export const CommandForm = (props) => {
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
+                    autoFocus
                   />
                   {
                     errors.name && touched.name &&

@@ -37,6 +37,7 @@ export const FiltersList = ({ loadStatuses, hideModal }) => {
                     placeholder='Կարգավիճակ'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                 </S.List>
                 <S.ActionsContainer>

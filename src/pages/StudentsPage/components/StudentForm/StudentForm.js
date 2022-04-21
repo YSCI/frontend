@@ -3,7 +3,7 @@ import { Formik } from 'formik'
 
 import closeIcon from 'images/close.png'
 import * as S from './StudentForm.styles'
-import { initialValues } from './StudentForm.config'
+import { initialValues, validationSchema } from './StudentForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
 import {
   Input,
@@ -50,6 +50,7 @@ export const StudentForm = ({
       </S.FormHeaderContainer>
       <Formik
         onSubmit={onSubmit}
+        validationSchema={validationSchema}
         initialValues={editableData || initialValues}
       >
         {
@@ -83,6 +84,7 @@ export const StudentForm = ({
                         placeholder='Անուն'
                         onChange={(val) => setFieldValue('firstname', val)}
                         onEnter={handleSubmit}
+                        autoFocus
                       />
                       {
                         errors.firstname && touched.firstname &&
@@ -163,7 +165,7 @@ export const StudentForm = ({
                     <S.FormItem>
                       <Input
                         value={values.socialCardNumber}
-                        placeholder='Սոցիալական քարտ'
+                        placeholder='Հանրային ծառայության համարանիշ'
                         onChange={(val) => setFieldValue('socialCardNumber', val)}
                         onEnter={handleSubmit}
                       />
@@ -191,19 +193,31 @@ export const StudentForm = ({
                   </S.FormRow>
                   <S.FormRow>
                     <S.FormItem>
-                        <DatePicker
-                          date={values.dateOfBirth}
-                          placeholder='Ծննդյան ամսաթիվ'
-                          onChange={(val) => setFieldValue('dateOfBirth', val)}
-                        />
-                      </S.FormItem>
-                      <S.FormItem>
-                        <DatePicker
-                          date={values.dateOfAcceptance}
-                          placeholder='Ընդունման ամսաթիվ'
-                          onChange={(val) => setFieldValue('dateOfAcceptance', val)}
-                        />
-                      </S.FormItem>
+                      <DatePicker
+                        date={values.dateOfBirth}
+                        placeholder='Ծննդյան ամսաթիվ'
+                        onChange={(val) => setFieldValue('dateOfBirth', val)}
+                      />
+                      {
+                        errors.dateOfBirth && touched.dateOfBirth &&
+                          <S.ErrorMessage>
+                            { errors.dateOfBirth }
+                          </S.ErrorMessage>
+                      }
+                    </S.FormItem>
+                    <S.FormItem>
+                      <DatePicker
+                        date={values.dateOfAcceptance}
+                        placeholder='Ընդունման ամսաթիվ'
+                        onChange={(val) => setFieldValue('dateOfAcceptance', val)}
+                      />
+                      {
+                        errors.dateOfAcceptance && touched.dateOfAcceptance &&
+                          <S.ErrorMessage>
+                            { errors.dateOfAcceptance }
+                          </S.ErrorMessage>
+                      }
+                    </S.FormItem>
                     <S.FormItem>
                       <Select
                         value={selectedCommissariat ? {

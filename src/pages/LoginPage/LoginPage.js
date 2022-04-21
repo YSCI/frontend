@@ -35,6 +35,7 @@ export const LoginPage = ({
                     placeholder='Մուտքանուն'
                     onChange={(val) => setFieldValue('username', val)}
                     onEnter = {handleSubmit}
+                    autoFocus
                   />
                   {
                     errors.username && touched.username &&

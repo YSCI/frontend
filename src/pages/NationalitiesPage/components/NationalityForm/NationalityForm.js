@@ -57,6 +57,7 @@ export const NationalityForm = ({
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                   {
                     errors.name && touched.name &&

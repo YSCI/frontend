@@ -37,6 +37,7 @@ export const FiltersList = ({ hideModal, loadNationalities }) => {
                     placeholder='Քաղաքացիություն'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                 </S.List>
                 <S.ActionsContainer>

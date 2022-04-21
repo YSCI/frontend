@@ -37,6 +37,7 @@ export const FiltersList = ({ loadProfessions, hideModal }) => {
                     placeholder='Մասնագիտություն'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                   <Input
                     value={values.abbreviation}

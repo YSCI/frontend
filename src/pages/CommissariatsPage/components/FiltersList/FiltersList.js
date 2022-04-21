@@ -38,6 +38,7 @@ export const FiltersList = ({ hideModal, loadCommissariats }) => {
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
+                    autoFocus
                   />
                   <Input
                     value={values.number}

@@ -12,6 +12,7 @@ import studentPic from 'images/student.png'
 import { StudentForm } from 'pages/StudentsPage/components/StudentForm'
 import { tableColumns } from 'constants/tableColumns'
 
+
 export const StudentProfilePage = ({
   showModal,
   profileData,

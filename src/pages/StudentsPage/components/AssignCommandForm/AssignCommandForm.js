@@ -58,7 +58,14 @@ export const AssignCommandForm = ({
                         placeholder='Հրամանի համար'
                         onChange={(val) => setFieldValue('commandNumber', val)}
                         onEnter={handleSubmit}
+                        autoFocus
                       />
+                      {
+                      errors.commandNumber && touched.commandNumber &&
+                        <S.ErrorMessage>
+                          { errors.commandNumber }
+                        </S.ErrorMessage>
+                    }
                   </S.FormItem>
                   <S.FormItem>
                     <DatePicker
@@ -66,6 +73,12 @@ export const AssignCommandForm = ({
                       placeholder='Հրամանի ամսաթիվ'
                       onChange={(val) => setFieldValue('affectDate', val)}
                     />
+                    {
+                      errors.affectDate && touched.affectDate &&
+                        <S.ErrorMessage>
+                          { errors.affectDate }
+                        </S.ErrorMessage>
+                    }
                   </S.FormItem>
                   <S.FormItem>
                     <Select
