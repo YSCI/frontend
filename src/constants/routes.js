@@ -1,5 +1,7 @@
 import { lazy } from 'react'
 
+const GroupsPage = lazy(() => import('pages/GroupsPage')
+  .then(module => ({ default: module.GroupsPage })))
 const ProfessionsPage = lazy(() => import('pages/ProfessionsPage')
   .then(module => ({ default: module.ProfessionsPage })))
 const UsersPage = lazy(() => import('pages/UsersPage')
@@ -113,5 +115,11 @@ export const routes = [
     path: '/communities',
     isProtected: true,
     component: CommunitiesPage
+  },
+  {
+    id: 15,
+    path: '/groups',
+    isProtected: true,
+    component: GroupsPage
   }
 ]

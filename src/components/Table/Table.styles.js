@@ -69,7 +69,7 @@ export const TableContainer = styled.div`
       height: 100%;
       min-height: 400px;
 
-      tr {
+      > tr {
         min-width: 100%;
         margin-top: 2px;
         cursor: pointer;

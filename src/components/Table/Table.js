@@ -1,12 +1,25 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useBlockLayout, useResizeColumns, useSortBy, useTable, useRowSelect } from 'react-table'
-import cx from 'classnames'
+import React, {
+  useMemo,
+  useState,
+  useEffect,
+  useCallback,
+  useRef
+} from 'react'
+import {
+  useTable,
+  useSortBy,
+  useExpanded,
+  useRowSelect,
+  useBlockLayout,
+  useResizeColumns
+} from 'react-table'
 import qs from 'qs'
+import cx from 'classnames'
 
 import { Button } from 'ui'
-import { withConfirmation } from 'helpers'
 import * as S from './Table.styles'
 import { history } from 'system/history'
+import { withConfirmation } from 'helpers'
 
 const defaultColumn = {
   minWidth: 100,
@@ -38,6 +51,7 @@ export const Table = ({
   loadData,
   showModal,
   columnConfig,
+  SubComponent,
   customActions,
   hasActionsBar,
   hasSelections,
@@ -50,7 +64,7 @@ export const Table = ({
     headerGroups,
     getTableProps,
     selectedFlatRows,
-    getTableBodyProps,
+    getTableBodyProps
   } = useTable(
     {
       data,
@@ -62,6 +76,7 @@ export const Table = ({
       }
     },
     useSortBy,
+    useExpanded,
     useRowSelect,
     useBlockLayout,
     useResizeColumns,
@@ -140,6 +155,8 @@ export const Table = ({
     return buttons
   }, [pageCount, currentPage, gotoPage])
 
+  const tBodyRef = useRef(null)
+
   return (
     <S.TableContainer className='Table-Container' hasActionsBar={hasActionsBar}>
       <table {...getTableProps()} className='Table'>
@@ -148,11 +165,8 @@ export const Table = ({
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                // Add the sorting props to control sorting. For this example
-                // we can add them into the header props
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
-                  {/* Add a sort direction indicator */}
                   <div
                     {...column.getResizerProps()}
                     onClick={(e) => e.stopPropagation()}
@@ -172,23 +186,36 @@ export const Table = ({
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()} ref={tBodyRef}>
           {rows.map(
             (row) => {
               prepareRow(row);
+              const { onClick: onExpandableRowClick } = row.getToggleRowExpandedProps()
 
               return (
-                <tr
-                  {...row.getRowProps()}
-                  className={cx({ selected: row.isSelected })}
-                  onClick={() => hasSelections && row.toggleRowSelected(!row.isSelected)}
-                >
-                  {row.cells.map(cell => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    )
-                  })}
-                </tr>
+                <>
+                  <tr
+                    {...row.getRowProps()}
+                    className={cx({ selected: row.isSelected })}
+                    onClick={() => {
+                      if (hasSelections) row.toggleRowSelected(!row.isSelected)
+                      if (SubComponent) onExpandableRowClick()
+                    }}
+                  >
+                    {row.cells.map(cell => {
+                      return (
+                        <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                      )
+                    })}
+                  </tr>
+                  {row.isExpanded && SubComponent ? (
+                    <div>
+                      <td style={{ width: tBodyRef.current?.clientWidth - 35 }}>
+                        { SubComponent({ row }) }
+                      </td>
+                    </div>
+                  ) : null}
+                </>
               )}
           )}
         </tbody>
@@ -200,7 +227,7 @@ export const Table = ({
               Գործողություններ
             </S.FixedActionsBarHeader>
             <S.ActionsList>
-              <Button onClick={() => showModal(FormComponent)}>
+              <Button onClick={() => showModal(FormComponent, { parentRowId: selectedFirstRow })}>
                 Ավելացնել
               </Button>
               {
@@ -251,6 +278,7 @@ export const Table = ({
 
 Table.defaultProps = {
   data: [],
+  columns: [],
   columnConfig: {},
   hasActionsBar: true,
   hasSelections: true

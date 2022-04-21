@@ -54,11 +54,11 @@ export const AssignCommandForm = ({
                 <S.FormItemsList>
                   <S.FormItem>
                     <Input
-                        value={values.commandNumber}
-                        placeholder='Հրամանի համար'
-                        onChange={(val) => setFieldValue('commandNumber', val)}
-                        onEnter={handleSubmit}
-                      />
+                      value={values.commandNumber}
+                      placeholder='Հրամանի համար'
+                      onChange={(val) => setFieldValue('commandNumber', val)}
+                      onEnter={handleSubmit}
+                    />
                   </S.FormItem>
                   <S.FormItem>
                     <DatePicker

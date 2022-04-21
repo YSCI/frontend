@@ -10,14 +10,19 @@ export const headerItems = [
     path: '/commands'
   },
   {
-    id: 7,
-    text: 'Կարգավիճակներ',
-    path: '/statuses'
+    id: 16,
+    text: 'Խմբեր',
+    path: '/groups'
   },
   {
     id: 2,
     text: 'Այլ',
     list: [
+      {
+        id: 7,
+        text: 'Կարգավիճակներ',
+        path: '/statuses'
+      },
       {
         id: 4,
         text: 'Մասնագիտություններ',
