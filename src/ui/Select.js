@@ -18,7 +18,7 @@ const colourStyles = (theme) => ({
   }),
   menuList: (styles) => ({
     ...styles,
-    zIndex: '100',
+    // zIndex: '100',
     '::-webkit-scrollbar': {
       width: '7px'
     },
@@ -39,7 +39,6 @@ const colourStyles = (theme) => ({
       ...styles,
       cursor: isDisabled ? 'not-allowed' : 'pointer',
       backgroundColor: isSelected ? 'rgba(8,115,112,0.50)' : '#fff',
-      zIndex: '20',
       ':hover': {
         ...styles[':hover'],
         backgroundColor: isSelected ? 'rgba(8,115,112,0.50)' : 'rgba(8,115,112,0.12)',
@@ -49,7 +48,7 @@ const colourStyles = (theme) => ({
       },
     };
   },
-  input: (styles) => ({ ...styles, zIndex: 10 }),
+  input: (styles) => ({ ...styles }),
   placeholder: (styles) => ({
     ...styles,
     fontSize: '14px',
@@ -90,9 +89,9 @@ export const Select = withTheme(({
 const SelectContainer = styled.div`
   position: relative;
 
-  > div > div > div{
-    &:last-child {
-      z-index: 10;
+  .React-Select {
+    div[id*=listbox]:last-child {
+      z-index: 2;
     }
   }
 `

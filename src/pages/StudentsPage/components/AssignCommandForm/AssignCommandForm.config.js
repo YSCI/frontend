@@ -14,7 +14,7 @@ export const validationSchema = Yup.object().shape({
   commandId: Yup.number()
     .typeError('Դաշտը չի կարող դատարկ լինել')
     .required('Դաշտը չի կարող դատարկ լինել'),
-  affectDate: Yup.number()
+  affectDate: Yup.string()
     .typeError('Դաշտը չի կարող դատարկ լինել')
     .required('Դաշտը չի կարող դատարկ լինել'),
 });

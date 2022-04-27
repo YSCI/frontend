@@ -82,11 +82,11 @@ export const GroupForm = ({
                     <Select
                       value={selectedProfession ? {
                         value: selectedProfession?.id,
-                        label: selectedProfession?.name
+                        label: selectedProfession?.abbreviation
                       } : null}
                       options={professionsList.map(prof => ({
                         value: prof.id,
-                        label: prof.name
+                        label: prof.abbreviation
                       }))}
                       placeholder='Մասնագիտություն'
                       onChange={(val) => {

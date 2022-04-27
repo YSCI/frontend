@@ -34,6 +34,7 @@ export const ProfessionsPage = ({
             onDelete={deleteSubject}
             FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
             columns={tableColumns.subjects}
+            isSubTable={true}
           />}
           columns={tableColumns.profession}
         />

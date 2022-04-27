@@ -8,11 +8,54 @@ export const TableContainer = styled.div`
   width: 100%;
   height: min-content;
   box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
+  
+  .tooltiptext {
+    visibility: hidden;
+    width: 156px;
+    font-size: 12px;
+    background-color: ${({ theme }) => theme.colors.green};
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 7px;
+    position: absolute;
+    z-index: 100;
+    bottom: 70%;
+    left: 50%;
+    line-height: 19px;
+    margin-left: -85px;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: ${({ theme }) => theme.colors.green} transparent transparent transparent;
+    }
+  }
+  
+  .tooltip {
+    position: relative;
+    display: inline-block;
+
+    &:hover {
+      &.tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
 
   .Table {
     display: block;
     background: #fff;
     width: calc(100% - ${({ hasActionsBar }) => hasActionsBar ? 248 : 0}px);
+    width: 100%;
     border-spacing: 0;
     // box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
     border-bottom-left-radius: 10px;
@@ -121,6 +164,13 @@ export const TableContainer = styled.div`
       user-select: none;
       border-right: 3px solid #f6f6f8;
       padding: 0.65rem;
+
+      &:hover {
+        .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
     }
 
     th {
@@ -190,7 +240,7 @@ export const FixedActionsBar = styled.div`
   border-bottom-right-radius: 0px; // only when pagination exists
   right: 0px;
   width: 250px;
-  height: calc(100% - 70px);
+  height: 68px;
   display: flex;
   flex-direction: column;
 `

@@ -19,10 +19,11 @@ import cx from 'classnames'
 import { Button } from 'ui'
 import * as S from './Table.styles'
 import { history } from 'system/history'
-import { withConfirmation } from 'helpers'
+import { formatDate, withConfirmation } from 'helpers'
+import moment from 'moment'
 
 const defaultColumn = {
-  minWidth: 100,
+  minWidth: 50,
   width: 250,
   maxWidth: 500
 }
@@ -51,6 +52,7 @@ export const Table = ({
   onDelete,
   loadData,
   showModal,
+  isSubTable,
   columnConfig,
   SubComponent,
   customActions,
@@ -97,6 +99,7 @@ export const Table = ({
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
             </div>
           ),
+          width: 70
         },
         ...columns,
       ])
@@ -192,6 +195,9 @@ export const Table = ({
             (row) => {
               prepareRow(row);
               const { onClick: onExpandableRowClick } = row.getToggleRowExpandedProps()
+              const createdInfo = `Ստեղծվել է - ${formatDate(row.original.createdAt)}`
+              const updatedInfo = `Թարմացվել է - ${formatDate(row.original.updatedAt)}`
+              const rowInfo = createdInfo + '\n' + updatedInfo
 
               return (
                 <>
@@ -204,9 +210,25 @@ export const Table = ({
                       if (SubComponent) onExpandableRowClick()
                     }}
                   >
-                    {row.cells.map(cell => {
+                    {row.cells.map((cell, cellIndex) => {
+
+                      const columnKey = cell.column.id.split('.')[0]
+                      let cellInfo = null
+
+                      if (row.original[columnKey]?.createdAt) {
+                        cellInfo = `Ստեղծվել է - ${formatDate(row.original[columnKey].createdAt)}`
+                          + '\n'
+                          + `Թարմացվել է - ${formatDate(row.original[columnKey].updatedAt)}`
+                      }
+
                       return (
-                        <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                        <td {...cell.getCellProps()} className='tooltip'>
+                          {cell.render('Cell')}
+                          {
+                            cellIndex > 0  && !isSubTable &&
+                              <span className="tooltiptext">{cellInfo || rowInfo}</span>
+                          }
+                        </td>
                       )
                     })}
                   </tr>
