@@ -16,6 +16,7 @@ export const CommissariatsPage = ({
     <Layout>
       <S.CommissariatsPageContainer>
         <Table
+          title='Զինկոմիսարիատներ'
           data={commissariats.list}
           total={commissariats.total}
           loadData={loadCommissariats}

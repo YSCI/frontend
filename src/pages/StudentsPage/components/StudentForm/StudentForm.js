@@ -282,11 +282,11 @@ export const StudentForm = ({
                       <Select
                         value={selectedProfession ? {
                           value: selectedProfession?.id,
-                          label: selectedProfession?.name
+                          label: selectedProfession?.abbreviation
                         } : null}
                         options={state.professions.list.map(profession => ({
                           value: profession.id,
-                          label: profession.name
+                          label: profession.abbreviation
                         }))}
                         placeholder='Մասնագիտություն'
                         onChange={(val) => setFieldValue('professionId', val?.value)}

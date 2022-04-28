@@ -17,6 +17,7 @@ export const PrivilegesPage = ({
     <Layout>
       <S.PrivilegesPageContainer>
         <Table
+          title='Արտոնություններ'
           data={privileges.list}
           total={privileges.total}
           loadData={loadPrivileges}

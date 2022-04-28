@@ -17,6 +17,7 @@ export const CommandsPage = ({
     <Layout>
       <S.CommandsPageContainer>
         <Table
+          title='Հրամաններ'
           data={commands.list}
           total={commands.total}
           loadData={loadCommands}

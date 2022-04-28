@@ -18,6 +18,7 @@ export const UsersPage = ({
     <Layout>
       <S.UsersPageContainer>
         <Table
+          title='Օգտատերեր'
           data={users.list}
           total={users.total}
           loadData={loadUsers}

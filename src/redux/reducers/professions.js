@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export const professions = (state = initialState, action) => {
-  let professionIndex
+  let professionIndex, subjectIndex
 
   switch(action.type) {
     case PROFESSIONS_TYPES.LOAD_PROFESSIONS:
@@ -20,24 +20,6 @@ export const professions = (state = initialState, action) => {
       }
     case PROFESSIONS_TYPES.LOAD_PROFESSION_SUBJECTS:
       professionIndex = state.list.findIndex(prof => prof.id === action.professionId)
-      state.list[professionIndex] = {
-        ...state.list[professionIndex],
-        subjects: action.subjects
-      }
-      return {...state}
-      // return {
-      //   ...state,
-      //   list: [
-      //     ...state.list.slice(0, professionIndex),
-      //     {
-      //       ...state.list[professionIndex],
-      //       subjects: action.subjects
-      //     },
-      //     ...state.list.slice(professionIndex + 1)
-      //   ]
-      // }
-    case PROFESSIONS_TYPES.CREATE_SUBJECT:
-      professionIndex = state.list.findIndex(prof => prof.id === action.data.professionId)
 
       return {
         ...state,
@@ -45,14 +27,28 @@ export const professions = (state = initialState, action) => {
           ...state.list.slice(0, professionIndex),
           {
             ...state.list[professionIndex],
-            subjects: state.list[professionIndex].subjects.concat(action.subject)
+            subjects: action.subjects
+          },
+          ...state.list.slice(professionIndex + 1)
+        ]
+      }
+    case PROFESSIONS_TYPES.CREATE_SUBJECT:
+      professionIndex = state.list.findIndex(prof => prof.id === action.data.professionId)
+      console.log(action)
+      return {
+        ...state,
+        list: [
+          ...state.list.slice(0, professionIndex),
+          {
+            ...state.list[professionIndex],
+            subjects: state.list[professionIndex].subjects.concat(action.data)
           },
           ...state.list.slice(professionIndex + 1)
         ]
       }
     case PROFESSIONS_TYPES.EDIT_SUBJECT:
       professionIndex = state.list.findIndex(prof => prof.id === action.data.professionId)
-      let subjectIndex = state.list[professionIndex].subjects.findIndex(subject => subject.id === action.data.id)
+      subjectIndex = state.list[professionIndex].subjects.findIndex(subject => subject.id === action.data.id)
 
       return {
         ...state,
@@ -69,6 +65,20 @@ export const professions = (state = initialState, action) => {
           ...state.list.slice(professionIndex + 1)
         ]
       }
+      case PROFESSIONS_TYPES.DELETE_SUBJECT:
+        professionIndex = state.list.findIndex(prof => prof.id === action.professionId)
+  
+        return {
+          ...state,
+          list: [
+            ...state.list.slice(0, professionIndex),
+            {
+              ...state.list[professionIndex],
+              subjects: state.list[professionIndex].subjects.filter(subject => !action.ids.includes(subject.id))
+            },
+            ...state.list.slice(professionIndex + 1)
+          ]
+        }
     case PROFESSIONS_TYPES.CREATE_PROFESSION:
       return {
         ...state,

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { CenteredFlex } from 'ui/styles'
 
 export const TableContainer = styled.div`
   display: flex;
@@ -41,7 +42,6 @@ export const TableContainer = styled.div`
   
   .tooltip {
     position: relative;
-    display: inline-block;
 
     &:hover {
       &.tooltiptext {
@@ -59,7 +59,7 @@ export const TableContainer = styled.div`
     border-spacing: 0;
     // box-shadow: 0 0px 25px rgb(34 41 47 / 10%);
     border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+    // border-top-left-radius: 10px;
     background: #fff;
     min-height: 385px;
     height: mifn-content;
@@ -231,26 +231,118 @@ export const FixedActionsBarHeader = styled.div`
 `
 
 export const FixedActionsBar = styled.div`
-  position: absolute;
-  border-left: 3px solid #f6f6f8;
+  // position: absolute;
+  border-bottom: 2px solid #f6f6f8;
   border-radius: 10px;
   background: #fff;
-  border-top-left-radius: 0px;
+  border-top-left-radius: 10px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px; // only when pagination exists
   right: 0px;
-  width: 250px;
-  height: 68px;
+  padding: 10px 30px;
+  width: calc(100% - 60px);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const FixedActionsBarTitle = styled.div`
+  font-size: 18px;
+  font-weight: 500;
 `
 
 export const ActionsList = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 10px;
-  // margin-top: 20px;
-  padding: 20px 10px;
+  // margin-top: 20px; 
+  justify-content: flex-end;
+
+  .Button {
+    width: 200px;
+  }
+`
+
+export const OpacityWrapper = styled.div`
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  background: #fff;
+  border-radius: 20%;
+`
+
+export const Action = styled(CenteredFlex)`
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 20%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
+  .tooltiptextHeader {
+    visibility: hidden;
+    width: 156px;
+    font-size: 12px;
+    background-color: ${({ theme }) => theme.colors.green};
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 7px;
+    position: absolute;
+    z-index: 100;
+    bottom: 90%;
+    left: 50%;
+    line-height: 19px;
+    margin-left: -85px;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: ${({ theme }) => theme.colors.green} transparent transparent transparent;
+    }
+  }
+
+  &:hover {
+    z-index: 1;
+
+    .tooltiptextHeader {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  ${OpacityWrapper} {
+    opacity: 0;
+  }
+
+  &.disabled {
+    ${OpacityWrapper} {
+      opacity: 0.6;
+    }
+
+    &:hover {
+      background: transparent;
+    }
+
+    &:active {
+      pointer-events: none;
+    }
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
+  &:hover {
+    background: #f6f6f8;
+  }
 `
 
 export const PaginationContainer = styled.div`
@@ -269,9 +361,8 @@ export const PaginationInfoContainer = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  width: calc(100% - ${({ hasActionsBar }) => hasActionsBar ? 254 : 0}px - 40px);
+  width: 100%;
   padding: 0px 20px;
-  border-right: 3px solid #f6f6f8;
   justify-content: space-between;
   gap: 20px;
 
@@ -302,4 +393,14 @@ export const TotalCount = styled.div`
 export const PaginationActionsContainer = styled.div`
   display: flex;
   gap: 10px;
+`
+
+export const SortIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  margin: 7px 10px 0px;
+
+  &.ascSort {
+    transform: rotate(180deg);
+  }
 `

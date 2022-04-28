@@ -21,6 +21,7 @@ export const StudentsPage = ({
     <Layout>
       <S.StudentsPageContainer>
         <Table
+          title='Ուսանողներ'
           data={students.list}
           total={students.total}
           onDelete={deleteStudent}

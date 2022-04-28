@@ -17,6 +17,7 @@ export const GroupsPage = ({
     <Layout>
       <S.GroupsPageContainer>
         <Table
+          title='Խմբեր'
           data={groups.list}
           total={groups.total}
           loadData={loadGroups}

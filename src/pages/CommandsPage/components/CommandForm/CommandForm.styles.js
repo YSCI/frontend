@@ -8,7 +8,7 @@ export const CommandFormContainer = styled.div`
   border-radius: 15px;
   margin-top: -20px;
   padding-bottom: 20px;
-  min-width: 450px;
+  width: 450px;
   flex-direction: column;
   gap: 10px;
 `

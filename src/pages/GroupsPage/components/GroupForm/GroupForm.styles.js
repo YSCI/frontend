@@ -8,7 +8,7 @@ export const GroupFormContainer = styled.div`
   border-radius: 15px;
   margin-top: -20px;
   padding-bottom: 20px;
-  min-width: 1000px;
+  min-width: 1200px;
   flex-direction: column;
   gap: 10px;
   padding-right: 10px;
@@ -127,24 +127,28 @@ export const GroupItem = styled.div`
 export const YearContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  gap: 15px;
+  align-items: center;
+  // width: 100%;
+  width: 130px;
+  gap: 10px;
+  padding: 0px 10px;
 `
 
 export const SemestersHeaderWrapper = styled.div`
-  width: 100%;
+  // width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `
 
 export const SemestersHeaderContainer = styled.div`
   display: flex;
-  width: 250px;
+  // width: 250px;
   gap: 40px;
   margin-bottom: 10px;
+  justify-content: center;
 
   div {
-    width: 100px;
+    // width: 100px;
     text-align: center;
   }
 `
@@ -173,4 +177,90 @@ export const SemesterCheckboxesContainer = styled.div`
   width: 250px !important;
   gap: 40px;
   justify-content: space-between;
+`
+
+export const CurriculumContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #ececec;
+  border-radius: 10px;
+  padding: 20px 30px;
+  
+`
+
+export const CurriculumContainerHeader = styled.div`
+  display: flex;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 10px;
+  padding-left: 150px;
+  padding-right: 30px;
+  gap: 40px;
+  justify-content: flex-end;
+`
+
+export const Course = styled.div`
+  font-weight: 500;
+`
+
+export const ProfessionSubjectsSelection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+  overflow-y: auto;
+  max-height: 300px;
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #eeeeee; 
+    border-radius: 10px;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.green};
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.colors.lightGreen};
+  }
+`
+
+export const ProfessionSubjectItem = styled.div`
+  display: flex;
+`
+
+export const SubjectName = styled.div`
+  white-space: pre;
+`
+
+export const CheckboxesContainer = styled.div`
+  display: flex;
+  width: 100%;
+  padding-left: 150px;
+  padding-right: 30px;
+  gap: 20px;
+  justify-content: flex-end;
+`
+
+export const CheckboxWrapper = styled.div`
+  width: 75px;
+  display: flex;
+  justify-content: center;
+
+  
+  &:nth-child(2n + 1) {
+    .Checkbox {
+      margin-left: 45px;
+    }
+  }
+
+  &:nth-child(2n + 2) {
+    .Checkbox {
+      margin-left: 25px;
+    } 
+  }
 `

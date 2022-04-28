@@ -55,6 +55,7 @@ export const SubjectForm = ({
               <S.FormContentContainer>
                 <S.FormItem>
                   <Input
+                    autoFocus
                     value={values.name}
                     placeholder='Անվանում'
                     onChange={(val) => setFieldValue('name', val)}

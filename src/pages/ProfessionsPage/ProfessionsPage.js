@@ -22,6 +22,7 @@ export const ProfessionsPage = ({
     <Layout>
       <S.ProfessionsPageContainer>
         <Table
+          title='Մասնագիտություններ'
           data={professions.list}
           loadData={loadProfessions}
           total={professions.total}
@@ -29,9 +30,10 @@ export const ProfessionsPage = ({
           FormComponent={ProfessionForm}
           FilterComponent={FiltersList}
           SubComponent={({ row }) => <Table
+            title='Առարկաներ'
             data={professions.list.find(el => el.id === row.original.id)?.subjects || []}
             loadData={() => loadProfessionSubjects(row.original.id)}
-            onDelete={deleteSubject}
+            onDelete={(ids) => deleteSubject(ids, row.original.id)}
             FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
             columns={tableColumns.subjects}
             isSubTable={true}

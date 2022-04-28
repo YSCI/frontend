@@ -17,6 +17,7 @@ export const CommunitiesPage = ({
     <Layout>
       <S.CommunitiesPageContainer>
         <Table
+          title='Համայքներ'
           data={communities.list}
           loadData={loadCommunities}
           total={communities.total}

@@ -94,7 +94,8 @@ export const tableColumns = {
     },
     {
       Header: 'Կարգավիճակ',
-      accessor: 'status.name'
+      accessor: 'status.name',
+      width: 350
     },
     {
       Header: 'Զինկոմիսարիատ',
@@ -110,7 +111,8 @@ export const tableColumns = {
   profession: [
     {
       Header: 'Անվանում',
-      accessor: 'name'
+      accessor: 'name',
+      width: 400
     },
     {
       Header: 'Կոդ',

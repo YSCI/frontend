@@ -16,6 +16,7 @@ export const StatusesPage = ({
     <Layout>
       <S.StatusesPageContainer>
         <Table
+          title='Կարգավիճակներ'
           data={statuses.list}
           total={statuses.total}
           loadData={loadStatuses}

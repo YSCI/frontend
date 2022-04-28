@@ -31,13 +31,14 @@ export const createSubject = (subject) => async dispatch => {
   }
 }
 
-export const deleteSubject = (ids) => async dispatch => {
+export const deleteSubject = (ids, professionId) => async dispatch => {
   try {
     await HttpService.delete(`subject`, { ids })
     
     dispatch({
       type: PROFESSIONS_TYPES.DELETE_SUBJECT,
-      data: ids
+      ids,
+      professionId
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

@@ -1,3 +1,4 @@
+import { createDispatchHook } from 'react-redux'
 import { toast } from 'react-toastify'
 
 
@@ -34,12 +35,24 @@ export const editGroup = (values) => async dispatch => {
 }
 
 export const createGroup = (values) => async dispatch => {
+  console.log({values})
   try {
-    const createdGroup = await HttpService.post('group', values)
-    
+    const createdGroup = await HttpService.post('group', {
+      ...values,
+      currentSemester: 1
+    })
+
+    await HttpService.post('curriculum', values.curriculum.map(val => ({
+      ...val,
+      groupId: createdGroup.id
+    })))
+
     dispatch({
       type: GROUPS_TYPES.CREATE_GROUP,
-      data: createdGroup
+      data: {
+        ...createdGroup,
+        curriculum: values.curriculum
+      }
     })
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց')

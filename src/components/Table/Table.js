@@ -20,7 +20,11 @@ import { Button } from 'ui'
 import * as S from './Table.styles'
 import { history } from 'system/history'
 import { formatDate, withConfirmation } from 'helpers'
-import moment from 'moment'
+import createIcon from 'images/add.png'
+import editIcon from 'images/editing.png'
+import deleteIcon from 'images/delete.png'
+import filterIcon from 'images/filter.png'
+import sortIcon from 'images/sort.png'
 
 const defaultColumn = {
   minWidth: 50,
@@ -47,6 +51,7 @@ const IndeterminateCheckbox = React.forwardRef(
 
 export const Table = ({
   data,
+  title,
   total,
   columns,
   onDelete,
@@ -71,6 +76,7 @@ export const Table = ({
   } = useTable(
     {
       data,
+      autoResetExpanded: false,
       columns,
       manualPagination: true,
       defaultColumn: {
@@ -163,6 +169,70 @@ export const Table = ({
  
   return (
     <S.TableContainer className='Table-Container' hasActionsBar={hasActionsBar}>
+      {
+        hasActionsBar &&
+          <S.FixedActionsBar>
+            {/* <S.FixedActionsBarHeader>
+              Գործողություններ
+            </S.FixedActionsBarHeader> */}
+            <S.FixedActionsBarTitle>
+              { title }
+            </S.FixedActionsBarTitle>
+            <S.ActionsList>
+              {
+                customActions?.(selectedFlatRows)
+              }
+              <S.Action onClick={() => showModal(FormComponent, { parentRowId: selectedFirstRow })}>
+                <img alt='create-icon' src={createIcon}/>
+              </S.Action>
+              <S.Action
+                className={cx({ disabled: selectedFlatRows.length !== 1 })}
+                onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
+              >
+                <S.OpacityWrapper />
+                <span className="tooltiptextHeader">Նշեք որևէ գրառում</span>
+                <img alt='edit-icon' src={editIcon}/>
+              </S.Action>
+              <S.Action
+                className={cx({ disabled: selectedFlatRows.length === 0 })}
+                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })}
+              >
+                <S.OpacityWrapper />
+                <span className="tooltiptextHeader">Նշեք որևէ գրառում</span>
+                <img alt='delete-icon' src={deleteIcon}/>
+              </S.Action>
+              {
+                FilterComponent &&
+                  <S.Action onClick={() => showModal(FilterComponent)}>
+                    <img alt='create-icon' src={filterIcon}/>
+                  </S.Action>
+              }
+              {/* <Button onClick={() => showModal(FormComponent, { parentRowId: selectedFirstRow })}>
+                Ավելացնել
+              </Button> */}
+              {/* {
+                FilterComponent &&
+                  <Button onClick={() => showModal(FilterComponent)}>
+                    Ֆիլտրներ
+                  </Button>
+              }
+              <Button
+                className='bordered'
+                disable={selectedFlatRows.length !== 1}
+                onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
+              >
+                Փոփոխել
+              </Button>
+              <Button
+                className='danger'
+                disable={selectedFlatRows.length === 0}
+                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })}
+              >
+                Ջնջել
+              </Button> */}
+            </S.ActionsList>
+          </S.FixedActionsBar>
+      }
       <table {...getTableProps()} className='Table'>
         <thead>
           <tr className='header-style'/>
@@ -178,13 +248,14 @@ export const Table = ({
                       column.isResizing ? 'isResizing' : ''
                     }`}
                   />
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
-                  </span>
+                  {column.isSorted
+                    ? <S.SortIcon
+                        alt='sort-icon'
+                        className={cx({ ascSort: !column.isSortedDesc })}
+                        src={sortIcon}
+                      />
+                    : null
+                  }
                 </th>
               ))}
             </tr>
@@ -244,42 +315,6 @@ export const Table = ({
           )}
         </tbody>
       </table>
-      {
-        hasActionsBar &&
-          <S.FixedActionsBar>
-            <S.FixedActionsBarHeader>
-              Գործողություններ
-            </S.FixedActionsBarHeader>
-            <S.ActionsList>
-              <Button onClick={() => showModal(FormComponent, { parentRowId: selectedFirstRow })}>
-                Ավելացնել
-              </Button>
-              {
-                customActions?.(selectedFlatRows)
-              }
-              {
-                FilterComponent &&
-                  <Button onClick={() => showModal(FilterComponent)}>
-                    Ֆիլտրներ
-                  </Button>
-              }
-              <Button
-                className='bordered'
-                disable={selectedFlatRows.length !== 1}
-                onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
-              >
-                Փոփոխել
-              </Button>
-              <Button
-                className='danger'
-                disable={selectedFlatRows.length === 0}
-                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })}
-              >
-                Ջնջել
-              </Button>
-            </S.ActionsList>
-          </S.FixedActionsBar>
-      }
       <S.PaginationContainer>
         <S.PaginationInfoContainer hasActionsBar={hasActionsBar}>
             <S.TotalCount>
@@ -305,5 +340,6 @@ Table.defaultProps = {
   columns: [],
   columnConfig: {},
   hasActionsBar: true,
-  hasSelections: true
+  hasSelections: true,
+  title: 'Գործողություններ'
 }

@@ -16,6 +16,7 @@ export const RegionsPage = ({
     <Layout>
       <S.RegionsPageContainer>
         <Table
+          title='Մարզեր'
           data={regions.list}
           loadData={loadRegions}
           total={regions.total}

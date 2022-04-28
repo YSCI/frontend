@@ -14,7 +14,8 @@ export const GroupForm = ({
   createGroup,
   editableData,
   loadProfessions,
-  professionsList
+  professionsList,
+  loadProfessionSubjects
 }) => {
   useEffect(() => {
     loadProfessions()
@@ -34,7 +35,7 @@ export const GroupForm = ({
 
     hideModal()
   }
-
+  console.log({ professionsList })
   return (
     <S.GroupFormContainer>
       <S.FormHeaderContainer>
@@ -59,7 +60,7 @@ export const GroupForm = ({
             setFieldValue
           }) => {
             const selectedProfession = professionsList.find(prof => prof.id === +values.professionId)
-
+            console.log({ selectedProfession, professionsList })
             return (
               <S.FormContentContainer>
                 <S.FormRow>
@@ -91,39 +92,9 @@ export const GroupForm = ({
                       placeholder='Մասնագիտություն'
                       onChange={(val) => {
                         setFieldValue('professionId', val?.value)
-                        setFieldValue('subjects', [
-                          {
-                            id: 1,
-                            name: 'Ծրագրավորում',
-                            year: 1,
-                          },
-                          {
-                            id: 2,
-                            name: 'Մաթ. անալիզ',
-                            year: 1,
-                          },
-                          {
-                            id: 3,
-                            name: 'Քիմիա',
-                            year: 3,
-                          },
-                          {
-                            id: 4,
-                            name: 'Սոցիոլոգիա',
-                            year: 2,
-                          },
-                          {
-                            id: 5,
-                            name: 'Գրաֆիկ դիզայն',
-                            year: 2,
-                          },
-                          {
-                            id: 6,
-                            name: 'Հայոց Պատմություն',
-                            year: 4,
-                          },
-                        ])
-                        if (!val) setFieldValue('subjects', [])
+                        if (val?.value) {
+                          loadProfessionSubjects(val?.value)
+                        }
                       }}
                     />
                     {
@@ -135,60 +106,84 @@ export const GroupForm = ({
                   </S.FormItem>
                 </S.FormRow>
                 {
-                  !!values.subjects.length &&
+                  !!selectedProfession?.subjects.length &&
                     <S.FormRow>
                       <FormLabelItem label='Ուս. պլան'>
-                        <S.YearsList>
+                        <S.CurriculumContainer>
+                          <S.CurriculumContainerHeader>
                           {
-                            (Array.apply(null, Array(selectedProfession.yearsCount))).map((_, year) => {
-                              return (
-                                <Expandable title={`${year + 1} Կուրս`} key={year}>
-                                  <S.YearContainer>
-                                    <S.SemestersHeaderWrapper>
-                                      <S.SemestersHeaderContainer>
-                                        <div> I Կիսամյակ</div>
-                                        <div> II Կիսամյակ</div>
-                                      </S.SemestersHeaderContainer>
-                                    </S.SemestersHeaderWrapper>
-                                    {
-                                      values.subjects.filter(subject => subject.year === year + 1).map((subject, index) => {
-                                        const subjectIndex = values.subjects.findIndex(el => el.id === subject.id)
+                            (Array.apply(null, Array(selectedProfession.yearsCount))).map((_, index) => {
+                              const year = index + 1
 
-                                        return (
-                                          <S.SemesterContainer key={subject.id}>
-                                            <div>{subject.name}</div>
-                                            <S.SemesterCheckboxesContainer>
-                                              <Checkbox
-                                                checked={subject.firstSemester}
-                                                onChange={() => setFieldValue('subjects', [
-                                                  ...values.subjects.slice(0, subjectIndex),
-                                                  {
-                                                    ...subject,
-                                                    firstSemester: true
-                                                  },
-                                                  ...values.subjects.slice(subjectIndex + 1)])}
-                                              />
-                                              <Checkbox
-                                                checked={subject.secondSemester}
-                                                onChange={() => setFieldValue('subjects', [
-                                                  ...values.subjects.slice(0, subjectIndex),
-                                                  {
-                                                    ...subject,
-                                                    secondSemester: true
-                                                  },
-                                                  ...values.subjects.slice(subjectIndex + 1)])}
-                                              />
-                                            </S.SemesterCheckboxesContainer>
-                                          </S.SemesterContainer>
-                                        )
-                                      })
-                                    }
-                                  </S.YearContainer>
-                                </Expandable>
+                              return (
+                                <S.YearContainer>
+                                  <S.Course>
+                                    { year } Կուրս
+                                  </S.Course>
+                                  <S.SemestersHeaderWrapper>
+                                    <S.SemestersHeaderContainer>
+                                      <div> I Կիս.</div>
+                                      <div> II Կիս.</div>
+                                    </S.SemestersHeaderContainer>
+                                  </S.SemestersHeaderWrapper>
+                                </S.YearContainer>
                               )
                             })
                           }
-                        </S.YearsList>
+                          </S.CurriculumContainerHeader>
+                          <S.ProfessionSubjectsSelection>
+                            {
+                              selectedProfession.subjects.map(subject => {
+                                return (
+                                  <S.ProfessionSubjectItem>
+                                    <S.SubjectName>
+                                      { subject.name }
+                                    </S.SubjectName>
+                                    <S.CheckboxesContainer>
+                                     {
+                                        Array.apply(null, Array(selectedProfession.yearsCount * 2)).map((_, index) => {
+                                          const semester = index + 1
+                                          console.log(values)
+                                          const curriculumList = values.curriculum.slice()
+                                          console.log({ current: curriculumList.find(curr => curr.subjectId === subject.id) }, 'current')
+                                          return (
+                                            <S.CheckboxWrapper>
+                                              <Checkbox
+                                                
+                                                checked={values.curriculum.find(curr => curr.subjectId === subject.id)?.semesters.includes(semester)}
+                                                onClick={((isChecked) => {
+                                                  const subjectIndex = curriculumList.findIndex(curriculum => curriculum.subjectId === subject.id)
+                                                  console.log({subjectIndex},'afdfdf')
+                                                  if (subjectIndex !== -1) {
+                                                    if (curriculumList[subjectIndex].semesters?.length) {
+                                                      const semesterIndex = curriculumList[subjectIndex].semesters.findIndex(sem => sem === semester)
+                                                      if (semesterIndex !== -1) {
+                                                        curriculumList[subjectIndex].semesters.splice(semesterIndex, 1)
+                                                      } else {
+                                                        curriculumList[subjectIndex].semesters = curriculumList[subjectIndex].semesters.concat(semester).sort()
+                                                      }
+                                                    }
+                                                    
+                                                  } else {
+                                                    curriculumList.push({
+                                                      subjectId: subject.id,
+                                                      semesters: [semester]
+                                                    })
+                                                  }
+                                                  setFieldValue('curriculum', curriculumList)
+                                                })}
+                                              />
+                                            </S.CheckboxWrapper>
+                                          )
+                                        })
+                                      }
+                                    </S.CheckboxesContainer>
+                                  </S.ProfessionSubjectItem>
+                                )
+                              })
+                            }
+                          </S.ProfessionSubjectsSelection>
+                        </S.CurriculumContainer>
                       </FormLabelItem>
                     </S.FormRow>
                 }
