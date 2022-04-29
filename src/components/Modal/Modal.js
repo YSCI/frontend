@@ -20,15 +20,12 @@ export const Modal = ({
     }
   }, [onKeyDown])
 
-  // if (!componentInfo.component) return null
+  if (!componentInfo.component) return null
 
   return (
     <S.ModalContainer className={cx('Modal-Container', { opened: !!componentInfo.component })}>
       <div onClick={e => e.stopPropagation()}>
-        {
-          componentInfo.component &&
-          <componentInfo.component {...componentInfo.props} hideModal={hideModal} />
-        }
+        <componentInfo.component {...componentInfo.props} hideModal={hideModal} />
       </div>
     </S.ModalContainer>
   )

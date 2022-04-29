@@ -16,12 +16,12 @@ export const groups = (state = initialState, action) => {
         list: action.list,
         total: action.total
       }
-    case GROUPS_TYPES.CREATE_GROUPS:
+    case GROUPS_TYPES.CREATE_GROUP:
       return {
         ...state,
         list: state.list.concat(action.data)
       }
-    case GROUPS_TYPES.EDIT_GROUPS:
+    case GROUPS_TYPES.EDIT_GROUP:
       const editedGroupsIndex = state.list.findIndex(group => group.id === action.data.id)
 
       return {
@@ -32,7 +32,7 @@ export const groups = (state = initialState, action) => {
           ...state.list.slice(editedGroupsIndex + 1)
         ]
       }
-    case GROUPS_TYPES.DELETE_GROUPS:
+    case GROUPS_TYPES.DELETE_GROUP:
       return {
         ...state,
         list: state.list.filter(group => !action.data.includes(group.id))

@@ -8,10 +8,9 @@ import { Layout, Table, TabMenu } from 'components'
 import * as S from './StudentProfilePage.styles'
 import { Button } from 'ui'
 import { withConfirmation } from 'helpers'
-import studentPic from 'images/student.png'
+import studentPic from 'images/avatar.jfif'
 import { StudentForm } from 'pages/StudentsPage/components/StudentForm'
 import { tableColumns } from 'constants/tableColumns'
-
 
 export const StudentProfilePage = ({
   loaded,

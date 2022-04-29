@@ -321,6 +321,10 @@ export const Action = styled(CenteredFlex)`
     opacity: 0;
   }
 
+  .tooltiptextHeader {
+    visibility: hidden !important;;
+  }
+
   &.disabled {
     ${OpacityWrapper} {
       opacity: 0.6;

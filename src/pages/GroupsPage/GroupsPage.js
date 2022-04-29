@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 
 import { Table } from 'components'
@@ -11,8 +11,13 @@ import { FiltersList } from './components/FiltersList'
 export const GroupsPage = ({
   groups,
   deleteGroup,
-  loadGroups
+  loadGroups,
+  loadProfessions
 }) => {
+  useEffect(() => {
+    loadProfessions()
+  }, [loadProfessions])
+
   return (
     <Layout>
       <S.GroupsPageContainer>

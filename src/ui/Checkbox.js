@@ -6,6 +6,7 @@ import { CenteredFlex } from './styles'
 export const Checkbox = ({
   checked,
   onChange,
+  className,
   ...rest
 }) => {
   const [isChecked, setIsChecked] = useState(checked)
@@ -20,10 +21,10 @@ export const Checkbox = ({
   return (
     <CheckboxContainer
       onClick={onCheck}
-      className={cx('Checkbox', { isChecked })}
+      className={cx('Checkbox', { isChecked: checked, [className]: true })}
       {...rest}
     >
-      <Checked className={cx({ isChecked })}/>
+      <Checked className={cx({ isChecked: checked })}/>
     </CheckboxContainer>
   )
 }
@@ -51,6 +52,11 @@ const CheckboxContainer = styled(CenteredFlex)`
   border-radius: 3px;
   border: 2px solid #fff;
   transition: all 0.3s ease;
+
+  &.main  {
+    border-color: #d9d9d9;
+  }
+
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.lightGreen}

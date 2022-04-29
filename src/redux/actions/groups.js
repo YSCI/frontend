@@ -35,7 +35,6 @@ export const editGroup = (values) => async dispatch => {
 }
 
 export const createGroup = (values) => async dispatch => {
-  console.log({values})
   try {
     const createdGroup = await HttpService.post('group', {
       ...values,

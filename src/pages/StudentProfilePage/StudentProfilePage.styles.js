@@ -7,11 +7,6 @@ export const StudentProfilePageContainer = styled.div`
   padding: 30px;
   display: flex;
   justify-content: center;
-  // display: grid;
-  // grid-gap: 20px;
-  // grid-auto-flow: column;
-  // grid-template-rows: min-content;
-  // grid-template-columns: min-content;
 `
 
 export const StudentProfilePageWrapper = styled.div`
@@ -74,6 +69,7 @@ export const StudentProfilePic = styled.img`
   height: 125px;
   border-radius: 50%;
   margin-top: 20px;
+  object-fit: cover;
 `
 
 export const StudentName = styled.div`

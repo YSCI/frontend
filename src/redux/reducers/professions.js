@@ -34,7 +34,6 @@ export const professions = (state = initialState, action) => {
       }
     case PROFESSIONS_TYPES.CREATE_SUBJECT:
       professionIndex = state.list.findIndex(prof => prof.id === action.data.professionId)
-      console.log(action)
       return {
         ...state,
         list: [

@@ -58,7 +58,7 @@ export const FormItem = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 4px;
+  gap: 10px;
 `
 
 export const ErrorMessage = styled.div`

@@ -1,25 +1,25 @@
 import React, { useMemo, useEffect } from 'react'
+import { Formik } from 'formik'
 
 import * as S from './GroupForm.styles'
 import closeIcon from 'images/close.png'
 import { Input, Button, Select, Checkbox } from 'ui'
-import { Formik } from 'formik'
 import { initialValues, validationSchema } from './GroupForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
-import { Expandable } from 'components/Expandable'
 
 export const GroupForm = ({
   hideModal,
   editGroup,
   createGroup,
   editableData,
-  loadProfessions,
   professionsList,
   loadProfessionSubjects
 }) => {
   useEffect(() => {
-    loadProfessions()
-  }, [loadProfessions])
+    if (editableData) {
+      loadProfessionSubjects(editableData.professionId)
+    }
+  }, [editableData])
 
   const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
@@ -35,7 +35,7 @@ export const GroupForm = ({
 
     hideModal()
   }
-  console.log({ professionsList })
+
   return (
     <S.GroupFormContainer>
       <S.FormHeaderContainer>
@@ -60,7 +60,7 @@ export const GroupForm = ({
             setFieldValue
           }) => {
             const selectedProfession = professionsList.find(prof => prof.id === +values.professionId)
-            console.log({ selectedProfession, professionsList })
+
             return (
               <S.FormContentContainer>
                 <S.FormRow>
@@ -143,17 +143,15 @@ export const GroupForm = ({
                                      {
                                         Array.apply(null, Array(selectedProfession.yearsCount * 2)).map((_, index) => {
                                           const semester = index + 1
-                                          console.log(values)
                                           const curriculumList = values.curriculum.slice()
-                                          console.log({ current: curriculumList.find(curr => curr.subjectId === subject.id) }, 'current')
+
                                           return (
                                             <S.CheckboxWrapper>
                                               <Checkbox
-                                                
                                                 checked={values.curriculum.find(curr => curr.subjectId === subject.id)?.semesters.includes(semester)}
                                                 onClick={((isChecked) => {
                                                   const subjectIndex = curriculumList.findIndex(curriculum => curriculum.subjectId === subject.id)
-                                                  console.log({subjectIndex},'afdfdf')
+
                                                   if (subjectIndex !== -1) {
                                                     if (curriculumList[subjectIndex].semesters?.length) {
                                                       const semesterIndex = curriculumList[subjectIndex].semesters.findIndex(sem => sem === semester)

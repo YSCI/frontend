@@ -49,7 +49,6 @@ export const AssignCommandForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            console.log(values)
             return (
               <S.FormContentContainer>
                 <S.FormItemsList>

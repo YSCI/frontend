@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import { GroupForm as Self } from './GroupForm'
 
-import { loadProfessions, loadProfessionSubjects } from 'redux/actions/professions'
+import { loadProfessionSubjects } from 'redux/actions/professions'
 import {
   editGroup,
   createGroup
@@ -15,7 +15,6 @@ const mapStateToProps = ({ professions }) => ({
 const mapDispatchToProps = {
   editGroup,
   createGroup,
-  loadProfessions,
   loadProfessionSubjects
 }
 

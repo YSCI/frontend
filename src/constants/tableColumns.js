@@ -1,6 +1,7 @@
 import moment from 'moment'
 
 import { StudentProfileLink } from 'components'
+import store from 'redux/store'
 
 export const tableColumns = {
   users: [
@@ -24,7 +25,13 @@ export const tableColumns = {
     },
     {
       Header: 'Մասնագիտություն',
-      accessor: 'profession.abbreviation'
+      accessor: ({ professionId }) => {
+        const state = store.getState().professions
+
+        const prof = state.list.find(prof => prof.id === professionId)
+
+        return prof?.abbreviation
+      }
     }
   ],
   students: [
