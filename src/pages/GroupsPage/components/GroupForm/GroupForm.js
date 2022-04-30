@@ -6,6 +6,7 @@ import closeIcon from 'images/close.png'
 import { Input, Button, Select, Checkbox } from 'ui'
 import { initialValues, validationSchema } from './GroupForm.config'
 import { FormLabelItem } from 'components/FormLabelItem'
+import { createArrayOfLength } from 'helpers/createArrayOfLength'
 
 export const GroupForm = ({
   hideModal,
@@ -16,10 +17,10 @@ export const GroupForm = ({
   loadProfessionSubjects
 }) => {
   useEffect(() => {
-    if (editableData) {
-      loadProfessionSubjects(editableData.professionId)
+    if (editableData?.professionId) {
+      loadProfessionSubjects(editableData?.professionId)
     }
-  }, [editableData])
+  }, [editableData?.professionId])
 
   const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
@@ -34,6 +35,20 @@ export const GroupForm = ({
     }
 
     hideModal()
+  }
+
+  const loadSubjectfOfProfession = async (profId, setFieldValue) => {
+    const subjects = await loadProfessionSubjects(profId)
+    const curriculum = []
+
+    subjects.forEach(subject => {
+      curriculum.push({
+        subjectId: subject.id,
+        semesters: subject.semesters || []
+      })
+    })
+
+    setFieldValue('curriculum', curriculum)
   }
 
   return (
@@ -80,6 +95,19 @@ export const GroupForm = ({
                     }
                   </S.FormItem>
                   <S.FormItem>
+                    <Input
+                      placeholder='Ստեղծման տարեթիվ'
+                      value={values.createdYear}
+                      onChange={createdYear => setFieldValue('createdYear', createdYear)}
+                    />
+                    {
+                      errors.createdYear && touched.createdYear &&
+                        <S.ErrorMessage>
+                          { errors.createdYear }
+                        </S.ErrorMessage>
+                    }
+                  </S.FormItem>
+                  <S.FormItem>
                     <Select
                       value={selectedProfession ? {
                         value: selectedProfession?.id,
@@ -91,9 +119,11 @@ export const GroupForm = ({
                       }))}
                       placeholder='Մասնագիտություն'
                       onChange={(val) => {
-                        setFieldValue('professionId', val?.value)
-                        if (val?.value) {
-                          loadProfessionSubjects(val?.value)
+                        const profId = val?.value
+                        setFieldValue('professionId', profId)
+                        
+                        if (profId) {
+                          loadSubjectfOfProfession(profId, setFieldValue)
                         }
                       }}
                     />
@@ -112,9 +142,7 @@ export const GroupForm = ({
                         <S.CurriculumContainer>
                           <S.CurriculumContainerHeader>
                           {
-                            (Array.apply(null, Array(selectedProfession.yearsCount))).map((_, index) => {
-                              const year = index + 1
-
+                            (createArrayOfLength(selectedProfession.yearsCount)).map((year) => {
                               return (
                                 <S.YearContainer>
                                   <S.Course>
@@ -133,25 +161,24 @@ export const GroupForm = ({
                           </S.CurriculumContainerHeader>
                           <S.ProfessionSubjectsSelection>
                             {
-                              selectedProfession.subjects.map(subject => {
+                              selectedProfession.subjects.map((subject, position) => {
                                 return (
                                   <S.ProfessionSubjectItem>
                                     <S.SubjectName>
-                                      { subject.name }
+                                      { position + 1 }) { subject.name }
                                     </S.SubjectName>
                                     <S.CheckboxesContainer>
                                      {
-                                        Array.apply(null, Array(selectedProfession.yearsCount * 2)).map((_, index) => {
-                                          const semester = index + 1
-                                          const curriculumList = values.curriculum.slice()
+                                        createArrayOfLength(selectedProfession.yearsCount * 2).map(semester => {
+                                          const curriculumList = values.curriculum?.slice() || []
 
                                           return (
                                             <S.CheckboxWrapper>
                                               <Checkbox
-                                                checked={values.curriculum.find(curr => curr.subjectId === subject.id)?.semesters.includes(semester)}
-                                                onClick={((isChecked) => {
+                                                checked={curriculumList.find(curr => curr.subjectId === subject.id)?.semesters.includes(semester)}
+                                                onClick={(() => {
                                                   const subjectIndex = curriculumList.findIndex(curriculum => curriculum.subjectId === subject.id)
-
+                                                  // REFACTOR
                                                   if (subjectIndex !== -1) {
                                                     if (curriculumList[subjectIndex].semesters?.length) {
                                                       const semesterIndex = curriculumList[subjectIndex].semesters.findIndex(sem => sem === semester)
@@ -201,16 +228,3 @@ export const GroupForm = ({
     </S.GroupFormContainer>
   )
 }
-
-
-// I kurs
-
-//                 I kisamyak    II kisamyak
-//   Cragravorum
-//   Mat Analiz
-//   Qimia
-  
-
-// II kurs
-// III kurs
-// IV kurs

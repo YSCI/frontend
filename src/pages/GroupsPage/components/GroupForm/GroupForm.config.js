@@ -3,7 +3,8 @@ import * as Yup from 'yup';
 export const initialValues = {
   number: '',
   professionId: null,
-  curriculum: []
+  curriculum: [],
+  createdYear: ''
 }
 
 export const validationSchema = Yup.object().shape({

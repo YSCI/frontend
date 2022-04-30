@@ -13,6 +13,8 @@ export const loadProfessionSubjects = (professionId) => async dispatch => {
       professionId,
       subjects: data
     })
+
+    return data
   } catch (ex) {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
@@ -47,7 +49,7 @@ export const deleteSubject = (ids, professionId) => async dispatch => {
   }
 }
 
-export const editSubject = (subject) => async dispatch => {
+export const editSubject = (subject, showNotification = true) => async dispatch => {
   try {
     await HttpService.put(`subject/${subject.id}`, subject)
  
@@ -56,7 +58,8 @@ export const editSubject = (subject) => async dispatch => {
       data: subject
     })
 
-    toast.success('Գործողությունը հաջողությամբ կատարվեց')
+    if (showNotification)
+      toast.success('Գործողությունը հաջողությամբ կատարվեց')
   } catch (ex) {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }

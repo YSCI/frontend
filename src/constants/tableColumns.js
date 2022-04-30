@@ -2,6 +2,8 @@ import moment from 'moment'
 
 import { StudentProfileLink } from 'components'
 import store from 'redux/store'
+import { Checkbox } from 'ui'
+import { editSubject, updateSubjectSemesters } from 'redux/actions/professions'
 
 export const tableColumns = {
   users: [
@@ -22,6 +24,10 @@ export const tableColumns = {
     {
       Header: 'Համար',
       accessor: 'number'
+    },
+    {
+      Header: 'Ստեղծման տարեթիվ',
+      accessor: 'createdYear'
     },
     {
       Header: 'Մասնագիտություն',
@@ -109,12 +115,42 @@ export const tableColumns = {
       accessor: 'commissariat.name'
     }
   ],
-  subjects: [
-    {
-      Header: 'Անվանում',
-      accessor: 'name'
+  subjects: (yearsCount) => {
+    const arr = [
+      {
+        Header: 'Անվանում',
+        accessor: 'name'
+      }
+    ]
+
+    for (let year = 1; year <= yearsCount * 2; year++) {
+      arr.push({
+        Header: `${year} կիս.`,
+        onClick: (subject) => {
+          const semesters = subject.semesters?.includes(year)
+            ? subject.semesters.filter(semester => semester !== year)
+            : Array.isArray(subject.semesters) ? subject.semesters.concat(year) : [year]
+
+          store.dispatch(editSubject({
+            semesters: semesters.length ? semesters : null,
+            id: subject.id,
+            professionId: subject.professionId
+          }, false))
+        },
+
+        accessor: ({ semesters }) => {
+          return (
+            <Checkbox
+              checked={semesters?.includes(year)}
+            />
+          )
+        },
+        width: 125
+      })
     }
-  ],
+
+    return arr
+  },
   profession: [
     {
       Header: 'Անվանում',

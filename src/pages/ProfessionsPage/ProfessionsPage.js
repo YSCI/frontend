@@ -35,7 +35,7 @@ export const ProfessionsPage = ({
             loadData={() => loadProfessionSubjects(row.original.id)}
             onDelete={(ids) => deleteSubject(ids, row.original.id)}
             FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
-            columns={tableColumns.subjects}
+            columns={tableColumns.subjects(row.original.yearsCount)}
             isSubTable={true}
           />}
           columns={tableColumns.profession}

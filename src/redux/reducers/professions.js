@@ -57,7 +57,10 @@ export const professions = (state = initialState, action) => {
             ...state.list[professionIndex],
             subjects: [
               ...state.list[professionIndex].subjects.slice(0, subjectIndex),
-              action.data,
+              {
+                ...state.list[professionIndex].subjects[subjectIndex],
+                ...action.data
+              },
               ...state.list[professionIndex].subjects.slice(subjectIndex + 1),
             ]
           },

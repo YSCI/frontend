@@ -166,7 +166,49 @@ export const Table = ({
   }, [pageCount, currentPage, gotoPage])
 
   const tBodyRef = useRef(null)
- 
+
+  const tableActions = useMemo(() => {
+    const actions = [
+      ...customActions?.(selectedFlatRows) || [],
+      {
+        key: 1,
+        icon: createIcon,
+        title: 'Ավելացնել',
+        onClick: () => showModal(FormComponent, { parentRowId: selectedFirstRow })
+      },
+      {
+        key: 2,
+        icon: editIcon,
+        title: 'Փոփոխել',
+        disabled: selectedFlatRows.length !== 1,        
+        onClick: () => showModal(FormComponent, { editableData: selectedFirstRow })
+      },
+      {
+        key: 3,
+        title: 'Ջնջել',
+        icon: deleteIcon,
+        disabled: selectedFlatRows.length === 0,
+        onClick: () => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })
+      }
+    ]
+
+    if (FilterComponent) {
+      actions.push({
+        key: 4,
+        icon: filterIcon,
+        title: 'Ֆիլտրել',
+        onClick: () => showModal(FilterComponent)
+      })
+    }
+
+    return actions
+  }, [
+    FormComponent,
+    FilterComponent,
+    selectedFirstRow,
+    selectedFlatRows.length
+  ])
+
   return (
     <S.TableContainer className='Table-Container' hasActionsBar={hasActionsBar}>
       {
@@ -180,56 +222,17 @@ export const Table = ({
             </S.FixedActionsBarTitle>
             <S.ActionsList>
               {
-                customActions?.(selectedFlatRows)
-              }
-              <S.Action onClick={() => showModal(FormComponent, { parentRowId: selectedFirstRow })}>
-                <img alt='create-icon' src={createIcon}/>
-              </S.Action>
-              <S.Action
-                className={cx({ disabled: selectedFlatRows.length !== 1 })}
-                onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
-              >
-                <S.OpacityWrapper />
-                <span className="tooltiptextHeader">Նշեք որևէ գրառում</span>
-                <img alt='edit-icon' src={editIcon}/>
-              </S.Action>
-              <S.Action
-                className={cx({ disabled: selectedFlatRows.length === 0 })}
-                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })}
-              >
-                <S.OpacityWrapper />
-                <span className="tooltiptextHeader">Նշեք որևէ գրառում</span>
-                <img alt='delete-icon' src={deleteIcon}/>
-              </S.Action>
-              {
-                FilterComponent &&
-                  <S.Action onClick={() => showModal(FilterComponent)}>
-                    <img alt='create-icon' src={filterIcon}/>
+                tableActions.map((action, key) => (
+                  <S.Action
+                    {...action}
+                    key={action.key || key + tableActions.length}
+                    className={cx({ disabled: action.disabled })}
+                  >
+                    <S.OpacityWrapper />
+                    <img alt='delete-icon' src={action.icon}/>
                   </S.Action>
+                ))
               }
-              {/* <Button onClick={() => showModal(FormComponent, { parentRowId: selectedFirstRow })}>
-                Ավելացնել
-              </Button> */}
-              {/* {
-                FilterComponent &&
-                  <Button onClick={() => showModal(FilterComponent)}>
-                    Ֆիլտրներ
-                  </Button>
-              }
-              <Button
-                className='bordered'
-                disable={selectedFlatRows.length !== 1}
-                onClick={() => showModal(FormComponent, { editableData: selectedFirstRow })}
-              >
-                Փոփոխել
-              </Button>
-              <Button
-                className='danger'
-                disable={selectedFlatRows.length === 0}
-                onClick={() => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })}
-              >
-                Ջնջել
-              </Button> */}
             </S.ActionsList>
           </S.FixedActionsBar>
       }
@@ -282,7 +285,6 @@ export const Table = ({
                     }}
                   >
                     {row.cells.map((cell, cellIndex) => {
-
                       const columnKey = cell.column.id.split('.')[0]
                       let cellInfo = null
 
@@ -293,7 +295,7 @@ export const Table = ({
                       }
 
                       return (
-                        <td {...cell.getCellProps()} className='tooltip'>
+                        <td {...cell.getCellProps()} onClick={() => cell.column.onClick?.(row.original)} className='tooltip'>
                           {cell.render('Cell')}
                           {
                             cellIndex > 0  && !isSubTable &&

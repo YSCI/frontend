@@ -278,45 +278,6 @@ export const Action = styled(CenteredFlex)`
   transition: all 0.3s ease;
   position: relative;
 
-  .tooltiptextHeader {
-    visibility: hidden;
-    width: 156px;
-    font-size: 12px;
-    background-color: ${({ theme }) => theme.colors.green};
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 7px;
-    position: absolute;
-    z-index: 100;
-    bottom: 90%;
-    left: 50%;
-    line-height: 19px;
-    margin-left: -85px;
-    opacity: 0;
-    transition: opacity 0.3s;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: ${({ theme }) => theme.colors.green} transparent transparent transparent;
-    }
-  }
-
-  &:hover {
-    z-index: 1;
-
-    .tooltiptextHeader {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
   ${OpacityWrapper} {
     opacity: 0;
   }

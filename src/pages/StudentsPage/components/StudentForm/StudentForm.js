@@ -11,6 +11,7 @@ import {
   Select,
   DatePicker
 } from 'ui'
+import { createArrayOfLength } from 'helpers/createArrayOfLength'
 
 export const StudentForm = ({
   state,
@@ -123,19 +124,6 @@ export const StudentForm = ({
                     </S.FormItem>
                     <S.FormItem>
                       <Input
-                        value={values.currentCourse}
-                        placeholder='Ընթացիկ կուրս'
-                        onChange={(val) => setFieldValue('currentCourse', val)}
-                      />
-                      {
-                        errors.currentCourse && touched.currentCourse &&
-                          <S.ErrorMessage>
-                            { errors.currentCourse }
-                          </S.ErrorMessage>
-                      }
-                    </S.FormItem>
-                    <S.FormItem>
-                      <Input
                         value={values.currentGroup}
                         placeholder='Ընթացիկ խումբ'
                         onChange={(val) => setFieldValue('currentGroup', val)}
@@ -190,8 +178,6 @@ export const StudentForm = ({
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
-                  </S.FormRow>
-                  <S.FormRow>
                     <S.FormItem>
                       <DatePicker
                         date={values.dateOfBirth}
@@ -205,6 +191,8 @@ export const StudentForm = ({
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
+                  </S.FormRow>
+                  <S.FormRow>
                     <S.FormItem>
                       <DatePicker
                         date={values.dateOfAcceptance}
@@ -295,6 +283,26 @@ export const StudentForm = ({
                         errors.professionId && touched.professionId &&
                           <S.ErrorMessage>
                             { errors.professionId }
+                          </S.ErrorMessage>
+                      }
+                    </S.FormItem>
+                    <S.FormItem>
+                      <Select
+                        value={values.currentCourse ? {
+                          value: values.currentCourse,
+                          label: values.currentCourse
+                        } : null}
+                        options={createArrayOfLength(selectedProfession?.yearsCount).map(course => ({
+                          value: course,
+                          label: course
+                        }))}
+                        placeholder='Ընթացիկ կուրս'
+                        onChange={(val) => setFieldValue('currentCourse', val?.value)}
+                      />
+                      {
+                        errors.currentCourse && touched.currentCourse &&
+                          <S.ErrorMessage>
+                            { errors.currentCourse }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
