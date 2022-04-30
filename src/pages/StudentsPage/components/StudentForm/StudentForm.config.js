@@ -9,6 +9,7 @@ export const initialValues = {
   firstname: '',
   fathername: '',
   dateOfBirth: null,
+  privilegeId: null,
   currentGroup: '',
   professionId: null,
   citizenshipId: null,
@@ -76,6 +77,9 @@ export const validationSchema = Yup.object().shape({
     .typeError(validationMessages.empty)
     .required(validationMessages.empty),
   statusId: Yup.string()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  privilegeId: Yup.string()  
     .typeError(validationMessages.empty)
     .required(validationMessages.empty),
   healthStatusId: Yup.number()	

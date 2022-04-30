@@ -49,7 +49,8 @@ export const FiltersList = ({
             const selectedNationality = state.nationalities.list.find(el => el.id === +values.nationalityId)
             const selectedProfession = state.professions.list.find(el => el.id === +values.professionId)
             const selectedStatus = state.statuses.list.find(el => el.id === +values.statusId)
-
+            const selectedPrivilege = state.privileges.list.find(el => el.id === values.privilegeId)
+            
             const selectedRegistrationRegion = state.regions.list.find(el => el.id === +values.registrationRegionId)
             const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === +values.registrationCommunityId)
 
@@ -211,6 +212,18 @@ export const FiltersList = ({
                     }))}
                     placeholder='Մասնագիտություն'
                     onChange={(val) => setFieldValue('professionId', val?.value)}
+                  />
+                  <Select
+                    value={selectedPrivilege ? {
+                      value: selectedPrivilege?.id,
+                      label: selectedPrivilege?.name
+                    } : null}
+                    options={state.privileges.list.map(privilege => ({
+                      value: privilege.id,
+                      label: privilege.name
+                    }))}
+                    placeholder='Արտոնություն'
+                    onChange={(val) => setFieldValue('privilegeId', val?.value)}
                   />
                   <Select
                     value={selectedHealthStatus ? {

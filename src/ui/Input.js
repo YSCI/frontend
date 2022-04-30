@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 export const Input = ({
   value,
+  error,
   onEnter,
   onChange,
   placeholder,
@@ -31,9 +32,22 @@ export const Input = ({
         onKeyPress={handleKeypress}
         placeholder={!value ? placeholder : ''}
       />
+      {
+        error &&
+          <ErrorMessage>
+            { error }
+          </ErrorMessage>
+      }
     </InputContainer>
   )
 }
+
+const ErrorMessage = styled.div`
+  font-size: 12px;
+  color: red;
+  margin-left: 10px;
+  font-weight: 500;
+`
 
 const Placeholder = styled.div`
   position: absolute;
@@ -47,6 +61,9 @@ const Placeholder = styled.div`
 
 const InputContainer = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `
 
 const StyledInput = styled.input`
