@@ -29,36 +29,22 @@ export const LoginPage = ({
               setFieldValue
             }) => (
               <>
-                <S.FormItem>
-                  <Input
-                    value={values.username}
-                    placeholder='Մուտքանուն'
-                    onChange={(val) => setFieldValue('username', val)}
-                    onEnter = {handleSubmit}
-                    autoFocus
-                  />
-                  {
-                    errors.username && touched.username &&
-                      <S.ErrorMessage>
-                        { errors.username }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    type='password'
-                    placeholder='Գաղտնաբառ'
-                    value={values.password}
-                    onChange={(val) => setFieldValue('password', val)}
-                    onEnter = {handleSubmit}
-                  />
-                  {
-                    errors.password && touched.password &&
-                      <S.ErrorMessage>
-                        { errors.password }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
+                <Input
+                  value={values.username}
+                  placeholder='Մուտքանուն'
+                  onChange={(val) => setFieldValue('username', val)}
+                  onEnter = {handleSubmit}
+                  autoFocus
+                  error={touched.username && errors.username}
+                />
+                <Input
+                  type='password'
+                  placeholder='Գաղտնաբառ'
+                  value={values.password}
+                  onChange={(val) => setFieldValue('password', val)}
+                  onEnter={handleSubmit}
+                  error={touched.password && errors.password}
+                />
                 <Button onClick={handleSubmit}>
                   Մուտք
                 </Button>

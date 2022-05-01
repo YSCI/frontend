@@ -72,7 +72,7 @@ export const Select = withTheme(({
       value: isObject(option) ? option.id : option,
       label: isObject(option) ? option[accessorKey] : option
     }))
-  }, [options])
+  }, [options, accessorKey])
 
   const valueFormatted = useMemo(() => {
     return value
@@ -81,10 +81,10 @@ export const Select = withTheme(({
           label: isObject(value) ? value[accessorKey] : value
         }
       : null
-  }, [value])
+  }, [value, accessorKey])
 
   return (
-    <SelectContainer>
+    <SelectContainer className='SelectContainer'>
       {
         value &&
           <Placeholder>

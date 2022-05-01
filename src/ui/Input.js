@@ -18,7 +18,7 @@ export const Input = ({
   }
 
   return (
-    <InputContainer>
+    <InputContainer className='InputContainer'>
       {
         value &&
           <Placeholder>
@@ -64,6 +64,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
 `
 
 const StyledInput = styled.input`

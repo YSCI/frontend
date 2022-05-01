@@ -203,11 +203,13 @@ export const Table = ({
 
     return actions
   }, [
+    onDelete,
+    selectedFlatRows,
+    showModal,
     customActions,
     FormComponent,
     FilterComponent,
     selectedFirstRow,
-    selectedFlatRows.length
   ])
 
   return (

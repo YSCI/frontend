@@ -54,91 +54,49 @@ export const ProfessionForm = ({
           }) => {
             return (
               <S.FormContentContainer>
-                <S.FormItem>
-                  <Input
-                    value={values.name}
-                    placeholder='Անվանում'
-                    onChange={(val) => setFieldValue('name', val)}
-                    onEnter={handleSubmit}
-                    autoFocus
-                  />
-                  {
-                    errors.name && touched.name &&
-                      <S.ErrorMessage>
-                        { errors.name }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.abbreviation}
-                    placeholder='Հապավում'
-                    onChange={(val) => setFieldValue('abbreviation', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.abbreviation && touched.abbreviation &&
-                      <S.ErrorMessage>
-                        { errors.abbreviation }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.code}
-                    placeholder='Կոդ'
-                    onChange={(val) => setFieldValue('code', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.code && touched.code &&
-                      <S.ErrorMessage>
-                        { errors.code }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.yearsCount}
-                    placeholder='Տարիների քանակ'
-                    onChange={(val) => setFieldValue('yearsCount', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.yearsCount && touched.yearsCount &&
-                      <S.ErrorMessage>
-                        { errors.yearsCount }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.number}
-                    placeholder='Համար'
-                    onChange={(val) => setFieldValue('number', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.number && touched.number &&
-                      <S.ErrorMessage>
-                        { errors.number }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.fee}
-                    placeholder='Վճար'
-                    onChange={(val) => setFieldValue('fee', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.number && touched.number &&
-                      <S.ErrorMessage>
-                        { errors.number }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
+                <Input
+                  value={values.name}
+                  placeholder='Անվանում'
+                  onChange={(val) => setFieldValue('name', val)}
+                  onEnter={handleSubmit}
+                  autoFocus
+                  error={touched.name && errors.name}
+                />
+                <Input
+                  value={values.abbreviation}
+                  placeholder='Հապավում'
+                  onChange={(val) => setFieldValue('abbreviation', val)}
+                  onEnter={handleSubmit}
+                  error={touched.abbreviation && errors.abbreviation}
+                />
+                <Input
+                  value={values.code}
+                  placeholder='Կոդ'
+                  onChange={(val) => setFieldValue('code', val)}
+                  onEnter={handleSubmit}
+                  error={touched.code && errors.code}
+                />
+                <Input
+                  value={values.yearsCount}
+                  placeholder='Տարիների քանակ'
+                  onChange={(val) => setFieldValue('yearsCount', val)}
+                  onEnter={handleSubmit}
+                  error={touched.yearsCount && errors.yearsCount}
+                />
+                <Input
+                  value={values.number}
+                  placeholder='Համար'
+                  onChange={(val) => setFieldValue('number', val)}
+                  onEnter={handleSubmit}
+                  error={touched.number && errors.number}
+                />
+                <Input
+                  value={values.fee}
+                  placeholder='Վճար'
+                  onChange={(val) => setFieldValue('fee', val)}
+                  onEnter={handleSubmit}
+                  error={touched.fee && errors.fee}
+                />
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

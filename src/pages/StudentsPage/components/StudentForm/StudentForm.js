@@ -11,7 +11,6 @@ import {
   Select,
   DatePicker
 } from 'ui'
-import { createArrayOfLength } from 'helpers/createArrayOfLength'
 
 export const StudentForm = ({
   state,
@@ -205,14 +204,14 @@ export const StudentForm = ({
                       onChange={(val) => setFieldValue('citizenshipId', val?.value)}
                       error={touched.citizenshipId && errors.citizenshipId}
                     />
-                  </S.FormRow>
-                  <S.FormRow>
                     <Input
                       value={values.contactNumbers}
                       placeholder='Հեռախոսահամարներ'
                       onChange={(val) => setFieldValue('contactNumbers', val)}
                       error={touched.contactNumbers && errors.contactNumbers}
                     />
+                  </S.FormRow>
+                  <S.FormRow>
                     <FormLabelItem label='Գրանցման հասցե'>
                       <Select
                         value={selectedRegistrationRegion}

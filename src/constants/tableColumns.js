@@ -3,7 +3,7 @@ import moment from 'moment'
 import { StudentProfileLink } from 'components'
 import store from 'redux/store'
 import { Checkbox } from 'ui'
-import { editSubject, updateSubjectSemesters } from 'redux/actions/professions'
+import { editSubject } from 'redux/actions/professions'
 
 export const tableColumns = {
   users: [

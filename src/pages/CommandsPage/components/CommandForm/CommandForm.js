@@ -57,30 +57,21 @@ export const CommandForm = (props) => {
           }) => {
             return (
               <S.FormContentContainer>
-                <S.FormItem>
-                  <Input
-                    value={values.name}
-                    placeholder='Անվանում'
-                    onChange={(val) => setFieldValue('name', val)}
-                    autoFocus
-                  />
+                <Input
+                  value={values.name}
+                  placeholder='Անվանում'
+                  onChange={(val) => setFieldValue('name', val)}
+                  autoFocus
+                  error={touched.name && errors.name }
+                />
+                <Button onClick={() => showModal(FieldsForm,
                   {
-                    errors.name && touched.name &&
-                      <S.ErrorMessage>
-                        { errors.name }
-                      </S.ErrorMessage>
+                    commandFormProps: props,
+                    editableData: editableData?.changeableColumns
                   }
-                <S.FormItem>
-                  <Button onClick={() => showModal(FieldsForm,
-                    {
-                      commandFormProps: props,
-                      editableData: editableData?.changeableColumns
-                    }
-                  )}>
-                    Փոփոխելի դաշտեր
-                  </Button>
-                </S.FormItem>
-                </S.FormItem>
+                )}>
+                  Փոփոխելի դաշտեր
+                </Button>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

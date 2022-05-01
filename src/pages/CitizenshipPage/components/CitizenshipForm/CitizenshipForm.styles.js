@@ -54,20 +54,6 @@ export const FormContentContainer = styled.div`
   gap: 10px;
 `
 
-export const FormItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 4px;
-`
-
-export const ErrorMessage = styled.div`
-  font-size: 12px;
-  color: red;
-  margin-left: 10px;
-  font-weight: 500;
-`
-
 export const ButtonsContainer = styled.div`
   display: flex;
   width: 100%;
