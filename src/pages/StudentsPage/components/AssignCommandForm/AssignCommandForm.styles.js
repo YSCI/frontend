@@ -71,3 +71,22 @@ export const ButtonsContainer = styled.div`
     width: 150px;
   }
 `
+
+export const FormItem = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 10px;
+`
+
+export const ChangeableColumnsButton = styled(CenteredFlex)`
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 20%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    background: #f6f6f8;
+  }
+`

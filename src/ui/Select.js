@@ -122,6 +122,7 @@ const ErrorMessage = styled.div`
 
 const SelectContainer = styled.div`
   display: flex;
+  width: 100%;
   position: relative;
   flex-direction: column;
   gap: 4px;

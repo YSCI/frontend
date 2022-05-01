@@ -66,7 +66,10 @@ export const CommandForm = (props) => {
                 />
                 <Button onClick={() => showModal(FieldsForm,
                   {
-                    commandFormProps: props,
+                    commandFormProps: {
+                      ...props,
+                      formValues: values
+                    },
                     editableData: editableData?.changeableColumns
                   }
                 )}>

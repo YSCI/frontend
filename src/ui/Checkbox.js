@@ -46,7 +46,7 @@ const Checked = styled.div`
 `
 
 const CheckboxContainer = styled(CenteredFlex)`
-  width: 21px;
+  min-width: 21px;
   height: 21px;
   cursor: pointer;
   border-radius: 3px;

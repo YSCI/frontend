@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import * as S from './FieldsForm.styles'
 import closeIcon from 'images/close.png'
-import { Input, Button, Select, DatePicker } from 'ui'
+import { Button, Checkbox } from 'ui'
 import { Formik } from 'formik'
-import { initialValues } from './FieldsForm.config'
-import { FormLabelItem } from 'components/FormLabelItem'
+import { fields, initialValues } from './FieldsForm.config'
 import { CommandForm } from '../CommandForm'
+import { setObjectValues, sliceArrayIntoParts } from 'helpers'
 
-export const FieldsForm = ({
-  state,
+export const FieldsForm = ({ 
   showModal,
   hideModal,
-  loadAllData,
   editableData,
   commandFormProps
 }) => {
-  useEffect(() => {
-    loadAllData()
-  }, [loadAllData])
 
   const onSubmit = (values) => {
-    showModal(CommandForm, { ...commandFormProps, changeableFields: values })
+    showModal(CommandForm, {
+      ...commandFormProps,
+      changeableFields: setObjectValues(values, null)
+    })
   }
 
   return (
@@ -38,212 +36,34 @@ export const FieldsForm = ({
       </S.FormHeaderContainer>
       <Formik
         onSubmit={onSubmit}
-        initialValues={editableData || initialValues}
+        initialValues={setObjectValues(editableData, true) || initialValues}
       >
         {
           ({
             values,
-            errors,
-            touched,
             handleSubmit,
             setFieldValue
           }) => {
-            const selectedCommissariat = state.commissariats.list.find(el => el.id === values.commissariatId)
-            const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
-            const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)
-            const selectedNationality = state.nationalities.list.find(el => el.id === values.nationalityId)
-            const selectedProfession = state.professions.list.find(el => el.id === values.professionId)
-            const selectedStatus = state.statuses.list.find(el => el.id === values.statusId)
-            const selectedPrivilege = state.privileges.list.find(el => el.id === values.privilegeId)
-            const selectedGroup = state.groups.list.find(el => el.id === values.groupId)
-
-            const selectedRegistrationRegion = state.regions.list.find(el => el.id === values.registrationRegionId)
-            const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === values.registrationCommunityId)
-
-            const selectedResidentRegion = state.regions.list.find(el => el.id === values.residentRegionId)
-            const selectedResidentCommunity = selectedResidentRegion?.communities.find(el => el.id === values.residentCommunityId)
-
             return (
               <S.FormContentContainer>
                 <S.FormItemsList>
-                  <S.FormRow>
-                    <Input
-                      value={values.firstname}
-                      placeholder='Անուն'
-                      onChange={(val) => setFieldValue('firstname', val)}
-                      onEnter={handleSubmit}
-                      autoFocus
-                      error={touched.firstname && errors.firstname}
-                    />
-                    <Input
-                      value={values.lastname}
-                      placeholder='Ազգանուն'
-                      onChange={(val) => setFieldValue('lastname', val)}
-                      onEnter={handleSubmit}
-                      error={touched.lastname && errors.lastname}
-                    />
-                    <Input
-                      onEnter={handleSubmit}
-                      placeholder='Հայրանուն'
-                      value={values.fathername}
-                      error={touched.fathername && errors.fathername}
-                      onChange={(val) => setFieldValue('fathername', val)}
-                    />
-                    <DatePicker
-                      date={values.dateOfBirth}
-                      error={touched.dateOfBirth && errors.dateOfBirth}
-                      placeholder='Ծննդյան ամսաթիվ'
-                      onChange={(val) => setFieldValue('dateOfBirth', val)}
-                    />
-                    <Select
-                      value={selectedGroup}
-                      accessorKey='number'
-                      options={state.groups.list}
-                      error={touched.groupId && errors.groupId}
-                      placeholder='Խումբ'
-                      onChange={(val) => setFieldValue('groupId', val?.value)}
-                    />
-                    <Input
-                      value={values.currentGroup}
-                      placeholder='Ընթացիկ խումբ'
-                      onChange={(val) => setFieldValue('currentGroup', val)}
-                      onEnter={handleSubmit}
-                      error={touched.currentGroup && errors.currentGroup}
-                    />
-                    <Input
-                      value={values.acceptanceCommandNumber}
-                      placeholder='Ընդունման հրամանի համար'
-                      onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
-                      onEnter={handleSubmit}
-                      error={touched.acceptanceCommandNumber && errors.acceptanceCommandNumber}
-                    />
-                    <Input
-                      value={values.socialCardNumber}
-                      placeholder='Հանրային ծառայության համարանիշ'
-                      onChange={(val) => setFieldValue('socialCardNumber', val)}
-                      onEnter={handleSubmit}
-                      error={touched.socialCardNumber && errors.socialCardNumber}
-                    />
-                    <Input
-                      value={values.passportSeries}
-                      placeholder='Անձը հաստատող փաստաթուղթ'
-                      onChange={(val) => setFieldValue('passportSeries', val)}
-                      onEnter={handleSubmit}
-                      error={touched.passportSeries && errors.passportSeries}
-                    />
-                  </S.FormRow>
-                  <S.FormRow>
-                    <DatePicker
-                      date={values.dateOfAcceptance}
-                      placeholder='Ընդունման ամսաթիվ'
-                      onChange={(val) => setFieldValue('dateOfAcceptance', val)}
-                      error={touched.dateOfAcceptance && errors.dateOfAcceptance}
-                    />
-                    <Select
-                      value={selectedCommissariat}
-                      options={state.commissariats.list}
-                      placeholder='Զինկոմիսարիատ'
-                      onChange={(val) => setFieldValue('commissariatId', val?.value)}
-                      error={touched.commissariatId && errors.commissariatId}
-                    />
-                    <Select
-                      value={selectedStatus}
-                      options={state.statuses.list}
-                      placeholder='Կարգավիճակ'
-                      onChange={(val) => setFieldValue('statusId', val?.value)}
-                      error={touched.statusId && errors.statusId}
-                    />
-                    <Select
-                      value={selectedHealthStatus}
-                      accessorKey='status'
-                      options={state.healthStatuses.list}
-                      placeholder='Առողջական վիճակ'
-                      onChange={(val) => setFieldValue('healthStatusId', val?.value)}
-                      error={touched.healthStatusId && errors.healthStatusId}
-                    />
-                    <Select
-                      value={selectedProfession}
-                      accessorKey='abbreviation'
-                      options={state.professions.list}
-                      placeholder='Մասնագիտություն'
-                      onChange={(val) => setFieldValue('professionId', val?.value)}
-                      error={touched.professionId && errors.professionId}
-                    />
-                    <Select
-                      value={selectedPrivilege}
-                      options={state.privileges.list}
-                      placeholder='Արտոնություն'
-                      onChange={(val) => setFieldValue('privilegeId', val?.value)}
-                      error={touched.privilegeId && errors.privilegeId}
-                    />
-                    <Select
-                      value={selectedNationality}
-                      options={state.nationalities.list}
-                      placeholder='Ազգություն'
-                      onChange={(val) => setFieldValue('nationalityId', val?.value)}
-                      error={touched.nationalityId && errors.nationalityId}
-                    />
-                    <Select
-                      value={selectedCitizenship}
-                      accessorKey='country'
-                      options={state.citizenships.list}
-                      placeholder='Քաղաքացիություն'
-                      onChange={(val) => setFieldValue('citizenshipId', val?.value)}
-                      error={touched.citizenshipId && errors.citizenshipId}
-                    />
-                    <Input
-                      value={values.contactNumbers}
-                      placeholder='Հեռախոսահամարներ'
-                      onChange={(val) => setFieldValue('contactNumbers', val)}
-                      error={touched.contactNumbers && errors.contactNumbers}
-                    />
-                  </S.FormRow>
-                  <S.FormRow>
-                    <FormLabelItem label='Գրանցման հասցե'>
-                      <Select
-                        value={selectedRegistrationRegion}
-                        options={state.regions.list}
-                        placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('registrationRegionId', val?.value)}
-                        error={touched.registrationRegionId && errors.registrationRegionId}
-                      />
-                      <Select
-                        value={selectedRegistrationCommunity}
-                        options={selectedRegistrationRegion?.communities}
-                        placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
-                        error={touched.registrationCommunityId && errors.registrationCommunityId}
-                      />
-                      <Input
-                        value={values.registrationAddress}
-                        placeholder='Հասցե'
-                        onChange={(val) => setFieldValue('registrationAddress', val)}
-                        error={touched.registrationAddress && errors.registrationAddress}
-                      />
-                    </FormLabelItem>
-                    <FormLabelItem label='Բնակության հասցե'>
-                      <Select
-                        value={selectedResidentRegion}
-                        options={state.regions.list}
-                        placeholder='Մարզ'
-                        onChange={(val) => setFieldValue('residentRegionId', val?.value)}
-                        error={touched.residentRegionId && errors.residentRegionId}
-                      />
-                      <Select
-                        value={selectedResidentCommunity}
-                        options={selectedResidentRegion?.communities}
-                        placeholder='Համայնք'
-                        onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
-                        error={touched.residentCommunityId && errors.residentCommunityId}
-                      />
-                      <Input
-                        value={values.residentAddress}
-                        placeholder='Հասցե'
-                        onChange={(val) => setFieldValue('residentAddress', val)}
-                        error={touched.residentAddress && errors.residentAddress}
-                      />
-                    </FormLabelItem>
-                  </S.FormRow>
+                  {
+                    sliceArrayIntoParts(fields, 6).map(fieldsList => (
+                      <S.FormRow>
+                        { fieldsList.map(field => ((
+                            <S.FormItem onClick={() => setFieldValue(field.key, !values[field.key])}>
+                              <Checkbox
+                                checked={values[field.key]}
+                              />
+                              <S.FieldName>
+                                { field.name }
+                              </S.FieldName>
+                            </S.FormItem>
+                          )))
+                        }
+                      </S.FormRow>
+                    ))
+                  }
                 </S.FormItemsList>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
