@@ -96,6 +96,10 @@ export const tableColumns = {
       accessor: 'profession.abbreviation'
     },
     {
+      Header: 'Արտոնություն',
+      accessor: 'privilege.name'
+    },
+    {
       Header: 'Առողջական վիճակ',
       accessor: 'healthStatus.status'
     },

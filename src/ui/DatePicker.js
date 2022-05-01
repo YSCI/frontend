@@ -10,6 +10,7 @@ import closeIcon from 'images/close.png'
 
 export const DatePicker = withTheme(({
   date,
+  error,
   theme,
   onChange,
   placeholder,
@@ -17,7 +18,7 @@ export const DatePicker = withTheme(({
 }) => {
   const onSelectDate = (date) => {
     const dateFormatted = moment(date, 'DD/MM/YYYY')
-    onChange(dateFormatted.toISOString())
+    onChange?.(dateFormatted.toISOString())
   }
 
   return (
@@ -35,6 +36,10 @@ export const DatePicker = withTheme(({
         primaryColor={theme.colors.green}
       />
       {
+        error &&
+          <ErrorMessage>{ error }</ErrorMessage>  
+      }
+      {
         date &&
           <ClearDateContainer onClick={() => onSelectDate(null)}>
             <img alt='clear' src={closeIcon} />
@@ -50,9 +55,12 @@ export const DatePicker = withTheme(({
   )
 })
 
-DatePicker.defaultProps = {
-  onChange: () => {}
-}
+const ErrorMessage = styled.div`
+  font-size: 12px;
+  color: red;
+  margin-left: 10px;
+  font-weight: 500;
+`
 
 const Placeholder = styled.div`
   position: absolute;
@@ -96,7 +104,7 @@ const DatePickerComponent = styled(ModernDatepicker)`
   transition: border 0.3s ease;
 
   &.DatePicker {
-    height: 44.8px;
+    height: 44px;
   }
 
   &.DatePicker + div {
@@ -134,4 +142,6 @@ const DatePickerComponent = styled(ModernDatepicker)`
 const DatePickerContainer = styled.div`
   display: flex;
   position: relative;
+  flex-direction: column;
+  gap: 4px;
 `
