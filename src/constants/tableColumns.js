@@ -77,11 +77,11 @@ export const tableColumns = {
     },
     {
       Header: 'Ընթացիկ կուրս',
-      accessor: 'currentCourse'
+      accessor: 'group.currentSemester'
     },
     {
       Header: 'Ընթացիկ խումբ',
-      accessor: 'currentGroup'
+      accessor: 'group.number'
     },
     {
       Header: 'Քաղաքացիություն',
@@ -111,6 +111,10 @@ export const tableColumns = {
     {
       Header: 'Զինկոմիսարիատ',
       accessor: 'commissariat.name'
+    },
+    {
+      Header: 'Անձը հաստատող փաստաթուղթ',
+      accessor: 'socialCardNumber'
     }
   ],
   subjects: (yearsCount) => {

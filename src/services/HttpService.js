@@ -64,7 +64,7 @@ export class HttpService {
     }
   }
 
-  static async get(path, search, options) {
+  static async get(path, search = { limit: 0 }, options) {
     let queryString
 
     if (typeof search === 'object')

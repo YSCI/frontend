@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
+import lodash from 'lodash'
 
-import { validations } from 'constants/validations'
+import { validations } from 'constants/validations';
 
 export const initialValues = {
   status: '',
@@ -29,4 +30,9 @@ export const initialValues = {
   acceptanceCommandNumber: '',
 }
 
-export const validationSchema = Yup.object().shape(validations.student, ['passportSeries', 'socialCardNumber']);
+export const getValidationSchema = (changeableColumns) => (
+  Yup.object().shape(
+    lodash.pick(validations.student, Object.keys(changeableColumns)),
+    ['passportSeries', 'socialCardNumber']
+  )
+)

@@ -18,6 +18,7 @@ export const DatePicker = withTheme(({
 }) => {
   const onSelectDate = (date) => {
     const dateFormatted = moment(date, 'DD/MM/YYYY')
+
     onChange?.(dateFormatted.toISOString())
   }
 

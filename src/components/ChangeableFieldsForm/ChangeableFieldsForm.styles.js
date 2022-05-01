@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { CenteredFlex } from 'ui/styles'
 
-export const FieldsFormContainer = styled.div`
+export const ChangeableFieldsFormContainer = styled.div`
   display: flex;
   align-items: center;
   background: #fff;
@@ -57,7 +57,7 @@ export const FormContentContainer = styled.div`
 export const FormItemsList = styled.div`
   display: flex;
   width: 100%;
-  gap: 40px;
+  gap: 20px;
 `
 
 export const ButtonsContainer = styled.div`
@@ -75,17 +75,13 @@ export const ButtonsContainer = styled.div`
 export const FormRow = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  flex: 1;
-`
+  gap: 15px;
+  max-width: 360px;
+  &:not(:empty) {
+    flex: 1;
+  }
 
-export const FormItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-`
-
-export const FieldName = styled.div`
-  white-space: pre;
+  .FormLabelItem {
+    gap: 15px;
+  }
 `

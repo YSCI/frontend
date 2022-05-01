@@ -1,3 +1,4 @@
+import { filterNonNull } from "helpers"
 import { AUTH_TYPES } from "redux/types/auth"
 import { COMMANDS_TYPES } from "redux/types/commands"
 import { STUDENTS_TYPES } from "redux/types/students"
@@ -48,7 +49,8 @@ export const students = (state = initialState, action) => {
 
           return {
             ...student,
-            ...action.command.selectedCommand.changeableColumns
+            ...action.command.changeableColumns,
+            ...filterNonNull(action.command.changeableColumns.selectedValues)
           }
         })
       }

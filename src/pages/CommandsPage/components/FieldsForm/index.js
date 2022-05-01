@@ -1,16 +1,10 @@
 import { connect } from 'react-redux'
 
-import { FieldsForm as Self } from './FieldsForm'
-import { loadAllData } from 'redux/actions/app' 
 import { showModal } from 'redux/actions/modal'
-
-const mapStateToProps = (state) => ({
-  state
-})
+import { FieldsForm as Self } from './FieldsForm'
 
 const mapDispatchToProps = { 
-  showModal,
-  loadAllData
+  showModal
 }
 
-export const FieldsForm = connect(mapStateToProps, mapDispatchToProps)(Self)
+export const FieldsForm = connect(null, mapDispatchToProps)(Self)

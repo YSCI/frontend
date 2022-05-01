@@ -117,13 +117,6 @@ export const StudentForm = ({
                       onChange={(val) => setFieldValue('groupId', val?.value)}
                     />
                     <Input
-                      value={values.currentGroup}
-                      placeholder='Ընթացիկ խումբ'
-                      onChange={(val) => setFieldValue('currentGroup', val)}
-                      onEnter={handleSubmit}
-                      error={touched.currentGroup && errors.currentGroup}
-                    />
-                    <Input
                       value={values.acceptanceCommandNumber}
                       placeholder='Ընդունման հրամանի համար'
                       onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
