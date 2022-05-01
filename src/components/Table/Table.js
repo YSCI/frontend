@@ -203,10 +203,13 @@ export const Table = ({
 
     return actions
   }, [
+    onDelete,
+    selectedFlatRows,
+    showModal,
+    customActions,
     FormComponent,
     FilterComponent,
     selectedFirstRow,
-    selectedFlatRows.length
   ])
 
   return (
@@ -251,8 +254,7 @@ export const Table = ({
                       column.isResizing ? 'isResizing' : ''
                     }`}
                   />
-                  {column.isSorted
-                    ? <S.SortIcon
+                  {column.isSorted ? <S.SortIcon
                         alt='sort-icon'
                         className={cx({ ascSort: !column.isSortedDesc })}
                         src={sortIcon}
@@ -295,7 +297,13 @@ export const Table = ({
                       }
 
                       return (
-                        <td {...cell.getCellProps()} onClick={() => cell.column.onClick?.(row.original)} className='tooltip'>
+                        <td {...cell.getCellProps()} onClick={(e) => {
+                          if (cell.column.onClick) {
+                            e.stopPropagation()
+                            e.preventDefault()
+                            cell.column.onClick?.(row.original)
+                          }
+                        }} className='tooltip'>
                           {cell.render('Cell')}
                           {
                             cellIndex > 0  && !isSubTable &&

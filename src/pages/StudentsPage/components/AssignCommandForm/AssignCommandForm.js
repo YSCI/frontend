@@ -52,57 +52,30 @@ export const AssignCommandForm = ({
             return (
               <S.FormContentContainer>
                 <S.FormItemsList>
-                  <S.FormItem>
-                    <Input
-                        value={values.commandNumber}
-                        placeholder='Հրամանի համար'
-                        onChange={(val) => setFieldValue('commandNumber', val)}
-                        onEnter={handleSubmit}
-                        autoFocus
-                      />
-                      {
-                      errors.commandNumber && touched.commandNumber &&
-                        <S.ErrorMessage>
-                          { errors.commandNumber }
-                        </S.ErrorMessage>
-                    }
-                  </S.FormItem>
-                  <S.FormItem>
-                    <DatePicker
-                      date={values.affectDate}
-                      placeholder='Հրամանի ամսաթիվ'
-                      onChange={(val) => setFieldValue('affectDate', val)}
-                    />
-                    {
-                      errors.affectDate && touched.affectDate &&
-                        <S.ErrorMessage>
-                          { errors.affectDate }
-                        </S.ErrorMessage>
-                    }
-                  </S.FormItem>
-                  <S.FormItem>
-                    <Select
-                      value={values.selectedCommand ? {
-                        value: values.selectedCommand?.id,
-                        label: values.selectedCommand?.name
-                      } : null}
-                      options={commandsList.map(status => ({
-                        value: status.id,
-                        label: status.name
-                      }))}
-                      placeholder='Հրաման'
-                      onChange={(val) => {
-                        setFieldValue('commandId', val?.value)
-                        setFieldValue('selectedCommand', commandsList.find(command => command.id === val?.value))
-                      }}
-                    />
-                    {
-                      errors.commandId && touched.commandId &&
-                        <S.ErrorMessage>
-                          { errors.commandId }
-                        </S.ErrorMessage>
-                    }
-                  </S.FormItem>
+                  <Input
+                    value={values.commandNumber}
+                    placeholder='Հրամանի համար'
+                    onChange={(val) => setFieldValue('commandNumber', val)}
+                    onEnter={handleSubmit}
+                    autoFocus
+                    error={touched.commandNumber && errors.commandNumber}
+                  />
+                  <DatePicker
+                    date={values.affectDate}
+                    placeholder='Հրամանի ամսաթիվ'
+                    onChange={(val) => setFieldValue('affectDate', val)}
+                    error={touched.affectDate && errors.affectDate}
+                  />
+                  <Select
+                    value={values.selectedCommand}
+                    options={commandsList}
+                    placeholder='Հրաման'
+                    onChange={(val) => {
+                      setFieldValue('commandId', val?.value)
+                      setFieldValue('selectedCommand', commandsList.find(command => command.id === val?.value))
+                    }}
+                    error={touched.commandId && errors.commandId}
+                  />
                 </S.FormItemsList>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>

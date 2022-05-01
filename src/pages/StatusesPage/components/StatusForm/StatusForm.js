@@ -50,21 +50,14 @@ export const StatusForm = ({
           }) => {
             return (
               <S.FormContentContainer>
-                <S.FormItem>
-                  <Input
-                    value={values.name}
-                    placeholder='Անվանում'
-                    onChange={(val) => setFieldValue('name', val)}
-                    onEnter={handleSubmit}
-                    autoFocus
-                  />
-                  {
-                    errors.name && touched.name &&
-                      <S.ErrorMessage>
-                        { errors.name }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
+                <Input
+                  value={values.name}
+                  placeholder='Անվանում'
+                  onChange={(val) => setFieldValue('name', val)}
+                  onEnter={handleSubmit}
+                  autoFocus
+                  error={touched.name && errors.name}
+                />
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

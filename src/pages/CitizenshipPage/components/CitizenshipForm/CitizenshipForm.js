@@ -52,21 +52,14 @@ export const CitizenshipForm = ({
           }) => {
             return (
               <S.FormContentContainer>
-                <S.FormItem>
-                  <Input
-                    value={values.country}
-                    placeholder='Երկիր'
-                    onChange={(val) => setFieldValue('country', val)}
-                    onEnter={handleSubmit}
-                    autoFocus
-                  />
-                  {
-                    errors.country && touched.country &&
-                      <S.ErrorMessage>
-                        { errors.country }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
+                <Input
+                  value={values.country}
+                  placeholder='Երկիր'
+                  onChange={(val) => setFieldValue('country', val)}
+                  onEnter={handleSubmit}
+                  autoFocus
+                  error={touched.country && errors.country}
+                />
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

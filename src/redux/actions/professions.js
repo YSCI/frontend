@@ -51,7 +51,7 @@ export const deleteSubject = (ids, professionId) => async dispatch => {
 
 export const editSubject = (subject, showNotification = true) => async dispatch => {
   try {
-    await HttpService.put(`subject/${subject.id}`, subject)
+    await HttpService.put(`subject/${subject.id}`, subject, { withoutLoading: true })
  
     dispatch({
       type: PROFESSIONS_TYPES.EDIT_SUBJECT,

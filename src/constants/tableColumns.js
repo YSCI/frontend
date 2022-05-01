@@ -3,7 +3,7 @@ import moment from 'moment'
 import { StudentProfileLink } from 'components'
 import store from 'redux/store'
 import { Checkbox } from 'ui'
-import { editSubject, updateSubjectSemesters } from 'redux/actions/professions'
+import { editSubject } from 'redux/actions/professions'
 
 export const tableColumns = {
   users: [
@@ -27,17 +27,11 @@ export const tableColumns = {
     },
     {
       Header: 'Ստեղծման տարեթիվ',
-      accessor: 'createdYear'
+      accessor: 'openedAt'
     },
     {
       Header: 'Մասնագիտություն',
-      accessor: ({ professionId }) => {
-        const state = store.getState().professions
-
-        const prof = state.list.find(prof => prof.id === professionId)
-
-        return prof?.abbreviation
-      }
+      accessor: 'profession.abbreviation'
     }
   ],
   students: [
@@ -100,6 +94,10 @@ export const tableColumns = {
     {
       Header: 'Մասնագիտություն',
       accessor: 'profession.abbreviation'
+    },
+    {
+      Header: 'Արտոնություն',
+      accessor: 'privilege.name'
     },
     {
       Header: 'Առողջական վիճակ',

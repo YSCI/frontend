@@ -53,66 +53,38 @@ export const UserForm = ({
           }) => {
             return (
               <S.FormContentContainer>
-                <S.FormItem>
-                  <Input
-                    value={values.name}
-                    placeholder='Անուն'
-                    onChange={(val) => setFieldValue('name', val)}
-                    onEnter={handleSubmit}
-                    autoFocus
-                  />
-                  {
-                    errors.name && touched.name &&
-                      <S.ErrorMessage>
-                        { errors.name }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.surname}
-                    placeholder='Ազգանուն'
-                    onChange={(val) => setFieldValue('surname', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.surname && touched.surname &&
-                      <S.ErrorMessage>
-                        { errors.surname }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.username}
-                    placeholder='Մուտքանուն'
-                    onChange={(val) => setFieldValue('username', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.username && touched.username &&
-                      <S.ErrorMessage>
-                        { errors.username }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
+                <Input
+                  value={values.name}
+                  placeholder='Անուն'
+                  onChange={(val) => setFieldValue('name', val)}
+                  onEnter={handleSubmit}
+                  autoFocus
+                  error={touched.name && errors.name}
+                />
+                <Input
+                  value={values.surname}
+                  placeholder='Ազգանուն'
+                  onChange={(val) => setFieldValue('surname', val)}
+                  onEnter={handleSubmit}
+                  error={touched.surname && errors.surname}
+                />
+                <Input
+                  value={values.username}
+                  placeholder='Մուտքանուն'
+                  onChange={(val) => setFieldValue('username', val)}
+                  onEnter={handleSubmit}
+                  error={touched.username && errors.username}
+                />
                 {
                   !editableData &&
-                    <S.FormItem>
-                      <Input
-                        type='password'
-                        value={values.password}
-                        placeholder='Գաղտնաբառ'
-                        onChange={(val) => setFieldValue('password', val)}
-                        onEnter={handleSubmit}
-                      />
-                      {
-                        errors.password && touched.password &&
-                          <S.ErrorMessage>
-                            { errors.password }
-                          </S.ErrorMessage>
-                      }
-                    </S.FormItem>
+                    <Input
+                      type='password'
+                      value={values.password}
+                      placeholder='Գաղտնաբառ'
+                      onChange={(val) => setFieldValue('password', val)}
+                      onEnter={handleSubmit}
+                      error={touched.password && errors.password}
+                    />
                 }
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>

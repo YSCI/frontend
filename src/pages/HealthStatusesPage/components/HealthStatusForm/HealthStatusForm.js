@@ -51,21 +51,14 @@ export const HealthStatusForm = ({
           }) => {
             return (
               <S.FormContentContainer>
-                <S.FormItem>
-                  <Input
-                    value={values.status}
-                    placeholder='Անվանում'
-                    onChange={(val) => setFieldValue('status', val)}
-                    onEnter={handleSubmit}
-                    autoFocus
-                  />
-                  {
-                    errors.status && touched.status &&
-                      <S.ErrorMessage>
-                        { errors.status }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
+                <Input
+                  value={values.status}
+                  placeholder='Անվանում'
+                  onChange={(val) => setFieldValue('status', val)}
+                  onEnter={handleSubmit}
+                  autoFocus
+                  error={touched.status && errors.status}
+                />
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

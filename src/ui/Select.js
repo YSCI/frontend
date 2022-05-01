@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import ReactSelect from 'react-select'
 import styled, { withTheme } from 'styled-components';
+
+import { isObject } from 'helpers'
 
 const colourStyles = (theme) => ({
   control: (styles, { isFocused, menuIsOpen }) => ({
@@ -10,7 +12,7 @@ const colourStyles = (theme) => ({
     boxShadow: 'none',
     borderColor: menuIsOpen ? '#087370': '#d4d4d4',
     borderWidth: '2px',
-    minHeight: '44.8px',
+    minHeight: '44px',
     ':hover': {
       ...styles['hover'],
       borderColor: '#087370',
@@ -18,7 +20,6 @@ const colourStyles = (theme) => ({
   }),
   menuList: (styles) => ({
     ...styles,
-    // zIndex: '100',
     '::-webkit-scrollbar': {
       width: '7px'
     },
@@ -57,16 +58,33 @@ const colourStyles = (theme) => ({
   singleValue: (styles) => ({ ...styles, fontFamily: 'Arial', fontSize: '14px' }),
 })
 
-
 export const Select = withTheme(({
   theme,
   value,
+  error,
   options,
+  accessorKey,
   placeholder,
   ...rest
 }) => {
+  const optionsFormatted = useMemo(() => {
+    return options.map(option => ({
+      value: isObject(option) ? option.id : option,
+      label: isObject(option) ? option[accessorKey] : option
+    }))
+  }, [options, accessorKey])
+
+  const valueFormatted = useMemo(() => {
+    return value
+      ? {
+          value: isObject(value) ? value.id : value,
+          label: isObject(value) ? value[accessorKey] : value
+        }
+      : null
+  }, [value, accessorKey])
+
   return (
-    <SelectContainer>
+    <SelectContainer className='SelectContainer'>
       {
         value &&
           <Placeholder>
@@ -75,19 +93,38 @@ export const Select = withTheme(({
       }
       <ReactSelect
         {...rest}
-        value={value}
+        value={valueFormatted}
         placeholder={placeholder}
-        options={options}
+        options={optionsFormatted}
         isClearable={true}
         className='React-Select'
         styles={colourStyles(theme)}
       />
+      {
+        error &&
+          <ErrorMessage>{ error }</ErrorMessage>
+      }
     </SelectContainer>
   )
 })
 
+Select.defaultProps = {
+  options: [],
+  accessorKey: 'name'
+}
+
+const ErrorMessage = styled.div`
+  font-size: 12px;
+  color: red;
+  margin-left: 10px;
+  font-weight: 500;
+`
+
 const SelectContainer = styled.div`
+  display: flex;
   position: relative;
+  flex-direction: column;
+  gap: 4px;
 
   .React-Select {
     div[id*=listbox]:last-child {

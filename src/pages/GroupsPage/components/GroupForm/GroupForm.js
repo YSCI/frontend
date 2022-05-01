@@ -20,7 +20,7 @@ export const GroupForm = ({
     if (editableData?.professionId) {
       loadProfessionSubjects(editableData?.professionId)
     }
-  }, [editableData?.professionId])
+  }, [editableData?.professionId, loadProfessionSubjects])
 
   const formActionType = useMemo(() => editableData
     ? 'Փոփոխել'
@@ -79,61 +79,35 @@ export const GroupForm = ({
             return (
               <S.FormContentContainer>
                 <S.FormRow>
-                  <S.FormItem>
-                    <Input
-                      autoFocus
-                      value={values.number}
-                      placeholder='Համար'
-                      onChange={(val) => setFieldValue('number', val)}
-                      onEnter={handleSubmit}
-                    />
-                    {
-                      errors.number && touched.number &&
-                        <S.ErrorMessage>
-                          { errors.number }
-                        </S.ErrorMessage>
-                    }
-                  </S.FormItem>
-                  <S.FormItem>
-                    <Input
-                      placeholder='Ստեղծման տարեթիվ'
-                      value={values.createdYear}
-                      onChange={createdYear => setFieldValue('createdYear', createdYear)}
-                    />
-                    {
-                      errors.createdYear && touched.createdYear &&
-                        <S.ErrorMessage>
-                          { errors.createdYear }
-                        </S.ErrorMessage>
-                    }
-                  </S.FormItem>
-                  <S.FormItem>
-                    <Select
-                      value={selectedProfession ? {
-                        value: selectedProfession?.id,
-                        label: selectedProfession?.abbreviation
-                      } : null}
-                      options={professionsList.map(prof => ({
-                        value: prof.id,
-                        label: prof.abbreviation
-                      }))}
-                      placeholder='Մասնագիտություն'
-                      onChange={(val) => {
-                        const profId = val?.value
-                        setFieldValue('professionId', profId)
-                        
-                        if (profId) {
-                          loadSubjectfOfProfession(profId, setFieldValue)
-                        }
-                      }}
-                    />
-                    {
-                      errors.professionId && touched.professionId &&
-                        <S.ErrorMessage>
-                          { errors.professionId }
-                        </S.ErrorMessage>
-                    }
-                  </S.FormItem>
+                  <Input
+                    autoFocus
+                    value={values.number}
+                    placeholder='Համար'
+                    onChange={(val) => setFieldValue('number', val)}
+                    onEnter={handleSubmit}
+                    error={touched.number && errors.number}
+                  />
+                  <Input
+                    placeholder='Ստեղծման տարեթիվ'
+                    value={values.openedAt}
+                    onChange={openedAt => setFieldValue('openedAt', openedAt)}
+                    error={touched.openedAt && errors.openedAt}
+                  />
+                  <Select
+                    value={selectedProfession}
+                    accessorKey='abbreviation'
+                    options={professionsList}
+                    placeholder='Մասնագիտություն'
+                    error={touched.professionId && errors.professionId}
+                    onChange={(val) => {
+                      const profId = val?.value
+                      setFieldValue('professionId', profId)
+                      
+                      if (profId) {
+                        loadSubjectfOfProfession(profId, setFieldValue)
+                      }
+                    }}
+                  />
                 </S.FormRow>
                 {
                   !!selectedProfession?.subjects.length &&

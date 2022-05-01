@@ -58,51 +58,30 @@ export const CommissariatForm = ({
           }) => {
             return (
               <S.FormContentContainer>
-                <S.FormItem>
-                  <Input
-                    value={values.name}
-                    placeholder='Անվանում'
-                    onChange={(val) => setFieldValue('name', val)}
-                    onEnter={handleSubmit}
-                    autoFocus
-                  />
-                  {
-                    errors.name && touched.name &&
-                      <S.ErrorMessage>
-                        { errors.name }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
-                  <Input
-                    value={values.number}
-                    placeholder='Համար'
-                    type='number'
-                    onChange={(val) => setFieldValue('number', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.number && touched.number &&
-                      <S.ErrorMessage>
-                        { errors.number }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
-                <S.FormItem>
                 <Input
-                    value={values.description}
-                    placeholder='Նկարագրություն'
-                    type='description'
-                    onChange={(val) => setFieldValue('description', val)}
-                    onEnter={handleSubmit}
-                  />
-                  {
-                    errors.description && touched.description &&
-                      <S.ErrorMessage>
-                        { errors.description }
-                      </S.ErrorMessage>
-                  }
-                </S.FormItem>
+                  value={values.name}
+                  placeholder='Անվանում'
+                  onChange={(val) => setFieldValue('name', val)}
+                  onEnter={handleSubmit}
+                  autoFocus
+                  error={touched.name && errors.name}
+                />
+                <Input
+                  value={values.number}
+                  placeholder='Համար'
+                  type='number'
+                  onChange={(val) => setFieldValue('number', val)}
+                  onEnter={handleSubmit}
+                  error={touched.number && errors.number}
+                />
+                <Input
+                  value={values.description}
+                  placeholder='Նկարագրություն'
+                  type='description'
+                  onChange={(val) => setFieldValue('description', val)}
+                  onEnter={handleSubmit}
+                  error={touched.description && errors.description }
+                />
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել
