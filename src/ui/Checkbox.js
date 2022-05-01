@@ -50,7 +50,7 @@ const CheckboxContainer = styled(CenteredFlex)`
   height: 21px;
   cursor: pointer;
   border-radius: 3px;
-  border: 2px solid #fff;
+  border: 2px solid #bababa;
   transition: all 0.3s ease;
 
   &.main  {

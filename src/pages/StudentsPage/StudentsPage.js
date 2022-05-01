@@ -2,6 +2,7 @@ import React from 'react'
 
 
 import { Table } from 'components'
+import rateIcon from 'images/rating.png'
 import { Layout } from 'components/Layout'
 import attachIcon from 'images/attach.png'
 import * as S from './StudentsPage.styles'
@@ -30,11 +31,17 @@ export const StudentsPage = ({
           FilterComponent={FiltersList}
           customActions={(selectedRows) => ([
             {
+              icon: rateIcon,
+              title: 'Գնահատել',
+              disabled: selectedRows.length === 0,
+              onClick: () => showModal(AssignCommandForm, { studentIds: selectedRows.map(row => row.original.id) })
+            },
+            {
               icon: attachIcon,
               title: 'Կցագրել հրաման',
               disabled: selectedRows.length === 0,
               onClick: () => showModal(AssignCommandForm, { studentIds: selectedRows.map(row => row.original.id) })
-            },
+            }
           ])}
         />
       </S.StudentsPageContainer>

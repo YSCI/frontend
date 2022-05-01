@@ -6,7 +6,7 @@ import { setLoading } from 'redux/actions/app'
 import { filterNonNull } from 'helpers';
 
 export class HttpService {
-  static request (method, path, data, options = {}) {
+  static request (method, path, data, options = { withoutLoading: false }) {
     const requestUrl = `${process.env.REACT_APP_API_URL}/${path}`
 
     const headers = new Headers({
@@ -30,7 +30,8 @@ export class HttpService {
     }
 
     try {
-        store.dispatch(setLoading(true))
+        if (!options.withoutLoading)
+          store.dispatch(setLoading(true))
         return fetch(requestUrl, fetchOptions)
           .then(res => {
             return res.json()
@@ -55,7 +56,8 @@ export class HttpService {
             return Promise.reject(e)
           })
           .finally(() => {
-            store.dispatch(setLoading(false))
+            if (!options.withoutLoading)
+              store.dispatch(setLoading(false))
           })
     } catch (e) {
       return Promise.reject(e)

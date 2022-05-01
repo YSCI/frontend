@@ -27,17 +27,11 @@ export const tableColumns = {
     },
     {
       Header: 'Ստեղծման տարեթիվ',
-      accessor: 'createdYear'
+      accessor: 'openedAt'
     },
     {
       Header: 'Մասնագիտություն',
-      accessor: ({ professionId }) => {
-        const state = store.getState().professions
-
-        const prof = state.list.find(prof => prof.id === professionId)
-
-        return prof?.abbreviation
-      }
+      accessor: 'profession.abbreviation'
     }
   ],
   students: [

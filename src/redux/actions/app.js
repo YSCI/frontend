@@ -13,6 +13,7 @@ import { loadPrivileges } from './privileges'
 import { loadProfessions } from './professions'
 import { loadRegions } from './regions'
 import { loadStatuses } from './statuses'
+import { loadGroups } from './groups'
 
 export const loadAllData = () => dispatch => {
   dispatch(loadCommissariats())
@@ -24,6 +25,7 @@ export const loadAllData = () => dispatch => {
   dispatch(loadProfessions())
   dispatch(loadRegions())
   dispatch(loadStatuses())
+  dispatch(loadGroups())
 }
 
 export const initApp = () => async dispatch => {

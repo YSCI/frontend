@@ -68,6 +68,7 @@ export const StudentForm = ({
             const selectedNationality = state.nationalities.list.find(el => el.id === values.nationalityId)
             const selectedProfession = state.professions.list.find(el => el.id === values.professionId)
             const selectedStatus = state.statuses.list.find(el => el.id === values.statusId)
+            const selectedGroup = state.groups.list.find(el => el.id === values.groupId)
 
             const selectedRegistrationRegion = state.regions.list.find(el => el.id === values.registrationRegionId)
             const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === values.registrationCommunityId)
@@ -123,16 +124,35 @@ export const StudentForm = ({
                       }
                     </S.FormItem>
                     <S.FormItem>
-                      <Input
-                        value={values.currentGroup}
-                        placeholder='Ընթացիկ խումբ'
-                        onChange={(val) => setFieldValue('currentGroup', val)}
-                        onEnter={handleSubmit}
+                      <DatePicker
+                        date={values.dateOfBirth}
+                        placeholder='Ծննդյան ամսաթիվ'
+                        onChange={(val) => setFieldValue('dateOfBirth', val)}
                       />
                       {
-                        errors.currentGroup && touched.currentGroup &&
+                        errors.dateOfBirth && touched.dateOfBirth &&
                           <S.ErrorMessage>
-                            { errors.currentGroup }
+                            { errors.dateOfBirth }
+                          </S.ErrorMessage>
+                      }
+                    </S.FormItem>
+                    <S.FormItem>
+                      <Select
+                        value={selectedGroup ? {
+                          value: selectedGroup?.id,
+                          label: selectedGroup?.number
+                        } : null}
+                        options={state.groups.list.map(group => ({
+                          value: group.id,
+                          label: group.number
+                        }))}
+                        placeholder='Խումբ'
+                        onChange={(val) => setFieldValue('groupId', val?.value)}
+                      />
+                      {
+                        errors.groupId && touched.groupId &&
+                          <S.ErrorMessage>
+                            { errors.groupId }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>
@@ -175,19 +195,6 @@ export const StudentForm = ({
                         errors.passportSeries && touched.passportSeries &&
                           <S.ErrorMessage>
                             { errors.passportSeries }
-                          </S.ErrorMessage>
-                      }
-                    </S.FormItem>
-                    <S.FormItem>
-                      <DatePicker
-                        date={values.dateOfBirth}
-                        placeholder='Ծննդյան ամսաթիվ'
-                        onChange={(val) => setFieldValue('dateOfBirth', val)}
-                      />
-                      {
-                        errors.dateOfBirth && touched.dateOfBirth &&
-                          <S.ErrorMessage>
-                            { errors.dateOfBirth }
                           </S.ErrorMessage>
                       }
                     </S.FormItem>

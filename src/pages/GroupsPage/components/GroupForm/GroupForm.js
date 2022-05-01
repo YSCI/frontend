@@ -97,13 +97,13 @@ export const GroupForm = ({
                   <S.FormItem>
                     <Input
                       placeholder='Ստեղծման տարեթիվ'
-                      value={values.createdYear}
-                      onChange={createdYear => setFieldValue('createdYear', createdYear)}
+                      value={values.openedAt}
+                      onChange={openedAt => setFieldValue('openedAt', openedAt)}
                     />
                     {
-                      errors.createdYear && touched.createdYear &&
+                      errors.openedAt && touched.openedAt &&
                         <S.ErrorMessage>
-                          { errors.createdYear }
+                          { errors.openedAt }
                         </S.ErrorMessage>
                     }
                   </S.FormItem>

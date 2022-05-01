@@ -6,10 +6,10 @@ export const initialValues = {
   status: '',
   lastname: '',
   statusId: null,
+  groupId: null,
   firstname: '',
   fathername: '',
   dateOfBirth: null,
-  currentGroup: '',
   professionId: null,
   citizenshipId: null,
   currentCourse: '',
@@ -40,9 +40,6 @@ export const validationSchema = Yup.object().shape({
     .typeError(validationMessages.empty)
     .required(validationMessages.empty),
   currentCourse: Yup.number()	
-    .typeError(validationMessages.empty)
-    .required(validationMessages.empty),
-  currentGroup: Yup.number()	
     .typeError(validationMessages.empty)
     .required(validationMessages.empty),
   residentAddress: Yup.string()	
@@ -76,6 +73,9 @@ export const validationSchema = Yup.object().shape({
     .typeError(validationMessages.empty)
     .required(validationMessages.empty),
   statusId: Yup.string()	
+    .typeError(validationMessages.empty)
+    .required(validationMessages.empty),
+  groupId: Yup.string()
     .typeError(validationMessages.empty)
     .required(validationMessages.empty),
   healthStatusId: Yup.number()	
