@@ -2,14 +2,6 @@ import * as Yup from 'yup';
 
 export const initialValues = {}
 
-export const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  regionId: Yup.number()
-    .typeError('Դաշտը չի կարող դատարկ լինել')
-    .required('Դաշտը չի կարող դատարկ լինել'),
-});
-
 export const fields = [
   {
     id: 1,
@@ -34,12 +26,7 @@ export const fields = [
   {
     id: 5,
     name: 'Խումբ',
-    key: 'number'
-  },
-  {
-    id: 6,
-    name: 'Ընթացիկ խումբ',
-    key: 'currentGroup'
+    key: 'groupId'
   },
   {
     id: 7,
@@ -94,7 +81,7 @@ export const fields = [
   {
     id: 18,
     name: 'Քաղաքացիություն',
-    key: 'country'
+    key: 'citizenshipId'
   },
   {
     id: 19,

@@ -76,12 +76,12 @@ export const tableColumns = {
       accessor: 'acceptanceCommandNumber'
     },
     {
-      Header: 'Ընթացիկ կուրս',
-      accessor: 'group.currentSemester'
+      Header: 'Խումբ',
+      accessor: 'group.number'
     },
     {
-      Header: 'Ընթացիկ խումբ',
-      accessor: 'group.number'
+      Header: 'Ընթացիկ կուրս',
+      accessor: 'group.currentSemester'
     },
     {
       Header: 'Քաղաքացիություն',

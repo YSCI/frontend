@@ -253,7 +253,7 @@ export const ChangeableFieldsForm = ({
                           />
                         ),
                         canSetFieldValue(
-                          'conutryId',
+                          'citizenshipId',
                           <Select
                             value={selectedValues.citizenship}
                             accessorKey='country'
