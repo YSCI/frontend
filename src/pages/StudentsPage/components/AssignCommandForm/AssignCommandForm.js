@@ -106,6 +106,17 @@ export const AssignCommandForm = (props) => {
                         </S.ChangeableColumnsButton>
                     }
                   </S.FormItem>
+                  {
+                    values.selectedCommand && isObjectEmpty(values.selectedCommand?.changeableColumns) &&
+                      <Input
+                        value={values.description}
+                        placeholder='Նկարագրություն'
+                        onChange={(val) => setFieldValue('description', val)}
+                        onEnter={handleSubmit}
+                        autoFocus
+                        error={touched.description && errors.description}
+                      />
+                  }
                 </S.FormItemsList>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>

@@ -35,7 +35,10 @@ export const editCommissariat = (values) => async dispatch => {
 
 export const createCommissariat = (values) => async dispatch => {
   try {
-    const createdCommissariat = await HttpService.post('commissariat', values)
+    const createdCommissariat = await HttpService.post('commissariat', {
+      ...values,
+      description: values.description || ' '
+    })
     
     dispatch({
       type: COMMISSARIATS_TYPES.CREATE_COMMISSARIAT,

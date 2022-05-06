@@ -50,7 +50,7 @@ export const students = (state = initialState, action) => {
           return {
             ...student,
             ...action.command.changeableColumns,
-            ...filterNonNull(action.command.changeableColumns.selectedValues)
+            ...filterNonNull(action.command.changeableColumns?.selectedValues)
           }
         })
       }

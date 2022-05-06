@@ -8,7 +8,7 @@ export const ChangeableFieldsFormContainer = styled.div`
   border-radius: 15px;
   margin-top: -20px;
   padding-bottom: 20px;
-  min-width: 1150px;
+  // min-width: 1150px;
   flex-direction: column;
   gap: 10px;
 `
@@ -78,7 +78,8 @@ export const FormRow = styled.div`
   gap: 15px;
   max-width: 360px;
   &:not(:empty) {
-    flex: 1;
+    // flex: 1;
+    width: 360px;
   }
 
   .FormLabelItem {

@@ -120,6 +120,11 @@ export const tableColumns = {
   subjects: (yearsCount) => {
     const arr = [
       {
+        Header: ' ',
+        width: 80,
+        accessor: (row, index) => index + 1 + ')'
+      },
+      {
         Header: 'Անվանում',
         accessor: 'name'
       }

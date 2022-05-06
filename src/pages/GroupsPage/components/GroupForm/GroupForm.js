@@ -138,7 +138,7 @@ export const GroupForm = ({
                               selectedProfession.subjects.map((subject, position) => {
                                 return (
                                   <S.ProfessionSubjectItem>
-                                    <S.SubjectName>
+                                    <S.SubjectName title={subject.name}>
                                       { position + 1 }) { subject.name }
                                     </S.SubjectName>
                                     <S.CheckboxesContainer>

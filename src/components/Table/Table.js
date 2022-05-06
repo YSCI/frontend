@@ -64,7 +64,8 @@ export const Table = ({
   hasActionsBar,
   hasSelections,
   FormComponent,
-  FilterComponent
+  FilterComponent,
+  withoutCheckboxes
 }) => {
   const {
     rows,
@@ -90,7 +91,7 @@ export const Table = ({
     useBlockLayout,
     useResizeColumns,
     hooks => {
-      if (!hasSelections) return
+      if (!hasSelections || withoutCheckboxes) return
 
       hooks.visibleColumns.push(columns => [        
         {
@@ -351,5 +352,6 @@ Table.defaultProps = {
   columnConfig: {},
   hasActionsBar: true,
   hasSelections: true,
+  withoutCheckboxes: false,
   title: 'Գործողություններ'
 }
