@@ -37,6 +37,7 @@ export const ProfessionsPage = ({
             FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
             columns={tableColumns.subjects(row.original.yearsCount)}
             isSubTable={true}
+            withoutCheckboxes={true}
           />}
           columns={tableColumns.profession}
         />

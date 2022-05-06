@@ -230,13 +230,17 @@ export const ProfessionSubjectItem = styled.div`
 
 export const SubjectName = styled.div`
   white-space: pre;
+  width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export const CheckboxesContainer = styled.div`
   display: flex;
   width: 100%;
-  padding-left: 150px;
-  padding-right: 30px;
+  padding: 0px 30px;
+  // padding-left: 30px;
+  // padding-right: 30px;
   gap: 20px;
   justify-content: flex-end;
 `

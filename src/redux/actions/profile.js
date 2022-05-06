@@ -4,7 +4,7 @@ import { PROFILE_TYPES } from 'redux/types/profile'
 
 export const loadProfileCommandsHistory = (search) => async dispatch => {
   try {
-    const { data, total } = await HttpService.get(`command-history`, search)
+    const { data, total } = await HttpService.get(`command-history`, {...search, orderBy: 'createdAt', orderDirection: 'DESC'})
 
     dispatch({
       type: PROFILE_TYPES.LOAD_COMMANDS_HISTORY,

@@ -8,7 +8,7 @@ import { Layout, Table, TabMenu } from 'components'
 import * as S from './StudentProfilePage.styles'
 import { Button } from 'ui'
 import { withConfirmation } from 'helpers'
-import studentPic from 'images/avatar.jfif'
+// import studentPic from 'images/avatar.jfif'
 import { StudentForm } from 'pages/StudentsPage/components/StudentForm'
 import { tableColumns } from 'constants/tableColumns'
 
@@ -47,7 +47,7 @@ export const StudentProfilePage = ({
             <S.ProfessionType>
               { profileData.profession.abbreviation }
             </S.ProfessionType>
-            <S.StudentProfilePic src={studentPic}/>
+            <S.StudentProfilePic />
             <S.StudentName>
               { profileData.firstname } { profileData.lastname }
             </S.StudentName>
