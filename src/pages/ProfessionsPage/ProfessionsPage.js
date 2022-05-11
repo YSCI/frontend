@@ -31,8 +31,12 @@ export const ProfessionsPage = ({
           FilterComponent={FiltersList}
           SubComponent={({ row }) => <Table
             title='Առարկաներ'
+            total={20}
             data={professions.list.find(el => el.id === row.original.id)?.subjects || []}
-            loadData={() => loadProfessionSubjects(row.original.id)}
+            loadData={(search) => loadProfessionSubjects({
+              ...search,
+              professionId: row.original.id
+            })}
             onDelete={(ids) => deleteSubject(ids, row.original.id)}
             FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
             columns={tableColumns.subjects(row.original.yearsCount)}

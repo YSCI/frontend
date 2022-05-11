@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FormLabelItemContainer = styled.div`
   padding: 20px 15px;
-  border-radius: 4px;
+  border-radius: 13px;
   margin-top: 4px;
   position: relative;
   border: 2px solid #d9d9d9;
