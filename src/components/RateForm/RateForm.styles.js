@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { CenteredFlex } from 'ui/styles'
 
-export const GroupFormContainer = styled.div`
+export const RateFormContainer = styled.div`
   display: flex;
   align-items: center;
   background: #fff;
@@ -72,10 +72,6 @@ export const FormRow = styled.div`
   display: flex;
   gap: 20px;
   width: 100%;
-
-  .InputContainer {
-    flex: 1;
-  }
 
   .SelectContainer {
     flex: 1;
@@ -179,8 +175,7 @@ export const CurriculumContainer = styled.div`
   flex-direction: column;
   background: #f7f7f7;
   border-radius: 10px;
-  padding: 20px 30px;
-  
+  padding: 20px 30px; 
 `
 
 export const CurriculumContainerHeader = styled.div`
@@ -245,20 +240,30 @@ export const CheckboxesContainer = styled.div`
   justify-content: flex-end;
 `
 
-export const CheckboxWrapper = styled.div`
+export const InputWrapper = styled.div`
   width: 75px;
   display: flex;
   justify-content: center;
 
+  .InputContainer {
+    min-width: 44.8px !important;
+    max-width: 44.8px !important;
+
+    input {
+      text-align: center;
+      padding: 12px 10px;
+      width: calc(100% - 24px);
+    }
+  }
   
   &:nth-child(2n + 1) {
-    .Checkbox {
+    .InputContainer {
       margin-left: 45px;
     }
   }
 
   &:nth-child(2n + 2) {
-    .Checkbox {
+    .InputContainer {
       margin-left: 25px;
     } 
   }

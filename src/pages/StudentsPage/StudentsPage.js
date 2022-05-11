@@ -10,6 +10,7 @@ import { tableColumns } from 'constants/tableColumns'
 import { StudentForm } from './components/StudentForm'
 import { FiltersList } from './components/FiltersList'
 import { AssignCommandForm } from './components/AssignCommandForm'
+import { RateForm } from 'components/RateForm'
 
 export const StudentsPage = ({
   students,
@@ -34,7 +35,7 @@ export const StudentsPage = ({
               icon: rateIcon,
               title: 'Գնահատել',
               disabled: selectedRows.length === 0,
-              onClick: () => showModal(AssignCommandForm, { studentIds: selectedRows.map(row => row.original.id) })
+              onClick: () => showModal(RateForm, { student: selectedRows[0].original })
             },
             {
               icon: attachIcon,

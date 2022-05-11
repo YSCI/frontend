@@ -30,6 +30,7 @@ export const StudentForm = ({
   , [editableData])
 
   const onSubmit = (values) => {
+    console.log({ values })
     if (editableData) {
       editStudent(values)
     } else {

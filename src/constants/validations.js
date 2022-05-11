@@ -49,9 +49,6 @@ export const validations = {
     groupId: Yup.string()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
-    privilegeId: Yup.string()  
-      .typeError(validationMessages.empty)
-      .required(validationMessages.empty),
     healthStatusId: Yup.number()	
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
@@ -62,9 +59,6 @@ export const validations = {
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
     citizenshipId: Yup.number()	
-      .typeError(validationMessages.empty)
-      .required(validationMessages.empty),
-    contactNumbers: Yup.string()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
     socialCardNumber: Yup.string()

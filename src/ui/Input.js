@@ -1,11 +1,14 @@
 import React from 'react'
+import cx from 'classnames'
 import styled from 'styled-components'
 
 export const Input = ({
   value,
   error,
   onEnter,
+  disabled,
   onChange,
+  className,
   placeholder,
   ...rest
 }) => {
@@ -28,9 +31,11 @@ export const Input = ({
       <StyledInput
         {...rest}
         value={value}
+        disabled={disabled}
         onChange={onInputChange}
         onKeyPress={handleKeypress}
         placeholder={!value ? placeholder : ''}
+        className={cx({ [className]: true, disabled })}
       />
       {
         error &&
@@ -87,5 +92,9 @@ const StyledInput = styled.input`
 
   &:focus {
     border-color: ${({ theme }) => theme.colors.lightGreen};
+  }
+
+  &.disabled {
+    pointer-events: none;
   }
 `
