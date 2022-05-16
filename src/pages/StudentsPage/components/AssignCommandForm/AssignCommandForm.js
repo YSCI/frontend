@@ -32,6 +32,7 @@ export const AssignCommandForm = (props) => {
 
     if (!isObjectEmpty(values.changeableColumns) && values.changeableColumns.contactNumbers) {
       const { contactNumbers } = values.changeableColumns
+
       command.changeableColumns.contactNumbers = Array.isArray(contactNumbers)
       ? contactNumbers
       : contactNumbers.split(',').map(el => el.trim())
