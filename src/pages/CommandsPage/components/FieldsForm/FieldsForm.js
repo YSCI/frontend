@@ -21,7 +21,7 @@ export const FieldsForm = ({
       changeableFields: setObjectValues(values, null)
     })
   }
-  console.log(editableData)
+
   return (
     <S.FieldsFormContainer>
       <S.FormHeaderContainer>

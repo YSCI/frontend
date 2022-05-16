@@ -38,7 +38,7 @@ export const GroupForm = ({
   }
 
   const loadSubjectfOfProfession = async (profId, setFieldValue) => {
-    const subjects = await loadProfessionSubjects(profId)
+    const subjects = await loadProfessionSubjects({ professionId: profId })
     const curriculum = []
 
     subjects.forEach(subject => {

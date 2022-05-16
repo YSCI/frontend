@@ -77,14 +77,8 @@ export const CommunityForm = ({
                 </S.FormItem>
                 <S.FormItem>
                   <Select
-                    value={selectedRegion ? {
-                      value: selectedRegion?.id,
-                      label: selectedRegion?.name
-                    } : null}
-                    options={regions.list.map(region => ({
-                      value: region.id,
-                      label: region.name
-                    }))}
+                    value={selectedRegion}
+                    options={regions.list}
                     placeholder='Մարզ'
                     onChange={(val) => {
                       setFieldValue('region', regions.list.find(region => region.id === val?.value))

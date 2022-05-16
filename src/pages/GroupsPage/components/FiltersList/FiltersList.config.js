@@ -1,3 +1,5 @@
 export const initialValues = {
-  country: ''
+  number: '',
+  openedAt: '',
+  professionId: null
 }

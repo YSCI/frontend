@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import { Table } from 'components'
 import rateIcon from 'images/rating.png'
 import { Layout } from 'components/Layout'
