@@ -19,10 +19,30 @@ export const loadGroups = (search) => async dispatch => {
   }
 }
 
+export const switchCourse = (groups) => async dispatch => {
+  try {
+    await HttpService.post('group/switchCourse', {
+      groupIds: groups
+    })
+
+    dispatch(loadGroups({}))
+
+    toast.success('Խմբերը հաջողությամբ փոխադրվեցին')
+  } catch (ex) {
+    toast.error('Առաջացավ խնդիր')
+  }
+}
+
 export const editGroup = (values) => async dispatch => {
   try {
     await HttpService.put(`group/${values.id}`, values)
- 
+    const promises = []
+    if (values.curriculum) {
+      for (const curr of values.curriculum) {
+        HttpService.put(`curriculum/${curr.id}`, curr)
+      }
+    }
+
     dispatch({
       type: GROUPS_TYPES.EDIT_GROUP,
       data: values

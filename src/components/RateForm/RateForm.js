@@ -13,28 +13,40 @@ import { toast } from 'react-toastify'
 export const RateForm = ({
   student,
   hideModal,
-  editGroup,
-  editableData,
-  professionsList,
+  rateStudent,
   loadProfessionSubjects
 }) => {
+  const [rates, setRates] = useState(null)
   const [subjects, setSubjects] = useState([])
   const [curriculum, setCurriculum] = useState([])
+
+  const loadRates = async () => {
+    try {
+      const rates = await HttpService.get('rating', { studentId: student.id })
+      setRates({
+        rates: rates?.data
+      })
+    } catch (ex) {
+      toast.error(`Առաջացավ խնդիր: ${ex.message}`)
+    }
+  }
+
+  useEffect(() => {
+    loadRates()
+  }, [])
 
   const loadCurriculum = async () => {
     try {
       const { curriculum } = await HttpService.get(`group/${student.group.id}`)
 
       setCurriculum(curriculum)
-      console.log(curriculum)
     } catch (ex) {
       toast.error(`Առաջացավ խնդիր: ${ex.message}`)
     }
   }
 
   const loadSubjectsOfProfession = async () => {
-    const subjects = await loadProfessionSubjects({ professionId: student.profession.id })
-    console.log({subjects})
+  const subjects = await loadProfessionSubjects({ professionId: student.group.professionId })
     setSubjects(subjects)
   }
 
@@ -43,27 +55,11 @@ export const RateForm = ({
     loadSubjectsOfProfession()
   }, [])
 
-  console.log(student)
   const onSubmit = (values) => {
-    console.log({values})
+    rateStudent(values.rates)
+    hideModal()
   }
 
-  // const loadSubjectsOfProfession = async (profId, setFieldValue) => {
-  //   const subjects = await loadProfessionSubjects(profId)
-  //   const curriculum = []
-
-  //   subjects.forEach(subject => {
-  //     curriculum.push({
-  //       subjectId: subject.id,
-  //       semesters: subject.semesters || []
-  //     })
-  //   })
-
-  //   setFieldValue('curriculum', curriculum)
-  // }
-
-  console.log({student})
-  console.log({ subjects, curriculum })
   return (
     <S.RateFormContainer>
       <S.FormHeaderContainer>
@@ -76,7 +72,8 @@ export const RateForm = ({
       </S.FormHeaderContainer>
       <Formik
         onSubmit={onSubmit}
-        initialValues={editableData || initialValues}
+        initialValues={rates || initialValues}
+        enableReinitialize={true}
       >
         {
           ({
@@ -112,6 +109,7 @@ export const RateForm = ({
                       </S.CurriculumContainerHeader>
                       <S.ProfessionSubjectsSelection>
                         {
+                          
                           subjects.map((subject, position) => {
                             return (
                               <S.ProfessionSubjectItem>
@@ -121,37 +119,33 @@ export const RateForm = ({
                                 <S.CheckboxesContainer>
                                   {
                                     createArrayOfLength(student.profession.yearsCount * 2).map(semester => {
-                                      console.log('cond', semester === 1 && position === 0, subject)
                                       return (
                                         <S.InputWrapper>
                                           <Input
+                                            value={values.rates.find(rate => rate.semester === semester && rate.subjectId === subject.id)?.rate}
                                             maxLength={2}
+                                            onChange={(rate) => {
+                                              const rateIndex = values.rates.findIndex(rate => rate.subjectId === subject.id && rate.semester === semester)
+
+                                              if (rateIndex === -1)
+                                                setFieldValue('rates', values.rates.concat({
+                                                  subjectId: subject.id,
+                                                  rate: +rate,
+                                                  semester,
+                                                  studentId: student.id
+                                                }))
+                                              else
+                                                setFieldValue('rates', [
+                                                  ...values.rates.slice(0, rateIndex),
+                                                  {
+                                                    ...values.rates[rateIndex],
+                                                    rate: +rate
+                                                  },
+                                                  ...values.rates.slice(rateIndex + 1)
+                                                ])
+                                            }}
                                             disabled={!(curriculum.find(curr => curr.subjectId === subject.id)?.semesters?.includes(semester))}
                                           />
-                                          {/* <Checkbox
-                                            checked={curriculumList.find(curr => curr.subjectId === subject.id)?.semesters.includes(semester)}
-                                            onClick={(() => {
-                                              const subjectIndex = curriculumList.findIndex(curriculum => curriculum.subjectId === subject.id)
-                                              // REFACTOR
-                                              if (subjectIndex !== -1) {
-                                                if (curriculumList[subjectIndex].semesters?.length) {
-                                                  const semesterIndex = curriculumList[subjectIndex].semesters.findIndex(sem => sem === semester)
-                                                  if (semesterIndex !== -1) {
-                                                    curriculumList[subjectIndex].semesters.splice(semesterIndex, 1)
-                                                  } else {
-                                                    curriculumList[subjectIndex].semesters = curriculumList[subjectIndex].semesters.concat(semester).sort()
-                                                  }
-                                                }
-                                                
-                                              } else {
-                                                curriculumList.push({
-                                                  subjectId: subject.id,
-                                                  semesters: [semester]
-                                                })
-                                              }
-                                              setFieldValue('curriculum', curriculumList)
-                                            })}
-                                          /> */}
                                         </S.InputWrapper>
                                       )
                                     })

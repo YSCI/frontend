@@ -24,6 +24,7 @@ export const GroupsPage = ({
         <Table
           title='Խմբեր'
           data={groups.list}
+          isGroupsPage={true}
           total={groups.total}
           loadData={loadGroups}
           onDelete={deleteGroup}

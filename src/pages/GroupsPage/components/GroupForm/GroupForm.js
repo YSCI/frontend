@@ -18,7 +18,9 @@ export const GroupForm = ({
 }) => {
   useEffect(() => {
     if (editableData?.professionId) {
-      loadProfessionSubjects(editableData?.professionId)
+      loadProfessionSubjects({
+        professionId: editableData?.professionId
+      })
     }
   }, [editableData?.professionId, loadProfessionSubjects])
 
