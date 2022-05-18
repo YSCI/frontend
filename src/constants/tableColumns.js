@@ -32,6 +32,10 @@ export const tableColumns = {
     {
       Header: 'Մասնագիտություն',
       accessor: 'profession.abbreviation'
+    },
+    {
+      Header: 'Ընթացիկ կուրս',
+      accessor: 'currentSemester'
     }
   ],
   students: [

@@ -25,6 +25,7 @@ import editIcon from 'images/editing.png'
 import deleteIcon from 'images/delete.png'
 import filterIcon from 'images/filter.png'
 import sortIcon from 'images/sort.png'
+import { SwitchCourseModal } from 'components/SwitchCourseModal'
 
 const defaultColumn = {
   minWidth: 50,
@@ -50,6 +51,8 @@ const IndeterminateCheckbox = React.forwardRef(
 )
 
 export const Table = ({
+  isGroupsPage,
+  switchCourse,
   data,
   title,
   total,
@@ -112,7 +115,7 @@ export const Table = ({
       ])
     }
   )
-
+    console.log({ selectedFlatRows })
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalCount = total || data.length 
@@ -225,6 +228,15 @@ export const Table = ({
               { title }
             </S.FixedActionsBarTitle>
             <S.ActionsList>
+              {
+                isGroupsPage &&
+                  <Button
+                    onClick={() => switchCourse(selectedFlatRows.map(row => row.original.id))}
+                    disable={selectedFlatRows.length === 0}
+                  >
+                    Փոխադրում
+                  </Button>
+              }
               {
                 tableActions.map((action, key) => (
                   <S.Action

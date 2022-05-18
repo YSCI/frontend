@@ -97,5 +97,10 @@ export const fields = [
     id: 21,
     name: 'Բնակության հասցե',
     key: 'residentAddress'
+  },
+  {
+    id: 22,
+    name: 'Սեռ',
+    key: 'gender'
   }
 ]

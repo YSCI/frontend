@@ -7,6 +7,7 @@ export const initialValues = {
   lastname: '',
   statusId: null,
   groupId: null,
+  gender: null,
   firstname: '',
   fathername: '',
   dateOfBirth: null,
