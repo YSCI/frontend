@@ -344,11 +344,11 @@ export const Table = ({
               Ընդհանուր { totalCount } գրառում
             </S.TotalCount>
           <S.PaginationActionsContainer>
-            <Button onClick={prevPage} className={cx('main', { disable: currentPage === 1})}>
+            <Button onClick={prevPage} className={cx('bordered', { disable: currentPage === 1})}>
               {'<'}
             </Button>
             { paginationButtons }
-            <Button onClick={nextPage} className={cx('main', { disable: currentPage === pageCount})}>
+            <Button onClick={nextPage} className={cx('bordered', { disable: currentPage === pageCount})}>
               {'>'}
             </Button>
           </S.PaginationActionsContainer>
