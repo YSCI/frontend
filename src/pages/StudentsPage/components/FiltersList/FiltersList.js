@@ -43,6 +43,7 @@ export const FiltersList = ({
             setFieldValue,
           }) => {
             const selectedCommand = state.commands.list.find(el => el.id === +values.commandId)
+            const selectedGroup = state.groups.list.find(el => el.id === +values.groupId)
             const selectedCommissariat = state.commissariats.list.find(el => el.id === +values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === +values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === +values.healthStatusId)
@@ -79,42 +80,16 @@ export const FiltersList = ({
                     onChange={(val) => setFieldValue('fathername', val)}
                     onEnter={handleSubmit}
                   />
-                  <S.FormItem>
-                  <Select
-                      value={selectedCommand ? {
-                        value: selectedCommand?.id,
-                        label: selectedCommand?.name
-                      } : null}
-                      options={state.commands.list.map(command => ({
-                        value: command.id,
-                        label: command.name
-                      }))}
-                      placeholder='Հրաման'
-                      onChange={(val) => setFieldValue('commandId', val?.value)}
-                    />
-                  </S.FormItem>
                   <FormLabelItem label='Գրանցման հասցե'>
                     <Select
-                      value={selectedRegistrationRegion ? {
-                        value: selectedRegistrationRegion?.id,
-                        label: selectedRegistrationRegion?.name
-                      } : null}
-                      options={state.regions.list.map(region => ({
-                        value: region.id,
-                        label: region.name
-                      }))}
+                      value={selectedRegistrationRegion}
+                      options={state.regions.list}
                       placeholder='Մարզ'
                       onChange={(val) => setFieldValue('registrationRegionId', val?.value)}
                     />
                     <Select
-                      value={selectedRegistrationCommunity ? {
-                        value: selectedRegistrationCommunity?.id,
-                        label: selectedRegistrationCommunity?.name
-                      } : null}
-                      options={selectedRegistrationRegion?.communities.map(community => ({
-                        value: community.id,
-                        label: community.name
-                      }))}
+                      value={selectedRegistrationCommunity}
+                      options={selectedRegistrationRegion?.communities}
                       placeholder='Համայնք'
                       onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
                     />
@@ -128,26 +103,14 @@ export const FiltersList = ({
                   </FormLabelItem>
                   <FormLabelItem label='Բնակության հասցե'>
                     <Select
-                      value={selectedResidentRegion ? {
-                        value: selectedResidentRegion?.id,
-                        label: selectedResidentRegion?.name
-                      } : null}
-                      options={state.regions.list.map(region => ({
-                        value: region.id,
-                        label: region.name
-                      }))}
+                      value={selectedResidentRegion}
+                      options={state.regions.list}
                       placeholder='Մարզ'
                       onChange={(val) => setFieldValue('residentRegionId', val?.value)}
                     />
                     <Select
-                      value={selectedResidentCommunity ? {
-                        value: selectedResidentCommunity?.id,
-                        label: selectedResidentCommunity?.name
-                      } : null}
-                      options={selectedResidentRegion?.communities.map(community => ({
-                        value: community.id,
-                        label: community.name
-                      }))}
+                      value={selectedResidentCommunity}
+                      options={selectedResidentRegion?.communities}
                       placeholder='Համայնք'
                       onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
                     />
@@ -165,99 +128,56 @@ export const FiltersList = ({
                     onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
                     onEnter={handleSubmit}
                   /> 
-                  <Input
-                    value={values.currentCourse}
-                    placeholder='Ընթացիկ կուրս'
-                    onChange={(val) => setFieldValue('currentCourse', val)}
-                    onEnter={handleSubmit}
-                  /> 
-                  <Input
-                    value={values.currentGroup}
-                    placeholder='Ընթացիկ խումբ'
-                    onChange={(val) => setFieldValue('currentGroup', val)}
-                    onEnter={handleSubmit}
-                  /> 
+                  <S.FormItem>
+                    <Select
+                        value={selectedCommand}
+                        options={state.commands.list}
+                        placeholder='Հրաման'
+                        onChange={(val) => setFieldValue('commandId', val?.value)}
+                    />
+                  </S.FormItem>
                   <Select
-                    value={selectedCitizenship ? {
-                      value: selectedCitizenship?.id,
-                      label: selectedCitizenship?.country
-                    } : null}
-                    options={state.citizenships.list.map(citizenship => ({
-                      value: citizenship.id,
-                      label: citizenship.country
-                    }))}
+                    value={selectedGroup}
+                    accessorKey='number'
+                    options={state.groups.list}
+                    placeholder='Խումբ'
+                    onChange={(val) => setFieldValue('group', val)}
+                  />
+                  <Select
+                    value={selectedCitizenship}
+                    accessorKey='country'
+                    options={state.citizenships.list}
                     placeholder='Քաղաքացիություն'
                     onChange={(val) => setFieldValue('citizenshipId', val?.value)}
                   />
                   <Select
-                    value={selectedNationality ? {
-                      value: selectedNationality?.id,
-                      label: selectedNationality?.name
-                    } : null}
-                    options={state.nationalities.list.map(nationality => ({
-                      value: nationality.id,
-                      label: nationality.name
-                    }))}
+                    value={selectedNationality}
+                    options={state.nationalities.list}
                     placeholder='Ազգություն'
                     onChange={(val) => setFieldValue('nationalityId', val?.value)}
                   />
                   <Select
-                    value={selectedProfession ? {
-                      value: selectedProfession?.id,
-                      label: selectedProfession?.name
-                    } : null}
-                    options={state.professions.list.map(profession => ({
-                      value: profession.id,
-                      label: profession.name
-                    }))}
+                    value={selectedProfession}
+                    options={state.professions.list}
                     placeholder='Մասնագիտություն'
                     onChange={(val) => setFieldValue('professionId', val?.value)}
                   />
                   <Select
-                    value={selectedPrivilege ? {
-                      value: selectedPrivilege?.id,
-                      label: selectedPrivilege?.name
-                    } : null}
-                    options={state.privileges.list.map(privilege => ({
-                      value: privilege.id,
-                      label: privilege.name
-                    }))}
-                    placeholder='Արտոնություն'
-                    onChange={(val) => setFieldValue('privilegeId', val?.value)}
-                  />
-                  <Select
-                    value={selectedHealthStatus ? {
-                      value: selectedHealthStatus?.id,
-                      label: selectedHealthStatus?.status
-                    } : null}
-                    options={state.healthStatuses.list.map(healthStatus => ({
-                      value: healthStatus.id,
-                      label: healthStatus.status
-                    }))}
+                    value={selectedHealthStatus}
+                    accessorKey='status'
+                    options={state.healthStatuses.list}
                     placeholder='Առողջական վիճակ'
                     onChange={(val) => setFieldValue('healthStatusId', val?.value)}
                   />
                   <Select
-                    value={selectedStatus ? {
-                      value: selectedStatus?.id,
-                      label: selectedStatus?.name
-                    } : null}
-                    options={state.statuses.list.map(status => ({
-                      value: status.id,
-                      label: status.name
-                    }))}
+                    value={selectedStatus}
+                    options={state.statuses.list}
                     placeholder='Կարգավիճակ'
                     onChange={(val) => setFieldValue('statusId', val?.value)}
                   />
                   <Select
-                    value={selectedCommissariat ? {
-                      value: selectedCommissariat?.id,
-                      label: selectedCommissariat?.name
-                    } : null}
-                    options={state.commissariats.list.map(commissariat => ({
-                      value: commissariat.id,
-                      label: commissariat.name
-                    }))}
+                    value={selectedCommissariat}
+                    options={state.commissariats.list}
                     placeholder='Զինկոմիսարիատ'
                     onChange={(val) => setFieldValue('commissariatId', val?.value)}
                   />

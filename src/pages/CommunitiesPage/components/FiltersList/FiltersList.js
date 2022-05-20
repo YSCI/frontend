@@ -46,14 +46,8 @@ export const FiltersList = ({ hideModal, loadCommunities, loadRegions, regionsLi
                     autoFocus
                   />
                   <Select
-                    value={selectedRegion ? {
-                      value: selectedRegion.id,
-                      label: selectedRegion.name
-                    } : null}
-                    options={regionsList.map(region => ({
-                      value: region.id,
-                      label: region.name
-                    }))}
+                    value={selectedRegion}
+                    options={regionsList}
                     placeholder='Մարզ'
                     onChange={(val) => setFieldValue('regionId', val?.value)}
                   />

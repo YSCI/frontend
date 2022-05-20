@@ -34,7 +34,7 @@ export const FiltersList = ({ hideModal, loadNationalities }) => {
                 <S.List>
                   <Input
                     value={values.name}
-                    placeholder='Քաղաքացիություն'
+                    placeholder='Ազգություն'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
                     autoFocus

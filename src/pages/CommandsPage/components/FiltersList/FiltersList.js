@@ -42,14 +42,8 @@ export const FiltersList = ({ loadCommands, statusesList, hideModal }) => {
                     autoFocus
                   />
                   <Select
-                    value={selectedStatus ? {
-                      value: selectedStatus.id,
-                      label: selectedStatus.name
-                    } : null}
-                    options={statusesList.map(status => ({
-                      value: status.id,
-                      label: status.name
-                    }))}
+                    value={selectedStatus}
+                    options={statusesList}
                     placeholder='Փոփոխելի կարգավիճակ'
                     onChange={(val) => setFieldValue('changeableStatusId', val?.value)}
                   />

@@ -26,7 +26,7 @@ export const ConfirmationModal = ({
       </S.FormHeaderContainer>
       <S.FormContentContainer>
         <S.Question>
-          Հաստատել գործողությունը?
+          Հաստատե՞լ գործողությունը
         </S.Question>
         <S.ActionsContainer>
           <Button className='bordered' onClick={() => {
