@@ -90,7 +90,7 @@ export const RateForm = ({
                     <S.CurriculumContainer>
                       <S.CurriculumContainerHeader>
                       {
-                        (createArrayOfLength(student.profession.yearsCount)).map((year) => {
+                        (createArrayOfLength(student.group.profession?.yearsCount)).map((year) => {
                           return (
                             <S.YearContainer>
                               <S.Course>
@@ -118,7 +118,7 @@ export const RateForm = ({
                                 </S.SubjectName>
                                 <S.CheckboxesContainer>
                                   {
-                                    createArrayOfLength(student.profession.yearsCount * 2).map(semester => {
+                                    createArrayOfLength(student.group.profession?.yearsCount * 2).map(semester => {
                                       return (
                                         <S.InputWrapper>
                                           <Input
