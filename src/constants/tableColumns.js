@@ -96,10 +96,6 @@ export const tableColumns = {
       accessor: 'nationality.name'
     },
     {
-      Header: 'Մասնագիտություն',
-      accessor: 'profession'
-    },
-    {
       Header: 'Առողջական վիճակ',
       accessor: 'healthStatus.status'
     },
