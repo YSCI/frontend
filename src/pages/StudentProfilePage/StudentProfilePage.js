@@ -11,6 +11,8 @@ import { withConfirmation } from 'helpers'
 // import studentPic from 'images/avatar.jfif'
 import { StudentForm } from 'pages/StudentsPage/components/StudentForm'
 import { tableColumns } from 'constants/tableColumns'
+import { RatingList } from './components/tabs/RatingList'
+import { Info } from './components/tabs/Info'
 
 export const StudentProfilePage = ({
   loaded,
@@ -38,7 +40,7 @@ export const StudentProfilePage = ({
       history.push('/studenets')
     }})
   }
-
+  console.log({profileData})
   return (
     <Layout>
       <S.StudentProfilePageContainer>
@@ -65,7 +67,7 @@ export const StudentProfilePage = ({
                   Կուրս
                 </div>
                 <div>
-                  { profileData.currentCourse }
+                  { Math.ceil(profileData.group.currentSemester / 2) }
                 </div>
               </S.InfoItem>
               <S.InfoItem>
@@ -73,7 +75,7 @@ export const StudentProfilePage = ({
                   Խումբ
                 </div>
                 <div>
-                  { profileData.currentGroup }
+                  { profileData.group.number }
                 </div>
               </S.InfoItem>
             </S.InfoItemsContainer>
@@ -89,7 +91,7 @@ export const StudentProfilePage = ({
           <S.AllInfoContainer>
             <TabMenu tabs={tabs}>
               <S.TabContainer>
-                <div>Hayk</div>              
+                <Info />
               </S.TabContainer>
               <S.TabContainer>
                 <Table
@@ -101,9 +103,9 @@ export const StudentProfilePage = ({
                   columns={tableColumns.commandHistory}
                 />
               </S.TabContainer>
-              <div>
-                qwe
-              </div>
+              <S.TabContainer>
+                <RatingList student={profileData}/>
+              </S.TabContainer>
             </TabMenu>
           </S.AllInfoContainer>
         </S.StudentProfilePageWrapper>

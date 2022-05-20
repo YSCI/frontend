@@ -17,7 +17,7 @@ export const NationalitiesPage = ({
     <Layout>
       <S.NationalitiesPageContainer>
         <Table
-          title='Քաղաքացիություններ'
+          title='Ազգություններ'
           data={nationalities.list}
           total={nationalities.total}
           loadData={loadNationalities}

@@ -23,7 +23,7 @@ export const Input = ({
   return (
     <InputContainer className='InputContainer'>
       {
-        value &&
+        !!value &&
           <Placeholder>
             { placeholder }
           </Placeholder>

@@ -1,12 +1,10 @@
 import * as Yup from 'yup';
 
 export const initialValues = {
-  name: ''
+  groups: []
 }
 
 export const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
-  number: Yup.string()
+  groups: Yup.array()
     .required('Դաշտը չի կարող դատարկ լինել')
 });

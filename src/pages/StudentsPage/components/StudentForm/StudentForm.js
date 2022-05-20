@@ -11,6 +11,8 @@ import {
   Select,
   DatePicker
 } from 'ui'
+import { genders } from 'constants/genders'
+import { educationStatuses } from 'constants/educationStatuses'
 
 export const StudentForm = ({
   state,
@@ -30,13 +32,12 @@ export const StudentForm = ({
   , [editableData])
 
   const onSubmit = (values) => {
-    console.log({ values })
     if (editableData) {
       editStudent(values)
     } else {
       createStudent(values)
     }
-    hideModal()
+    // hideModal()
   }
 
   return (
@@ -61,7 +62,8 @@ export const StudentForm = ({
             touched,
             handleSubmit,
             setFieldValue
-          }) => {            
+          }) => {
+            console.log({ errors })
             const selectedCommissariat = state.commissariats.list.find(el => el.id === values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)
@@ -76,6 +78,9 @@ export const StudentForm = ({
 
             const selectedResidentRegion = state.regions.list.find(el => el.id === values.residentRegionId)
             const selectedResidentCommunity = selectedResidentRegion?.communities.find(el => el.id === values.residentCommunityId)
+
+            const selectedGender = genders.find(gender => gender.id === values.gender)
+            const selectedEducationStatus = educationStatuses.find(status => status.id === values.educationStatus)
 
             return (
               <S.FormContentContainer>
@@ -138,6 +143,14 @@ export const StudentForm = ({
                       onEnter={handleSubmit}
                       error={touched.passportSeries && errors.passportSeries}
                     />
+                    <Select
+                      value={selectedGender}
+                      placeholder='Սեռ'
+                      options={genders}
+                      accessorKey='label'
+                      onChange={(val) => setFieldValue('gender', val?.value)}
+                      error={touched.gender && errors.gender}
+                    />
                   </S.FormRow>
                   <S.FormRow>
                     <DatePicker
@@ -168,21 +181,13 @@ export const StudentForm = ({
                       onChange={(val) => setFieldValue('healthStatusId', val?.value)}
                       error={touched.healthStatusId && errors.healthStatusId}
                     />
-                    <Select
-                      value={selectedProfession}
-                      accessorKey='abbreviation'
-                      options={state.professions.list}
-                      placeholder='Մասնագիտություն'
-                      onChange={(val) => setFieldValue('professionId', val?.value)}
-                      error={touched.professionId && errors.professionId}
-                    />
-                    <Select
+                    {/* <Select
                       value={selectedPrivilege}
                       options={state.privileges.list}
                       placeholder='Արտոնություն'
                       onChange={(val) => setFieldValue('privilegeId', val?.value)}
                       error={touched.privilegeId && errors.privilegeId}
-                    />
+                    /> */}
                     <Select
                       value={selectedNationality}
                       options={state.nationalities.list}
@@ -203,6 +208,14 @@ export const StudentForm = ({
                       placeholder='Հեռախոսահամարներ'
                       onChange={(val) => setFieldValue('contactNumbers', val)}
                       error={touched.contactNumbers && errors.contactNumbers}
+                    />
+                    <Select
+                      value={selectedEducationStatus}
+                      options={educationStatuses}
+                      placeholder='Ուսման ձև'
+                      onChange={(val) => setFieldValue('educationStatus', val?.value)}
+                      accessorKey='label'
+                      error={touched.educationStatus && errors.educationStatus}
                     />
                   </S.FormRow>
                   <S.FormRow>

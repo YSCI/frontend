@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import { Table } from 'components'
 import rateIcon from 'images/rating.png'
 import { Layout } from 'components/Layout'
@@ -30,11 +29,12 @@ export const StudentsPage = ({
           columns={tableColumns.students}
           loadData={loadStudents}
           FilterComponent={FiltersList}
+          isStudentsPage={true}
           customActions={(selectedRows) => ([
             {
               icon: rateIcon,
               title: 'Գնահատել',
-              disabled: selectedRows.length === 0,
+              disabled: selectedRows.length !== 1,
               onClick: () => showModal(RateForm, { student: selectedRows[0].original })
             },
             {

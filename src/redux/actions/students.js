@@ -105,3 +105,13 @@ export const deleteStudent = (ids) => async dispatch => {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }
 }
+
+export const rateStudent = (values) => async dispatch => {
+  try {
+    const rates = await HttpService.post('rating', values)
+
+    toast.success('Գործողությունը հաջողությամբ կատարվեց')
+  } catch (ex) {
+    toast.error(`Առաջացավ խնդիր: ${ex.message}`)
+  }
+}
