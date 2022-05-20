@@ -97,11 +97,7 @@ export const tableColumns = {
     },
     {
       Header: 'Մասնագիտություն',
-      accessor: 'profession.abbreviation'
-    },
-    {
-      Header: 'Արտոնություն',
-      accessor: 'privilege.name'
+      accessor: 'profession'
     },
     {
       Header: 'Առողջական վիճակ',

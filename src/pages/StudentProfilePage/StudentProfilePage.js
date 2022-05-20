@@ -47,7 +47,7 @@ export const StudentProfilePage = ({
         <S.StudentProfilePageWrapper>
           <S.MainInfoContainer>
             <S.ProfessionType>
-              { profileData.profession.abbreviation }
+              { profileData?.group?.profession?.abbreviation }
             </S.ProfessionType>
             <S.StudentProfilePic />
             <S.StudentName>
