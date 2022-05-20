@@ -62,7 +62,8 @@ export const StudentForm = ({
             touched,
             handleSubmit,
             setFieldValue
-          }) => {            
+          }) => {
+            console.log({ errors })
             const selectedCommissariat = state.commissariats.list.find(el => el.id === values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)
@@ -180,13 +181,13 @@ export const StudentForm = ({
                       onChange={(val) => setFieldValue('healthStatusId', val?.value)}
                       error={touched.healthStatusId && errors.healthStatusId}
                     />
-                    <Select
+                    {/* <Select
                       value={selectedPrivilege}
                       options={state.privileges.list}
                       placeholder='Արտոնություն'
                       onChange={(val) => setFieldValue('privilegeId', val?.value)}
                       error={touched.privilegeId && errors.privilegeId}
-                    />
+                    /> */}
                     <Select
                       value={selectedNationality}
                       options={state.nationalities.list}

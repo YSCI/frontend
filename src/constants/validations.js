@@ -52,9 +52,6 @@ export const validations = {
     healthStatusId: Yup.number()	
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
-    professionId: Yup.number()	
-      .typeError(validationMessages.empty)
-      .required(validationMessages.empty),
     nationalityId: Yup.number()	
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),

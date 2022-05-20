@@ -6,5 +6,7 @@ export const initialValues = {
 
 export const validationSchema = Yup.object().shape({
   name: Yup.string()
+    .required('Դաշտը չի կարող դատարկ լինել'),
+  number: Yup.string()
     .required('Դաշտը չի կարող դատարկ լինել')
 });

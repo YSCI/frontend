@@ -61,6 +61,15 @@ export const SubjectForm = ({
                   onEnter={handleSubmit}
                   error={touched.name && errors.name}
                 />
+                <Input
+                  autoFocus
+                  value={values.number}
+                  placeholder='Հերթական համար'
+                  onChange={(val) => setFieldValue('number', val)}
+                  onEnter={handleSubmit}
+                  type='number'
+                  error={touched.number && errors.number}
+                />
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>
                     Չեղարկել

@@ -85,7 +85,7 @@ export const tableColumns = {
     },
     {
       Header: 'Ընթացիկ կուրս',
-      accessor: 'group.currentSemester'
+      accessor: 'currentSemester'
     },
     {
       Header: 'Քաղաքացիություն',
