@@ -4,6 +4,7 @@ import { StudentProfileLink } from 'components'
 import store from 'redux/store'
 import { Checkbox } from 'ui'
 import { editSubject } from 'redux/actions/professions'
+import { educationStatuses } from './educationStatuses'
 
 export const tableColumns = {
   users: [
@@ -121,12 +122,26 @@ export const tableColumns = {
       accessor: 'socialCardNumber'
     }
   ],
+  rotationStudents: [
+    {
+      Header: 'Անուն',
+      accessor: 'firstname'
+    },
+    {
+      Header: 'Ազգանուն',
+      accessor: 'lastname'
+    },
+    {
+      Header: 'Ուսման ձև',
+      accessor: row => educationStatuses.find(status => status.value === row.educationStatus)?.label
+    }
+  ],
   subjects: (yearsCount) => {
     const arr = [
       {
         Header: ' ',
         width: 80,
-        accessor: (row, index) => index + 1 + ')'
+        accessor: (row) => row.number || '-'
       },
       {
         Header: 'Անվանում',
@@ -187,7 +202,11 @@ export const tableColumns = {
     {
       Header: 'Վճար',
       accessor: 'fee'
-    }
+    },
+    {
+      Header: 'Անվճար տեղերի քանակ',
+      accessor: 'freePlacesCount'
+    },
   ],
   citizenship: [
     {

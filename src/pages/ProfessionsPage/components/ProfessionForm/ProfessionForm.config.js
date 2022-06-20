@@ -1,3 +1,4 @@
+import { validationMessages } from 'constants/validationMessages';
 import * as Yup from 'yup';
 
 export const initialValues = {
@@ -6,20 +7,23 @@ export const initialValues = {
   abbreviation: '',
   yearsCount: '',
   number: '',
-  fee: ''
+  fee: '',
+  freePlacesCount: 0,
 }
 
 export const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .required(validationMessages.empty),
   code: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .required(validationMessages.empty),
   abbreviation: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .required(validationMessages.empty),
   yearsCount: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .required(validationMessages.empty),
   number: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել'),
+    .required(validationMessages.empty),
   fee: Yup.string()
-    .required('Դաշտը չի կարող դատարկ լինել')
+    .required(validationMessages.empty),
+  freePlacesCount: Yup.string()
+    .required(validationMessages.empty)
 });

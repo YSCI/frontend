@@ -1,3 +1,4 @@
+import { sortBy } from "lodash"
 import { AUTH_TYPES } from "redux/types/auth"
 import { PROFESSIONS_TYPES } from "redux/types/professions"
 
@@ -15,7 +16,7 @@ export const professions = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
-        list: action.list.map(el => ({ ...el, subjects: [] })),
+        list: action.list.map(el => ({ ...el, subjects: {} })),
         total: action.total
       }
     case PROFESSIONS_TYPES.LOAD_PROFESSION_SUBJECTS:
@@ -27,7 +28,10 @@ export const professions = (state = initialState, action) => {
           ...state.list.slice(0, professionIndex),
           {
             ...state.list[professionIndex],
-            subjects: action.subjects
+            subjects: {
+              total: action.total,
+              list: sortBy(action.list, 'number')
+            }
           },
           ...state.list.slice(professionIndex + 1)
         ]
@@ -40,14 +44,17 @@ export const professions = (state = initialState, action) => {
           ...state.list.slice(0, professionIndex),
           {
             ...state.list[professionIndex],
-            subjects: state.list[professionIndex].subjects.concat(action.data)
+            subjects: {
+              total: state.list[professionIndex].subjects.total + 1,
+              list: sortBy(state.list[professionIndex].subjects.list.concat(action.data), 'number')
+            }
           },
           ...state.list.slice(professionIndex + 1)
         ]
       }
     case PROFESSIONS_TYPES.EDIT_SUBJECT:
       professionIndex = state.list.findIndex(prof => prof.id === action.data.professionId)
-      subjectIndex = state.list[professionIndex].subjects.findIndex(subject => subject.id === action.data.id)
+      subjectIndex = state.list[professionIndex].subjects.list.findIndex(subject => subject.id === action.data.id)
 
       return {
         ...state,
@@ -55,14 +62,17 @@ export const professions = (state = initialState, action) => {
           ...state.list.slice(0, professionIndex),
           {
             ...state.list[professionIndex],
-            subjects: [
-              ...state.list[professionIndex].subjects.slice(0, subjectIndex),
-              {
-                ...state.list[professionIndex].subjects[subjectIndex],
-                ...action.data
-              },
-              ...state.list[professionIndex].subjects.slice(subjectIndex + 1),
-            ]
+            subjects: {
+              ...state.list[professionIndex].subjects,
+              list: sortBy([
+                ...state.list[professionIndex].subjects.list.slice(0, subjectIndex),
+                {
+                  ...state.list[professionIndex].subjects.list[subjectIndex],
+                  ...action.data
+                },
+                ...state.list[professionIndex].subjects.list.slice(subjectIndex + 1),
+              ], 'number')
+            }
           },
           ...state.list.slice(professionIndex + 1)
         ]
@@ -76,7 +86,10 @@ export const professions = (state = initialState, action) => {
             ...state.list.slice(0, professionIndex),
             {
               ...state.list[professionIndex],
-              subjects: state.list[professionIndex].subjects.filter(subject => !action.ids.includes(subject.id))
+              subjects: {
+                total: state.list[professionIndex].subjects.total - 1,
+                list: state.list[professionIndex].subjects.list.filter(subject => !action.ids.includes(subject.id))
+              }
             },
             ...state.list.slice(professionIndex + 1)
           ]

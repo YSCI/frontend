@@ -28,9 +28,7 @@ export const RatingList = ({
   }, [])
 
   const loadSubjectsOfProfession = async () => {
-    console.log('here')
     const subjects = await loadProfessionSubjects({ professionId: student.group.professionId })
-    console.log({subjects})
     setSubjects(subjects)
   }
   
@@ -38,13 +36,13 @@ export const RatingList = ({
   useEffect(() => {
     loadSubjectsOfProfession()
   }, [])
-  console.log({rates,   student, subjects})
+
   return (
     <S.RateFormContainer>
       <S.CurriculumContainer>
         <S.CurriculumContainerHeader>
           {
-            (createArrayOfLength(student.profession.yearsCount)).map((year) => {
+            (createArrayOfLength(student.group.profession.yearsCount)).map((year) => {
               return (
                 <S.YearContainer>
                   <S.Course>
@@ -72,7 +70,7 @@ export const RatingList = ({
                     </S.SubjectName>
                     <S.CheckboxesContainer>
                       {
-                        createArrayOfLength(student.profession.yearsCount * 2).map(semester => {
+                        createArrayOfLength(student.group.profession.yearsCount * 2).map(semester => {
                           return (
                             <S.InputWrapper>
                               <Input

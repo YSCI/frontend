@@ -112,7 +112,7 @@ export const GroupForm = ({
                   />
                 </S.FormRow>
                 {
-                  !!selectedProfession?.subjects.length &&
+                  !!selectedProfession?.subjects.list?.length &&
                     <S.FormRow>
                       <FormLabelItem label='Ուս. պլան'>
                         <S.CurriculumContainer>
@@ -137,7 +137,7 @@ export const GroupForm = ({
                           </S.CurriculumContainerHeader>
                           <S.ProfessionSubjectsSelection>
                             {
-                              selectedProfession.subjects.map((subject, position) => {
+                              selectedProfession.subjects.list.map((subject, position) => {
                                 return (
                                   <S.ProfessionSubjectItem>
                                     <S.SubjectName title={subject.name}>

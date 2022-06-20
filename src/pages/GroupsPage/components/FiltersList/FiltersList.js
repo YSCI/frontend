@@ -24,7 +24,7 @@ export const FiltersList = ({
     loadGroups(values)
     updateSearchParams(values)
   }
-  console.log(professionsList)
+
   return (
     <Filter>
       <Formik

@@ -115,7 +115,7 @@ export const Table = ({
       ])
     }
   )
-    console.log({ selectedFlatRows })
+
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalCount = total || data.length 
@@ -125,7 +125,7 @@ export const Table = ({
   const changePage = useCallback((page) => {
     const currentQuery = qs.parse(history.location.search.replace('?', ''))
     setCurrentPage(page)
-    loadData({
+    loadData?.({
       ...currentQuery,
       limit: 6,
       offset: (page - 1) * 6,
@@ -244,7 +244,7 @@ export const Table = ({
                     key={action.key || key + tableActions.length}
                     className={cx({ disabled: action.disabled })}
                   >
-                    <S.OpacityWrapper />
+                    <S.OpacityWrapper title={action.title}/>
                     <img alt='delete-icon' src={action.icon}/>
                   </S.Action>
                 ))

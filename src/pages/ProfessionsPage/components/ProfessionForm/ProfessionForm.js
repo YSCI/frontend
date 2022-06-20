@@ -21,7 +21,8 @@ export const ProfessionForm = ({
     if (editableData) {
       editProfession({
         ...values,
-        number: +values.number
+        number: +values.number,
+        freePlacesCount: +values.freePlacesCount
       })
     } else {
       createProfession(values)
@@ -96,6 +97,13 @@ export const ProfessionForm = ({
                   onChange={(val) => setFieldValue('fee', val)}
                   onEnter={handleSubmit}
                   error={touched.fee && errors.fee}
+                />
+                <Input
+                  value={values.freePlacesCount}
+                  placeholder='Անվճար տեղերի քանակ'
+                  onChange={(val) => setFieldValue('freePlacesCount', val)}
+                  onEnter={handleSubmit}
+                  error={touched.freePlacesCount && errors.freePlacesCount}
                 />
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>

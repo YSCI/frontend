@@ -29,20 +29,26 @@ export const ProfessionsPage = ({
           onDelete={deleteProfession}
           FormComponent={ProfessionForm}
           FilterComponent={FiltersList}
-          SubComponent={({ row }) => <Table
-            title='Առարկաներ'
-            total={20}
-            data={professions.list.find(el => el.id === row.original.id)?.subjects || []}
-            loadData={(search) => loadProfessionSubjects({
-              ...search,
-              professionId: row.original.id
-            })}
-            onDelete={(ids) => deleteSubject(ids, row.original.id)}
-            FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
-            columns={tableColumns.subjects(row.original.yearsCount)}
-            isSubTable={true}
-            withoutCheckboxes={true}
-          />}
+          SubComponent={({ row }) => {
+            const subjects = professions.list.find(el => el.id === row.original.id)?.subjects || []
+
+            return (
+              <Table
+                title='Առարկաներ'
+                total={subjects.total}
+                data={subjects.list}
+                loadData={(search) => loadProfessionSubjects({
+                  ...search,
+                  professionId: row.original.id
+                })}
+                onDelete={(ids) => deleteSubject(ids, row.original.id)}
+                FormComponent={(props) => <SubjectForm {...props} professionId={row.original.id} />}
+                columns={tableColumns.subjects(row.original.yearsCount)}
+                isSubTable={true}
+                withoutCheckboxes={true}
+              />
+            )
+          }}
           columns={tableColumns.profession}
         />
       </S.ProfessionsPageContainer>

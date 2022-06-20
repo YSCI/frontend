@@ -4,6 +4,14 @@ import { toast } from 'react-toastify'
 import { STUDENTS_TYPES } from 'redux/types/students'
 import { HttpService } from 'services'
 
+export const getRotationStudensList = (search) => async dispatch => {
+  try {
+    const data = await HttpService.get('rotation', search)
+  } catch (ex) {
+    toast.error('Առաջացավ խնդիր')
+  }
+}
+
 export const loadStudents = (search) => async dispatch => {
   try {
     const { data, total } = await HttpService.get('student', search)

@@ -6,12 +6,13 @@ import { PROFESSIONS_TYPES } from 'redux/types/professions'
 
 export const loadProfessionSubjects = (search) => async dispatch => {
   try {
-    const { data } = await HttpService.get(`subject`, search)
+    const { data, total }= await HttpService.get(`subject`, search)
 
     dispatch ({
       type: PROFESSIONS_TYPES.LOAD_PROFESSION_SUBJECTS,
       professionId: search.professionId,
-      subjects: data
+      list: data,
+      total
     })
 
     return data

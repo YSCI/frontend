@@ -63,7 +63,6 @@ export const StudentForm = ({
             handleSubmit,
             setFieldValue
           }) => {
-            console.log({ errors })
             const selectedCommissariat = state.commissariats.list.find(el => el.id === values.commissariatId)
             const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)

@@ -4,12 +4,14 @@ import { Table } from 'components'
 import rateIcon from 'images/rating.png'
 import { Layout } from 'components/Layout'
 import attachIcon from 'images/attach.png'
+import rotationIcon from 'images/rotation.png'
 import * as S from './StudentsPage.styles'
 import { tableColumns } from 'constants/tableColumns'
 import { StudentForm } from './components/StudentForm'
 import { FiltersList } from './components/FiltersList'
 import { AssignCommandForm } from './components/AssignCommandForm'
 import { RateForm } from 'components/RateForm'
+import { RotationForm } from './components/RotationForm'
 
 export const StudentsPage = ({
   students,
@@ -42,6 +44,11 @@ export const StudentsPage = ({
               title: 'Կցագրել հրաման',
               disabled: selectedRows.length === 0,
               onClick: () => showModal(AssignCommandForm, { studentIds: selectedRows.map(row => row.original.id) })
+            },
+            {
+              icon: rotationIcon,
+              title: 'Ռոտացիա',
+              onClick: () => showModal(RotationForm)
             }
           ])}
         />

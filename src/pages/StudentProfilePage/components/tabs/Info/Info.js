@@ -5,7 +5,6 @@ import * as S from './Info.styles'
 export const Info = ({
   profileData
 }) => {
-  console.log({ profileData })
   return (
     <S.InfoContainer>
       <S.InfoItemsList>
