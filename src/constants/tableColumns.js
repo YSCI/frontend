@@ -37,6 +37,14 @@ export const tableColumns = {
     {
       Header: 'Ընթացիկ կուրս',
       accessor: 'currentSemester'
+    },
+    {
+      Header: 'Վճար',
+      accessor: 'fee'
+    },
+    {
+      Header: 'Անվճար տեղերի քանակ',
+      accessor: 'freePlacesCount'
     }
   ],
   students: [

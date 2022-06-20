@@ -67,8 +67,6 @@ export const StudentForm = ({
             const selectedCitizenship = state.citizenships.list.find(el => el.id === values.citizenshipId)
             const selectedHealthStatus = state.healthStatuses.list.find(el => el.id === values.healthStatusId)
             const selectedNationality = state.nationalities.list.find(el => el.id === values.nationalityId)
-            const selectedProfession = state.professions.list.find(el => el.id === values.professionId)
-            const selectedPrivilege = state.privileges.list.find(el => el.id === values.privilegeId)
             const selectedStatus = state.statuses.list.find(el => el.id === values.statusId)
             const selectedGroup = state.groups.list.find(el => el.id === values.groupId)
 

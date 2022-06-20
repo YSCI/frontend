@@ -76,31 +76,34 @@ export const RotationForm = ({
                     }}
                     error={touched.studentSemesters && errors.studentSemesters}
                   />
-                  <S.SemestersList>
-                    <S.SemestersTitle>
-                      Կիսամյակներ
-                    </S.SemestersTitle>
-                    <S.SemesterItems>
-                      {
-                        createArrayOfLength(selectedProfession?.yearsCount * 2).map(el => {
-                          return (
-                            <S.SemesterItem key={el}>
-                              <div>{ el }</div>
-                              <Checkbox
-                                checked={values.semestersForCalculation.includes(el)}
-                                onChange={(checked) => {
-                                  setFieldValue('semestersForCalculation', checked
-                                    ? values.semestersForCalculation.concat(el)
-                                    : values.semestersForCalculation.filter(item => item !== el)
-                                  )
-                                }}
-                              />
-                            </S.SemesterItem>
-                          )
-                        })
-                      }
-                    </S.SemesterItems>
-                  </S.SemestersList>
+                  {
+                    selectedProfession &&
+                      <S.SemestersList>
+                        <S.SemestersTitle>
+                          Կիսամյակներ
+                        </S.SemestersTitle>
+                        <S.SemesterItems>
+                          {
+                            createArrayOfLength(selectedProfession?.yearsCount * 2).map(el => {
+                              return (
+                                <S.SemesterItem key={el}>
+                                  <div>{ el }</div>
+                                  <Checkbox
+                                    checked={values.semestersForCalculation.includes(el)}
+                                    onChange={(checked) => {
+                                      setFieldValue('semestersForCalculation', checked
+                                        ? values.semestersForCalculation.concat(el)
+                                        : values.semestersForCalculation.filter(item => item !== el)
+                                      )
+                                    }}
+                                  />
+                                </S.SemesterItem>
+                              )
+                            })
+                          }
+                        </S.SemesterItems>
+                      </S.SemestersList>
+                  }
                   {/* <Input
                     placeholder='Կիսամյակներ'
                     value={values.semesters}
