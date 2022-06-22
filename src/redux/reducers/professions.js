@@ -1,4 +1,3 @@
-import { sortBy } from "lodash"
 import { AUTH_TYPES } from "redux/types/auth"
 import { PROFESSIONS_TYPES } from "redux/types/professions"
 
@@ -30,7 +29,7 @@ export const professions = (state = initialState, action) => {
             ...state.list[professionIndex],
             subjects: {
               total: action.total,
-              list: sortBy(action.list, 'number')
+              list: action.list
             }
           },
           ...state.list.slice(professionIndex + 1)
@@ -46,7 +45,7 @@ export const professions = (state = initialState, action) => {
             ...state.list[professionIndex],
             subjects: {
               total: state.list[professionIndex].subjects.total + 1,
-              list: sortBy(state.list[professionIndex].subjects.list.concat(action.data), 'number')
+              list: state.list[professionIndex].subjects.list.concat(action.data)
             }
           },
           ...state.list.slice(professionIndex + 1)
@@ -64,14 +63,14 @@ export const professions = (state = initialState, action) => {
             ...state.list[professionIndex],
             subjects: {
               ...state.list[professionIndex].subjects,
-              list: sortBy([
+              list: [
                 ...state.list[professionIndex].subjects.list.slice(0, subjectIndex),
                 {
                   ...state.list[professionIndex].subjects.list[subjectIndex],
                   ...action.data
                 },
                 ...state.list[professionIndex].subjects.list.slice(subjectIndex + 1),
-              ], 'number')
+              ]
             }
           },
           ...state.list.slice(professionIndex + 1)

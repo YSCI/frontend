@@ -51,8 +51,6 @@ const IndeterminateCheckbox = React.forwardRef(
 )
 
 export const Table = ({
-  isGroupsPage,
-  switchCourse,
   data,
   title,
   total,
@@ -62,13 +60,17 @@ export const Table = ({
   showModal,
   isSubTable,
   columnConfig,
+  isGroupsPage,
+  switchCourse,
   SubComponent,
   customActions,
   hasActionsBar,
   hasSelections,
   FormComponent,
   FilterComponent,
-  withoutCheckboxes
+  withoutCheckboxes,
+  selectedRowIndexes,
+  withoutDefaultActions
 }) => {
   const {
     rows,
@@ -86,6 +88,9 @@ export const Table = ({
       defaultColumn: {
         ...defaultColumn,
         ...columnConfig
+      },
+      initialState: {
+        selectedRowIds: selectedRowIndexes
       }
     },
     useSortBy,
@@ -105,7 +110,7 @@ export const Table = ({
             </div>
           ),
           Cell: ({ row }) => (
-            <div>
+            <div asd={console.log(row.getToggleAllRowsSelectedProps?.(), 'asd')}>
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
             </div>
           ),
@@ -172,29 +177,35 @@ export const Table = ({
   const tBodyRef = useRef(null)
 
   const tableActions = useMemo(() => {
-    const actions = [
+    let actions = [
       ...customActions?.(selectedFlatRows) || [],
-      {
-        key: 1,
-        icon: createIcon,
-        title: 'Ավելացնել',
-        onClick: () => showModal(FormComponent, { parentRowId: selectedFirstRow })
-      },
-      {
-        key: 2,
-        icon: editIcon,
-        title: 'Փոփոխել',
-        disabled: selectedFlatRows.length !== 1,        
-        onClick: () => showModal(FormComponent, { editableData: selectedFirstRow })
-      },
-      {
-        key: 3,
-        title: 'Ջնջել',
-        icon: deleteIcon,
-        disabled: selectedFlatRows.length === 0,
-        onClick: () => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })
-      }
     ]
+
+    if (!withoutDefaultActions) {
+      actions = [
+        ...actions,
+        {
+          key: 1,
+          icon: createIcon,
+          title: 'Ավելացնել',
+          onClick: () => showModal(FormComponent, { parentRowId: selectedFirstRow })
+        },
+        {
+          key: 2,
+          icon: editIcon,
+          title: 'Փոփոխել',
+          disabled: selectedFlatRows.length !== 1,        
+          onClick: () => showModal(FormComponent, { editableData: selectedFirstRow })
+        },
+        {
+          key: 3,
+          title: 'Ջնջել',
+          icon: deleteIcon,
+          disabled: selectedFlatRows.length === 0,
+          onClick: () => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })
+        }
+      ]
+    }
 
     if (FilterComponent) {
       actions.push({
@@ -364,6 +375,7 @@ Table.defaultProps = {
   columnConfig: {},
   hasActionsBar: true,
   hasSelections: true,
+  selectedRowIndexes: [],
   withoutCheckboxes: false,
   title: 'Գործողություններ'
 }

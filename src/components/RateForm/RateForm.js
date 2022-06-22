@@ -46,7 +46,7 @@ export const RateForm = ({
   }
 
   const loadSubjectsOfProfession = async () => {
-  const subjects = await loadProfessionSubjects({ professionId: student.group.professionId })
+  const subjects = await loadProfessionSubjects({ professionId: student.group.professionId, limit: 0 })
     setSubjects(subjects)
   }
 
