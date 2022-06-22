@@ -19,7 +19,8 @@ export const GroupForm = ({
   useEffect(() => {
     if (editableData?.professionId) {
       loadProfessionSubjects({
-        professionId: editableData?.professionId
+        professionId: editableData?.professionId,
+        limit: 0
       })
     }
   }, [editableData?.professionId, loadProfessionSubjects])
@@ -40,7 +41,7 @@ export const GroupForm = ({
   }
 
   const loadSubjectfOfProfession = async (profId, setFieldValue) => {
-    const subjects = await loadProfessionSubjects({ professionId: profId })
+    const subjects = await loadProfessionSubjects({ professionId: profId, limit: 0 })
     const curriculum = []
 
     subjects.forEach(subject => {
@@ -141,7 +142,7 @@ export const GroupForm = ({
                                 return (
                                   <S.ProfessionSubjectItem>
                                     <S.SubjectName title={subject.name}>
-                                      { position + 1 }) { subject.name }
+                                      { subject.number }) { subject.name }
                                     </S.SubjectName>
                                     <S.CheckboxesContainer>
                                      {

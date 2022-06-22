@@ -3,19 +3,22 @@ import { toast } from 'react-toastify'
 
 import { HttpService } from 'services'
 import { PROFESSIONS_TYPES } from 'redux/types/professions'
+import { sortBy } from 'lodash'
 
 export const loadProfessionSubjects = (search) => async dispatch => {
   try {
-    const { data, total }= await HttpService.get(`subject`, search)
+    const { data, total }= await HttpService.get(`subject`,  {...search, sortBy: 'number' })
+
+    const list = sortBy(data, 'number')
 
     dispatch ({
       type: PROFESSIONS_TYPES.LOAD_PROFESSION_SUBJECTS,
       professionId: search.professionId,
-      list: data,
+      list,
       total
     })
 
-    return data
+    return list
   } catch (ex) {
     toast.error(`Առաջացավ խնդիր: ${ex.message}`)
   }

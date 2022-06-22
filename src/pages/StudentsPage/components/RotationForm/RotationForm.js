@@ -9,13 +9,17 @@ import { createArrayOfLength } from 'helpers/createArrayOfLength'
 import { HttpService } from 'services'
 import { Table } from 'components'
 import { tableColumns } from 'constants/tableColumns'
+import { educationStatuses } from 'constants/educationStatuses'
+import createIcon from 'images/add.png'
+import { toast } from 'react-toastify'
+import { sortBy } from 'lodash'
 
 export const RotationForm = ({
     hideModal,
     formValues,
+    loadStudents,
     loadProfessions,
-    professionsList,
-    getRotationStudensList
+    professionsList
 }) => {
   const [rotationStudents, setRotationStudents] = useState(null)
 
@@ -24,10 +28,46 @@ export const RotationForm = ({
   }, [loadProfessions])
 
   const onSubmit = async (values) => {
+
     const data = await HttpService.get('rotation', values)
-    
-    setRotationStudents(data)
+    // setRotationStudents(data)
+    const nonEditableStudents = data.data.filter(student => [0, 1].includes(student.educationStatus))
+    console.log(nonEditableStudents, 'nonEditableStudents')
+    const editableStudents = data.data.filter(student => !((nonEditableStudents.map(el => el.id)).includes(student.id)))
+    setRotationStudents({
+      ...data,
+      data: [
+        ...sortBy(editableStudents, 'rates.total').reverse(),
+        ...nonEditableStudents
+      ]
+    })
   }
+
+  const makeRotation = async (studentIds) => {
+    try {
+      await HttpService.post('rotation', { studentIds })
+      loadStudents()
+
+      toast.success('Ուսանողները ռոտացվեցին')
+    } catch {
+      toast.error('Առաջացավ խնդիր') 
+    }
+  }
+
+  const selectedStudents = []
+  // let selectedStudents = rotationStudents.data.map((el, ind) => el.educationStatus === 2 && ind + 1).concat(createArrayOfLength(rotationStudents.additional.freePlacesCount))
+  if (!!rotationStudents) {
+    for (const [ind, student] of rotationStudents?.data?.entries()) {
+      console.log(ind, student, student.educationStatus === 1)
+      if (student.educationStatus === 1)
+        selectedStudents.push(true)
+      else if (ind < rotationStudents.additional.freePlacesCount && [2, 3].includes(student.educationStatus))
+        selectedStudents.push(true)
+      else
+        selectedStudents.push(false)
+    }
+  }
+  console.log(selectedStudents)
 
   return (
     <S.RotationFormContainer>
@@ -114,8 +154,19 @@ export const RotationForm = ({
                 {
                   rotationStudents &&
                     <Table
+                      withoutDefaultActions={true}
+                      customActions={(selectedRows) => [
+                        {
+                          key: 111,
+                          icon: createIcon,
+                          title: 'Կատարել ռոտացիա',
+                          onClick: () => makeRotation(selectedRows.filter(row => ![0, 1].includes(row.original.educationStatus)).map(row => row.original.id))
+                        }
+                      ]}
+                      title={`Անվճար տեղերի քանակ - ${rotationStudents.additional.freePlacesCount}`}
                       data={rotationStudents.data}
-                      columns={tableColumns.rotationStudents}
+                      columns={tableColumns.rotationStudents(values.semestersForCalculation)}
+                      selectedRowIndexes={selectedStudents}
                     />
                 }
                 <S.ButtonsContainer>
@@ -123,7 +174,7 @@ export const RotationForm = ({
                     Չեղարկել
                   </Button>
                   <Button onClick={handleSubmit}>
-                    Հաստատել
+                    Փնտրել
                   </Button>
                 </S.ButtonsContainer>
               </S.FormContentContainer>

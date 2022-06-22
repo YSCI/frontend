@@ -21,7 +21,8 @@ export const RotationFormContainer = styled.div`
   min-width: 400px;
   flex-direction: column;
   gap: 10px;
-  max-height: 500px;
+  max-height: 600px;
+  min-height: 300px;
   overflow-y: auto;
 
   ::-webkit-scrollbar {
@@ -82,6 +83,8 @@ export const FormContentContainer = styled.div`
   padding: 0px 15px;
   align-items: center;
   gap: 10px;
+  min-width: 500px;
+  // min-height: 233px;
 `
 
 export const FormItemsList = styled.div`
@@ -96,6 +99,7 @@ export const ButtonsContainer = styled.div`
   width: 100%;
   justify-content: flex-end;
   gap: 15px;
+  margin-top: auto;
 
   .Button {
     width: 150px;

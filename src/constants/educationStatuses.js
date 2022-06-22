@@ -5,17 +5,17 @@ export const educationStatuses = [
     label: 'Անվճար'
   },
   {
-    id: 2,
+    id: 0,
     value: 0,
     label: 'Վճարովի'
   },
   {
-    id: 3,
+    id: 2,
     value: 2,
     label: 'Վճարովի ռոտացիոն'
   },
   {
-    id: 4,
+    id: 3,
     value: 3,
     label: 'Անվճար ռոտացիոն'
   }

@@ -77,7 +77,7 @@ export const StudentForm = ({
             const selectedResidentCommunity = selectedResidentRegion?.communities.find(el => el.id === values.residentCommunityId)
 
             const selectedGender = genders.find(gender => gender.id === values.gender)
-            const selectedEducationStatus = educationStatuses.find(status => status.id === values.educationStatus)
+            const selectedEducationStatus = educationStatuses.find(status => status.value === values.educationStatus)
 
             return (
               <S.FormContentContainer>

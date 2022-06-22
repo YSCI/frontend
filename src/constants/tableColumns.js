@@ -122,20 +122,38 @@ export const tableColumns = {
       accessor: 'socialCardNumber'
     }
   ],
-  rotationStudents: [
-    {
-      Header: 'Անուն',
-      accessor: 'firstname'
-    },
-    {
-      Header: 'Ազգանուն',
-      accessor: 'lastname'
-    },
-    {
-      Header: 'Ուսման ձև',
-      accessor: row => educationStatuses.find(status => status.value === row.educationStatus)?.label
+  rotationStudents: (semestersForCalculation) => {
+    const arr = [
+      {
+        Header: 'Անուն',
+        accessor: 'firstname'
+      },
+      {
+        Header: 'Ազգանուն',
+        accessor: 'lastname'
+      },
+      {
+        Header: 'Ուսման ձև',
+        accessor: row => educationStatuses.find(status => status.value === row.educationStatus)?.label
+      },
+    ]
+
+    for (const semester of semestersForCalculation) {
+      arr.push({
+        Header: `${semester} կիս.`,
+        accessor: (row) => row.rates.semesters[semester],
+        width: 125
+      })
     }
-  ],
+
+    arr.push({
+      Header: 'Ընդհանուր',
+      accessor: 'rates.total',
+      width: 125
+    })
+
+    return arr
+  },
   subjects: (yearsCount) => {
     const arr = [
       {
