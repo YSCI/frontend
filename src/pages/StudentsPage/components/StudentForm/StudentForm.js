@@ -13,6 +13,7 @@ import {
 } from 'ui'
 import { genders } from 'constants/genders'
 import { educationStatuses } from 'constants/educationStatuses'
+import { passportTypes } from 'constants/passportTypes'
 
 export const StudentForm = ({
   state,
@@ -37,7 +38,6 @@ export const StudentForm = ({
     } else {
       createStudent(values)
     }
-    // hideModal()
   }
 
   return (
@@ -77,6 +77,7 @@ export const StudentForm = ({
             const selectedResidentCommunity = selectedResidentRegion?.communities.find(el => el.id === values.residentCommunityId)
 
             const selectedGender = genders.find(gender => gender.id === values.gender)
+            const selectedPassportType = passportTypes.find(type => type.id === values.passportType)
             const selectedEducationStatus = educationStatuses.find(status => status.value === values.educationStatus)
 
             return (
@@ -119,6 +120,10 @@ export const StudentForm = ({
                       placeholder='Խումբ'
                       onChange={(val) => setFieldValue('groupId', val?.value)}
                     />
+                    {
+                      selectedGroup &&
+                        <Input disabled={true} value={selectedGroup.profession.abbreviation}/>
+                    }
                     <Input
                       value={values.acceptanceCommandNumber}
                       placeholder='Ընդունման հրամանի համար'
@@ -141,12 +146,12 @@ export const StudentForm = ({
                       error={touched.passportSeries && errors.passportSeries}
                     />
                     <Select
-                      value={selectedGender}
-                      placeholder='Սեռ'
-                      options={genders}
+                      value={selectedPassportType}
+                      placeholder='Անձը հաստատող փաստաթղթի տեսակ'
+                      options={passportTypes}
                       accessorKey='label'
-                      onChange={(val) => setFieldValue('gender', val?.value)}
-                      error={touched.gender && errors.gender}
+                      onChange={(val) => setFieldValue('passportType', val?.value)}
+                      error={touched.passportType && errors.passportType}
                     />
                   </S.FormRow>
                   <S.FormRow>
@@ -213,6 +218,14 @@ export const StudentForm = ({
                       onChange={(val) => setFieldValue('educationStatus', val?.value)}
                       accessorKey='label'
                       error={touched.educationStatus && errors.educationStatus}
+                    />
+                    <Select
+                      value={selectedGender}
+                      placeholder='Սեռ'
+                      options={genders}
+                      accessorKey='label'
+                      onChange={(val) => setFieldValue('gender', val?.value)}
+                      error={touched.gender && errors.gender}
                     />
                   </S.FormRow>
                   <S.FormRow>

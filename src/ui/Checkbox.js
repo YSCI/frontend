@@ -14,7 +14,7 @@ export const Checkbox = ({
   const onCheck = () => {
     const checkedUpdated = !isChecked
 
-    onChange(checkedUpdated)
+    onChange?.(checkedUpdated)
     setIsChecked(checkedUpdated)
   }
 

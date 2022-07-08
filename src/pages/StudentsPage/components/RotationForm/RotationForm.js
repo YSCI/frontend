@@ -13,6 +13,7 @@ import { educationStatuses } from 'constants/educationStatuses'
 import createIcon from 'images/add.png'
 import { toast } from 'react-toastify'
 import { sortBy } from 'lodash'
+import { getCourseSemesters } from 'helpers'
 
 export const RotationForm = ({
     hideModal,
@@ -43,9 +44,14 @@ export const RotationForm = ({
     })
   }
 
-  const makeRotation = async (studentIds) => {
+  const makeRotation = async (studentIds, values) => {
     try {
-      await HttpService.post('rotation', { studentIds })
+      await HttpService.post('rotation', {
+        studentIds,
+        professionId: values.professionId,
+        semesters: values.studentSemesters
+      })
+
       loadStudents()
 
       toast.success('Ուսանողները ռոտացվեցին')
@@ -112,7 +118,7 @@ export const RotationForm = ({
                     options={createArrayOfLength(selectedProfession?.yearsCount)}
                     placeholder='Կուրս'
                     onChange={(val) => {
-                      setFieldValue('studentSemesters', [val?.value * 2 - 1, val?.value * 2])
+                      setFieldValue('studentSemesters', getCourseSemesters(val?.value))
                     }}
                     error={touched.studentSemesters && errors.studentSemesters}
                   />
@@ -160,7 +166,7 @@ export const RotationForm = ({
                           key: 111,
                           icon: createIcon,
                           title: 'Կատարել ռոտացիա',
-                          onClick: () => makeRotation(selectedRows.filter(row => ![0, 1].includes(row.original.educationStatus)).map(row => row.original.id))
+                          onClick: () => makeRotation(selectedRows.filter(row => ![0, 1].includes(row.original.educationStatus)).map(row => row.original.id), values)
                         }
                       ]}
                       title={`Անվճար տեղերի քանակ - ${rotationStudents.additional.freePlacesCount}`}

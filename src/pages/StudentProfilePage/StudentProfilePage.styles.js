@@ -47,6 +47,7 @@ export const MainInfoContainer = styled.div`
   position: relative;
   min-width: 265px;
   padding: 20px;
+  width: 305px;
   min-height: 500px;
   height: min-content;
   background: #fff;

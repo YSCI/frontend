@@ -1,17 +1,19 @@
 import React from 'react'
 
-import { Table } from 'components'
 import rateIcon from 'images/rating.png'
+import { fields } from 'constants/fields'
 import { Layout } from 'components/Layout'
-import attachIcon from 'images/attach.png'
-import rotationIcon from 'images/rotation.png'
 import * as S from './StudentsPage.styles'
+import attachIcon from 'images/attach.png'
+import { RateForm } from 'components/RateForm'
+import rotationIcon from 'images/rotation.png'
+import downloadIcon from 'images/download.png'
 import { tableColumns } from 'constants/tableColumns'
 import { StudentForm } from './components/StudentForm'
 import { FiltersList } from './components/FiltersList'
-import { AssignCommandForm } from './components/AssignCommandForm'
-import { RateForm } from 'components/RateForm'
+import { ExportableFields, Table } from 'components'
 import { RotationForm } from './components/RotationForm'
+import { AssignCommandForm } from './components/AssignCommandForm'
 
 export const StudentsPage = ({
   students,
@@ -33,6 +35,13 @@ export const StudentsPage = ({
           FilterComponent={FiltersList}
           isStudentsPage={true}
           customActions={(selectedRows) => ([
+            {
+              icon: downloadIcon,
+              title: 'Ներբեռնել',
+              onClick: () => showModal(ExportableFields, {
+                fields: fields.student
+              })
+            },
             {
               icon: rateIcon,
               title: 'Գնահատել',
