@@ -1,6 +1,5 @@
 import React from 'react'
 import { Formik } from 'formik'
-import { Draggable, Droppable, DragDropPrivider } from 'react-flex-dnd'
 
 import { Button, Checkbox } from 'ui'
 import closeIcon from 'images/close.png'
