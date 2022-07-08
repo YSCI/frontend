@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, Input, Select } from 'ui'
+import { Button, DatePicker, Input, Select } from 'ui'
 import { Formik } from 'formik'
 
 import { FormLabelItem } from 'components/FormLabelItem'
@@ -122,20 +122,56 @@ export const FiltersList = ({
                       />
                     </S.FormItem>
                   </FormLabelItem>
+                  <FormLabelItem label='Կցագրված հրամաններ'>
+                    <S.FormItem>
+                      <Select
+                        value={selectedCommand}
+                        options={state.commands.list}
+                        placeholder='Հրաման'
+                        onChange={(val) => setFieldValue('commandId', val?.value)}
+                      />
+                      <S.FormItem className='Command'>
+                        <DatePicker
+                          placeholder='Սկիզբ'
+                          date={values.commandStartDate}
+                          onChange={(val) => setFieldValue('commandStartDate', val)}
+                        />
+                        <DatePicker
+                          placeholder='Վերջ'
+                          date={values.commandEndDate}
+                          onChange={(val) => setFieldValue('commandEndDate', val)}
+                        />
+                      </S.FormItem>
+                    </S.FormItem>
+                  </FormLabelItem>
+                  <Select
+                    value={selectedStatus}
+                    options={state.statuses.list}
+                    placeholder='Կարգավիճակ'
+                    onChange={(val) => setFieldValue('statusId', val?.value)}
+                  />
+                  {/* <FormLabelItem label='Ուսանողի կարգավիճակ'>
+                    <S.FormItem>
+                      <S.FormItem className='Command'>
+                        <DatePicker
+                          placeholder='Սկիզբ'
+                          date={values.statusStartDate}
+                          onChange={(val) => setFieldValue('statusStartDate', val)}
+                        />
+                        <DatePicker
+                          placeholder='Վերջ'
+                          date={values.statusEndDate}
+                          onChange={(val) => setFieldValue('statusEndDate', val)}
+                        />
+                      </S.FormItem>
+                    </S.FormItem>
+                  </FormLabelItem> */}
                   <Input
                     value={values.acceptanceCommandNumber}
                     placeholder='Ընդունման հրամանի համար'
                     onChange={(val) => setFieldValue('acceptanceCommandNumber', val)}
                     onEnter={handleSubmit}
-                  /> 
-                  <S.FormItem>
-                    <Select
-                        value={selectedCommand}
-                        options={state.commands.list}
-                        placeholder='Հրաման'
-                        onChange={(val) => setFieldValue('commandId', val?.value)}
-                    />
-                  </S.FormItem>
+                  />
                   <Select
                     value={selectedGroup}
                     accessorKey='number'
@@ -157,6 +193,7 @@ export const FiltersList = ({
                     onChange={(val) => setFieldValue('nationalityId', val?.value)}
                   />
                   <Select
+                    accessorKey='abbreviation'
                     value={selectedProfession}
                     options={state.professions.list}
                     placeholder='Մասնագիտություն'
@@ -168,12 +205,6 @@ export const FiltersList = ({
                     options={state.healthStatuses.list}
                     placeholder='Առողջական վիճակ'
                     onChange={(val) => setFieldValue('healthStatusId', val?.value)}
-                  />
-                  <Select
-                    value={selectedStatus}
-                    options={state.statuses.list}
-                    placeholder='Կարգավիճակ'
-                    onChange={(val) => setFieldValue('statusId', val?.value)}
                   />
                   <Select
                     value={selectedCommissariat}

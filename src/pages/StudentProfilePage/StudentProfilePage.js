@@ -40,14 +40,14 @@ export const StudentProfilePage = ({
       history.push('/studenets')
     }})
   }
-
+  console.log(profileData, 'profileData')
   return (
     <Layout>
       <S.StudentProfilePageContainer>
         <S.StudentProfilePageWrapper>
           <S.MainInfoContainer>
             <S.ProfessionType>
-              { profileData?.group?.profession?.abbreviation }
+              { profileData.group?.profession?.abbreviation }
             </S.ProfessionType>
             <S.StudentProfilePic />
             <S.StudentName>

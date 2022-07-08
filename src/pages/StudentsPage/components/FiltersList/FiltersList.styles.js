@@ -38,6 +38,11 @@ export const FormItem = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 4px;
+
+  .Command {
+    margin-top: 10px;
+    gap: 10px;
+  }
 `
 
 export const ActionsContainer = styled.div`

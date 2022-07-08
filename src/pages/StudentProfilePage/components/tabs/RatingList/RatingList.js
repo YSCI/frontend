@@ -42,7 +42,7 @@ export const RatingList = ({
       <S.CurriculumContainer>
         <S.CurriculumContainerHeader>
           {
-            (createArrayOfLength(student.group.profession?.yearsCount)).map((year) => {
+            (createArrayOfLength(4)).map((year) => {
               return (
                 <S.YearContainer>
                   <S.Course>
@@ -70,7 +70,8 @@ export const RatingList = ({
                     </S.SubjectName>
                     <S.CheckboxesContainer>
                       {
-                        createArrayOfLength(student.group.profession?.yearsCount * 2).map(semester => {
+                        createArrayOfLength(4 * 2).map(semester => {
+                          console.log({semester, subject, rates}, 'ahaha')
                           return (
                             <S.InputWrapper>
                               <Input

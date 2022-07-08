@@ -1,42 +1,34 @@
 import React from 'react'
-
-import * as S from './FieldsForm.styles'
-import closeIcon from 'images/close.png'
-import { Button, Checkbox } from 'ui'
 import { Formik } from 'formik'
-import { CommandForm } from '../CommandForm'
-import { fields } from 'constants/fields'
-import { setObjectValues, sliceArrayIntoParts } from 'helpers'
+import { Draggable, Droppable, DragDropPrivider } from 'react-flex-dnd'
 
-export const FieldsForm = ({ 
-  showModal,
-  hideModal,
-  editableData,
-  commandFormProps
+import { Button, Checkbox } from 'ui'
+import closeIcon from 'images/close.png'
+import { sliceArrayIntoParts } from 'helpers'
+import * as S from './ExportableFields.styles'
+
+export const ExportableFields = ({ 
+  fields,
+  hideModal
 }) => {
 
   const onSubmit = (values) => {
-    showModal(CommandForm, {
-      ...commandFormProps,
-      changeableFields: setObjectValues(values, null)
-    })
+    
   }
 
   return (
     <S.FieldsFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          Նշեք փոփոխելի դաշտերի արժեքները
+          Նշեք և դասավորեք դաշտերը
         </S.HeaderTitle>
-        <S.CloseFormContainer onClick={() => {
-          showModal(CommandForm, { ...commandFormProps, changeableFields: {} })
-        }}>
+        <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>
         </S.CloseFormContainer>
       </S.FormHeaderContainer>
       <Formik
         onSubmit={onSubmit}
-        initialValues={setObjectValues(editableData, true) || {}}
+        initialValues={{ list: fields }}
       >
         {
           ({
@@ -44,23 +36,34 @@ export const FieldsForm = ({
             handleSubmit,
             setFieldValue
           }) => {
+
             return (
               <S.FormContentContainer>
                 <S.FormItemsList>
                   {
-                    sliceArrayIntoParts(fields.student, 6).map(fieldsList => (
+                    sliceArrayIntoParts(values.list, 6).map((fieldsList, listIndex) => (
                       <S.FormRow>
-                        { fieldsList.map(field => ((
-                            <S.FormItem onClick={() => setFieldValue(field.key, !values[field.key])}>
+                        { fieldsList.map((field, index) => (
+                            <S.FormItem key={field.key} onClick={() => {
+                              const fieldIndex = listIndex * 6 + index
+
+                              setFieldValue('list', [
+                                ...values.list.slice(0, fieldIndex),
+                                {
+                                  ...field,
+                                  checked: !field.checked
+                                },
+                                ...values.list.slice(fieldIndex + 1)
+                              ])
+                            }}>
                               <Checkbox
-                                checked={values[field.key]}
+                                checked={field.checked}
                               />
                               <S.FieldName>
                                 { field.name }
                               </S.FieldName>
                             </S.FormItem>
-                          )))
-                        }
+                        ))}
                       </S.FormRow>
                     ))
                   }

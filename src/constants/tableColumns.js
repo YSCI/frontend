@@ -89,6 +89,10 @@ export const tableColumns = {
       accessor: 'acceptanceCommandNumber'
     },
     {
+      Header: 'Ուսման ձև',
+      accessor: ({ educationStatus }) => educationStatuses.find(status => status.value === educationStatus)?.label
+    },
+    {
       Header: 'Խումբ',
       accessor: 'group.number'
     },

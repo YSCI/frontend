@@ -110,7 +110,7 @@ export const Table = ({
             </div>
           ),
           Cell: ({ row }) => (
-            <div asd={console.log(row.getToggleAllRowsSelectedProps?.(), 'asd')}>
+            <div>
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
             </div>
           ),
