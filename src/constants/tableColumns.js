@@ -5,6 +5,7 @@ import store from 'redux/store'
 import { Checkbox } from 'ui'
 import { editSubject } from 'redux/actions/professions'
 import { educationStatuses } from './educationStatuses'
+import { educationBasis } from 'constants/educationBasis'
 
 export const tableColumns = {
   users: [
@@ -75,6 +76,10 @@ export const tableColumns = {
     {
       Header: 'Բնակության հասցե',
       accessor: 'residentAddress'
+    },
+    {
+      Header: 'Կրթության հիմք',
+      accessor: ({ educationBasis: educationBasisVal }) => educationBasis.find(el => el.value === educationBasisVal)?.label
     },
     {
       Header: 'Հեռախոսահամարներ',

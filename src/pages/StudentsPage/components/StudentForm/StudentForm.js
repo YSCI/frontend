@@ -14,6 +14,7 @@ import {
 import { genders } from 'constants/genders'
 import { educationStatuses } from 'constants/educationStatuses'
 import { passportTypes } from 'constants/passportTypes'
+import { educationBasis } from 'constants/educationBasis'
 
 export const StudentForm = ({
   state,
@@ -69,6 +70,7 @@ export const StudentForm = ({
             const selectedNationality = state.nationalities.list.find(el => el.id === values.nationalityId)
             const selectedStatus = state.statuses.list.find(el => el.id === values.statusId)
             const selectedGroup = state.groups.list.find(el => el.id === values.groupId)
+            const selectedPrivilege = state.privileges.list.find(el => el.id === values.privilegeId)
 
             const selectedRegistrationRegion = state.regions.list.find(el => el.id === values.registrationRegionId)
             const selectedRegistrationCommunity = selectedRegistrationRegion?.communities.find(el => el.id === values.registrationCommunityId)
@@ -79,6 +81,7 @@ export const StudentForm = ({
             const selectedGender = genders.find(gender => gender.id === values.gender)
             const selectedPassportType = passportTypes.find(type => type.id === values.passportType)
             const selectedEducationStatus = educationStatuses.find(status => status.value === values.educationStatus)
+            const selectedEducationBasis = educationBasis.find(base => base.id === values.educationBasis)
 
             return (
               <S.FormContentContainer>
@@ -138,23 +141,6 @@ export const StudentForm = ({
                       onEnter={handleSubmit}
                       error={touched.socialCardNumber && errors.socialCardNumber}
                     />
-                    <Input
-                      value={values.passportSeries}
-                      placeholder='Անձը հաստատող փաստաթուղթ'
-                      onChange={(val) => setFieldValue('passportSeries', val)}
-                      onEnter={handleSubmit}
-                      error={touched.passportSeries && errors.passportSeries}
-                    />
-                    <Select
-                      value={selectedPassportType}
-                      placeholder='Անձը հաստատող փաստաթղթի տեսակ'
-                      options={passportTypes}
-                      accessorKey='label'
-                      onChange={(val) => setFieldValue('passportType', val?.value)}
-                      error={touched.passportType && errors.passportType}
-                    />
-                  </S.FormRow>
-                  <S.FormRow>
                     <DatePicker
                       date={values.dateOfAcceptance}
                       placeholder='Ընդունման ամսաթիվ'
@@ -175,21 +161,58 @@ export const StudentForm = ({
                       onChange={(val) => setFieldValue('statusId', val?.value)}
                       error={touched.statusId && errors.statusId}
                     />
+                  </S.FormRow>
+                  <S.FormRow>
+                    <FormLabelItem label='Անձը հաստատող փաստաթուղթ'>
+                      <Select
+                        value={selectedPassportType}
+                        placeholder='Անձը հաստատող փաստաթղթի տեսակ'
+                        options={passportTypes}
+                        accessorKey='label'
+                        onChange={(val) => setFieldValue('passportType', val?.value)}
+                        error={touched.passportType && errors.passportType}
+                      />
+                      {
+                        selectedPassportType &&
+                          <>
+                            <Input
+                              value={values.passportSeries}
+                              placeholder='Անձը հաստատող փաստաթուղթ'
+                              onChange={(val) => setFieldValue('passportSeries', val)}
+                              onEnter={handleSubmit}
+                              error={touched.passportSeries && errors.passportSeries}
+                            />
+                            <Input
+                              value={values.passportIssuedBy}
+                              placeholder='Ում կողմից է տրված'
+                              onChange={(val) => setFieldValue('passportIssuedBy', val)}
+                              onEnter={handleSubmit}
+                              error={touched.passportIssuedBy && errors.passportIssuedBy}
+                            />
+                            <DatePicker
+                              date={values.passportDateOfIssue}
+                              placeholder='Տրման ամսաթիվը'
+                              onChange={(val) => setFieldValue('passportDateOfIssue', val)}
+                              error={touched.passportDateOfIssue && errors.passportDateOfIssue}
+                            />
+                          </>
+                      }
+                    </FormLabelItem>
                     <Select
-                      value={selectedHealthStatus}
-                      accessorKey='status'
-                      options={state.healthStatuses.list}
-                      placeholder='Առողջական վիճակ'
-                      onChange={(val) => setFieldValue('healthStatusId', val?.value)}
-                      error={touched.healthStatusId && errors.healthStatusId}
-                    />
-                    {/* <Select
                       value={selectedPrivilege}
                       options={state.privileges.list}
                       placeholder='Արտոնություն'
                       onChange={(val) => setFieldValue('privilegeId', val?.value)}
                       error={touched.privilegeId && errors.privilegeId}
-                    /> */}
+                    />
+                    <Select
+                      value={selectedEducationBasis}
+                      options={educationBasis}
+                      accessorKey='label'
+                      placeholder='Կրթության հիմք'
+                      onChange={(val) => setFieldValue('educationBasis', val?.value)}
+                      error={touched.educationBasis && errors.educationBasis}
+                    />
                     <Select
                       value={selectedNationality}
                       options={state.nationalities.list}
@@ -219,6 +242,8 @@ export const StudentForm = ({
                       accessorKey='label'
                       error={touched.educationStatus && errors.educationStatus}
                     />
+                  </S.FormRow>
+                  <S.FormRow>
                     <Select
                       value={selectedGender}
                       placeholder='Սեռ'
@@ -227,8 +252,14 @@ export const StudentForm = ({
                       onChange={(val) => setFieldValue('gender', val?.value)}
                       error={touched.gender && errors.gender}
                     />
-                  </S.FormRow>
-                  <S.FormRow>
+                    <Select
+                      value={selectedHealthStatus}
+                      accessorKey='status'
+                      options={state.healthStatuses.list}
+                      placeholder='Առողջական վիճակ'
+                      onChange={(val) => setFieldValue('healthStatusId', val?.value)}
+                      error={touched.healthStatusId && errors.healthStatusId}
+                    />
                     <FormLabelItem label='Գրանցման հասցե'>
                       <Select
                         value={selectedRegistrationRegion}
