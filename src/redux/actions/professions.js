@@ -7,7 +7,7 @@ import { sortBy } from 'lodash'
 
 export const loadProfessionSubjects = (search) => async dispatch => {
   try {
-    const { data, total }= await HttpService.get(`subject`,  {...search, sortBy: 'number' })
+    const { data, total }= await HttpService.get(`subject`,  {...search, orderBy: 'number' })
 
     const list = sortBy(data, 'number')
 

@@ -177,7 +177,7 @@ export const StudentForm = ({
                           <>
                             <Input
                               value={values.passportSeries}
-                              placeholder='Անձը հաստատող փաստաթուղթ'
+                              placeholder='Անձը հաստատող փաստաթղթի համար'
                               onChange={(val) => setFieldValue('passportSeries', val)}
                               onEnter={handleSubmit}
                               error={touched.passportSeries && errors.passportSeries}

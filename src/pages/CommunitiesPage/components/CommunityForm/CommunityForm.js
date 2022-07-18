@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 
 import * as S from './CommunityForm.styles'
 import closeIcon from 'images/close.png'
-import { Input, Button, Select } from 'ui'
+import { Input, Button, Select, Checkbox } from 'ui'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './CommunityForm.config'
 import { history } from 'system/history'
@@ -91,6 +91,13 @@ export const CommunityForm = ({
                         { errors.regionId }
                       </S.ErrorMessage>
                   }
+                </S.FormItem>
+                <S.FormItem>
+                  <Checkbox
+                    label='Սահմանամերձ'
+                    checked={values.isFrontier}
+                    onChange={() => setFieldValue('isFrontier', !values.isFrontier)}
+                  />
                 </S.FormItem>
                 <S.ButtonsContainer>
                   <Button className='bordered' onClick={hideModal}>

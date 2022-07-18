@@ -2,7 +2,8 @@ import * as Yup from 'yup';
 
 export const initialValues = {
   name: '',
-  regionId: null
+  regionId: null,
+  isFrontier: null
 }
 
 export const validationSchema = Yup.object().shape({

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { CenteredFlex } from './styles'
 
 export const Checkbox = ({
+  label,  
   checked,
   onChange,
   className,
@@ -19,19 +20,37 @@ export const Checkbox = ({
   }
 
   return (
-    <CheckboxContainer
-      onClick={onCheck}
-      className={cx('Checkbox', { isChecked: checked, [className]: true })}
-      {...rest}
-    >
-      <Checked className={cx({ isChecked: checked })}/>
-    </CheckboxContainer>
+    <CheckboxWrapper>
+      <CheckboxContainer
+        onClick={onCheck}
+        className={cx('Checkbox', { isChecked: checked, [className]: true })}
+        {...rest}
+      >
+        <Checked className={cx({ isChecked: checked })}/>
+      </CheckboxContainer>
+      {
+        label &&
+          <Label onClick={onCheck}>
+            { label }
+          </Label>
+      }
+    </CheckboxWrapper>
   )
 }
 
 Checkbox.defaultProps = {
+  label: '',
   checked: false
 }
+
+const CheckboxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+`
+
+const Label = styled.span``
 
 const Checked = styled.div`
   width: 15px;
