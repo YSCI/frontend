@@ -33,7 +33,7 @@ export const RotationForm = ({
     const data = await HttpService.get('rotation', values)
     // setRotationStudents(data)
     const nonEditableStudents = data.data.filter(student => [0, 1].includes(student.educationStatus))
-    console.log(nonEditableStudents, 'nonEditableStudents')
+
     const editableStudents = data.data.filter(student => !((nonEditableStudents.map(el => el.id)).includes(student.id)))
     setRotationStudents({
       ...data,
@@ -64,7 +64,6 @@ export const RotationForm = ({
   // let selectedStudents = rotationStudents.data.map((el, ind) => el.educationStatus === 2 && ind + 1).concat(createArrayOfLength(rotationStudents.additional.freePlacesCount))
   if (!!rotationStudents) {
     for (const [ind, student] of rotationStudents?.data?.entries()) {
-      console.log(ind, student, student.educationStatus === 1)
       if (student.educationStatus === 1)
         selectedStudents.push(true)
       else if (ind < rotationStudents.additional.freePlacesCount && [2, 3].includes(student.educationStatus))
@@ -73,7 +72,6 @@ export const RotationForm = ({
         selectedStudents.push(false)
     }
   }
-  console.log(selectedStudents)
 
   return (
     <S.RotationFormContainer>

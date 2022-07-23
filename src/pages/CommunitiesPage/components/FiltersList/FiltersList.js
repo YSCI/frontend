@@ -40,7 +40,7 @@ export const FiltersList = ({ hideModal, loadCommunities, loadRegions, regionsLi
                 <S.List>
                   <Input
                     value={values.name}
-                    placeholder='Համայնք'
+                    placeholder='Բնակավայր'
                     onChange={(val) => setFieldValue('name', val)}
                     onEnter={handleSubmit}
                     autoFocus

@@ -26,6 +26,7 @@ export const DatePicker = withTheme(({
     <DatePickerContainer className='Date-Picker'>
       <DatePickerComponent 
         { ...rest }
+        allowEdit={true}
         date={date
           ? moment(date).format('DD/MM/YYYY')
           : ''

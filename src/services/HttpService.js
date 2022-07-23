@@ -71,7 +71,6 @@ export class HttpService {
       queryString = '?' + qs.stringify(filterNonNull(search))
     else
       queryString = search || ''
-    console.log(search, queryString)
     return await HttpService.request('get', path + `${queryString}`, options)
   }
 

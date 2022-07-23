@@ -104,7 +104,7 @@ export const deleteStudent = (ids) => async dispatch => {
     await HttpService.delete('student', { ids })
     
     dispatch({
-      type: STUDENTS_TYPES.DELETE_STUDENT,
+      type: STUDENTS_TYPES.DELETE_STUDENTS,
       data: ids
     })
 

@@ -41,7 +41,7 @@ export const sidebarItems = [
   },
   {
     id: 12,
-    text: 'Համայնքներ',
+    text: 'Բնակավայրեր',
     path: '/communities'
   },
   {

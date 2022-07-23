@@ -293,6 +293,10 @@ export const tableColumns = {
     {
       Header: 'Մարզ',
       accessor: 'region.name'
+    },
+    {
+      Header: 'Սահմանամերձ',
+      accessor: ({ isFrontier }) => isFrontier ? 'Այո' : 'Ոչ'
     }
   ],
   commands: [

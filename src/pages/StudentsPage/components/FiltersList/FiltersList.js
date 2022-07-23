@@ -90,7 +90,7 @@ export const FiltersList = ({
                     <Select
                       value={selectedRegistrationCommunity}
                       options={selectedRegistrationRegion?.communities}
-                      placeholder='Համայնք'
+                      placeholder='Բնակավայր'
                       onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
                     />
                     <S.FormItem>
@@ -111,7 +111,7 @@ export const FiltersList = ({
                     <Select
                       value={selectedResidentCommunity}
                       options={selectedResidentRegion?.communities}
-                      placeholder='Համայնք'
+                      placeholder='Բնակավայր'
                       onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
                     />
                     <S.FormItem>

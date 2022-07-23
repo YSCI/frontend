@@ -57,19 +57,7 @@ export const FormContentContainer = styled.div`
 export const FormItemsList = styled.div`
   display: flex;
   width: 100%;
-  gap: 20px;
-`
-
-export const ButtonsContainer = styled.div`
-  display: flex;
-  width: 100%;
-  margin-top: 10px;
-  justify-content: flex-end;
-  gap: 15px;
-
-  .Button {
-    width: 150px;
-  }
+  gap: 30px;
 `
 
 export const FormRow = styled.div`

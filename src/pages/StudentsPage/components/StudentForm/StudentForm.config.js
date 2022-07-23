@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import { validations } from 'constants/validations'
+import { pick } from 'lodash';
 
 export const initialValues = {
   status: '',
@@ -30,4 +31,41 @@ export const initialValues = {
   acceptanceCommandNumber: '',
 }
 
-export const validationSchema = Yup.object().shape(validations.student, ['passportSeries', 'socialCardNumber']);
+const validationKeysBySteps = [
+  [
+    'firstname',
+    'lastname',
+    'fathername',
+    'dateOfBirth',
+    'groupId',
+    'acceptanceCommandNumber',
+    'socialCardNumber',
+    'dateOfAcceptance',
+    'commissariatId',
+    'statusId'
+  ],
+  [
+    'privilegeId',
+    'educationBasis',
+    'nationalityId',
+    'citizenshipId',
+    'contactNumbers',
+    'educationStatus',
+    'gender',
+    'healthStatusId',
+    'passportType',
+    'passportSeries',
+    'passportIssuedBy',
+    'passportDateOfIssue',
+  ],
+  [
+    'registrationRegionId',
+    'registrationCommunityId',
+    'registrationAddress',
+    'residentRegionId',
+    'residentCommunityId',
+    'residentAddress'
+  ]
+]
+
+export const getValidationSchema = (step) => Yup.object().shape(pick(validations.student, validationKeysBySteps[step]), ['passportSeries', 'socialCardNumber']);

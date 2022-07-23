@@ -71,7 +71,6 @@ export const RatingList = ({
                     <S.CheckboxesContainer>
                       {
                         createArrayOfLength(4 * 2).map(semester => {
-                          console.log({semester, subject, rates}, 'ahaha')
                           return (
                             <S.InputWrapper>
                               <Input

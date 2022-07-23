@@ -37,7 +37,7 @@ export const CommunityForm = ({
     <S.CommunityFormContainer>
       <S.FormHeaderContainer>
         <S.HeaderTitle>
-          {formActionType} համայնք
+          {formActionType} բնակավայր
         </S.HeaderTitle>
         <S.CloseFormContainer onClick={hideModal}>
           <S.CloseFormIcon src={closeIcon}/>

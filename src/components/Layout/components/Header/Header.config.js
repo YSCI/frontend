@@ -50,7 +50,7 @@ export const headerItems = [
       },
       {
         id: 12,
-        text: 'Համայնքներ',
+        text: 'Բնակավայր',
         path: '/communities'
       },
       {

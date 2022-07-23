@@ -291,7 +291,7 @@ export const ChangeableFieldsForm = ({
                             <Select
                               value={selectedValues.registrationCommunity}
                               options={selectedValues.registrationRegion?.communities}
-                              placeholder='Համայնք'
+                              placeholder='Բնակավայր'
                               onChange={(val) => setFieldValue('registrationCommunityId', val?.value)}
                               error={touched.registrationCommunityId && errors.registrationCommunityId}
                             />
@@ -316,7 +316,7 @@ export const ChangeableFieldsForm = ({
                             <Select
                               value={selectedValues.residentCommunity}
                               options={selectedValues.residentRegion?.communities}
-                              placeholder='Համայնք'
+                              placeholder='Բնակավայր'
                               onChange={(val) => setFieldValue('residentCommunityId', val?.value)}
                               error={touched.residentCommunityId && errors.residentCommunityId}
                             />
@@ -333,7 +333,7 @@ export const ChangeableFieldsForm = ({
                   </S.FormRow>
                 </S.FormItemsList>
                 <S.ButtonsContainer>
-                  <Button className='bordered' onClick={hideModal}>
+                  <Button className='bordered' onClick={closeModal}>
                     Չեղարկել
                   </Button>
                   <Button onClick={() => handleSubmit(values, { ads: 'sfdsfwef' })}>
