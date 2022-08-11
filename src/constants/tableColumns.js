@@ -1,13 +1,45 @@
-import moment from 'moment'
+import moment from 'moment';
 
-import { StudentProfileLink } from 'components'
-import store from 'redux/store'
-import { Checkbox } from 'ui'
-import { editSubject } from 'redux/actions/professions'
-import { educationStatuses } from './educationStatuses'
-import { educationBasis } from 'constants/educationBasis'
+import { StudentProfileLink } from 'components';
+import store from 'redux/store';
+import { Checkbox } from 'ui';
+import { editSubject } from 'redux/actions/professions';
+import { educationStatuses } from './educationStatuses';
+import { educationBasis } from 'constants/educationBasis';
+import { formatDate } from 'helpers';
+import { ApproveCommand } from 'components/ApproveCommand';
 
 export const tableColumns = {
+  commandsHistory: [
+    {
+      Header: ' ',
+      width: 200,
+      accessor: ({ id }) => <ApproveCommand commandId={id} />
+    },
+    {
+      Header: 'Անվանում',
+      accessor: 'command.name'
+    },
+    {
+      Header: 'Համար',
+      accessor: 'commandNumber'
+    },
+    {
+      Header: 'Ուսանող',
+      accessor: ({ student }) =>
+        `${student.firstname} ${student.lastname} ${formatDate(
+          student.dateOfBirth
+        )}`
+    },
+    {
+      Header: 'Կցագրող',
+      accessor: ({ user }) => `${user.name} ${user.surname}`
+    },
+    {
+      Header: 'Ստեղծման տարեթիվ',
+      accessor: ({ affectDate }) => formatDate(affectDate)
+    }
+  ],
   users: [
     {
       Header: 'Անուն',
@@ -51,7 +83,7 @@ export const tableColumns = {
   students: [
     {
       Header: 'Անձնական էջ',
-      accessor: (student) => <StudentProfileLink student={student}/>
+      accessor: (student) => <StudentProfileLink student={student} />
     },
     {
       Header: 'Անուն',
@@ -79,7 +111,8 @@ export const tableColumns = {
     },
     {
       Header: 'Կրթության հիմք',
-      accessor: ({ educationBasis: educationBasisVal }) => educationBasis.find(el => el.value === educationBasisVal)?.label
+      accessor: ({ educationBasis: educationBasisVal }) =>
+        educationBasis.find((el) => el.value === educationBasisVal)?.label
     },
     {
       Header: 'Հեռախոսահամարներ',
@@ -87,7 +120,8 @@ export const tableColumns = {
     },
     {
       Header: 'Ընդունման ամսաթիվ',
-      accessor: ({ dateOfAcceptance }) => moment(dateOfAcceptance).format('DD/MM/YYYY')
+      accessor: ({ dateOfAcceptance }) =>
+        moment(dateOfAcceptance).format('DD/MM/YYYY')
     },
     {
       Header: 'Ընդունման հրամանի համար',
@@ -95,7 +129,9 @@ export const tableColumns = {
     },
     {
       Header: 'Ուսման ձև',
-      accessor: ({ educationStatus }) => educationStatuses.find(status => status.value === educationStatus)?.label
+      accessor: ({ educationStatus }) =>
+        educationStatuses.find((status) => status.value === educationStatus)
+          ?.label
     },
     {
       Header: 'Խումբ',
@@ -143,25 +179,28 @@ export const tableColumns = {
       },
       {
         Header: 'Ուսման ձև',
-        accessor: row => educationStatuses.find(status => status.value === row.educationStatus)?.label
-      },
-    ]
+        accessor: (row) =>
+          educationStatuses.find(
+            (status) => status.value === row.educationStatus
+          )?.label
+      }
+    ];
 
     for (const semester of semestersForCalculation) {
       arr.push({
         Header: `${semester} կիս.`,
         accessor: (row) => row.rates.semesters[semester],
         width: 125
-      })
+      });
     }
 
     arr.push({
       Header: 'Ընդհանուր',
       accessor: 'rates.total',
       width: 125
-    })
+    });
 
-    return arr
+    return arr;
   },
   subjects: (yearsCount) => {
     const arr = [
@@ -174,35 +213,38 @@ export const tableColumns = {
         Header: 'Անվանում',
         accessor: 'name'
       }
-    ]
+    ];
 
     for (let year = 1; year <= yearsCount * 2; year++) {
       arr.push({
         Header: `${year} կիս.`,
         onClick: (subject) => {
           const semesters = subject.semesters?.includes(year)
-            ? subject.semesters.filter(semester => semester !== year)
-            : Array.isArray(subject.semesters) ? subject.semesters.concat(year) : [year]
+            ? subject.semesters.filter((semester) => semester !== year)
+            : Array.isArray(subject.semesters)
+            ? subject.semesters.concat(year)
+            : [year];
 
-          store.dispatch(editSubject({
-            semesters: semesters.length ? semesters : null,
-            id: subject.id,
-            professionId: subject.professionId
-          }, false))
+          store.dispatch(
+            editSubject(
+              {
+                semesters: semesters.length ? semesters : null,
+                id: subject.id,
+                professionId: subject.professionId
+              },
+              false
+            )
+          );
         },
 
         accessor: ({ semesters }) => {
-          return (
-            <Checkbox
-              checked={semesters?.includes(year)}
-            />
-          )
+          return <Checkbox checked={semesters?.includes(year)} />;
         },
         width: 125
-      })
+      });
     }
 
-    return arr
+    return arr;
   },
   profession: [
     {
@@ -233,7 +275,7 @@ export const tableColumns = {
     {
       Header: 'Անվճար տեղերի քանակ',
       accessor: 'freePlacesCount'
-    },
+    }
   ],
   citizenship: [
     {
@@ -296,7 +338,7 @@ export const tableColumns = {
     },
     {
       Header: 'Սահմանամերձ',
-      accessor: ({ isFrontier }) => isFrontier ? 'Այո' : 'Ոչ'
+      accessor: ({ isFrontier }) => (isFrontier ? 'Այո' : 'Ոչ')
     }
   ],
   commands: [
@@ -306,10 +348,17 @@ export const tableColumns = {
     },
     {
       Header: 'Փոփոխելի դաշտեր',
-      accessor: ({ changeableColumns = {} }) => Object.keys(changeableColumns || {})
-        .map(column => tableColumns.students.find(el => el.accessor.split?.('.')[0] === column.replaceAll('Id', ''))?.Header)
-        .filter(el => el)
-        .join(', ')
+      accessor: ({ changeableColumns = {} }) =>
+        Object.keys(changeableColumns || {})
+          .map(
+            (column) =>
+              tableColumns.students.find(
+                (el) =>
+                  el.accessor.split?.('.')[0] === column.replaceAll('Id', '')
+              )?.Header
+          )
+          .filter((el) => el)
+          .join(', ')
     }
   ],
   commandHistory: [
@@ -330,4 +379,4 @@ export const tableColumns = {
       accessor: ({ affectDate }) => moment(affectDate).format('DD/MM/YYYY')
     }
   ]
-}
+};

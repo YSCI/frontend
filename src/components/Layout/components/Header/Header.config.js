@@ -19,6 +19,11 @@ export const headerItems = [
     text: 'Այլ',
     list: [
       {
+        id: 111,
+        text: 'Հրամանների պատմություն',
+        path: '/commands-history'
+      },
+      {
         id: 7,
         text: 'Կարգավիճակներ',
         path: '/statuses'
@@ -70,4 +75,4 @@ export const headerItems = [
       }
     ]
   }
-]
+];

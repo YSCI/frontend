@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useCallback,
   useRef
-} from 'react'
+} from 'react';
 import {
   useTable,
   useSortBy,
@@ -12,43 +12,43 @@ import {
   useRowSelect,
   useBlockLayout,
   useResizeColumns
-} from 'react-table'
-import qs from 'qs'
-import cx from 'classnames'
+} from 'react-table';
+import qs from 'qs';
+import cx from 'classnames';
 
-import { Button } from 'ui'
-import * as S from './Table.styles'
-import { history } from 'system/history'
-import { formatDate, withConfirmation } from 'helpers'
-import createIcon from 'images/add.png'
-import editIcon from 'images/editing.png'
-import deleteIcon from 'images/delete.png'
-import filterIcon from 'images/filter.png'
-import sortIcon from 'images/sort.png'
-import { SwitchCourseModal } from 'components/SwitchCourseModal'
+import { Button } from 'ui';
+import * as S from './Table.styles';
+import { history } from 'system/history';
+import { formatDate, withConfirmation } from 'helpers';
+import createIcon from 'images/add.png';
+import editIcon from 'images/editing.png';
+import deleteIcon from 'images/delete.png';
+import filterIcon from 'images/filter.png';
+import sortIcon from 'images/sort.png';
+import { SwitchCourseModal } from 'components/SwitchCourseModal';
 
 const defaultColumn = {
   minWidth: 50,
   width: 250,
   maxWidth: 500
-}
+};
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
-    const defaultRef = React.useRef()
-    const resolvedRef = ref || defaultRef
+    const defaultRef = React.useRef();
+    const resolvedRef = ref || defaultRef;
 
     useEffect(() => {
-      resolvedRef.current.indeterminate = indeterminate
-    }, [resolvedRef, indeterminate])
+      resolvedRef.current.indeterminate = indeterminate;
+    }, [resolvedRef, indeterminate]);
 
     return (
       <>
         <input type="checkbox" ref={resolvedRef} {...rest} />
       </>
-    )
+    );
   }
-)
+);
 
 export const Table = ({
   data,
@@ -59,6 +59,7 @@ export const Table = ({
   loadData,
   showModal,
   isSubTable,
+  hideTooltip,
   columnConfig,
   isGroupsPage,
   switchCourse,
@@ -98,14 +99,14 @@ export const Table = ({
     useRowSelect,
     useBlockLayout,
     useResizeColumns,
-    hooks => {
-      if (!hasSelections || withoutCheckboxes) return
+    (hooks) => {
+      if (!hasSelections || withoutCheckboxes) return;
 
-      hooks.visibleColumns.push(columns => [        
+      hooks.visibleColumns.push((columns) => [
         {
-          id: 'selection',          
+          id: 'selection',
           Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div> 
+            <div>
               <IndeterminateCheckbox {...getToggleAllRowsSelectedProps?.()} />
             </div>
           ),
@@ -116,70 +117,74 @@ export const Table = ({
           ),
           width: 70
         },
-        ...columns,
-      ])
+        ...columns
+      ]);
     }
-  )
+  );
 
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const totalCount = total || data.length 
-  const pageCount = Math.ceil(totalCount / 6)
-  const selectedFirstRow = selectedFlatRows[0]?.original
+  const totalCount = total || data.length;
+  const pageCount = Math.ceil(totalCount / 6);
+  const selectedFirstRow = selectedFlatRows[0]?.original;
 
-  const changePage = useCallback((page) => {
-    const currentQuery = qs.parse(history.location.search.replace('?', ''))
-    setCurrentPage(page)
-    loadData?.({
-      ...currentQuery,
-      limit: 6,
-      offset: (page - 1) * 6,
-    })
-  }, [loadData, setCurrentPage])
+  const changePage = useCallback(
+    (page) => {
+      const currentQuery = qs.parse(history.location.search.replace('?', ''));
+      setCurrentPage(page);
+      loadData?.({
+        ...currentQuery,
+        limit: 6,
+        offset: (page - 1) * 6
+      });
+    },
+    [loadData, setCurrentPage]
+  );
 
-  const gotoPage = useCallback((page) => {
-    changePage(page)
-  }, [changePage])
+  const gotoPage = useCallback(
+    (page) => {
+      changePage(page);
+    },
+    [changePage]
+  );
 
   const nextPage = () => {
-    changePage(currentPage + 1)
-  }
+    changePage(currentPage + 1);
+  };
 
   const prevPage = () => {
-    changePage(currentPage - 1)
-  }
+    changePage(currentPage - 1);
+  };
 
   useEffect(() => {
-    gotoPage(1)
-  }, [])
+    gotoPage(1);
+  }, []);
 
   const paginationButtons = useMemo(() => {
-    const buttons = []
-    let num = Math.max(currentPage - 1, 1)
-    const buttonsCount = Math.min(pageCount, num + 2)
+    const buttons = [];
+    let num = Math.max(currentPage - 1, 1);
+    const buttonsCount = Math.min(pageCount, num + 2);
 
     for (let pageNumber = num; pageNumber <= buttonsCount; pageNumber++) {
-      const isPageActive = pageNumber === currentPage
+      const isPageActive = pageNumber === currentPage;
 
       buttons.push(
         <Button
           onClick={() => gotoPage(pageNumber)}
           className={cx({ bordered: !isPageActive, main: isPageActive })}
         >
-          { pageNumber }
+          {pageNumber}
         </Button>
-      )
+      );
     }
 
-    return buttons
-  }, [pageCount, currentPage, gotoPage])
+    return buttons;
+  }, [pageCount, currentPage, gotoPage]);
 
-  const tBodyRef = useRef(null)
+  const tBodyRef = useRef(null);
 
   const tableActions = useMemo(() => {
-    let actions = [
-      ...customActions?.(selectedFlatRows) || [],
-    ]
+    let actions = [...(customActions?.(selectedFlatRows) || [])];
 
     if (!withoutDefaultActions) {
       actions = [
@@ -188,23 +193,29 @@ export const Table = ({
           key: 1,
           icon: createIcon,
           title: 'Ավելացնել',
-          onClick: () => showModal(FormComponent, { parentRowId: selectedFirstRow })
+          onClick: () =>
+            showModal(FormComponent, { parentRowId: selectedFirstRow })
         },
         {
           key: 2,
           icon: editIcon,
           title: 'Փոփոխել',
-          disabled: selectedFlatRows.length !== 1,        
-          onClick: () => showModal(FormComponent, { editableData: selectedFirstRow })
+          disabled: selectedFlatRows.length !== 1,
+          onClick: () =>
+            showModal(FormComponent, { editableData: selectedFirstRow })
         },
         {
           key: 3,
           title: 'Ջնջել',
           icon: deleteIcon,
           disabled: selectedFlatRows.length === 0,
-          onClick: () => withConfirmation({ onYes: () => onDelete(selectedFlatRows.map(row => row.original.id)) })
+          onClick: () =>
+            withConfirmation({
+              onYes: () =>
+                onDelete(selectedFlatRows.map((row) => row.original.id))
+            })
         }
-      ]
+      ];
     }
 
     if (FilterComponent) {
@@ -213,10 +224,10 @@ export const Table = ({
         icon: filterIcon,
         title: 'Ֆիլտրել',
         onClick: () => showModal(FilterComponent)
-      })
+      });
     }
 
-    return actions
+    return actions;
   }, [
     onDelete,
     selectedFlatRows,
@@ -224,51 +235,47 @@ export const Table = ({
     customActions,
     FormComponent,
     FilterComponent,
-    selectedFirstRow,
-  ])
+    selectedFirstRow
+  ]);
 
   return (
-    <S.TableContainer className='Table-Container' hasActionsBar={hasActionsBar}>
-      {
-        hasActionsBar &&
-          <S.FixedActionsBar>
-            {/* <S.FixedActionsBarHeader>
+    <S.TableContainer className="Table-Container" hasActionsBar={hasActionsBar}>
+      {hasActionsBar && (
+        <S.FixedActionsBar>
+          {/* <S.FixedActionsBarHeader>
               Գործողություններ
             </S.FixedActionsBarHeader> */}
-            <S.FixedActionsBarTitle>
-              { title }
-            </S.FixedActionsBarTitle>
-            <S.ActionsList>
-              {
-                isGroupsPage &&
-                  <Button
-                    onClick={() => switchCourse(selectedFlatRows.map(row => row.original.id))}
-                    disable={selectedFlatRows.length === 0}
-                  >
-                    Փոխադրում
-                  </Button>
-              }
-              {
-                tableActions.map((action, key) => (
-                  <S.Action
-                    {...action}
-                    key={action.key || key + tableActions.length}
-                    className={cx({ disabled: action.disabled })}
-                  >
-                    <S.OpacityWrapper title={action.title}/>
-                    <img alt='delete-icon' src={action.icon}/>
-                  </S.Action>
-                ))
-              }
-            </S.ActionsList>
-          </S.FixedActionsBar>
-      }
-      <table {...getTableProps()} className='Table'>
+          <S.FixedActionsBarTitle>{title}</S.FixedActionsBarTitle>
+          <S.ActionsList>
+            {isGroupsPage && (
+              <Button
+                onClick={() =>
+                  switchCourse(selectedFlatRows.map((row) => row.original.id))
+                }
+                disable={selectedFlatRows.length === 0}
+              >
+                Փոխադրում
+              </Button>
+            )}
+            {tableActions.map((action, key) => (
+              <S.Action
+                {...action}
+                key={action.key || key + tableActions.length}
+                className={cx({ disabled: action.disabled })}
+              >
+                <S.OpacityWrapper title={action.title} />
+                <img alt="delete-icon" src={action.icon} />
+              </S.Action>
+            ))}
+          </S.ActionsList>
+        </S.FixedActionsBar>
+      )}
+      <table {...getTableProps()} className="Table">
         <thead>
-          <tr className='header-style'/>
-          {headerGroups.map(headerGroup => (
+          <tr className="header-style" />
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   <div
@@ -278,96 +285,114 @@ export const Table = ({
                       column.isResizing ? 'isResizing' : ''
                     }`}
                   />
-                  {column.isSorted ? <S.SortIcon
-                        alt='sort-icon'
-                        className={cx({ ascSort: !column.isSortedDesc })}
-                        src={sortIcon}
-                      />
-                    : null
-                  }
+                  {column.isSorted ? (
+                    <S.SortIcon
+                      alt="sort-icon"
+                      className={cx({ ascSort: !column.isSortedDesc })}
+                      src={sortIcon}
+                    />
+                  ) : null}
                 </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()} ref={tBodyRef}>
-          {rows.map(
-            (row) => {
-              prepareRow(row);
-              const { onClick: onExpandableRowClick } = row.getToggleRowExpandedProps()
-              const createdInfo = `Ստեղծվել է - ${formatDate(row.original.createdAt)}`
-              const updatedInfo = `Թարմացվել է - ${formatDate(row.original.updatedAt)}`
-              const rowInfo = createdInfo + '\n' + updatedInfo
+          {rows.map((row) => {
+            prepareRow(row);
+            const { onClick: onExpandableRowClick } =
+              row.getToggleRowExpandedProps();
+            const createdInfo = `Ստեղծվել է - ${formatDate(
+              row.original.createdAt
+            )}`;
+            const updatedInfo = `Թարմացվել է - ${formatDate(
+              row.original.updatedAt
+            )}`;
+            const rowInfo = createdInfo + '\n' + updatedInfo;
 
-              return (
-                <>
-                  <tr
-                    {...row.getRowProps()}
-                    key={row.original.id}
-                    className={cx({ selected: row.isSelected })}
-                    onClick={() => {
-                      if (hasSelections) row.toggleRowSelected(!row.isSelected)
-                      if (SubComponent) onExpandableRowClick()
-                    }}
-                  >
-                    {row.cells.map((cell, cellIndex) => {
-                      const columnKey = cell.column.id.split('.')[0]
-                      let cellInfo = null
+            return (
+              <>
+                <tr
+                  {...row.getRowProps()}
+                  key={row.original.id}
+                  className={cx({ selected: row.isSelected })}
+                  onClick={() => {
+                    if (hasSelections) row.toggleRowSelected(!row.isSelected);
+                    if (SubComponent) onExpandableRowClick();
+                  }}
+                >
+                  {row.cells.map((cell, cellIndex) => {
+                    const columnKey = cell.column.id.split('.')[0];
+                    let cellInfo = null;
 
-                      if (row.original[columnKey]?.createdAt) {
-                        cellInfo = `Ստեղծվել է - ${formatDate(row.original[columnKey].createdAt)}`
-                          + '\n'
-                          + `Թարմացվել է - ${formatDate(row.original[columnKey].updatedAt)}`
-                      }
+                    if (row.original[columnKey]?.createdAt) {
+                      cellInfo =
+                        `Ստեղծվել է - ${formatDate(
+                          row.original[columnKey].createdAt
+                        )}` +
+                        '\n' +
+                        `Թարմացվել է - ${formatDate(
+                          row.original[columnKey].updatedAt
+                        )}`;
+                    }
 
-                      return (
-                        <td {...cell.getCellProps()} onClick={(e) => {
+                    return (
+                      <td
+                        {...cell.getCellProps()}
+                        onClick={(e) => {
                           if (cell.column.onClick) {
-                            e.stopPropagation()
-                            e.preventDefault()
-                            cell.column.onClick?.(row.original)
+                            e.stopPropagation();
+                            e.preventDefault();
+                            cell.column.onClick?.(row.original);
                           }
-                        }} className='tooltip'>
-                          {cell.render('Cell')}
-                          {
-                            cellIndex > 0  && !isSubTable &&
-                              <span className="tooltiptext">{cellInfo || rowInfo}</span>
-                          }
-                        </td>
-                      )
-                    })}
-                  </tr>
-                  {row.isExpanded && SubComponent ? (
-                    <div>
-                      <td style={{ width: tBodyRef.current?.clientWidth - 35 }}>
-                        { SubComponent({ row }) }
+                        }}
+                        className="tooltip"
+                      >
+                        {cell.render('Cell')}
+                        {cellIndex > 0 && !isSubTable && !hideTooltip && (
+                          <span className="tooltiptext">
+                            {cellInfo || rowInfo}
+                          </span>
+                        )}
                       </td>
-                    </div>
-                  ) : null}
-                </>
-              )}
-          )}
+                    );
+                  })}
+                </tr>
+                {row.isExpanded && SubComponent ? (
+                  <div>
+                    <td style={{ width: tBodyRef.current?.clientWidth - 35 }}>
+                      {SubComponent({ row })}
+                    </td>
+                  </div>
+                ) : null}
+              </>
+            );
+          })}
         </tbody>
       </table>
       <S.PaginationContainer>
         <S.PaginationInfoContainer hasActionsBar={hasActionsBar}>
-            <S.TotalCount>
-              Ընդհանուր { totalCount } գրառում
-            </S.TotalCount>
+          <S.TotalCount>Ընդհանուր {totalCount} գրառում</S.TotalCount>
           <S.PaginationActionsContainer>
-            <Button onClick={prevPage} className={cx('bordered', { disable: currentPage === 1})}>
+            <Button
+              onClick={prevPage}
+              className={cx('bordered', { disable: currentPage === 1 })}
+            >
               {'<'}
             </Button>
-            { paginationButtons }
-            <Button onClick={nextPage} className={cx('bordered', { disable: currentPage === pageCount})}>
+            {paginationButtons}
+            <Button
+              onClick={nextPage}
+              className={cx('bordered', { disable: currentPage === pageCount })}
+            >
               {'>'}
             </Button>
           </S.PaginationActionsContainer>
         </S.PaginationInfoContainer>
       </S.PaginationContainer>
     </S.TableContainer>
-  )
-}
+  );
+};
 
 Table.defaultProps = {
   data: [],
@@ -378,4 +403,4 @@ Table.defaultProps = {
   selectedRowIndexes: [],
   withoutCheckboxes: false,
   title: 'Գործողություններ'
-}
+};

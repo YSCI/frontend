@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { validations } from 'constants/validations'
+import { validations } from 'constants/validations';
 import { pick } from 'lodash';
 
 export const initialValues = {
@@ -23,13 +23,14 @@ export const initialValues = {
   residentAddress: '',
   residentRegionId: null,
   dateOfAcceptance: null,
+  validTill: null,
   socialCardNumber: '',
   residentCommunityId: null,
   registrationAddress: '',
   registrationRegionId: null,
   registrationCommunityId: null,
-  acceptanceCommandNumber: '',
-}
+  acceptanceCommandNumber: ''
+};
 
 const validationKeysBySteps = [
   [
@@ -56,7 +57,7 @@ const validationKeysBySteps = [
     'passportType',
     'passportSeries',
     'passportIssuedBy',
-    'passportDateOfIssue',
+    'passportDateOfIssue'
   ],
   [
     'registrationRegionId',
@@ -66,6 +67,10 @@ const validationKeysBySteps = [
     'residentCommunityId',
     'residentAddress'
   ]
-]
+];
 
-export const getValidationSchema = (step) => Yup.object().shape(pick(validations.student, validationKeysBySteps[step]), ['passportSeries', 'socialCardNumber']);
+export const getValidationSchema = (step) =>
+  Yup.object().shape(pick(validations.student, validationKeysBySteps[step]), [
+    'passportSeries',
+    'socialCardNumber'
+  ]);
