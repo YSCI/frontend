@@ -38,6 +38,7 @@ export const StudentForm = ({
     } else {
       createStudent(values);
     }
+    hideModal();
   };
 
   return (
