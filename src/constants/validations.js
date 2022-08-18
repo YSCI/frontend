@@ -13,24 +13,30 @@ export const validations = {
     fathername: Yup.string()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
+    gender: Yup.number()
+      .typeError(validationMessages.empty)
+      .required(validationMessages.empty),
     residentAddress: Yup.string()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
-    residentRegionId: Yup.number()
+    educationBasis: Yup.number()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
-    residentCommunityId: Yup.number()
-      .typeError(validationMessages.empty)
-      .required(validationMessages.empty),
+    // residentRegionId: Yup.number()
+    //   .typeError(validationMessages.empty)
+    //   .required(validationMessages.empty),
+    // residentCommunityId: Yup.number()
+    //   .typeError(validationMessages.empty)
+    //   .required(validationMessages.empty),
     registrationAddress: Yup.string()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
-    registrationRegionId: Yup.number()
-      .typeError(validationMessages.empty)
-      .required(validationMessages.empty),
-    registrationCommunityId: Yup.number()
-      .typeError(validationMessages.empty)
-      .required(validationMessages.empty),
+    // registrationRegionId: Yup.number()
+    //   .typeError(validationMessages.empty)
+    //   .required(validationMessages.empty),
+    // registrationCommunityId: Yup.number()
+    //   .typeError(validationMessages.empty)
+    //   .required(validationMessages.empty),
     acceptanceCommandNumber: Yup.string()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
@@ -56,6 +62,9 @@ export const validations = {
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
     citizenshipId: Yup.number()
+      .typeError(validationMessages.empty)
+      .required(validationMessages.empty),
+    educationStatus: Yup.number()
       .typeError(validationMessages.empty)
       .required(validationMessages.empty),
     socialCardNumber: Yup.string()

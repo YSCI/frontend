@@ -114,7 +114,7 @@ export const StudentForm = ({
           const selectedEducationBasis = educationBasis.find(
             (base) => base.id === values.educationBasis
           );
-          console.log({ errors });
+          console.log({ errors, values });
           return (
             <S.FormContentContainer>
               <Steps

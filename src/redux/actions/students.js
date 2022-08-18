@@ -94,7 +94,7 @@ export const createStudent = (values) => async (dispatch) => {
 
     toast.success('Գործողությունը հաջողությամբ կատարվեց');
   } catch (ex) {
-    toast.error(`Առաջացավ խնդիր: ${ex.message}`);
+    toast.error(`Առաջացավ խնդիր: ${ex?.response?.message?.join?.(' - ')}`);
   }
 };
 
