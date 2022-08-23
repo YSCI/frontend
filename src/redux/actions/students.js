@@ -56,7 +56,7 @@ export const editStudent = (values) => async (dispatch) => {
       currentGroup: +parsedValues.currentGroup,
       currentCourse: +parsedValues.currentCourse,
       socialCardNumber: +parsedValues.socialCardNumber,
-      passportSeries: +parsedValues.passportSeries,
+      passportSeries: parsedValues.passportSeries,
       acceptanceCommandNumber: +parsedValues.acceptanceCommandNumber
     });
 
