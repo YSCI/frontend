@@ -68,7 +68,7 @@ export class HttpService {
     let queryString;
 
     if (typeof search === 'object')
-      queryString = '?' + qs.stringify({ ...filterNonNull(search), limit: 6 });
+      queryString = '?' + qs.stringify({ ...filterNonNull(search) });
     else queryString = search || '';
     return await HttpService.request('get', path + `${queryString}`, options);
   }

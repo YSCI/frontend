@@ -112,7 +112,7 @@ export const StudentForm = ({
             (status) => status.value === values.educationStatus
           );
           const selectedEducationBasis = educationBasis.find(
-            (base) => base.id === values.educationBasis
+            (base) => base.value === values.educationBasis
           );
           console.log({ errors, values });
           return (
