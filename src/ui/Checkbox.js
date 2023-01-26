@@ -1,23 +1,17 @@
-import React, { useState } from 'react'
-import cx from 'classnames'
-import styled from 'styled-components'
-import { CenteredFlex } from './styles'
+import React, { useState } from 'react';
+import cx from 'classnames';
+import styled from 'styled-components';
+import { CenteredFlex } from './styles';
 
-export const Checkbox = ({
-  label,  
-  checked,
-  onChange,
-  className,
-  ...rest
-}) => {
-  const [isChecked, setIsChecked] = useState(checked)
+export const Checkbox = ({ label, checked, onChange, className, ...rest }) => {
+  const [isChecked, setIsChecked] = useState(checked);
 
   const onCheck = () => {
-    const checkedUpdated = !isChecked
+    const checkedUpdated = !isChecked;
 
-    onChange?.(checkedUpdated)
-    setIsChecked(checkedUpdated)
-  }
+    onChange?.(checkedUpdated);
+    setIsChecked(checkedUpdated);
+  };
 
   return (
     <CheckboxWrapper>
@@ -26,31 +20,30 @@ export const Checkbox = ({
         className={cx('Checkbox', { isChecked: checked, [className]: true })}
         {...rest}
       >
-        <Checked className={cx({ isChecked: checked })}/>
+        <Checked className={cx({ isChecked: checked })} />
       </CheckboxContainer>
-      {
-        label &&
-          <Label onClick={onCheck}>
-            { label }
-          </Label>
-      }
+      {label && (
+        <Label onClick={onCheck} className="Label">
+          {label}
+        </Label>
+      )}
     </CheckboxWrapper>
-  )
-}
+  );
+};
 
 Checkbox.defaultProps = {
   label: '',
   checked: false
-}
+};
 
 const CheckboxWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-`
+`;
 
-const Label = styled.span``
+const Label = styled.span``;
 
 const Checked = styled.div`
   width: 15px;
@@ -62,7 +55,7 @@ const Checked = styled.div`
   &.isChecked {
     background: ${({ theme }) => theme.colors.lightGreen};
   }
-`
+`;
 
 const CheckboxContainer = styled(CenteredFlex)`
   min-width: 21px;
@@ -72,16 +65,15 @@ const CheckboxContainer = styled(CenteredFlex)`
   border: 2px solid #bababa;
   transition: all 0.3s ease;
 
-  &.main  {
+  &.main {
     border-color: #d9d9d9;
   }
 
-
   &:hover {
-    border-color: ${({ theme }) => theme.colors.lightGreen}
+    border-color: ${({ theme }) => theme.colors.lightGreen};
   }
 
   &.isChecked {
-    border-color: ${({ theme }) => theme.colors.lightGreen}
+    border-color: ${({ theme }) => theme.colors.lightGreen};
   }
-`
+`;

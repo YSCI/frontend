@@ -25,3 +25,6 @@ export const educationBasis = [
     value: 5
   }
 ];
+
+// bnakman hasce galochka, hrammaner avtomat u script vor saxin arajin hraman ta, usanoxi sax infon andznakan, hch n voch partadir otarerkrya-i depqum ejum
+// chuni, date picker nery

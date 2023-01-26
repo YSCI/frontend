@@ -1,68 +1,56 @@
-import React from 'react'
-import moment from 'moment'
-import styled from 'styled-components'
-import { withTheme } from 'styled-components'
-import ModernDatepicker from 'react-modern-datepicker'
+import React, { useMemo } from 'react';
+import moment from 'moment';
+import styled from 'styled-components';
+import { withTheme } from 'styled-components';
+import ModernDatepicker from 'react-modern-datepicker';
 
+import { CenteredFlex } from './styles';
+import closeIcon from 'images/close.png';
 
-import { CenteredFlex } from './styles'
-import closeIcon from 'images/close.png'
+export const DatePicker = withTheme(
+  ({ date, error, theme, onChange, placeholder, ...rest }) => {
+    const onSelectDate = (date) => {
+      const dateFormatted = moment(date, 'DD/MM/YYYY');
 
-export const DatePicker = withTheme(({
-  date,
-  error,
-  theme,
-  onChange,
-  placeholder,
-  ...rest
-}) => {
-  const onSelectDate = (date) => {
-    const dateFormatted = moment(date, 'DD/MM/YYYY')
+      onChange?.(dateFormatted.toISOString());
+    };
 
-    onChange?.(dateFormatted.toISOString())
-  }
-
-  return (
-    <DatePickerContainer className='Date-Picker'>
-      <DatePickerComponent 
-        { ...rest }
-        allowEdit={true}
-        date={date
-          ? moment(date).format('DD/MM/YYYY')
-          : ''
-        }
-        onChange={onSelectDate}
-        format={'DD/MM/YYYY'}
-        className='DatePicker'
-        placeholder={placeholder}
-        primaryColor={theme.colors.green}
-      />
-      {
-        error &&
-          <ErrorMessage>{ error }</ErrorMessage>  
-      }
-      {
-        date &&
+    const formattedDate = useMemo(
+      () => (date ? moment(date).format('DD/MM/YYYY') : ''),
+      [date]
+    );
+    console.log(formattedDate, 'formattedDate');
+    return (
+      <DatePickerContainer className="Date-Picker">
+        <DatePickerComponent
+          {...rest}
+          date={formattedDate}
+          allowEdit={false}
+          format="DD/MM/YYYY"
+          value={formattedDate}
+          onChange={onSelectDate}
+          className="DatePicker"
+          placeholder={placeholder}
+          primaryColor={theme.colors.green}
+        />
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {date && (
           <ClearDateContainer onClick={() => onSelectDate(null)}>
-            <img alt='clear' src={closeIcon} />
+            <img alt="clear" src={closeIcon} />
           </ClearDateContainer>
-      }
-      {
-        date &&
-          <Placeholder>
-            { placeholder }
-          </Placeholder>
-      }
-    </DatePickerContainer>
-  )
-})
+        )}
+        {date && <Placeholder>{placeholder}</Placeholder>}
+      </DatePickerContainer>
+    );
+  }
+);
 
 const ErrorMessage = styled.div`
   font-size: 12px;
   color: red;
   margin-left: 10px;
   font-weight: 500;
-`
+`;
 
 const Placeholder = styled.div`
   position: absolute;
@@ -70,9 +58,9 @@ const Placeholder = styled.div`
   font-size: 13px;
   top: -10px;
   left: 10px;
-  color: #B8BCCA;
+  color: #b8bcca;
   font-weight: 500;
-`
+`;
 
 const ClearDateContainer = styled(CenteredFlex)`
   width: 35px;
@@ -92,7 +80,7 @@ const ClearDateContainer = styled(CenteredFlex)`
   &:hover {
     background: #f6f6f8;
   }
-`
+`;
 
 const DatePickerComponent = styled(ModernDatepicker)`
   border-radius: 4px;
@@ -122,7 +110,7 @@ const DatePickerComponent = styled(ModernDatepicker)`
     }
   }
 
-  &.DatePicker  {
+  &.DatePicker {
     font-size: 14px;
 
     &::placeholder {
@@ -139,11 +127,11 @@ const DatePickerComponent = styled(ModernDatepicker)`
   &.DatePicker + div {
     z-index: 100;
   }
-`
+`;
 
 const DatePickerContainer = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
   gap: 4px;
-`
+`;

@@ -11,6 +11,7 @@ export const initialValues = {
   gender: null,
   educationStatus: null,
   firstname: '',
+  isSameAddress: false,
   fathername: '',
   dateOfBirth: null,
   privilegeId: null,

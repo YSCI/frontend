@@ -5,7 +5,7 @@ import closeIcon from 'images/close.png';
 import * as S from './StudentForm.styles';
 import { initialValues, getValidationSchema } from './StudentForm.config';
 import { FormLabelItem } from 'components/FormLabelItem';
-import { Input, Button, Select, DatePicker } from 'ui';
+import { Input, Button, Select, DatePicker, Checkbox } from 'ui';
 import { genders } from 'constants/genders';
 import { educationStatuses } from 'constants/educationStatuses';
 import { passportTypes } from 'constants/passportTypes';
@@ -40,6 +40,9 @@ export const StudentForm = ({
     }
     hideModal();
   };
+
+  const setAddressesValuesSame = (setFieldValue, key, value) =>
+    setFieldValue(key, value);
 
   return (
     <S.StudentFormContainer>
@@ -361,9 +364,15 @@ export const StudentForm = ({
                         value={selectedRegistrationRegion}
                         options={state.regions.list}
                         placeholder="Մարզ"
-                        onChange={(val) =>
-                          setFieldValue('registrationRegionId', val?.value)
-                        }
+                        onChange={(val) => {
+                          setFieldValue('registrationRegionId', val?.value);
+                          if (values.isSameAddresses)
+                            setAddressesValuesSame(
+                              setFieldValue,
+                              'residentRegionId',
+                              val?.value
+                            );
+                        }}
                         error={
                           touched.registrationRegionId &&
                           errors.registrationRegionId
@@ -373,9 +382,15 @@ export const StudentForm = ({
                         value={selectedRegistrationCommunity}
                         options={selectedRegistrationRegion?.communities}
                         placeholder="Բնակավայր"
-                        onChange={(val) =>
-                          setFieldValue('registrationCommunityId', val?.value)
-                        }
+                        onChange={(val) => {
+                          setFieldValue('registrationCommunityId', val?.value);
+                          if (values.isSameAddresses)
+                            setAddressesValuesSame(
+                              setFieldValue,
+                              'residentCommunityId',
+                              val?.value
+                            );
+                        }}
                         error={
                           touched.registrationCommunityId &&
                           errors.registrationCommunityId
@@ -384,18 +399,60 @@ export const StudentForm = ({
                       <Input
                         value={values.registrationAddress}
                         placeholder="Հասցե"
-                        onChange={(val) =>
-                          setFieldValue('registrationAddress', val)
-                        }
+                        onChange={(val) => {
+                          setFieldValue('registrationAddress', val);
+                          if (values.isSameAddresses)
+                            setAddressesValuesSame(
+                              setFieldValue,
+                              'residentAddress',
+                              val
+                            );
+                        }}
                         error={
                           touched.registrationAddress &&
                           errors.registrationAddress
                         }
                       />
                     </FormLabelItem>
+                    <S.SameAddressContainer>
+                      <Checkbox
+                        label="Բնակվում է նույն հասցեում"
+                        checked={values.isSameAddresses}
+                        onChange={() => {
+                          if (values.isSameAddresses) {
+                            setFieldValue('residentRegionId', null);
+                            setFieldValue('residentCommunityId', null);
+                            setFieldValue('residentAddress', '');
+                          } else {
+                            setAddressesValuesSame(
+                              setFieldValue,
+                              'residentRegionId',
+                              values.registrationRegionId
+                            );
+                            setAddressesValuesSame(
+                              setFieldValue,
+                              'residentCommunityId',
+                              values.registrationCommunityId
+                            );
+                            setAddressesValuesSame(
+                              setFieldValue,
+                              'residentAddress',
+                              values.registrationAddress
+                            );
+                          }
+                          setFieldValue(
+                            'isSameAddresses',
+                            !values.isSameAddresses
+                          );
+                        }}
+                      />
+                    </S.SameAddressContainer>
                   </S.FormRow>
                   <S.FormRow>
-                    <FormLabelItem label="Բնակության հասցե">
+                    <FormLabelItem
+                      label="Բնակության հասցե"
+                      disabled={values.isSameAddresses}
+                    >
                       <Select
                         value={selectedResidentRegion}
                         options={state.regions.list}

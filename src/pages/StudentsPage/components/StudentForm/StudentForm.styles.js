@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { CenteredFlex } from 'ui/styles'
+import styled from 'styled-components';
+import { CenteredFlex } from 'ui/styles';
 
 export const StudentFormContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const StudentFormContainer = styled.div`
   min-width: 1150px;
   flex-direction: column;
   gap: 10px;
-`
+`;
 
 export const FormHeaderContainer = styled.div`
   display: flex;
@@ -20,12 +20,12 @@ export const FormHeaderContainer = styled.div`
   width: calc(100% - 30px);
   justify-content: space-between;
   border-bottom: 2px solid #f6f6f8;
-`
+`;
 
 export const HeaderTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
-`
+`;
 
 export const CloseFormContainer = styled(CenteredFlex)`
   width: 45px;
@@ -37,13 +37,13 @@ export const CloseFormContainer = styled(CenteredFlex)`
   &:hover {
     background: #f6f6f8;
   }
-`
+`;
 
 export const CloseFormIcon = styled.img`
   width: 15px;
   heigth: 15px;
   object-fit: cover;
-`
+`;
 
 export const FormContentContainer = styled.div`
   display: flex;
@@ -52,13 +52,13 @@ export const FormContentContainer = styled.div`
   padding: 0px 15px;
   align-items: center;
   gap: 10px;
-`
+`;
 
 export const FormItemsList = styled.div`
   display: flex;
   width: 100%;
   gap: 30px;
-`
+`;
 
 export const FormRow = styled.div`
   display: flex;
@@ -69,4 +69,11 @@ export const FormRow = styled.div`
   .FormLabelItem {
     gap: 15px;
   }
-`
+`;
+
+export const SameAddressContainer = styled.div`
+  .Label {
+    color: ${({ theme }) => theme.colors.lightGray};
+    font-weight: bold;
+  }
+`;
